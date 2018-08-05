@@ -1,0 +1,38 @@
+[p LITE_MODE AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F84A ]
+[d frameptr 6 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"53 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontrollerpic16F84\main.c
+[v _main main `(v  1 e 1 0 ]
+"166 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"210
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"498
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"728
+[v _TRISA0 TRISA0 `VEb  1 e 0 @1064 ]
+"731
+[v _TRISA1 TRISA1 `VEb  1 e 0 @1065 ]
+"734
+[v _TRISA2 TRISA2 `VEb  1 e 0 @1066 ]
+"737
+[v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
+"740
+[v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
+"32 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontrollerpic16F84\main.c
+[v _pa pa `us  1 e 2 0 ]
+"53
+[v _main main `(v  1 e 1 0 ]
+{
+"107
+} 0

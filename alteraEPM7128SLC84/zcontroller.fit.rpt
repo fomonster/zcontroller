@@ -1,0 +1,492 @@
+Fitter report for zcontroller
+Sun Aug 05 17:10:18 2018
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Fitter Summary
+  3. Fitter Settings
+  4. Parallel Compilation
+  5. Pin-Out File
+  6. Fitter Resource Usage Summary
+  7. Input Pins
+  8. Output Pins
+  9. Bidir Pins
+ 10. All Package Pins
+ 11. I/O Standard
+ 12. Dedicated Inputs I/O
+ 13. Output Pin Default Load For Reported TCO
+ 14. Fitter Resource Utilization by Entity
+ 15. Non-Global High Fan-Out Signals
+ 16. Interconnect Usage Summary
+ 17. LAB External Interconnect
+ 18. LAB Macrocells
+ 19. Logic Cell Interconnection
+ 20. Fitter Device Options
+ 21. Fitter Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------+
+; Fitter Summary                                                       ;
++-----------------------+----------------------------------------------+
+; Fitter Status         ; Successful - Sun Aug 05 17:10:18 2018        ;
+; Quartus II Version    ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name         ; zcontroller                                  ;
+; Top-level Entity Name ; zcontroller                                  ;
+; Family                ; MAX7000S                                     ;
+; Device                ; EPM7128SLC84-15                              ;
+; Timing Models         ; Final                                        ;
+; Total macrocells      ; 25 / 128 ( 20 % )                            ;
+; Total pins            ; 68 / 68 ( 100 % )                            ;
++-----------------------+----------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Fitter Settings                                                                                              ;
++----------------------------------------------------------------------------+-----------------+---------------+
+; Option                                                                     ; Setting         ; Default Value ;
++----------------------------------------------------------------------------+-----------------+---------------+
+; Device                                                                     ; EPM7128SLC84-15 ;               ;
+; Use smart compilation                                                      ; Off             ; Off           ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On              ; On            ;
+; Enable compact report table                                                ; Off             ; Off           ;
+; Use TimeQuest Timing Analyzer                                              ; Off             ; Off           ;
+; Optimize Timing for ECOs                                                   ; Off             ; Off           ;
+; Regenerate full fit report during ECO compiles                             ; Off             ; Off           ;
+; Optimize IOC Register Placement for Timing                                 ; On              ; On            ;
+; Limit to One Fitting Attempt                                               ; Off             ; Off           ;
+; Fitter Initial Placement Seed                                              ; 1               ; 1             ;
+; Slow Slew Rate                                                             ; Off             ; Off           ;
+; Fitter Effort                                                              ; Auto Fit        ; Auto Fit      ;
+; Force Fitter to Avoid Periphery Placement Warnings                         ; Off             ; Off           ;
+; Use Best Effort Settings for Compilation                                   ; Off             ; Off           ;
++----------------------------------------------------------------------------+-----------------+---------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 6      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------+
+; Pin-Out File ;
++--------------+
+The pin-out file can be found in C:/Users/fomonster/Dropbox/ZX/z-controller/zcontroller/zcontroller.pin.
+
+
++-------------------------------------------------------+
+; Fitter Resource Usage Summary                         ;
++-----------------------------------+-------------------+
+; Resource                          ; Usage             ;
++-----------------------------------+-------------------+
+; Logic cells                       ; 25 / 128 ( 20 % ) ;
+; Registers                         ; 0 / 128 ( 0 % )   ;
+; Number of pterms used             ; 1                 ;
+; User inserted logic elements      ; 0                 ;
+; I/O pins                          ; 68 / 68 ( 100 % ) ;
+;     -- Clock pins                 ; 2 / 2 ( 100 % )   ;
+;     -- Dedicated input pins       ; 2 / 2 ( 100 % )   ;
+; Global signals                    ; 0                 ;
+; Shareable expanders               ; 0 / 128 ( 0 % )   ;
+; Parallel expanders                ; 0 / 120 ( 0 % )   ;
+; Cells using turbo bit             ; 25 / 128 ( 20 % ) ;
+; Maximum fan-out node              ; PB[1]~1           ;
+; Maximum fan-out                   ; 1                 ;
+; Highest non-global fan-out signal ; PB[1]~1           ;
+; Highest non-global fan-out        ; 1                 ;
+; Total fan-out                     ; 26                ;
+; Average fan-out                   ; 0.28              ;
++-----------------------------------+-------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Input Pins                                                                                                                                    ;
++---------+-------+----------+-----+-----------------------+--------------------+--------+----------------+--------------+----------------------+
+; Name    ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; I/O Standard ; Location assigned by ;
++---------+-------+----------+-----+-----------------------+--------------------+--------+----------------+--------------+----------------------+
+; A[0]    ; 84    ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[10]   ; 22    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[11]   ; 29    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[12]   ; 74    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[13]   ; 76    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[14]   ; 73    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[15]   ; 70    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[1]    ; 4     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[2]    ; 5     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[3]    ; 8     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[4]    ; 16    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[5]    ; 21    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[6]    ; 18    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[7]    ; 58    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[8]    ; 24    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[9]    ; 27    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; DOS     ; 77    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; IO3D    ; 60    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; IORQ    ; 12    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; M1      ; 15    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; NMI     ; 25    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[0]   ; 56    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[1]   ; 49    ; --       ; 5   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[2]   ; 48    ; --       ; 5   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[3]   ; 33    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[4]   ; 50    ; --       ; 5   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[5]   ; 46    ; --       ; 5   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[6]   ; 35    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[7]   ; 34    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; RD      ; 11    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; RES     ; 55    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; RESTRIG ; 1     ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; SDCS    ; 31    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; SDDET   ; 28    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; SDIN    ; 20    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; SDRO    ; 17    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; SDTAKT  ; 2     ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; STROBE  ; 83    ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; WR      ; 30    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
++---------+-------+----------+-----+-----------------------+--------------------+--------+----------------+--------------+----------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Output Pins                                                                                                                                                                              ;
++------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+; Name ; Pin # ; I/O Bank ; LAB ; Output Register ; Slow Slew Rate ; Open Drain ; TRI Primitive ; I/O Standard ; Location assigned by ; Load  ; Output Enable Source ; Output Enable Group ;
++------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+; EBL  ; 39    ; --       ; 4   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO0  ; 51    ; --       ; 5   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO1  ; 52    ; --       ; 5   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO2  ; 57    ; --       ; 6   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO3  ; 63    ; --       ; 7   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO4  ; 61    ; --       ; 6   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO5  ; 65    ; --       ; 7   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO6  ; 75    ; --       ; 8   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IO7  ; 81    ; --       ; 8   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IOR  ; 41    ; --       ; 4   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; IOW  ; 44    ; --       ; 5   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; RDH  ; 45    ; --       ; 5   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; SC   ; 64    ; --       ; 7   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; SDDO ; 37    ; --       ; 4   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; SDEN ; 40    ; --       ; 4   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
+; WRH  ; 54    ; --       ; 6   ; no              ; no             ; no         ; no            ; TTL          ; User                 ; 10 pF ; -                    ; -                   ;
++------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Bidir Pins                                                                                                                                                                                                                                        ;
++--------+-------+----------+-----+-----------------------+--------------------+--------+----------------+-----------------+----------------+------------+--------------+----------------------+-------+----------------------+---------------------+
+; Name   ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Output Register ; Slow Slew Rate ; Open Drain ; I/O Standard ; Location assigned by ; Load  ; Output Enable Source ; Output Enable Group ;
++--------+-------+----------+-----+-----------------------+--------------------+--------+----------------+-----------------+----------------+------------+--------------+----------------------+-------+----------------------+---------------------+
+; D[0]   ; 79    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~4 (inverted)    ; -                   ;
+; D[1]   ; 68    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~5 (inverted)    ; -                   ;
+; D[2]   ; 80    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~6 (inverted)    ; -                   ;
+; D[3]   ; 6     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~7 (inverted)    ; -                   ;
+; D[4]   ; 9     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~8 (inverted)    ; -                   ;
+; D[5]   ; 10    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~9 (inverted)    ; -                   ;
+; D[6]   ; 69    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~10 (inverted)   ; -                   ;
+; D[7]   ; 67    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~11 (inverted)   ; -                   ;
+; IORQGE ; 36    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~3 (inverted)    ; -                   ;
++--------+-------+----------+-----+-----------------------+--------------------+--------+----------------+-----------------+----------------+------------+--------------+----------------------+-------+----------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; All Package Pins                                                                                      ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+; Location ; Pad Number ; I/O Bank ; Pin Name/Usage ; Dir.   ; I/O Standard ; Voltage ; User Assignment ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+; 1        ; 0          ; --       ; RESTRIG        ; input  ; TTL          ;         ; Y               ;
+; 2        ; 1          ; --       ; SDTAKT         ; input  ; TTL          ;         ; Y               ;
+; 3        ; 2          ; --       ; VCCINT         ; power  ;              ; 5.0V    ;                 ;
+; 4        ; 3          ; --       ; A[1]           ; input  ; TTL          ;         ; Y               ;
+; 5        ; 4          ; --       ; A[2]           ; input  ; TTL          ;         ; Y               ;
+; 6        ; 5          ; --       ; D[3]           ; bidir  ; TTL          ;         ; Y               ;
+; 7        ; 6          ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 8        ; 7          ; --       ; A[3]           ; input  ; TTL          ;         ; Y               ;
+; 9        ; 8          ; --       ; D[4]           ; bidir  ; TTL          ;         ; Y               ;
+; 10       ; 9          ; --       ; D[5]           ; bidir  ; TTL          ;         ; Y               ;
+; 11       ; 10         ; --       ; RD             ; input  ; TTL          ;         ; Y               ;
+; 12       ; 11         ; --       ; IORQ           ; input  ; TTL          ;         ; Y               ;
+; 13       ; 12         ; --       ; VCCIO          ; power  ;              ; 5.0V    ;                 ;
+; 14       ; 13         ; --       ; TDI            ; input  ; TTL          ;         ; Y               ;
+; 15       ; 14         ; --       ; M1             ; input  ; TTL          ;         ; Y               ;
+; 16       ; 15         ; --       ; A[4]           ; input  ; TTL          ;         ; Y               ;
+; 17       ; 16         ; --       ; SDRO           ; input  ; TTL          ;         ; Y               ;
+; 18       ; 17         ; --       ; A[6]           ; input  ; TTL          ;         ; Y               ;
+; 19       ; 18         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 20       ; 19         ; --       ; SDIN           ; input  ; TTL          ;         ; Y               ;
+; 21       ; 20         ; --       ; A[5]           ; input  ; TTL          ;         ; Y               ;
+; 22       ; 21         ; --       ; A[10]          ; input  ; TTL          ;         ; Y               ;
+; 23       ; 22         ; --       ; TMS            ; input  ; TTL          ;         ; Y               ;
+; 24       ; 23         ; --       ; A[8]           ; input  ; TTL          ;         ; Y               ;
+; 25       ; 24         ; --       ; NMI            ; input  ; TTL          ;         ; Y               ;
+; 26       ; 25         ; --       ; VCCIO          ; power  ;              ; 5.0V    ;                 ;
+; 27       ; 26         ; --       ; A[9]           ; input  ; TTL          ;         ; Y               ;
+; 28       ; 27         ; --       ; SDDET          ; input  ; TTL          ;         ; Y               ;
+; 29       ; 28         ; --       ; A[11]          ; input  ; TTL          ;         ; Y               ;
+; 30       ; 29         ; --       ; WR             ; input  ; TTL          ;         ; Y               ;
+; 31       ; 30         ; --       ; SDCS           ; input  ; TTL          ;         ; Y               ;
+; 32       ; 31         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 33       ; 32         ; --       ; PB[3]          ; input  ; TTL          ;         ; Y               ;
+; 34       ; 33         ; --       ; PB[7]          ; input  ; TTL          ;         ; Y               ;
+; 35       ; 34         ; --       ; PB[6]          ; input  ; TTL          ;         ; Y               ;
+; 36       ; 35         ; --       ; IORQGE         ; bidir  ; TTL          ;         ; Y               ;
+; 37       ; 36         ; --       ; SDDO           ; output ; TTL          ;         ; Y               ;
+; 38       ; 37         ; --       ; VCCIO          ; power  ;              ; 5.0V    ;                 ;
+; 39       ; 38         ; --       ; EBL            ; output ; TTL          ;         ; Y               ;
+; 40       ; 39         ; --       ; SDEN           ; output ; TTL          ;         ; Y               ;
+; 41       ; 40         ; --       ; IOR            ; output ; TTL          ;         ; Y               ;
+; 42       ; 41         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 43       ; 42         ; --       ; VCCINT         ; power  ;              ; 5.0V    ;                 ;
+; 44       ; 43         ; --       ; IOW            ; output ; TTL          ;         ; Y               ;
+; 45       ; 44         ; --       ; RDH            ; output ; TTL          ;         ; Y               ;
+; 46       ; 45         ; --       ; PB[5]          ; input  ; TTL          ;         ; Y               ;
+; 47       ; 46         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 48       ; 47         ; --       ; PB[2]          ; input  ; TTL          ;         ; Y               ;
+; 49       ; 48         ; --       ; PB[1]          ; input  ; TTL          ;         ; Y               ;
+; 50       ; 49         ; --       ; PB[4]          ; input  ; TTL          ;         ; Y               ;
+; 51       ; 50         ; --       ; IO0            ; output ; TTL          ;         ; Y               ;
+; 52       ; 51         ; --       ; IO1            ; output ; TTL          ;         ; Y               ;
+; 53       ; 52         ; --       ; VCCIO          ; power  ;              ; 5.0V    ;                 ;
+; 54       ; 53         ; --       ; WRH            ; output ; TTL          ;         ; Y               ;
+; 55       ; 54         ; --       ; RES            ; input  ; TTL          ;         ; Y               ;
+; 56       ; 55         ; --       ; PB[0]          ; input  ; TTL          ;         ; Y               ;
+; 57       ; 56         ; --       ; IO2            ; output ; TTL          ;         ; Y               ;
+; 58       ; 57         ; --       ; A[7]           ; input  ; TTL          ;         ; Y               ;
+; 59       ; 58         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 60       ; 59         ; --       ; IO3D           ; input  ; TTL          ;         ; Y               ;
+; 61       ; 60         ; --       ; IO4            ; output ; TTL          ;         ; Y               ;
+; 62       ; 61         ; --       ; TCK            ; input  ; TTL          ;         ; Y               ;
+; 63       ; 62         ; --       ; IO3            ; output ; TTL          ;         ; Y               ;
+; 64       ; 63         ; --       ; SC             ; output ; TTL          ;         ; Y               ;
+; 65       ; 64         ; --       ; IO5            ; output ; TTL          ;         ; Y               ;
+; 66       ; 65         ; --       ; VCCIO          ; power  ;              ; 5.0V    ;                 ;
+; 67       ; 66         ; --       ; D[7]           ; bidir  ; TTL          ;         ; Y               ;
+; 68       ; 67         ; --       ; D[1]           ; bidir  ; TTL          ;         ; Y               ;
+; 69       ; 68         ; --       ; D[6]           ; bidir  ; TTL          ;         ; Y               ;
+; 70       ; 69         ; --       ; A[15]          ; input  ; TTL          ;         ; Y               ;
+; 71       ; 70         ; --       ; TDO            ; output ; TTL          ;         ; Y               ;
+; 72       ; 71         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 73       ; 72         ; --       ; A[14]          ; input  ; TTL          ;         ; Y               ;
+; 74       ; 73         ; --       ; A[12]          ; input  ; TTL          ;         ; Y               ;
+; 75       ; 74         ; --       ; IO6            ; output ; TTL          ;         ; Y               ;
+; 76       ; 75         ; --       ; A[13]          ; input  ; TTL          ;         ; Y               ;
+; 77       ; 76         ; --       ; DOS            ; input  ; TTL          ;         ; Y               ;
+; 78       ; 77         ; --       ; VCCIO          ; power  ;              ; 5.0V    ;                 ;
+; 79       ; 78         ; --       ; D[0]           ; bidir  ; TTL          ;         ; Y               ;
+; 80       ; 79         ; --       ; D[2]           ; bidir  ; TTL          ;         ; Y               ;
+; 81       ; 80         ; --       ; IO7            ; output ; TTL          ;         ; Y               ;
+; 82       ; 81         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 83       ; 82         ; --       ; STROBE         ; input  ; TTL          ;         ; Y               ;
+; 84       ; 83         ; --       ; A[0]           ; input  ; TTL          ;         ; Y               ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+Note: Pin directions (input, output or bidir) are based on device operating in user mode.
+
+
++--------------------------------------------------------------------------------------------------+
+; I/O Standard                                                                                     ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+; I/O Standard ; Input Vref ; Dedicated Input Pins ; Pins in I/O Bank1 ; Pins in I/O Bank2 ; Total ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+; TTL          ; -          ; 4                    ; 0                 ; 0                 ; 4     ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+
+
++-----------------------------------------------------------------------+
+; Dedicated Inputs I/O                                                  ;
++---------+-------+-------+-------+--------------+------------+---------+
+; Name    ; Pin # ; Type  ; VCCIO ; I/O Standard ; Input Vref ; Current ;
++---------+-------+-------+-------+--------------+------------+---------+
+; A[0]    ; 84    ; Input ; --    ; TTL          ; -          ; 0 mA    ;
+; RESTRIG ; 1     ; Input ; --    ; TTL          ; -          ; 0 mA    ;
+; SDTAKT  ; 2     ; Input ; --    ; TTL          ; -          ; 0 mA    ;
+; STROBE  ; 83    ; Input ; --    ; TTL          ; -          ; 0 mA    ;
++---------+-------+-------+-------+--------------+------------+---------+
+
+
++-----------------------------------------------+
+; Output Pin Default Load For Reported TCO      ;
++--------------+-------+------------------------+
+; I/O Standard ; Load  ; Termination Resistance ;
++--------------+-------+------------------------+
+; 3.3-V LVTTL  ; 10 pF ; Not Available          ;
+; 3.3-V LVCMOS ; 10 pF ; Not Available          ;
+; TTL          ; 10 pF ; Not Available          ;
++--------------+-------+------------------------+
+Note: User assignments will override these defaults. The user specified values are listed in the Output Pins and Bidir Pins tables.
+
+
++-------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                               ;
++----------------------------+------------+------+---------------------+--------------+
+; Compilation Hierarchy Node ; Macrocells ; Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+------------+------+---------------------+--------------+
+; |zcontroller               ; 25         ; 68   ; |zcontroller        ; work         ;
++----------------------------+------------+------+---------------------+--------------+
+
+
++---------------------------------+
+; Non-Global High Fan-Out Signals ;
++---------+-----------------------+
+; Name    ; Fan-Out               ;
++---------+-----------------------+
+; PB[1]   ; 1                     ;
+; ~VCC~11 ; 1                     ;
+; ~VCC~10 ; 1                     ;
+; ~VCC~9  ; 1                     ;
+; ~VCC~8  ; 1                     ;
+; ~VCC~7  ; 1                     ;
+; ~VCC~6  ; 1                     ;
+; ~VCC~5  ; 1                     ;
+; ~VCC~4  ; 1                     ;
+; ~VCC~3  ; 1                     ;
+; ~GND~11 ; 1                     ;
+; ~GND~10 ; 1                     ;
+; ~GND~9  ; 1                     ;
+; ~GND~8  ; 1                     ;
+; ~GND~7  ; 1                     ;
+; ~GND~6  ; 1                     ;
+; ~GND~5  ; 1                     ;
+; ~GND~4  ; 1                     ;
+; ~GND~3  ; 1                     ;
+; ~GND~2  ; 1                     ;
+; ~VCC~2  ; 1                     ;
+; ~GND~1  ; 1                     ;
+; ~VCC~1  ; 1                     ;
+; ~VCC~0  ; 1                     ;
+; ~GND~0  ; 1                     ;
+; PB[1]~1 ; 1                     ;
++---------+-----------------------+
+
+
++------------------------------------------------+
+; Interconnect Usage Summary                     ;
++----------------------------+-------------------+
+; Interconnect Resource Type ; Usage             ;
++----------------------------+-------------------+
+; Output enables             ; 0 / 6 ( 0 % )     ;
+; PIA buffers                ; 1 / 288 ( < 1 % ) ;
+; PIAs                       ; 1 / 288 ( < 1 % ) ;
++----------------------------+-------------------+
+
+
++----------------------------------------------------------------------------+
+; LAB External Interconnect                                                  ;
++----------------------------------------------+-----------------------------+
+; LAB External Interconnects  (Average = 0.13) ; Number of LABs  (Total = 1) ;
++----------------------------------------------+-----------------------------+
+; 0                                            ; 7                           ;
+; 1                                            ; 1                           ;
++----------------------------------------------+-----------------------------+
+
+
++----------------------------------------------------------------------+
+; LAB Macrocells                                                       ;
++----------------------------------------+-----------------------------+
+; Number of Macrocells  (Average = 3.13) ; Number of LABs  (Total = 6) ;
++----------------------------------------+-----------------------------+
+; 0                                      ; 2                           ;
+; 1                                      ; 0                           ;
+; 2                                      ; 0                           ;
+; 3                                      ; 2                           ;
+; 4                                      ; 2                           ;
+; 5                                      ; 1                           ;
+; 6                                      ; 1                           ;
++----------------------------------------+-----------------------------+
+
+
++-----------------------------------+
+; Logic Cell Interconnection        ;
++-----+------------+-------+--------+
+; LAB ; Logic Cell ; Input ; Output ;
++-----+------------+-------+--------+
+;  A  ; LC13       ;       ; D[3]   ;
+;  A  ; LC8        ;       ; D[4]   ;
+;  A  ; LC6        ;       ; D[5]   ;
+;  D  ; LC51       ; PB[1] ; SDEN   ;
+;  D  ; LC49       ;       ; IOR    ;
+;  D  ; LC53       ;       ; EBL    ;
+;  D  ; LC56       ;       ; SDDO   ;
+;  D  ; LC57       ;       ; IORQGE ;
+;  E  ; LC65       ;       ; IOW    ;
+;  E  ; LC67       ;       ; RDH    ;
+;  E  ; LC77       ;       ; IO0    ;
+;  E  ; LC80       ;       ; IO1    ;
+;  F  ; LC83       ;       ; WRH    ;
+;  F  ; LC88       ;       ; IO2    ;
+;  F  ; LC94       ;       ; IO4    ;
+;  G  ; LC99       ;       ; SC     ;
+;  G  ; LC97       ;       ; IO3    ;
+;  G  ; LC101      ;       ; IO5    ;
+;  G  ; LC105      ;       ; D[1]   ;
+;  G  ; LC107      ;       ; D[6]   ;
+;  G  ; LC104      ;       ; D[7]   ;
+;  H  ; LC118      ;       ; IO6    ;
+;  H  ; LC128      ;       ; IO7    ;
+;  H  ; LC125      ;       ; D[0]   ;
+;  H  ; LC126      ;       ; D[2]   ;
++-----+------------+-------+--------+
+
+
++---------------------------------------------------------------+
+; Fitter Device Options                                         ;
++----------------------------------------------+----------------+
+; Option                                       ; Setting        ;
++----------------------------------------------+----------------+
+; Enable user-supplied start-up clock (CLKUSR) ; Off            ;
+; Enable device-wide reset (DEV_CLRn)          ; Off            ;
+; Enable device-wide output enable (DEV_OE)    ; Off            ;
+; Enable INIT_DONE output                      ; Off            ;
+; Configuration scheme                         ; Passive Serial ;
+; Security bit                                 ; Off            ;
+; Base pin-out file on sameframe device        ; Off            ;
++----------------------------------------------+----------------+
+
+
++-----------------+
+; Fitter Messages ;
++-----------------+
+Info: *******************************************************************
+Info: Running Quartus II Fitter
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Sun Aug 05 17:10:18 2018
+Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off zcontroller -c zcontroller
+Info: Selected device EPM7128SLC84-15 for design "zcontroller"
+Warning: Ignored locations or region assignments to the following nodes
+    Warning: Node "TCK" is assigned to location or region, but does not exist in design
+    Warning: Node "TDI" is assigned to location or region, but does not exist in design
+    Warning: Node "TDO" is assigned to location or region, but does not exist in design
+    Warning: Node "TMS" is assigned to location or region, but does not exist in design
+Info: Quartus II Fitter was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 224 megabytes
+    Info: Processing ended: Sun Aug 05 17:10:18 2018
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+
+
