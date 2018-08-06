@@ -785,12 +785,20 @@ typedef uint16_t uintptr_t;
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdbool.h" 1 3
 # 12 "main.c" 2
 # 26 "main.c"
+int8_t ps2DataState = 0;
+
 int8_t ps2Data = 0;
-_Bool ps2DataStarted = 0;
 int8_t ps2DataBitsCount = 0;
 
-int8_t ps2DataArray[10];
+
+int8_t ps2DataArray[8];
 int8_t ps2DataCount = 0;
+
+int8_t i = 0;
+int16_t keyCode = 0;
+uint32_t delay = 0;
+
+
 
 
 
@@ -800,40 +808,49 @@ unsigned short pa=0;
 
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 {
-
     if(T0IE && T0IF){
 
         T0IF=0;
         TMR0 = 255;
 
-        if ( !ps2DataStarted ) {
-            if ( !PORTAbits.RA4 ) {
+        if ( ps2DataState == 0 || ps2DataState == 1 ) {
+            if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
                 ps2DataBitsCount = 0;
                 ps2Data = 0;
-                ps2DataStarted = 1;
-                return;
+                ps2DataState = 2;
             }
-        } else if ( ps2DataBitsCount < 8 ) {
-            if ( PORTAbits.RA3 ) {
-                ps2Data |= ( 1 << ps2DataBitsCount );
-            }
-            ps2DataBitsCount++;
-            return;
-        } else if ( ps2DataBitsCount == 8 ) {
-            ps2DataBitsCount++;
-            if ( ps2DataCount < 10 ) {
-                ps2DataArray[ps2DataCount] = ps2Data;
-                ps2DataCount++;
+        } else if ( ps2DataState == 2 ) {
+            if ( ps2DataBitsCount < 8 ) {
+                if ( PORTAbits.RA3 ) {
+                    ps2Data |= ( 1 << ps2DataBitsCount );
+                }
+                ps2DataBitsCount++;
+            } else if ( ps2DataBitsCount == 8 ) {
+                ps2DataBitsCount++;
+            } else if ( ps2DataBitsCount == 9 ) {
+                if ( ps2DataCount < 8 ) {
+                    ps2DataArray[ps2DataCount] = ps2Data;
+                    ps2DataCount++;
+                }
+                if ( ps2Data == 0xF0 ) {
+                    ps2DataState = 1;
+                } else {
+                    ps2DataState = 3;
+                }
+            } else {
+
             }
         } else {
-            ps2DataStarted = 0;
-            ps2DataBitsCount = 0;
+
+
         }
-
     }
-
+    GIE = 1;
 }
-# 85 "main.c"
+
+
+
+
 void main(void)
 {
 
@@ -849,7 +866,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000010;
-# 123 "main.c"
+# 128 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -859,26 +876,35 @@ void main(void)
     TMR0 = 255;
 
 
-    ps2DataStarted = 0;
+    ps2DataState = 0;
     ps2DataBitsCount = 0;
     ps2Data = 0;
+    pa = 0;
 
     while(1)
     {
-        if ( ps2DataCount > 0 ) {
-            int16_t keyCode = ps2DataArray[0];
-            for(int8_t i = 0; i < ps2DataCount; i++) {
-                ps2DataArray[i] = ps2DataArray[i-1];
-            }
-            ps2DataCount--;
+        if ( ps2DataState == 3 ) {
 
-            if ( keyCode == 0x1a ) {
-               if (pa) {
-                    pa = 0;
+
+            if ( ps2DataCount > 1 ) {
+
+                if ( ps2DataArray[0] == 0xF0 && ps2DataArray[1] == 0x1a ) {
+                   pa = 1;
                 } else {
-                    pa = 1;
+                   pa = 0;
                 }
+
+            } else {
+
+                if ( ps2DataArray[0] == 0x1a ) {
+                    pa = 1;
+                } else {
+                    pa = 0;
+                }
+
             }
+            ps2DataCount = 0;
+            ps2DataState = 0;
         }
 
 
@@ -889,10 +915,10 @@ void main(void)
         }
 
 
-        uint32_t delay = 30000;
-        while(delay > 0 ) {
-            delay--;
-        }
+
+
+
+
 
     }
 

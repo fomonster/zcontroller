@@ -15,68 +15,77 @@
 
 #include <pic16f84a.h>
 
-//#include <time.h>
-
-//#include "system.h"        /* System funct/params, like osc/peripheral config */
-//#include "user.h"          /* User funct/params, such as InitApp */
-
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
+
+#define PS2DATA_WAIT 0
+#define PS2DATA_WAIT_NEXT 1
+#define PS2DATA_RECEIVING 2
+#define PS2DATA_RECEIVED 3
+int8_t ps2DataState = PS2DATA_WAIT;
+
 int8_t ps2Data = 0;
-bool ps2DataStarted = false;
 int8_t ps2DataBitsCount = 0;
 
-int8_t ps2DataArray[10];
+#define PS2DATA_MAX 8
+int8_t ps2DataArray[PS2DATA_MAX];
 int8_t ps2DataCount = 0;
+
+int8_t i = 0;
+int16_t keyCode = 0;
+uint32_t delay = 0;
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
+
+//__CONFIG(0x3FF9);  
 
 unsigned short pa=0;
 
-//#pragma vector = 0x04
+// ????????? ????????? ??????????. 
 void __interrupt(high_priority) myIsr(void)
 {
     if(T0IE && T0IF){
         
         T0IF=0;
         TMR0 = 255;
-
-        if ( !ps2DataStarted ) {
-            if ( !PORTAbits.RA4 ) {
+        // https://youtu.be/vfIiLE0BhE8?t=204
+        if ( ps2DataState == PS2DATA_WAIT || ps2DataState == PS2DATA_WAIT_NEXT ) {
+            if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) { // 0 start bit
                 ps2DataBitsCount = 0;
                 ps2Data = 0;
-                ps2DataStarted = true;
-                return;
+                ps2DataState = PS2DATA_RECEIVING;             
             }
-        } else if ( ps2DataBitsCount < 8 ) {
-            if ( PORTAbits.RA3 ) {
-                ps2Data |= ( 1 << ps2DataBitsCount );
-            }   
-            ps2DataBitsCount++;
-            return;
-        } else if ( ps2DataBitsCount == 8 ) {
-            ps2DataBitsCount++;
-            if ( ps2DataCount < 10 ) {
-                ps2DataArray[ps2DataCount] = ps2Data;
-                ps2DataCount++;
-            }            
+        } else if ( ps2DataState == PS2DATA_RECEIVING ) {
+            if ( ps2DataBitsCount < 8 ) { // 1,2,3,4,5,6,7,8 - data bits
+                if ( PORTAbits.RA3 ) {
+                    ps2Data |= ( 1 << ps2DataBitsCount );
+                }   
+                ps2DataBitsCount++;          
+            } else if ( ps2DataBitsCount == 8 ) { // 9 parity bit
+                ps2DataBitsCount++;       
+            } else if ( ps2DataBitsCount == 9 ) { // 10 stop bit
+                if ( ps2DataCount < PS2DATA_MAX ) {
+                    ps2DataArray[ps2DataCount] = ps2Data;
+                    ps2DataCount++;
+                }
+                if ( ps2Data == 0xF0 ) {
+                    ps2DataState = PS2DATA_WAIT_NEXT;
+                } else {
+                    ps2DataState = PS2DATA_RECEIVED;
+                }
+            } else {
+                
+            }
         } else {
-            ps2DataStarted = false;
-            ps2DataBitsCount = 0;
+            //ps2DataState = PS2DATA_WAIT;
+            //ps2DataBitsCount = 0;
         }
-        
-    }    
-}
-/*
-void WaitLowHighPS2Clock()
-{
-    while(RA1 == 0) { } // Wait for the LOW clock pulse to finish 
-    while(RA2 == 1) { } // After low edge wait for the HIGH clock pulse to finish 
+    } 
+    GIE = 1;
 }
 
-*/
 /******************************************************************************/
 /* Main Program                                                               */
 /******************************************************************************/
@@ -96,17 +105,15 @@ void main(void)
     TRISB = 0b00000000; // Port B all as output
     PORTB = 0b00000010; // Setup port B
         
-    //https://www.teachmemicro.com/pic-interrupt-pic16f84a/
-    //http://www.bristolwatch.com/k150/f84e.htm
-    //OPTION_REG = 0b00111000;
+
+    //OPTION_REG = 0b00111111;
         // 0 PORTB pull-up resistors disabled
         // 0 INTEDG Interrupt on rising edge of INT pin
         // 1 TOCS-TMR0 Clock  uses RA4 pin
         // 1 TOSE-TMR0 Increment on high-to-low transition on the TMR0 pin
         // 1 PSA - Prescaller asigned to WDT not to TMR0
         // 0 0 0 PSC2, PSC1, PSC0 - Prescaler Rate Select bit
-        
-    //TMR0 = 155;    
+               
     //INTCON=0b10100000; 
         // 1 GIE global enable interrupts
         // 0 EEIE Disables the EE write complete interrupt
@@ -122,45 +129,54 @@ void main(void)
     T0SE = 1;
     GIE = 1;
     T0IE = 1;
-    PSA = 1;
+    PSA = 1;   
     T0IF = 0;
     TMR0 = 255;
     
     
-    ps2DataStarted = false;
+    ps2DataState = PS2DATA_WAIT;
     ps2DataBitsCount = 0;
     ps2Data = 0;
+    pa = 0;
     
     while(1)
     {
-        if ( ps2DataCount > 0 ) {
-            int16_t keyCode = ps2DataArray[0];
-            for(int8_t i = 0; i < ps2DataCount; i++) {
-                ps2DataArray[i] = ps2DataArray[i-1];
-            }
-            ps2DataCount--;
+        if ( ps2DataState == PS2DATA_RECEIVED ) {
             
-            if ( keyCode == 0x1a ) { // 0x31=N // 0x1a=Z
-               if (pa) {
-                    pa = 0;
+            
+            if ( ps2DataCount > 1 ) {
+            
+                if ( ps2DataArray[0] == 0xF0 && ps2DataArray[1] == 0x1a ) { // 0x31=N // 0x1a=Z
+                   pa = 1;
                 } else {
-                    pa = 1;
+                   pa = 0;
                 }
+                    
+            } else {
+                            
+                if ( ps2DataArray[0] == 0x1a ) { // 0x31=N // 0x1a=Z
+                    pa = 1;
+                } else {
+                    pa = 0;
+                }
+                
             }
+            ps2DataCount = 0;
+            ps2DataState = PS2DATA_WAIT;
         }
                 
         
-        if ( pa ) {   //&& pa            
+        if ( pa ) {
             PORTB = 0b00000000; // led on
         } else {
             PORTB = 0b00000010; // led off
         }
-        
+        //CLRWDT();
         // delay
-        uint32_t delay = 30000;
-        while(delay > 0 ) {          
-            delay--;
-        }
+        //delay = 1000;
+        //while(delay > 0 ) {
+         //   delay--;
+        //}
         
     }
     
