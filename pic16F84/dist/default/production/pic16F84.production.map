@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\pic16F84.production.sym \
   --cmf=dist/default/production\pic16F84.production.cmf -z -Q16F84A \
-  -oC:\Users\FOMONS~1\AppData\Local\Temp\sgns.2 \
+  -oC:\Users\FOMONS~1\AppData\Local\Temp\sevo.2 \
   -Mdist/default/production/pic16F84.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=026h-04dh -pstack=STACK -ACODE=00h-03FFh \
   -ASTRCODE=00h-03FFh -ASTRING=00h-0FFhx4 -ACONST=00h-0FFhx4 \
@@ -15,7 +15,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-03Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sgns.o \
+  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sevo.o \
   dist/default/production\pic16F84.production.o 
 
 Object code version is 3.11
@@ -25,16 +25,16 @@ Machine type is 16F84A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\FOMONS~1\AppData\Local\Temp\sgns.o
+C:\Users\FOMONS~1\AppData\Local\Temp\sevo.o
                 end_init                              D        D        1        8       0
                 reset_vec                             0        0        1        0       0
 dist/default/production\pic16F84.production.o
                 cinit                                 E        E        7        8       0
                 intentry                              4        4        9        8       0
-                text1                                15       15       87        8       0
-                maintext                             9C       9C       54        8       0
+                text1                                15       15       8B        8       0
+                maintext                             A0       A0       5B        8       0
                 cstackBANK0                          21       21        5        C       1
-                clrtext                              F0       F0        8        8       0
+                clrtext                              FB       FB        8        8       0
                 bssBANK0                              C        C       15        C       1
 
 TOTAL           Name                               Link     Load   Length     Space
@@ -45,9 +45,9 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                 E        E        7         0
                 intentry                              4        4        9         0
                 reset_vec                             0        0        1         0
-                text1                                15       15       87         0
-                maintext                             9C       9C       54         0
-                clrtext                              F0       F0        8         0
+                text1                                15       15       8B         0
+                maintext                             A0       A0       5B         0
+                clrtext                              FB       FB        8         0
 
         CLASS   STRCODE        
 
@@ -85,7 +85,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000001  000001         0       0  CODE        2
-                intentry                       000004  0000F4  0000F8         8       0  CODE        2
+                intentry                       000004  0000FF  000103         8       0  CODE        2
                 bssBANK0                       00000C  00001A  000026         C       1  BANK0       1
 
 
@@ -94,22 +94,22 @@ UNUSED ADDRESS RANGES
         Name                Unused          Largest block    Delta
         BANK0            026-04D            28           1
         CODE             001-003             3           2
-                         0F8-3FF           308
+                         103-3FF           2FD
         CONFIG           2007-2007             1           2
         CONST            001-003             3           2
-                         0F8-3FF           100
+                         103-3FF           100
         EEDATA           2100-213F            40           2
         ENTRY            001-003             3           2
-                         0F8-3FF           100
+                         103-3FF           100
         IDLOC            2000-2003             4           2
         RAM              026-04D            28           1
         SFR0             000-00B             C           1
         SFR1             080-0CD            4E           1
         STACK            026-04D            28           1
         STRCODE          001-003             3           2
-                         0F8-3FF           308
+                         103-3FF           2FD
         STRING           001-003             3           2
-                         0F8-3FF           100
+                         103-3FF           100
 
                                   Symbol Table
 
@@ -152,7 +152,7 @@ __Hram                   ram          000
 __Hreset_vec             reset_vec    001
 __Hsfr0                  sfr0         000
 __Hsfr1                  sfr1         000
-__Hspace_0               (abs)        0F8
+__Hspace_0               (abs)        103
 __Hspace_1               (abs)        026
 __Hspace_2               (abs)        000
 __Hspace_3               (abs)        000
@@ -189,7 +189,7 @@ __Lspace_3               (abs)        000
 __Lstack                 stack        000
 __Lstrings               strings      000
 __Ltext                  text         000
-__S0                     (abs)        0F8
+__S0                     (abs)        103
 __S1                     (abs)        026
 __S2                     (abs)        000
 __S3                     (abs)        000
@@ -197,27 +197,27 @@ ___int_sp                stack        000
 ___latbits               (abs)        000
 ___sp                    stack        000
 __end_of__initialization cinit        013
-__end_of_main            maintext     0F0
-__end_of_myIsr           text1        09C
+__end_of_main            maintext     0FB
+__end_of_myIsr           text1        0A0
 __initialization         cinit        00E
 __pbssBANK0              bssBANK0     00C
 __pcstackBANK0           cstackBANK0  021
 __pcstackCOMMON          cstackCOMMON 000
 __pintentry              intentry     004
-__pmaintext              maintext     09C
+__pmaintext              maintext     0A0
 __ptext1                 text1        015
 __size_of_main           (abs)        000
 __size_of_myIsr          (abs)        000
-_main                    maintext     09C
+_main                    maintext     0A0
 _myIsr                   text1        015
 _pa                      bssBANK0     018
-_ps2Data                 bssBANK0     01F
-_ps2DataArray            bssBANK0     00C
-_ps2DataBitsCount        bssBANK0     01E
+_ps2Bits                 bssBANK0     01F
+_ps2BitsCount            bssBANK0     01E
+_ps2Data                 bssBANK0     00C
 _ps2DataCount            bssBANK0     01D
 _ps2DataState            bssBANK0     020
 btemp                    (abs)        04E
-clear_ram0               clrtext      0F0
+clear_ram0               clrtext      0FB
 end_of_initialization    cinit        013
 interrupt_function       intentry     004
 intlevel0                functab      000
@@ -239,7 +239,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 92 in file "main.c"
+		line 88 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -268,7 +268,7 @@ Total ram usage:        0 bytes
 
  *************** function _myIsr *****************
  Defined at:
-		line 47 in file "main.c"
+		line 48 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -305,8 +305,8 @@ shared
 shared estimated size: 6
 
 main.c
-		_main          		CODE           	009C	0000	85
-		_myIsr         		CODE           	0015	0000	136
+		_main          		CODE           	00A0	0000	92
+		_myIsr         		CODE           	0015	0000	140
 
-main.c estimated size: 221
+main.c estimated size: 232
 

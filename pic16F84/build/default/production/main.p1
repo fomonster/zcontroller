@@ -113,20 +113,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `c
 ]
 "28
-[; ;main.c: 28: int8_t ps2Data = 0;
-[v _ps2Data `c ~T0 @X0 1 e ]
-[i _ps2Data
--> -> 0 `i `c
+[; ;main.c: 28: uint8_t ps2Bits = 0;
+[v _ps2Bits `uc ~T0 @X0 1 e ]
+[i _ps2Bits
+-> -> 0 `i `uc
 ]
 "29
-[; ;main.c: 29: int8_t ps2DataBitsCount = 0;
-[v _ps2DataBitsCount `c ~T0 @X0 1 e ]
-[i _ps2DataBitsCount
+[; ;main.c: 29: int8_t ps2BitsCount = 0;
+[v _ps2BitsCount `c ~T0 @X0 1 e ]
+[i _ps2BitsCount
 -> -> 0 `i `c
 ]
 "32
-[; ;main.c: 32: int8_t ps2DataArray[8];
-[v _ps2DataArray `c ~T0 @X0 -> 8 `i e ]
+[; ;main.c: 32: uint8_t ps2Data[8];
+[v _ps2Data `uc ~T0 @X0 -> 8 `i e ]
 "33
 [; ;main.c: 33: int8_t ps2DataCount = 0;
 [v _ps2DataCount `c ~T0 @X0 1 e ]
@@ -151,329 +151,317 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _delay
 -> -> -> 0 `i `l `ul
 ]
-"44
-[; ;main.c: 44: unsigned short pa=0;
+"45
+[; ;main.c: 45: unsigned short pa=0;
 [v _pa `us ~T0 @X0 1 e ]
 [i _pa
 -> -> 0 `i `us
 ]
 [v $root$_myIsr `(v ~T0 @X0 0 e ]
-"47
-[; ;main.c: 47: void __attribute__((picinterrupt("high_priority"))) myIsr(void)
-[v _myIsr `(v ~T1 @X0 1 ef ]
 "48
-[; ;main.c: 48: {
+[; ;main.c: 48: void __attribute__((picinterrupt("high_priority"))) myIsr(void)
+[v _myIsr `(v ~T1 @X0 1 ef ]
+"49
+[; ;main.c: 49: {
 {
 [e :U _myIsr ]
 [f ]
-"49
-[; ;main.c: 49:     if(T0IE && T0IF){
+"50
+[; ;main.c: 50:     if(T0IE && T0IF){
 [e $ ! && _T0IE _T0IF 29  ]
 {
-"51
-[; ;main.c: 51:         T0IF=0;
-[e = _T0IF -> -> 0 `i `b ]
 "52
-[; ;main.c: 52:         TMR0 = 255;
+[; ;main.c: 52:         T0IF=0;
+[e = _T0IF -> -> 0 `i `b ]
+"53
+[; ;main.c: 53:         TMR0 = 255;
 [e = _TMR0 -> -> 255 `i `uc ]
-"54
-[; ;main.c: 54:         if ( ps2DataState == 0 || ps2DataState == 1 ) {
+"55
+[; ;main.c: 55:         if ( ps2DataState == 0 || ps2DataState == 1 ) {
 [e $ ! || == -> _ps2DataState `i -> 0 `i == -> _ps2DataState `i -> 1 `i 30  ]
 {
-"55
-[; ;main.c: 55:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
+"56
+[; ;main.c: 56:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
 [e $ ! && ! != -> . . _PORTAbits 0 4 `i -> 0 `i ! != -> . . _PORTAbits 0 3 `i -> 0 `i 31  ]
 {
-"56
-[; ;main.c: 56:                 ps2DataBitsCount = 0;
-[e = _ps2DataBitsCount -> -> 0 `i `c ]
 "57
-[; ;main.c: 57:                 ps2Data = 0;
-[e = _ps2Data -> -> 0 `i `c ]
+[; ;main.c: 57:                 ps2BitsCount = 0;
+[e = _ps2BitsCount -> -> 0 `i `c ]
 "58
-[; ;main.c: 58:                 ps2DataState = 2;
-[e = _ps2DataState -> -> 2 `i `c ]
+[; ;main.c: 58:                 ps2Bits = 0;
+[e = _ps2Bits -> -> 0 `i `uc ]
 "59
-[; ;main.c: 59:             }
+[; ;main.c: 59:                 ps2DataState = 2;
+[e = _ps2DataState -> -> 2 `i `c ]
+"60
+[; ;main.c: 60:             }
 }
 [e :U 31 ]
-"60
-[; ;main.c: 60:         } else if ( ps2DataState == 2 ) {
+"61
+[; ;main.c: 61:         } else if ( ps2DataState == 2 ) {
 }
 [e $U 32  ]
 [e :U 30 ]
 [e $ ! == -> _ps2DataState `i -> 2 `i 33  ]
 {
-"61
-[; ;main.c: 61:             if ( ps2DataBitsCount < 8 ) {
-[e $ ! < -> _ps2DataBitsCount `i -> 8 `i 34  ]
-{
 "62
-[; ;main.c: 62:                 if ( PORTAbits.RA3 ) {
-[e $ ! != -> . . _PORTAbits 0 3 `i -> 0 `i 35  ]
+[; ;main.c: 62:             if ( ps2BitsCount < 8 ) {
+[e $ ! < -> _ps2BitsCount `i -> 8 `i 34  ]
 {
 "63
-[; ;main.c: 63:                     ps2Data |= ( 1 << ps2DataBitsCount );
-[e =| _ps2Data -> << -> 1 `i -> _ps2DataBitsCount `i `c ]
+[; ;main.c: 63:                 if ( PORTAbits.RA3 ) {
+[e $ ! != -> . . _PORTAbits 0 3 `i -> 0 `i 35  ]
+{
 "64
-[; ;main.c: 64:                 }
+[; ;main.c: 64:                     ps2Bits |= ( 1 << ps2BitsCount );
+[e =| _ps2Bits -> << -> 1 `i -> _ps2BitsCount `i `uc ]
+"65
+[; ;main.c: 65:                 }
 }
 [e :U 35 ]
-"65
-[; ;main.c: 65:                 ps2DataBitsCount++;
-[e ++ _ps2DataBitsCount -> -> 1 `i `c ]
 "66
-[; ;main.c: 66:             } else if ( ps2DataBitsCount == 8 ) {
+[; ;main.c: 66:                 ps2BitsCount++;
+[e ++ _ps2BitsCount -> -> 1 `i `c ]
+"67
+[; ;main.c: 67:             } else if ( ps2BitsCount == 8 ) {
 }
 [e $U 36  ]
 [e :U 34 ]
-[e $ ! == -> _ps2DataBitsCount `i -> 8 `i 37  ]
+[e $ ! == -> _ps2BitsCount `i -> 8 `i 37  ]
 {
-"67
-[; ;main.c: 67:                 ps2DataBitsCount++;
-[e ++ _ps2DataBitsCount -> -> 1 `i `c ]
 "68
-[; ;main.c: 68:             } else if ( ps2DataBitsCount == 9 ) {
+[; ;main.c: 68:                 ps2BitsCount++;
+[e ++ _ps2BitsCount -> -> 1 `i `c ]
+"69
+[; ;main.c: 69:             } else if ( ps2BitsCount == 9 ) {
 }
 [e $U 38  ]
 [e :U 37 ]
-[e $ ! == -> _ps2DataBitsCount `i -> 9 `i 39  ]
-{
-"69
-[; ;main.c: 69:                 if ( ps2DataCount < 8 ) {
-[e $ ! < -> _ps2DataCount `i -> 8 `i 40  ]
+[e $ ! == -> _ps2BitsCount `i -> 9 `i 39  ]
 {
 "70
-[; ;main.c: 70:                     ps2DataArray[ps2DataCount] = ps2Data;
-[e = *U + &U _ps2DataArray * -> -> _ps2DataCount `uc `ux -> -> # *U &U _ps2DataArray `ui `ux _ps2Data ]
+[; ;main.c: 70:                 if ( ps2DataCount < 8 ) {
+[e $ ! < -> _ps2DataCount `i -> 8 `i 40  ]
+{
 "71
-[; ;main.c: 71:                     ps2DataCount++;
-[e ++ _ps2DataCount -> -> 1 `i `c ]
+[; ;main.c: 71:                     ps2Data[ps2DataCount] = ps2Bits;
+[e = *U + &U _ps2Data * -> -> _ps2DataCount `uc `ux -> -> # *U &U _ps2Data `ui `ux _ps2Bits ]
 "72
-[; ;main.c: 72:                 }
+[; ;main.c: 72:                     ps2DataCount++;
+[e ++ _ps2DataCount -> -> 1 `i `c ]
+"73
+[; ;main.c: 73:                 }
 }
 [e :U 40 ]
-"73
-[; ;main.c: 73:                 if ( ps2Data == 0xF0 ) {
-[e $ ! == -> _ps2Data `i -> 240 `i 41  ]
-{
 "74
-[; ;main.c: 74:                     ps2DataState = 1;
-[e = _ps2DataState -> -> 1 `i `c ]
+[; ;main.c: 74:                 if ( ps2Bits == 0xF0 ) {
+[e $ ! == -> _ps2Bits `i -> 240 `i 41  ]
+{
 "75
-[; ;main.c: 75:                 } else {
+[; ;main.c: 75:                     ps2DataState = 1;
+[e = _ps2DataState -> -> 1 `i `c ]
+"76
+[; ;main.c: 76:                 } else {
 }
 [e $U 42  ]
 [e :U 41 ]
 {
-"76
-[; ;main.c: 76:                     ps2DataState = 3;
-[e = _ps2DataState -> -> 3 `i `c ]
 "77
-[; ;main.c: 77:                 }
+[; ;main.c: 77:                     ps2DataState = 3;
+[e = _ps2DataState -> -> 3 `i `c ]
+"78
+[; ;main.c: 78:                 }
 }
 [e :U 42 ]
-"78
-[; ;main.c: 78:             } else {
+"79
+[; ;main.c: 79:             }
 }
-[e $U 43  ]
 [e :U 39 ]
-{
-"80
-[; ;main.c: 80:             }
-}
-[e :U 43 ]
 [e :U 38 ]
 [e :U 36 ]
-"81
-[; ;main.c: 81:         } else {
+"80
+[; ;main.c: 80:         }
 }
-[e $U 44  ]
 [e :U 33 ]
-{
-"84
-[; ;main.c: 84:         }
-}
-[e :U 44 ]
 [e :U 32 ]
-"85
-[; ;main.c: 85:     }
+"81
+[; ;main.c: 81:     }
 }
 [e :U 29 ]
-"86
-[; ;main.c: 86:     GIE = 1;
+"82
+[; ;main.c: 82:     GIE = 1;
 [e = _GIE -> -> 1 `i `b ]
-"87
-[; ;main.c: 87: }
+"83
+[; ;main.c: 83: }
 [e :UE 28 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"92
-[; ;main.c: 92: void main(void)
+"88
+[; ;main.c: 88: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"93
-[; ;main.c: 93: {
+"89
+[; ;main.c: 89: {
 {
 [e :U _main ]
 [f ]
-"97
-[; ;main.c: 97:     TRISA0 = 1;
+"93
+[; ;main.c: 93:     TRISA0 = 1;
 [e = _TRISA0 -> -> 1 `i `b ]
-"98
-[; ;main.c: 98:     TRISA1 = 0;
+"94
+[; ;main.c: 94:     TRISA1 = 0;
 [e = _TRISA1 -> -> 0 `i `b ]
-"99
-[; ;main.c: 99:     TRISA2 = 0;
+"95
+[; ;main.c: 95:     TRISA2 = 0;
 [e = _TRISA2 -> -> 0 `i `b ]
-"100
-[; ;main.c: 100:     TRISA3 = 1;
+"96
+[; ;main.c: 96:     TRISA3 = 1;
 [e = _TRISA3 -> -> 1 `i `b ]
-"101
-[; ;main.c: 101:     TRISA4 = 1;
+"97
+[; ;main.c: 97:     TRISA4 = 1;
 [e = _TRISA4 -> -> 1 `i `b ]
-"103
-[; ;main.c: 103:     PORTA = 0b00000000;
+"99
+[; ;main.c: 99:     PORTA = 0b00000000;
 [e = _PORTA -> -> 0 `i `uc ]
-"105
-[; ;main.c: 105:     TRISB = 0b00000000;
+"101
+[; ;main.c: 101:     TRISB = 0b00000000;
 [e = _TRISB -> -> 0 `i `uc ]
-"106
-[; ;main.c: 106:     PORTB = 0b00000010;
+"102
+[; ;main.c: 102:     PORTB = 0b00000010;
 [e = _PORTB -> -> 2 `i `uc ]
-"128
-[; ;main.c: 128:     T0CS = 1;
+"124
+[; ;main.c: 124:     T0CS = 1;
 [e = _T0CS -> -> 1 `i `b ]
-"129
-[; ;main.c: 129:     T0SE = 1;
+"125
+[; ;main.c: 125:     T0SE = 1;
 [e = _T0SE -> -> 1 `i `b ]
-"130
-[; ;main.c: 130:     GIE = 1;
+"126
+[; ;main.c: 126:     GIE = 1;
 [e = _GIE -> -> 1 `i `b ]
-"131
-[; ;main.c: 131:     T0IE = 1;
+"127
+[; ;main.c: 127:     T0IE = 1;
 [e = _T0IE -> -> 1 `i `b ]
-"132
-[; ;main.c: 132:     PSA = 1;
+"128
+[; ;main.c: 128:     PSA = 1;
 [e = _PSA -> -> 1 `i `b ]
-"133
-[; ;main.c: 133:     T0IF = 0;
+"129
+[; ;main.c: 129:     T0IF = 0;
 [e = _T0IF -> -> 0 `i `b ]
-"134
-[; ;main.c: 134:     TMR0 = 255;
+"130
+[; ;main.c: 130:     TMR0 = 255;
 [e = _TMR0 -> -> 255 `i `uc ]
-"137
-[; ;main.c: 137:     ps2DataState = 0;
+"133
+[; ;main.c: 133:     ps2DataState = 0;
 [e = _ps2DataState -> -> 0 `i `c ]
-"138
-[; ;main.c: 138:     ps2DataBitsCount = 0;
-[e = _ps2DataBitsCount -> -> 0 `i `c ]
-"139
-[; ;main.c: 139:     ps2Data = 0;
-[e = _ps2Data -> -> 0 `i `c ]
-"140
-[; ;main.c: 140:     pa = 0;
+"134
+[; ;main.c: 134:     ps2BitsCount = 0;
+[e = _ps2BitsCount -> -> 0 `i `c ]
+"135
+[; ;main.c: 135:     ps2Bits = 0;
+[e = _ps2Bits -> -> 0 `i `uc ]
+"136
+[; ;main.c: 136:     pa = 0;
 [e = _pa -> -> 0 `i `us ]
-"142
-[; ;main.c: 142:     while(1)
-[e :U 47 ]
+"138
+[; ;main.c: 138:     while(1)
+[e :U 45 ]
+"139
+[; ;main.c: 139:     {
+{
+"140
+[; ;main.c: 140:         if ( ps2DataState == 3 ) {
+[e $ ! == -> _ps2DataState `i -> 3 `i 47  ]
+{
 "143
-[; ;main.c: 143:     {
+[; ;main.c: 143:             if ( ps2DataCount > 1 ) {
+[e $ ! > -> _ps2DataCount `i -> 1 `i 48  ]
 {
-"144
-[; ;main.c: 144:         if ( ps2DataState == 3 ) {
-[e $ ! == -> _ps2DataState `i -> 3 `i 49  ]
+"145
+[; ;main.c: 145:                 if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0x1a ) {
+[e $ ! && == -> *U + &U _ps2Data * -> -> -> 0 `i `ui `ux -> -> # *U &U _ps2Data `ui `ux `i -> 240 `i == -> *U + &U _ps2Data * -> -> -> 1 `i `ui `ux -> -> # *U &U _ps2Data `ui `ux `i -> 26 `i 49  ]
 {
+"146
+[; ;main.c: 146:                    pa = 0;
+[e = _pa -> -> 0 `i `us ]
 "147
-[; ;main.c: 147:             if ( ps2DataCount > 1 ) {
-[e $ ! > -> _ps2DataCount `i -> 1 `i 50  ]
+[; ;main.c: 147:                 } else {
+}
+[e $U 50  ]
+[e :U 49 ]
 {
 "149
-[; ;main.c: 149:                 if ( ps2DataArray[0] == 0xF0 && ps2DataArray[1] == 0x1a ) {
-[e $ ! && == -> *U + &U _ps2DataArray * -> -> -> 0 `i `ui `ux -> -> # *U &U _ps2DataArray `ui `ux `i -> 240 `i == -> *U + &U _ps2DataArray * -> -> -> 1 `i `ui `ux -> -> # *U &U _ps2DataArray `ui `ux `i -> 26 `i 51  ]
-{
-"150
-[; ;main.c: 150:                    pa = 1;
-[e = _pa -> -> 1 `i `us ]
+[; ;main.c: 149:                 }
+}
+[e :U 50 ]
 "151
-[; ;main.c: 151:                 } else {
+[; ;main.c: 151:             } else {
 }
-[e $U 52  ]
-[e :U 51 ]
+[e $U 51  ]
+[e :U 48 ]
 {
-"152
-[; ;main.c: 152:                    pa = 0;
-[e = _pa -> -> 0 `i `us ]
 "153
-[; ;main.c: 153:                 }
-}
-[e :U 52 ]
+[; ;main.c: 153:                 if ( ps2Data[0] == 0x1a ) {
+[e $ ! == -> *U + &U _ps2Data * -> -> -> 0 `i `ui `ux -> -> # *U &U _ps2Data `ui `ux `i -> 26 `i 52  ]
+{
+"154
+[; ;main.c: 154:                     pa = 1;
+[e = _pa -> -> 1 `i `us ]
 "155
-[; ;main.c: 155:             } else {
+[; ;main.c: 155:                 } else {
 }
 [e $U 53  ]
-[e :U 50 ]
+[e :U 52 ]
 {
+"156
+[; ;main.c: 156:                     pa = 0;
+[e = _pa -> -> 0 `i `us ]
 "157
-[; ;main.c: 157:                 if ( ps2DataArray[0] == 0x1a ) {
-[e $ ! == -> *U + &U _ps2DataArray * -> -> -> 0 `i `ui `ux -> -> # *U &U _ps2DataArray `ui `ux `i -> 26 `i 54  ]
-{
-"158
-[; ;main.c: 158:                     pa = 1;
-[e = _pa -> -> 1 `i `us ]
+[; ;main.c: 157:                 }
+}
+[e :U 53 ]
 "159
-[; ;main.c: 159:                 } else {
+[; ;main.c: 159:             }
+}
+[e :U 51 ]
+"160
+[; ;main.c: 160:             ps2DataCount = 0;
+[e = _ps2DataCount -> -> 0 `i `c ]
+"161
+[; ;main.c: 161:             ps2DataState = 0;
+[e = _ps2DataState -> -> 0 `i `c ]
+"162
+[; ;main.c: 162:         }
+}
+[e :U 47 ]
+"165
+[; ;main.c: 165:         if ( pa ) {
+[e $ ! != -> _pa `ui -> -> 0 `i `ui 54  ]
+{
+"166
+[; ;main.c: 166:             PORTB = 0b00000000;
+[e = _PORTB -> -> 0 `i `uc ]
+"167
+[; ;main.c: 167:         } else {
 }
 [e $U 55  ]
 [e :U 54 ]
 {
-"160
-[; ;main.c: 160:                     pa = 0;
-[e = _pa -> -> 0 `i `us ]
-"161
-[; ;main.c: 161:                 }
+"168
+[; ;main.c: 168:             PORTB = 0b00000010;
+[e = _PORTB -> -> 2 `i `uc ]
+"169
+[; ;main.c: 169:         }
 }
 [e :U 55 ]
-"163
-[; ;main.c: 163:             }
-}
-[e :U 53 ]
-"164
-[; ;main.c: 164:             ps2DataCount = 0;
-[e = _ps2DataCount -> -> 0 `i `c ]
-"165
-[; ;main.c: 165:             ps2DataState = 0;
-[e = _ps2DataState -> -> 0 `i `c ]
-"166
-[; ;main.c: 166:         }
-}
-[e :U 49 ]
-"169
-[; ;main.c: 169:         if ( pa ) {
-[e $ ! != -> _pa `ui -> -> 0 `i `ui 56  ]
-{
 "170
-[; ;main.c: 170:             PORTB = 0b00000000;
-[e = _PORTB -> -> 0 `i `uc ]
-"171
-[; ;main.c: 171:         } else {
+[; ;main.c: 170:         __asm("clrwdt");
+[; <" clrwdt ;# ">
+"177
+[; ;main.c: 177:     }
 }
-[e $U 57  ]
-[e :U 56 ]
-{
-"172
-[; ;main.c: 172:             PORTB = 0b00000010;
-[e = _PORTB -> -> 2 `i `uc ]
-"173
-[; ;main.c: 173:         }
-}
-[e :U 57 ]
-"181
-[; ;main.c: 181:     }
-}
+[e :U 44 ]
+[e $U 45  ]
 [e :U 46 ]
-[e $U 47  ]
-[e :U 48 ]
-"183
-[; ;main.c: 183: }
-[e :UE 45 ]
+"179
+[; ;main.c: 179: }
+[e :UE 43 ]
 }

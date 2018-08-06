@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Mon Aug 06 14:14:26 2018
+                                                                                               Mon Aug 06 14:35:09 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -214,11 +214,11 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    152                           	FNCALL	intlevel1,_myIsr
    153                           	global	intlevel1
    154                           	FNROOT	intlevel1
-   155                           	global	_ps2DataArray
+   155                           	global	_ps2Data
    156                           	global	_pa
    157                           	global	_ps2DataCount
-   158                           	global	_ps2DataBitsCount
-   159                           	global	_ps2Data
+   158                           	global	_ps2BitsCount
+   159                           	global	_ps2Bits
    160                           	global	_ps2DataState
    161                           	global	_PORTB
    162                           _PORTB	set	0x6
@@ -253,7 +253,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    191  0429                     	global	_TRISA0
    192                           _TRISA0	set	0x428
    193  0428                     ; #config settings
-   194                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sgns."
+   194                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sevo."
    195                           	line	#
    196                           psect cinit,class=CODE,delta=2
    197                           global start_initialization
@@ -264,7 +264,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    202  000E                     psect	bssBANK0,class=BANK0,space=1,noexec
    203                           global __pbssBANK0
    204                           __pbssBANK0:
-   205  000C                     _ps2DataArray:
+   205  000C                     _ps2Data:
    206  000C                            ds      8
    207  000C                     
    208                           _delay:
@@ -282,32 +282,32 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    220                           _ps2DataCount:
    221  001D                            ds      1
    222  001D                     
-   223                           _ps2DataBitsCount:
+   223                           _ps2BitsCount:
    224  001E                            ds      1
    225  001E                     
-   226                           _ps2Data:
+   226                           _ps2Bits:
    227  001F                            ds      1
    228  001F                     
    229                           _ps2DataState:
    230  0020                            ds      1
    231  0020                     
-   232                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sgns."
+   232                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sevo."
    233                           	line	#
    234                           psect clrtext,class=CODE,delta=2
    235                           global clear_ram0
    236                           ;	Called with FSR containing the base address, and
    237                           ;	W with the last address+1
    238                           clear_ram0:
-   239  00F0                     	clrwdt			;clear the watchdog before getting into this loop
-   240  00F0  0064               clrloop0:
-   241  00F1                     	clrf	indf		;clear RAM location pointed to by FSR
-   242  00F1  0180               	incf	fsr,f		;increment pointer
-   243  00F2  0A84               	xorwf	fsr,w		;XOR with final address
-   244  00F3  0604               	btfsc	status,2	;have we reached the end yet?
-   245  00F4  1903               	retlw	0		;all done for this memory range, return
-   246  00F5  3400               	xorwf	fsr,w		;XOR again to restore value
-   247  00F6  0604               	goto	clrloop0		;do the next byte
-   248  00F7  28F1               
+   239  00FB                     	clrwdt			;clear the watchdog before getting into this loop
+   240  00FB  0064               clrloop0:
+   241  00FC                     	clrf	indf		;clear RAM location pointed to by FSR
+   242  00FC  0180               	incf	fsr,f		;increment pointer
+   243  00FD  0A84               	xorwf	fsr,w		;XOR with final address
+   244  00FE  0604               	btfsc	status,2	;have we reached the end yet?
+   245  00FF  1903               	retlw	0		;all done for this memory range, return
+   246  0100  3400               	xorwf	fsr,w		;XOR again to restore value
+   247  0101  0604               	goto	clrloop0		;do the next byte
+   248  0102  28FC               
    249                           ; Clear objects allocated to BANK0
    250                           psect cinit,class=CODE,delta=2,merge=1
    251                           	bcf	status, 7	;select IRP bank0
@@ -315,7 +315,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    253  000F  300C               	movwf	fsr
    254  0010  0084               	movlw	low((__pbssBANK0)+015h)
    255  0011  3021               	fcall	clear_ram0
-   256  0012  20F0               psect cinit,class=CODE,delta=2,merge=1
+   256  0012  20FB               psect cinit,class=CODE,delta=2,merge=1
    257                           global end_of_initialization,__end_of__initialization
    258                           
    259                           ;End of C runtime variable initialization code
@@ -324,7 +324,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    262  0013                     __end_of__initialization:
    263  0013                     clrf status
    264  0013  0183               ljmp _main	;jump to C main() function
-   265  0014  289C               psect	cstackCOMMON,class=COMMON,space=1,noexec
+   265  0014  28A0               psect	cstackCOMMON,class=COMMON,space=1,noexec
    266                           global __pcstackCOMMON
    267                           __pcstackCOMMON:
    268  0000                     ??_main:	; 1 bytes @ 0x0
@@ -423,7 +423,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    361                           
    362 ;; *************** function _main *****************
    363 ;; Defined at:
-   364 ;;		line 92 in file "main.c"
+   364 ;;		line 88 in file "main.c"
    365 ;; Parameters:    Size  Location     Type
    366 ;;		None
    367 ;; Auto vars:     Size  Location     Type
@@ -451,652 +451,665 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    389 ;;
    390                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
    391                           	file	"main.c"
-   392                           	line	92
+   392                           	line	88
    393                           global __pmaintext
    394                           __pmaintext:	;psect for function _main
-   395  009C                     psect	maintext
+   395  00A0                     psect	maintext
    396                           	file	"main.c"
-   397                           	line	92
+   397                           	line	88
    398                           	global	__size_of_main
    399                           	__size_of_main	equ	__end_of_main-_main
-   400  0054                     	
+   400  005B                     	
    401                           _main:	
-   402  009C                     ;incstack = 0
+   402  00A0                     ;incstack = 0
    403                           	opt	stack 7
    404                           ; Regs used in _main: [wreg+status,2+status,0]
-   405                           	line	97
+   405                           	line	93
    406                           	
-   407                           l789:	
-   408  009C                     ;main.c: 97:     TRISA0 = 1;
+   407                           l795:	
+   408  00A0                     ;main.c: 93:     TRISA0 = 1;
    409                           	bsf	status, 5	;RP0=1, select bank1
-   410  009C  1683               	bsf	(1064/8)^080h,(1064)&7	;volatile
-   411  009D  1405               	line	98
-   412                           ;main.c: 98:     TRISA1 = 0;
+   410  00A0  1683               	bsf	(1064/8)^080h,(1064)&7	;volatile
+   411  00A1  1405               	line	94
+   412                           ;main.c: 94:     TRISA1 = 0;
    413                           	bcf	(1065/8)^080h,(1065)&7	;volatile
-   414  009E  1085               	line	99
-   415                           ;main.c: 99:     TRISA2 = 0;
+   414  00A2  1085               	line	95
+   415                           ;main.c: 95:     TRISA2 = 0;
    416                           	bcf	(1066/8)^080h,(1066)&7	;volatile
-   417  009F  1105               	line	100
-   418                           ;main.c: 100:     TRISA3 = 1;
+   417  00A3  1105               	line	96
+   418                           ;main.c: 96:     TRISA3 = 1;
    419                           	bsf	(1067/8)^080h,(1067)&7	;volatile
-   420  00A0  1585               	line	101
-   421                           ;main.c: 101:     TRISA4 = 1;
+   420  00A4  1585               	line	97
+   421                           ;main.c: 97:     TRISA4 = 1;
    422                           	bsf	(1068/8)^080h,(1068)&7	;volatile
-   423  00A1  1605               	line	103
+   423  00A5  1605               	line	99
    424                           	
-   425                           l791:	
-   426  00A2                     ;main.c: 103:     PORTA = 0b00000000;
+   425                           l797:	
+   426  00A6                     ;main.c: 99:     PORTA = 0b00000000;
    427                           	bcf	status, 5	;RP0=0, select bank0
-   428  00A2  1283               	clrf	(5)	;volatile
-   429  00A3  0185               	line	105
-   430                           ;main.c: 105:     TRISB = 0b00000000;
+   428  00A6  1283               	clrf	(5)	;volatile
+   429  00A7  0185               	line	101
+   430                           ;main.c: 101:     TRISB = 0b00000000;
    431                           	bsf	status, 5	;RP0=1, select bank1
-   432  00A4  1683               	clrf	(134)^080h	;volatile
-   433  00A5  0186               	line	106
+   432  00A8  1683               	clrf	(134)^080h	;volatile
+   433  00A9  0186               	line	102
    434                           	
-   435                           l793:	
-   436  00A6                     ;main.c: 106:     PORTB = 0b00000010;
+   435                           l799:	
+   436  00AA                     ;main.c: 102:     PORTB = 0b00000010;
    437                           	movlw	low(02h)
-   438  00A6  3002               	bcf	status, 5	;RP0=0, select bank0
-   439  00A7  1283               	movwf	(6)	;volatile
-   440  00A8  0086               	line	128
+   438  00AA  3002               	bcf	status, 5	;RP0=0, select bank0
+   439  00AB  1283               	movwf	(6)	;volatile
+   440  00AC  0086               	line	124
    441                           	
-   442                           l795:	
-   443  00A9                     ;main.c: 128:     T0CS = 1;
+   442                           l801:	
+   443  00AD                     ;main.c: 124:     T0CS = 1;
    444                           	bsf	status, 5	;RP0=1, select bank1
-   445  00A9  1683               	bsf	(1037/8)^080h,(1037)&7	;volatile
-   446  00AA  1681               	line	129
+   445  00AD  1683               	bsf	(1037/8)^080h,(1037)&7	;volatile
+   446  00AE  1681               	line	125
    447                           	
-   448                           l797:	
-   449  00AB                     ;main.c: 129:     T0SE = 1;
+   448                           l803:	
+   449  00AF                     ;main.c: 125:     T0SE = 1;
    450                           	bsf	(1036/8)^080h,(1036)&7	;volatile
-   451  00AB  1601               	line	130
+   451  00AF  1601               	line	126
    452                           	
-   453                           l799:	
-   454  00AC                     ;main.c: 130:     GIE = 1;
+   453                           l805:	
+   454  00B0                     ;main.c: 126:     GIE = 1;
    455                           	bsf	(95/8),(95)&7	;volatile
-   456  00AC  178B               	line	131
+   456  00B0  178B               	line	127
    457                           	
-   458                           l801:	
-   459  00AD                     ;main.c: 131:     T0IE = 1;
+   458                           l807:	
+   459  00B1                     ;main.c: 127:     T0IE = 1;
    460                           	bsf	(93/8),(93)&7	;volatile
-   461  00AD  168B               	line	132
+   461  00B1  168B               	line	128
    462                           	
-   463                           l803:	
-   464  00AE                     ;main.c: 132:     PSA = 1;
+   463                           l809:	
+   464  00B2                     ;main.c: 128:     PSA = 1;
    465                           	bsf	(1035/8)^080h,(1035)&7	;volatile
-   466  00AE  1581               	line	133
+   466  00B2  1581               	line	129
    467                           	
-   468                           l805:	
-   469  00AF                     ;main.c: 133:     T0IF = 0;
+   468                           l811:	
+   469  00B3                     ;main.c: 129:     T0IF = 0;
    470                           	bcf	(90/8),(90)&7	;volatile
-   471  00AF  110B               	line	134
+   471  00B3  110B               	line	130
    472                           	
-   473                           l807:	
-   474  00B0                     ;main.c: 134:     TMR0 = 255;
+   473                           l813:	
+   474  00B4                     ;main.c: 130:     TMR0 = 255;
    475                           	movlw	low(0FFh)
-   476  00B0  30FF               	bcf	status, 5	;RP0=0, select bank0
-   477  00B1  1283               	movwf	(1)	;volatile
-   478  00B2  0081               	line	137
-   479                           ;main.c: 137:     ps2DataState = 0;
+   476  00B4  30FF               	bcf	status, 5	;RP0=0, select bank0
+   477  00B5  1283               	movwf	(1)	;volatile
+   478  00B6  0081               	line	133
+   479                           ;main.c: 133:     ps2DataState = 0;
    480                           	clrf	(_ps2DataState)
-   481  00B3  01A0               	line	138
-   482                           ;main.c: 138:     ps2DataBitsCount = 0;
-   483                           	clrf	(_ps2DataBitsCount)
-   484  00B4  019E               	line	139
-   485                           ;main.c: 139:     ps2Data = 0;
-   486                           	clrf	(_ps2Data)
-   487  00B5  019F               	line	140
-   488                           ;main.c: 140:     pa = 0;
+   481  00B7  01A0               	line	134
+   482                           ;main.c: 134:     ps2BitsCount = 0;
+   483                           	clrf	(_ps2BitsCount)
+   484  00B8  019E               	line	135
+   485                           ;main.c: 135:     ps2Bits = 0;
+   486                           	clrf	(_ps2Bits)
+   487  00B9  019F               	line	136
+   488                           ;main.c: 136:     pa = 0;
    489                           	clrf	(_pa)
-   490  00B6  0198               	clrf	(_pa+1)
-   491  00B7  0199               	goto	l809
-   492  00B8  28B9               	line	142
-   493                           ;main.c: 142:     while(1)
+   490  00BA  0198               	clrf	(_pa+1)
+   491  00BB  0199               	goto	l815
+   492  00BC  28BD               	line	138
+   493                           ;main.c: 138:     while(1)
    494                           	
-   495                           l78:	
-   496  00B9                     	line	144
+   495                           l76:	
+   496  00BD                     	line	140
    497                           	
-   498                           l809:	
-   499  00B9                     ;main.c: 143:     {;main.c: 144:         if ( ps2DataState == 3 ) {
+   498                           l815:	
+   499  00BD                     ;main.c: 139:     {;main.c: 140:         if ( ps2DataState == 3 ) {
    500                           		movlw	3
-   501  00B9  3003               	xorwf	((_ps2DataState)),w
-   502  00BA  0620               	btfss	status,2
-   503  00BB  1D03               	goto	u311
-   504  00BC  28BE               	goto	u310
-   505  00BD  28BF               u311:
-   506  00BE                     	goto	l825
-   507  00BE  28E2               u310:
-   508  00BF                     	line	147
-   509                           	
-   510                           l811:	
-   511  00BF                     ;main.c: 147:             if ( ps2DataCount > 1 ) {
-   512                           	movf	(_ps2DataCount),w
-   513  00BF  081D               	xorlw	80h
-   514  00C0  3A80               	addlw	-((02h)^80h)
-   515  00C1  3E7E               	skipc
-   516  00C2  1C03               	goto	u321
-   517  00C3  28C5               	goto	u320
-   518  00C4  28C6               u321:
-   519  00C5                     	goto	l819
-   520  00C5  28D1               u320:
-   521  00C6                     	goto	l817
-   522  00C6  28CD               	line	149
+   501  00BD  3003               	bcf	status, 5	;RP0=0, select bank0
+   502  00BE  1283               	xorwf	((_ps2DataState)),w
+   503  00BF  0620               	btfss	status,2
+   504  00C0  1D03               	goto	u351
+   505  00C1  28C3               	goto	u350
+   506  00C2  28C4               u351:
+   507  00C3                     	goto	l831
+   508  00C3  28ED               u350:
+   509  00C4                     	line	143
+   510                           	
+   511                           l817:	
+   512  00C4                     ;main.c: 143:             if ( ps2DataCount > 1 ) {
+   513                           	movf	(_ps2DataCount),w
+   514  00C4  081D               	xorlw	80h
+   515  00C5  3A80               	addlw	-((02h)^80h)
+   516  00C6  3E7E               	skipc
+   517  00C7  1C03               	goto	u361
+   518  00C8  28CA               	goto	u360
+   519  00C9  28CB               u361:
+   520  00CA                     	goto	l825
+   521  00CA  28DC               u360:
+   522  00CB                     	line	145
    523                           	
-   524                           l813:	
-   525  00C7                     ;main.c: 149:                 if ( ps2DataArray[0] == 0xF0 && ps2DataArray[1] == 0x1a ) 
-                                 {
-   526                           	goto	l817
-   527  00C7  28CD               	line	150
-   528                           	
-   529                           l815:	
-   530  00C8                     ;main.c: 150:                    pa = 1;
-   531                           	movlw	01h
-   532  00C8  3001               	movwf	(_pa)
-   533  00C9  0098               	movlw	0
-   534  00CA  3000               	movwf	((_pa))+1
-   535  00CB  0099               	line	151
-   536                           ;main.c: 151:                 } else {
-   537                           	goto	l83
-   538  00CC  28DF               	
-   539                           l81:	
-   540  00CD                     	line	152
-   541                           	
-   542                           l817:	
-   543  00CD                     ;main.c: 152:                    pa = 0;
-   544                           	clrf	(_pa)
-   545  00CD  0198               	clrf	(_pa+1)
-   546  00CE  0199               	goto	l83
-   547  00CF  28DF               	line	153
-   548                           ;main.c: 153:                 }
-   549                           	
-   550                           l82:	
-   551  00D0                     	line	155
-   552                           ;main.c: 155:             } else {
-   553                           	goto	l83
-   554  00D0  28DF               	
-   555                           l80:	
-   556  00D1                     	line	157
-   557                           	
-   558                           l819:	
-   559  00D1                     ;main.c: 157:                 if ( ps2DataArray[0] == 0x1a ) {
-   560                           		movlw	26
-   561  00D1  301A               	xorwf	((_ps2DataArray)),w
-   562  00D2  060C               	btfss	status,2
-   563  00D3  1D03               	goto	u331
-   564  00D4  28D6               	goto	u330
-   565  00D5  28D7               u331:
-   566  00D6                     	goto	l823
-   567  00D6  28DC               u330:
-   568  00D7                     	line	158
-   569                           	
-   570                           l821:	
-   571  00D7                     ;main.c: 158:                     pa = 1;
-   572                           	movlw	01h
-   573  00D7  3001               	movwf	(_pa)
-   574  00D8  0098               	movlw	0
-   575  00D9  3000               	movwf	((_pa))+1
-   576  00DA  0099               	line	159
-   577                           ;main.c: 159:                 } else {
-   578                           	goto	l83
-   579  00DB  28DF               	
-   580                           l84:	
-   581  00DC                     	line	160
-   582                           	
-   583                           l823:	
-   584  00DC                     ;main.c: 160:                     pa = 0;
-   585                           	clrf	(_pa)
-   586  00DC  0198               	clrf	(_pa+1)
-   587  00DD  0199               	goto	l83
-   588  00DE  28DF               	line	161
-   589                           ;main.c: 161:                 }
-   590                           	
-   591                           l85:	
-   592  00DF                     	line	163
-   593                           ;main.c: 163:             }
-   594                           	
-   595                           l83:	
-   596  00DF                     	line	164
-   597                           ;main.c: 164:             ps2DataCount = 0;
-   598                           	clrf	(_ps2DataCount)
-   599  00DF  019D               	line	165
-   600                           ;main.c: 165:             ps2DataState = 0;
-   601                           	clrf	(_ps2DataState)
-   602  00E0  01A0               	goto	l825
-   603  00E1  28E2               	line	166
-   604                           ;main.c: 166:         }
-   605                           	
-   606                           l79:	
-   607  00E2                     	line	169
-   608                           	
-   609                           l825:	
-   610  00E2                     ;main.c: 169:         if ( pa ) {
-   611                           	movf	((_pa)),w
-   612  00E2  0818               iorwf	((_pa+1)),w
-   613  00E3  0419               	btfsc	status,2
-   614  00E4  1903               	goto	u341
-   615  00E5  28E7               	goto	u340
-   616  00E6  28E8               u341:
-   617  00E7                     	goto	l829
-   618  00E7  28EA               u340:
-   619  00E8                     	line	170
-   620                           	
-   621                           l827:	
-   622  00E8                     ;main.c: 170:             PORTB = 0b00000000;
-   623                           	clrf	(6)	;volatile
-   624  00E8  0186               	line	171
-   625                           ;main.c: 171:         } else {
-   626                           	goto	l809
-   627  00E9  28B9               	
-   628                           l86:	
-   629  00EA                     	line	172
-   630                           	
-   631                           l829:	
-   632  00EA                     ;main.c: 172:             PORTB = 0b00000010;
-   633                           	movlw	low(02h)
-   634  00EA  3002               	movwf	(6)	;volatile
-   635  00EB  0086               	goto	l809
-   636  00EC  28B9               	line	173
-   637                           ;main.c: 173:         }
-   638                           	
-   639                           l87:	
-   640  00ED                     	goto	l809
-   641  00ED  28B9               	line	181
-   642                           ;main.c: 181:     }
-   643                           	
-   644                           l88:	
-   645  00EE                     	goto	l809
-   646  00EE  28B9               	
-   647                           l89:	
-   648  00EF                     	line	183
-   649                           	
-   650                           l90:	
-   651  00EF                     	global	start
-   652                           	ljmp	start
-   653  00EF  280D               	opt stack 0
-   654                           GLOBAL	__end_of_main
-   655                           	__end_of_main:
-   656  00F0                     	signat	_main,89
-   657                           	global	_myIsr
-   658                           
-   659 ;; *************** function _myIsr *****************
-   660 ;; Defined at:
-   661 ;;		line 47 in file "main.c"
-   662 ;; Parameters:    Size  Location     Type
-   663 ;;		None
-   664 ;; Auto vars:     Size  Location     Type
-   665 ;;		None
-   666 ;; Return value:  Size  Location     Type
-   667 ;;                  1    wreg      void 
-   668 ;; Registers used:
-   669 ;;		wreg, fsr0l, fsr0h, status,2, status,0
-   670 ;; Tracked objects:
-   671 ;;		On entry : 0/0
-   672 ;;		On exit  : 0/0
-   673 ;;		Unchanged: 0/0
-   674 ;; Data sizes:     COMMON   BANK0
-   675 ;;      Params:         0       0
-   676 ;;      Locals:         0       0
-   677 ;;      Temps:          0       5
-   678 ;;      Totals:         0       5
-   679 ;;Total ram usage:        5 bytes
-   680 ;; Hardware stack levels used:    1
-   681 ;; This function calls:
-   682 ;;		Nothing
-   683 ;; This function is called by:
-   684 ;;		Interrupt level 1
-   685 ;; This function uses a non-reentrant model
-   686 ;;
-   687                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
-   688                           	line	47
-   689                           global __ptext1
-   690                           __ptext1:	;psect for function _myIsr
-   691  0015                     psect	text1
-   692                           	file	"main.c"
-   693                           	line	47
-   694                           	global	__size_of_myIsr
-   695                           	__size_of_myIsr	equ	__end_of_myIsr-_myIsr
-   696  0087                     	
-   697                           _myIsr:	
-   698  0015                     ;incstack = 0
-   699                           	opt	stack 7
-   700                           ; Regs used in _myIsr: [wreg-fsr0h+status,2+status,0]
-   701                           psect	intentry,class=CODE,delta=2
-   702                           global __pintentry
-   703                           __pintentry:
-   704  0004                     global interrupt_function
-   705                           interrupt_function:
-   706  0004                     	global saved_w
-   707                           	saved_w	set	btemp+0
-   708  004E                     	movwf	saved_w
-   709  0004  00CE               	swapf	status,w
-   710  0005  0E03               	bcf	status, 5	;RP0=0, select bank0
-   711  0006  1283               	movwf	(??_myIsr+2)
-   712  0007  00A3               	movf	fsr0,w
-   713  0008  0804               	movwf	(??_myIsr+3)
-   714  0009  00A4               	movf	pclath,w
-   715  000A  080A               	movwf	(??_myIsr+4)
-   716  000B  00A5               	ljmp	_myIsr
-   717  000C  2815               psect	text1
-   718                           	line	49
-   719                           	
-   720                           i1l747:	
-   721  0015                     ;main.c: 49:     if(T0IE && T0IF){
-   722                           	btfss	(93/8),(93)&7	;volatile
-   723  0015  1E8B               	goto	u18_21
-   724  0016  2818               	goto	u18_20
-   725  0017  2819               u18_21:
-   726  0018                     	goto	i1l55
-   727  0018  2892               u18_20:
-   728  0019                     	
-   729                           i1l749:	
-   730  0019                     	btfss	(90/8),(90)&7	;volatile
-   731  0019  1D0B               	goto	u19_21
-   732  001A  281C               	goto	u19_20
-   733  001B  281D               u19_21:
-   734  001C                     	goto	i1l55
-   735  001C  2892               u19_20:
-   736  001D                     	line	51
-   737                           	
-   738                           i1l751:	
-   739  001D                     ;main.c: 51:         T0IF=0;
-   740                           	bcf	(90/8),(90)&7	;volatile
-   741  001D  110B               	line	52
-   742                           	
-   743                           i1l753:	
-   744  001E                     ;main.c: 52:         TMR0 = 255;
-   745                           	movlw	low(0FFh)
-   746  001E  30FF               	movwf	(1)	;volatile
-   747  001F  0081               	line	54
-   748                           	
-   749                           i1l755:	
-   750  0020                     ;main.c: 54:         if ( ps2DataState == 0 || ps2DataState == 1 ) {
-   751                           	movf	((_ps2DataState)),w
-   752  0020  0820               	btfsc	status,2
-   753  0021  1903               	goto	u20_21
-   754  0022  2824               	goto	u20_20
-   755  0023  2825               u20_21:
-   756  0024                     	goto	i1l58
-   757  0024  282A               u20_20:
-   758  0025                     	
-   759                           i1l757:	
-   760  0025                     		decf	((_ps2DataState)),w
-   761  0025  0320               	btfss	status,2
-   762  0026  1D03               	goto	u21_21
-   763  0027  2829               	goto	u21_20
-   764  0028  282A               u21_21:
-   765  0029                     	goto	i1l765
-   766  0029  283A               u21_20:
-   767  002A                     	
-   768                           i1l58:	
-   769  002A                     	line	55
-   770                           ;main.c: 55:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
-   771                           	btfsc	(5),4	;volatile
-   772  002A  1A05               	goto	u22_21
-   773  002B  282D               	goto	u22_20
-   774  002C  282E               u22_21:
-   775  002D                     	goto	i1l55
-   776  002D  2892               u22_20:
-   777  002E                     	
-   778                           i1l759:	
-   779  002E                     	btfsc	(5),3	;volatile
-   780  002E  1985               	goto	u23_21
-   781  002F  2831               	goto	u23_20
-   782  0030  2832               u23_21:
-   783  0031                     	goto	i1l55
-   784  0031  2892               u23_20:
-   785  0032                     	line	56
-   786                           	
-   787                           i1l761:	
-   788  0032                     ;main.c: 56:                 ps2DataBitsCount = 0;
-   789                           	clrf	(_ps2DataBitsCount)
-   790  0032  019E               	line	57
-   791                           ;main.c: 57:                 ps2Data = 0;
-   792                           	clrf	(_ps2Data)
-   793  0033  019F               	line	58
-   794                           	
-   795                           i1l763:	
-   796  0034                     ;main.c: 58:                 ps2DataState = 2;
-   797                           	movlw	low(02h)
-   798  0034  3002               	movwf	(??_myIsr+0)+0
-   799  0035  00A1               	movf	(??_myIsr+0)+0,w
-   800  0036  0821               	movwf	(_ps2DataState)
-   801  0037  00A0               	goto	i1l55
-   802  0038  2892               	line	59
-   803                           ;main.c: 59:             }
-   804                           	
-   805                           i1l59:	
-   806  0039                     	line	60
-   807                           ;main.c: 60:         } else if ( ps2DataState == 2 ) {
-   808                           	goto	i1l55
-   809  0039  2892               	
-   810                           i1l56:	
-   811  003A                     	
-   812                           i1l765:	
-   813  003A                     		movlw	2
-   814  003A  3002               	xorwf	((_ps2DataState)),w
-   815  003B  0620               	btfss	status,2
-   816  003C  1D03               	goto	u24_21
-   817  003D  283F               	goto	u24_20
-   818  003E  2840               u24_21:
-   819  003F                     	goto	i1l55
-   820  003F  2892               u24_20:
-   821  0040                     	line	61
-   822                           	
-   823                           i1l767:	
-   824  0040                     ;main.c: 61:             if ( ps2DataBitsCount < 8 ) {
-   825                           	movf	(_ps2DataBitsCount),w
-   826  0040  081E               	xorlw	80h
-   827  0041  3A80               	addlw	-((08h)^80h)
-   828  0042  3E78               	skipnc
-   829  0043  1803               	goto	u25_21
-   830  0044  2846               	goto	u25_20
-   831  0045  2847               u25_21:
-   832  0046                     	goto	i1l773
-   833  0046  285D               u25_20:
-   834  0047                     	line	62
-   835                           	
-   836                           i1l769:	
-   837  0047                     ;main.c: 62:                 if ( PORTAbits.RA3 ) {
-   838                           	btfss	(5),3	;volatile
-   839  0047  1D85               	goto	u26_21
-   840  0048  284A               	goto	u26_20
-   841  0049  284B               u26_21:
-   842  004A                     	goto	i1l63
-   843  004A  2858               u26_20:
-   844  004B                     	line	63
-   845                           	
-   846                           i1l771:	
-   847  004B                     ;main.c: 63:                     ps2Data |= ( 1 << ps2DataBitsCount );
-   848                           	movlw	low(01h)
-   849  004B  3001               	movwf	(??_myIsr+0)+0
-   850  004C  00A1               	incf	(_ps2DataBitsCount),w
-   851  004D  0A1E               	goto	u27_24
-   852  004E  2851               u27_25:
-   853  004F                     	clrc
-   854  004F  1003               	rlf	(??_myIsr+0)+0,f
-   855  0050  0DA1               u27_24:
-   856  0051                     	addlw	-1
-   857  0051  3EFF               	skipz
-   858  0052  1D03               	goto	u27_25
-   859  0053  284F               	movf	0+(??_myIsr+0)+0,w
-   860  0054  0821               	movwf	(??_myIsr+1)+0
-   861  0055  00A2               	movf	(??_myIsr+1)+0,w
-   862  0056  0822               	iorwf	(_ps2Data),f
-   863  0057  049F               	line	64
-   864                           ;main.c: 64:                 }
-   865                           	
-   866                           i1l63:	
-   867  0058                     	line	65
-   868                           ;main.c: 65:                 ps2DataBitsCount++;
-   869                           	movlw	low(01h)
-   870  0058  3001               	movwf	(??_myIsr+0)+0
-   871  0059  00A1               	movf	(??_myIsr+0)+0,w
-   872  005A  0821               	addwf	(_ps2DataBitsCount),f
-   873  005B  079E               	line	66
-   874                           ;main.c: 66:             } else if ( ps2DataBitsCount == 8 ) {
-   875                           	goto	i1l55
-   876  005C  2892               	
-   877                           i1l62:	
-   878  005D                     	
-   879                           i1l773:	
-   880  005D                     		movlw	8
-   881  005D  3008               	xorwf	((_ps2DataBitsCount)),w
-   882  005E  061E               	btfss	status,2
-   883  005F  1D03               	goto	u28_21
-   884  0060  2862               	goto	u28_20
-   885  0061  2863               u28_21:
-   886  0062                     	goto	i1l777
-   887  0062  2868               u28_20:
-   888  0063                     	line	67
-   889                           	
-   890                           i1l775:	
-   891  0063                     ;main.c: 67:                 ps2DataBitsCount++;
-   892                           	movlw	low(01h)
-   893  0063  3001               	movwf	(??_myIsr+0)+0
-   894  0064  00A1               	movf	(??_myIsr+0)+0,w
-   895  0065  0821               	addwf	(_ps2DataBitsCount),f
-   896  0066  079E               	line	68
-   897                           ;main.c: 68:             } else if ( ps2DataBitsCount == 9 ) {
-   898                           	goto	i1l55
-   899  0067  2892               	
-   900                           i1l65:	
-   901  0068                     	
+   524                           l819:	
+   525  00CB                     ;main.c: 145:                 if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0x1a ) {
+   526                           		movlw	240
+   527  00CB  30F0               	xorwf	((_ps2Data)),w
+   528  00CC  060C               	btfss	status,2
+   529  00CD  1D03               	goto	u371
+   530  00CE  28D0               	goto	u370
+   531  00CF  28D1               u371:
+   532  00D0                     	goto	l81
+   533  00D0  28EA               u370:
+   534  00D1                     	
+   535                           l821:	
+   536  00D1                     		movlw	26
+   537  00D1  301A               	xorwf	(0+(_ps2Data)+01h),w
+   538  00D2  060D               	btfss	status,2
+   539  00D3  1D03               	goto	u381
+   540  00D4  28D6               	goto	u380
+   541  00D5  28D7               u381:
+   542  00D6                     	goto	l81
+   543  00D6  28EA               u380:
+   544  00D7                     	line	146
+   545                           	
+   546                           l823:	
+   547  00D7                     ;main.c: 146:                    pa = 0;
+   548                           	clrf	(_pa)
+   549  00D7  0198               	clrf	(_pa+1)
+   550  00D8  0199               	line	147
+   551                           ;main.c: 147:                 } else {
+   552                           	goto	l81
+   553  00D9  28EA               	
+   554                           l79:	
+   555  00DA                     	goto	l81
+   556  00DA  28EA               	line	149
+   557                           ;main.c: 149:                 }
+   558                           	
+   559                           l80:	
+   560  00DB                     	line	151
+   561                           ;main.c: 151:             } else {
+   562                           	goto	l81
+   563  00DB  28EA               	
+   564                           l78:	
+   565  00DC                     	line	153
+   566                           	
+   567                           l825:	
+   568  00DC                     ;main.c: 153:                 if ( ps2Data[0] == 0x1a ) {
+   569                           		movlw	26
+   570  00DC  301A               	xorwf	((_ps2Data)),w
+   571  00DD  060C               	btfss	status,2
+   572  00DE  1D03               	goto	u391
+   573  00DF  28E1               	goto	u390
+   574  00E0  28E2               u391:
+   575  00E1                     	goto	l829
+   576  00E1  28E7               u390:
+   577  00E2                     	line	154
+   578                           	
+   579                           l827:	
+   580  00E2                     ;main.c: 154:                     pa = 1;
+   581                           	movlw	01h
+   582  00E2  3001               	movwf	(_pa)
+   583  00E3  0098               	movlw	0
+   584  00E4  3000               	movwf	((_pa))+1
+   585  00E5  0099               	line	155
+   586                           ;main.c: 155:                 } else {
+   587                           	goto	l81
+   588  00E6  28EA               	
+   589                           l82:	
+   590  00E7                     	line	156
+   591                           	
+   592                           l829:	
+   593  00E7                     ;main.c: 156:                     pa = 0;
+   594                           	clrf	(_pa)
+   595  00E7  0198               	clrf	(_pa+1)
+   596  00E8  0199               	goto	l81
+   597  00E9  28EA               	line	157
+   598                           ;main.c: 157:                 }
+   599                           	
+   600                           l83:	
+   601  00EA                     	line	159
+   602                           ;main.c: 159:             }
+   603                           	
+   604                           l81:	
+   605  00EA                     	line	160
+   606                           ;main.c: 160:             ps2DataCount = 0;
+   607                           	clrf	(_ps2DataCount)
+   608  00EA  019D               	line	161
+   609                           ;main.c: 161:             ps2DataState = 0;
+   610                           	clrf	(_ps2DataState)
+   611  00EB  01A0               	goto	l831
+   612  00EC  28ED               	line	162
+   613                           ;main.c: 162:         }
+   614                           	
+   615                           l77:	
+   616  00ED                     	line	165
+   617                           	
+   618                           l831:	
+   619  00ED                     ;main.c: 165:         if ( pa ) {
+   620                           	movf	((_pa)),w
+   621  00ED  0818               iorwf	((_pa+1)),w
+   622  00EE  0419               	btfsc	status,2
+   623  00EF  1903               	goto	u401
+   624  00F0  28F2               	goto	u400
+   625  00F1  28F3               u401:
+   626  00F2                     	goto	l835
+   627  00F2  28F5               u400:
+   628  00F3                     	line	166
+   629                           	
+   630                           l833:	
+   631  00F3                     ;main.c: 166:             PORTB = 0b00000000;
+   632                           	clrf	(6)	;volatile
+   633  00F3  0186               	line	167
+   634                           ;main.c: 167:         } else {
+   635                           	goto	l85
+   636  00F4  28F7               	
+   637                           l84:	
+   638  00F5                     	line	168
+   639                           	
+   640                           l835:	
+   641  00F5                     ;main.c: 168:             PORTB = 0b00000010;
+   642                           	movlw	low(02h)
+   643  00F5  3002               	movwf	(6)	;volatile
+   644  00F6  0086               	line	169
+   645                           ;main.c: 169:         }
+   646                           	
+   647                           l85:	
+   648  00F7                     	line	170
+   649                           # 170 "main.c"
+   650                           clrwdt ;# 
+   651  00F7  0064               psect	maintext
+   652                           	goto	l815
+   653  00F8  28BD               	line	177
+   654                           ;main.c: 177:     }
+   655                           	
+   656                           l86:	
+   657  00F9                     	goto	l815
+   658  00F9  28BD               	
+   659                           l87:	
+   660  00FA                     	line	179
+   661                           	
+   662                           l88:	
+   663  00FA                     	global	start
+   664                           	ljmp	start
+   665  00FA  280D               	opt stack 0
+   666                           GLOBAL	__end_of_main
+   667                           	__end_of_main:
+   668  00FB                     	signat	_main,89
+   669                           	global	_myIsr
+   670                           
+   671 ;; *************** function _myIsr *****************
+   672 ;; Defined at:
+   673 ;;		line 48 in file "main.c"
+   674 ;; Parameters:    Size  Location     Type
+   675 ;;		None
+   676 ;; Auto vars:     Size  Location     Type
+   677 ;;		None
+   678 ;; Return value:  Size  Location     Type
+   679 ;;                  1    wreg      void 
+   680 ;; Registers used:
+   681 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   682 ;; Tracked objects:
+   683 ;;		On entry : 0/0
+   684 ;;		On exit  : 0/0
+   685 ;;		Unchanged: 0/0
+   686 ;; Data sizes:     COMMON   BANK0
+   687 ;;      Params:         0       0
+   688 ;;      Locals:         0       0
+   689 ;;      Temps:          0       5
+   690 ;;      Totals:         0       5
+   691 ;;Total ram usage:        5 bytes
+   692 ;; Hardware stack levels used:    1
+   693 ;; This function calls:
+   694 ;;		Nothing
+   695 ;; This function is called by:
+   696 ;;		Interrupt level 1
+   697 ;; This function uses a non-reentrant model
+   698 ;;
+   699                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
+   700                           	line	48
+   701                           global __ptext1
+   702                           __ptext1:	;psect for function _myIsr
+   703  0015                     psect	text1
+   704                           	file	"main.c"
+   705                           	line	48
+   706                           	global	__size_of_myIsr
+   707                           	__size_of_myIsr	equ	__end_of_myIsr-_myIsr
+   708  008B                     	
+   709                           _myIsr:	
+   710  0015                     ;incstack = 0
+   711                           	opt	stack 7
+   712                           ; Regs used in _myIsr: [wreg-fsr0h+status,2+status,0]
+   713                           psect	intentry,class=CODE,delta=2
+   714                           global __pintentry
+   715                           __pintentry:
+   716  0004                     global interrupt_function
+   717                           interrupt_function:
+   718  0004                     	global saved_w
+   719                           	saved_w	set	btemp+0
+   720  004E                     	movwf	saved_w
+   721  0004  00CE               	swapf	status,w
+   722  0005  0E03               	bcf	status, 5	;RP0=0, select bank0
+   723  0006  1283               	movwf	(??_myIsr+2)
+   724  0007  00A3               	movf	fsr0,w
+   725  0008  0804               	movwf	(??_myIsr+3)
+   726  0009  00A4               	movf	pclath,w
+   727  000A  080A               	movwf	(??_myIsr+4)
+   728  000B  00A5               	ljmp	_myIsr
+   729  000C  2815               psect	text1
+   730                           	line	50
+   731                           	
+   732                           i1l749:	
+   733  0015                     ;main.c: 50:     if(T0IE && T0IF){
+   734                           	btfss	(93/8),(93)&7	;volatile
+   735  0015  1E8B               	goto	u21_21
+   736  0016  2818               	goto	u21_20
+   737  0017  2819               u21_21:
+   738  0018                     	goto	i1l793
+   739  0018  2896               u21_20:
+   740  0019                     	
+   741                           i1l751:	
+   742  0019                     	btfss	(90/8),(90)&7	;volatile
+   743  0019  1D0B               	goto	u22_21
+   744  001A  281C               	goto	u22_20
+   745  001B  281D               u22_21:
+   746  001C                     	goto	i1l793
+   747  001C  2896               u22_20:
+   748  001D                     	line	52
+   749                           	
+   750                           i1l753:	
+   751  001D                     ;main.c: 52:         T0IF=0;
+   752                           	bcf	(90/8),(90)&7	;volatile
+   753  001D  110B               	line	53
+   754                           	
+   755                           i1l755:	
+   756  001E                     ;main.c: 53:         TMR0 = 255;
+   757                           	movlw	low(0FFh)
+   758  001E  30FF               	movwf	(1)	;volatile
+   759  001F  0081               	line	55
+   760                           	
+   761                           i1l757:	
+   762  0020                     ;main.c: 55:         if ( ps2DataState == 0 || ps2DataState == 1 ) {
+   763                           	movf	((_ps2DataState)),w
+   764  0020  0820               	btfsc	status,2
+   765  0021  1903               	goto	u23_21
+   766  0022  2824               	goto	u23_20
+   767  0023  2825               u23_21:
+   768  0024                     	goto	i1l58
+   769  0024  282A               u23_20:
+   770  0025                     	
+   771                           i1l759:	
+   772  0025                     		decf	((_ps2DataState)),w
+   773  0025  0320               	btfss	status,2
+   774  0026  1D03               	goto	u24_21
+   775  0027  2829               	goto	u24_20
+   776  0028  282A               u24_21:
+   777  0029                     	goto	i1l767
+   778  0029  283A               u24_20:
+   779  002A                     	
+   780                           i1l58:	
+   781  002A                     	line	56
+   782                           ;main.c: 56:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
+   783                           	btfsc	(5),4	;volatile
+   784  002A  1A05               	goto	u25_21
+   785  002B  282D               	goto	u25_20
+   786  002C  282E               u25_21:
+   787  002D                     	goto	i1l793
+   788  002D  2896               u25_20:
+   789  002E                     	
+   790                           i1l761:	
+   791  002E                     	btfsc	(5),3	;volatile
+   792  002E  1985               	goto	u26_21
+   793  002F  2831               	goto	u26_20
+   794  0030  2832               u26_21:
+   795  0031                     	goto	i1l793
+   796  0031  2896               u26_20:
+   797  0032                     	line	57
+   798                           	
+   799                           i1l763:	
+   800  0032                     ;main.c: 57:                 ps2BitsCount = 0;
+   801                           	clrf	(_ps2BitsCount)
+   802  0032  019E               	line	58
+   803                           ;main.c: 58:                 ps2Bits = 0;
+   804                           	clrf	(_ps2Bits)
+   805  0033  019F               	line	59
+   806                           	
+   807                           i1l765:	
+   808  0034                     ;main.c: 59:                 ps2DataState = 2;
+   809                           	movlw	low(02h)
+   810  0034  3002               	movwf	(??_myIsr+0)+0
+   811  0035  00A1               	movf	(??_myIsr+0)+0,w
+   812  0036  0821               	movwf	(_ps2DataState)
+   813  0037  00A0               	goto	i1l793
+   814  0038  2896               	line	60
+   815                           ;main.c: 60:             }
+   816                           	
+   817                           i1l59:	
+   818  0039                     	line	61
+   819                           ;main.c: 61:         } else if ( ps2DataState == 2 ) {
+   820                           	goto	i1l793
+   821  0039  2896               	
+   822                           i1l56:	
+   823  003A                     	
+   824                           i1l767:	
+   825  003A                     		movlw	2
+   826  003A  3002               	xorwf	((_ps2DataState)),w
+   827  003B  0620               	btfss	status,2
+   828  003C  1D03               	goto	u27_21
+   829  003D  283F               	goto	u27_20
+   830  003E  2840               u27_21:
+   831  003F                     	goto	i1l793
+   832  003F  2896               u27_20:
+   833  0040                     	line	62
+   834                           	
+   835                           i1l769:	
+   836  0040                     ;main.c: 62:             if ( ps2BitsCount < 8 ) {
+   837                           	movf	(_ps2BitsCount),w
+   838  0040  081E               	xorlw	80h
+   839  0041  3A80               	addlw	-((08h)^80h)
+   840  0042  3E78               	skipnc
+   841  0043  1803               	goto	u28_21
+   842  0044  2846               	goto	u28_20
+   843  0045  2847               u28_21:
+   844  0046                     	goto	i1l775
+   845  0046  285D               u28_20:
+   846  0047                     	line	63
+   847                           	
+   848                           i1l771:	
+   849  0047                     ;main.c: 63:                 if ( PORTAbits.RA3 ) {
+   850                           	btfss	(5),3	;volatile
+   851  0047  1D85               	goto	u29_21
+   852  0048  284A               	goto	u29_20
+   853  0049  284B               u29_21:
+   854  004A                     	goto	i1l63
+   855  004A  2858               u29_20:
+   856  004B                     	line	64
+   857                           	
+   858                           i1l773:	
+   859  004B                     ;main.c: 64:                     ps2Bits |= ( 1 << ps2BitsCount );
+   860                           	movlw	low(01h)
+   861  004B  3001               	movwf	(??_myIsr+0)+0
+   862  004C  00A1               	incf	(_ps2BitsCount),w
+   863  004D  0A1E               	goto	u30_24
+   864  004E  2851               u30_25:
+   865  004F                     	clrc
+   866  004F  1003               	rlf	(??_myIsr+0)+0,f
+   867  0050  0DA1               u30_24:
+   868  0051                     	addlw	-1
+   869  0051  3EFF               	skipz
+   870  0052  1D03               	goto	u30_25
+   871  0053  284F               	movf	0+(??_myIsr+0)+0,w
+   872  0054  0821               	movwf	(??_myIsr+1)+0
+   873  0055  00A2               	movf	(??_myIsr+1)+0,w
+   874  0056  0822               	iorwf	(_ps2Bits),f
+   875  0057  049F               	line	65
+   876                           ;main.c: 65:                 }
+   877                           	
+   878                           i1l63:	
+   879  0058                     	line	66
+   880                           ;main.c: 66:                 ps2BitsCount++;
+   881                           	movlw	low(01h)
+   882  0058  3001               	movwf	(??_myIsr+0)+0
+   883  0059  00A1               	movf	(??_myIsr+0)+0,w
+   884  005A  0821               	addwf	(_ps2BitsCount),f
+   885  005B  079E               	line	67
+   886                           ;main.c: 67:             } else if ( ps2BitsCount == 8 ) {
+   887                           	goto	i1l793
+   888  005C  2896               	
+   889                           i1l62:	
+   890  005D                     	
+   891                           i1l775:	
+   892  005D                     		movlw	8
+   893  005D  3008               	xorwf	((_ps2BitsCount)),w
+   894  005E  061E               	btfss	status,2
+   895  005F  1D03               	goto	u31_21
+   896  0060  2862               	goto	u31_20
+   897  0061  2863               u31_21:
+   898  0062                     	goto	i1l779
+   899  0062  2868               u31_20:
+   900  0063                     	line	68
+   901                           	
    902                           i1l777:	
-   903  0068                     		movlw	9
-   904  0068  3009               	xorwf	((_ps2DataBitsCount)),w
-   905  0069  061E               	btfss	status,2
-   906  006A  1D03               	goto	u29_21
-   907  006B  286D               	goto	u29_20
-   908  006C  286E               u29_21:
-   909  006D                     	goto	i1l55
-   910  006D  2892               u29_20:
-   911  006E                     	line	69
-   912                           	
-   913                           i1l779:	
-   914  006E                     ;main.c: 69:                 if ( ps2DataCount < 8 ) {
-   915                           	movf	(_ps2DataCount),w
-   916  006E  081D               	xorlw	80h
-   917  006F  3A80               	addlw	-((08h)^80h)
-   918  0070  3E78               	skipnc
-   919  0071  1803               	goto	u30_21
-   920  0072  2874               	goto	u30_20
-   921  0073  2875               u30_21:
-   922  0074                     	goto	i1l787
-   923  0074  2886               u30_20:
-   924  0075                     	line	70
-   925                           	
-   926                           i1l781:	
-   927  0075                     ;main.c: 70:                     ps2DataArray[ps2DataCount] = ps2Data;
-   928                           	movf	(_ps2Data),w
-   929  0075  081F               	movwf	(??_myIsr+0)+0
-   930  0076  00A1               	movf	(_ps2DataCount),w
-   931  0077  081D               	addlw	low(_ps2DataArray|((0x0)<<8))&0ffh
-   932  0078  3E0C               	movwf	fsr0
-   933  0079  0084               	movf	(??_myIsr+0)+0,w
-   934  007A  0821               	bcf	status, 7	;select IRP bank0
-   935  007B  1383               	movwf	indf
-   936  007C  0080               	line	71
+   903  0063                     ;main.c: 68:                 ps2BitsCount++;
+   904                           	movlw	low(01h)
+   905  0063  3001               	movwf	(??_myIsr+0)+0
+   906  0064  00A1               	movf	(??_myIsr+0)+0,w
+   907  0065  0821               	addwf	(_ps2BitsCount),f
+   908  0066  079E               	line	69
+   909                           ;main.c: 69:             } else if ( ps2BitsCount == 9 ) {
+   910                           	goto	i1l793
+   911  0067  2896               	
+   912                           i1l65:	
+   913  0068                     	
+   914                           i1l779:	
+   915  0068                     		movlw	9
+   916  0068  3009               	xorwf	((_ps2BitsCount)),w
+   917  0069  061E               	btfss	status,2
+   918  006A  1D03               	goto	u32_21
+   919  006B  286D               	goto	u32_20
+   920  006C  286E               u32_21:
+   921  006D                     	goto	i1l793
+   922  006D  2896               u32_20:
+   923  006E                     	line	70
+   924                           	
+   925                           i1l781:	
+   926  006E                     ;main.c: 70:                 if ( ps2DataCount < 8 ) {
+   927                           	movf	(_ps2DataCount),w
+   928  006E  081D               	xorlw	80h
+   929  006F  3A80               	addlw	-((08h)^80h)
+   930  0070  3E78               	skipnc
+   931  0071  1803               	goto	u33_21
+   932  0072  2874               	goto	u33_20
+   933  0073  2875               u33_21:
+   934  0074                     	goto	i1l787
+   935  0074  2882               u33_20:
+   936  0075                     	line	71
    937                           	
    938                           i1l783:	
-   939  007D                     ;main.c: 71:                     ps2DataCount++;
-   940                           	movlw	low(01h)
-   941  007D  3001               	movwf	(??_myIsr+0)+0
-   942  007E  00A1               	movf	(??_myIsr+0)+0,w
-   943  007F  0821               	addwf	(_ps2DataCount),f
-   944  0080  079D               	goto	i1l787
-   945  0081  2886               	line	72
-   946                           ;main.c: 72:                 }
-   947                           	
-   948                           i1l68:	
-   949  0082                     	line	73
-   950                           ;main.c: 73:                 if ( ps2Data == 0xF0 ) {
-   951                           	goto	i1l787
-   952  0082  2886               	line	74
-   953                           	
-   954                           i1l785:	
-   955  0083                     ;main.c: 74:                     ps2DataState = 1;
-   956                           	clrf	(_ps2DataState)
-   957  0083  01A0               	incf	(_ps2DataState),f
-   958  0084  0AA0               	line	75
-   959                           ;main.c: 75:                 } else {
-   960                           	goto	i1l55
-   961  0085  2892               	
-   962                           i1l69:	
-   963  0086                     	line	76
-   964                           	
-   965                           i1l787:	
-   966  0086                     ;main.c: 76:                     ps2DataState = 3;
-   967                           	movlw	low(03h)
-   968  0086  3003               	movwf	(??_myIsr+0)+0
-   969  0087  00A1               	movf	(??_myIsr+0)+0,w
-   970  0088  0821               	movwf	(_ps2DataState)
-   971  0089  00A0               	goto	i1l55
-   972  008A  2892               	line	77
-   973                           ;main.c: 77:                 }
+   939  0075                     ;main.c: 71:                     ps2Data[ps2DataCount] = ps2Bits;
+   940                           	movf	(_ps2Bits),w
+   941  0075  081F               	movwf	(??_myIsr+0)+0
+   942  0076  00A1               	movf	(_ps2DataCount),w
+   943  0077  081D               	addlw	low(_ps2Data|((0x0)<<8))&0ffh
+   944  0078  3E0C               	movwf	fsr0
+   945  0079  0084               	movf	(??_myIsr+0)+0,w
+   946  007A  0821               	bcf	status, 7	;select IRP bank0
+   947  007B  1383               	movwf	indf
+   948  007C  0080               	line	72
+   949                           	
+   950                           i1l785:	
+   951  007D                     ;main.c: 72:                     ps2DataCount++;
+   952                           	movlw	low(01h)
+   953  007D  3001               	movwf	(??_myIsr+0)+0
+   954  007E  00A1               	movf	(??_myIsr+0)+0,w
+   955  007F  0821               	addwf	(_ps2DataCount),f
+   956  0080  079D               	goto	i1l787
+   957  0081  2882               	line	73
+   958                           ;main.c: 73:                 }
+   959                           	
+   960                           i1l68:	
+   961  0082                     	line	74
+   962                           	
+   963                           i1l787:	
+   964  0082                     ;main.c: 74:                 if ( ps2Bits == 0xF0 ) {
+   965                           		movlw	240
+   966  0082  30F0               	xorwf	((_ps2Bits)),w
+   967  0083  061F               	btfss	status,2
+   968  0084  1D03               	goto	u34_21
+   969  0085  2887               	goto	u34_20
+   970  0086  2888               u34_21:
+   971  0087                     	goto	i1l791
+   972  0087  288B               u34_20:
+   973  0088                     	line	75
    974                           	
-   975                           i1l70:	
-   976  008B                     	line	78
-   977                           ;main.c: 78:             } else {
-   978                           	goto	i1l55
-   979  008B  2892               	
-   980                           i1l67:	
-   981  008C                     	goto	i1l55
-   982  008C  2892               	line	80
-   983                           ;main.c: 80:             }
-   984                           	
-   985                           i1l71:	
-   986  008D                     	goto	i1l55
-   987  008D  2892               	
-   988                           i1l66:	
-   989  008E                     	goto	i1l55
-   990  008E  2892               	
-   991                           i1l64:	
-   992  008F                     	line	81
-   993                           ;main.c: 81:         } else {
-   994                           	goto	i1l55
-   995  008F  2892               	
-   996                           i1l61:	
-   997  0090                     	goto	i1l55
-   998  0090  2892               	line	84
-   999                           ;main.c: 84:         }
+   975                           i1l789:	
+   976  0088                     ;main.c: 75:                     ps2DataState = 1;
+   977                           	clrf	(_ps2DataState)
+   978  0088  01A0               	incf	(_ps2DataState),f
+   979  0089  0AA0               	line	76
+   980                           ;main.c: 76:                 } else {
+   981                           	goto	i1l793
+   982  008A  2896               	
+   983                           i1l69:	
+   984  008B                     	line	77
+   985                           	
+   986                           i1l791:	
+   987  008B                     ;main.c: 77:                     ps2DataState = 3;
+   988                           	movlw	low(03h)
+   989  008B  3003               	movwf	(??_myIsr+0)+0
+   990  008C  00A1               	movf	(??_myIsr+0)+0,w
+   991  008D  0821               	movwf	(_ps2DataState)
+   992  008E  00A0               	goto	i1l793
+   993  008F  2896               	line	78
+   994                           ;main.c: 78:                 }
+   995                           	
+   996                           i1l70:	
+   997  0090                     	goto	i1l793
+   998  0090  2896               	line	79
+   999                           ;main.c: 79:             }
   1000                           	
-  1001                           i1l72:	
-  1002  0091                     	goto	i1l55
-  1003  0091  2892               	
-  1004                           i1l60:	
-  1005  0092                     	line	85
-  1006                           ;main.c: 85:     }
-  1007                           	
-  1008                           i1l55:	
-  1009  0092                     	line	86
-  1010                           ;main.c: 86:     GIE = 1;
-  1011                           	bsf	(95/8),(95)&7	;volatile
-  1012  0092  178B               	line	87
-  1013                           	
-  1014                           i1l73:	
-  1015  0093                     	movf	(??_myIsr+4),w
-  1016  0093  0825               	movwf	pclath
-  1017  0094  008A               	movf	(??_myIsr+3),w
-  1018  0095  0824               	movwf	fsr0
-  1019  0096  0084               	swapf	(??_myIsr+2)^00h,w
-  1020  0097  0E23               	movwf	status
-  1021  0098  0083               	swapf	saved_w,f
-  1022  0099  0ECE               	swapf	saved_w,w
-  1023  009A  0E4E               	retfie
-  1024  009B  0009               	opt stack 0
-  1025                           GLOBAL	__end_of_myIsr
-  1026                           	__end_of_myIsr:
-  1027  009C                     	signat	_myIsr,89
-  1028                           global	___latbits
-  1029                           ___latbits	equ	0
-  1030  0000                     	global	btemp
-  1031                           	btemp set 04Eh
-  1032  004E                     
-  1033                           	DABS	1,78,2	;btemp
-  1034                           	global	wtemp0
-  1035                           	wtemp0 set btemp+0
-  1036  004E                     	end
+  1001                           i1l67:	
+  1002  0091                     	goto	i1l793
+  1003  0091  2896               	
+  1004                           i1l66:	
+  1005  0092                     	goto	i1l793
+  1006  0092  2896               	
+  1007                           i1l64:	
+  1008  0093                     	goto	i1l793
+  1009  0093  2896               	line	80
+  1010                           ;main.c: 80:         }
+  1011                           	
+  1012                           i1l61:	
+  1013  0094                     	goto	i1l793
+  1014  0094  2896               	
+  1015                           i1l60:	
+  1016  0095                     	goto	i1l793
+  1017  0095  2896               	line	81
+  1018                           ;main.c: 81:     }
+  1019                           	
+  1020                           i1l55:	
+  1021  0096                     	line	82
+  1022                           	
+  1023                           i1l793:	
+  1024  0096                     ;main.c: 82:     GIE = 1;
+  1025                           	bsf	(95/8),(95)&7	;volatile
+  1026  0096  178B               	line	83
+  1027                           	
+  1028                           i1l71:	
+  1029  0097                     	movf	(??_myIsr+4),w
+  1030  0097  0825               	movwf	pclath
+  1031  0098  008A               	movf	(??_myIsr+3),w
+  1032  0099  0824               	movwf	fsr0
+  1033  009A  0084               	swapf	(??_myIsr+2)^00h,w
+  1034  009B  0E23               	movwf	status
+  1035  009C  0083               	swapf	saved_w,f
+  1036  009D  0ECE               	swapf	saved_w,w
+  1037  009E  0E4E               	retfie
+  1038  009F  0009               	opt stack 0
+  1039                           GLOBAL	__end_of_myIsr
+  1040                           	__end_of_myIsr:
+  1041  00A0                     	signat	_myIsr,89
+  1042                           global	___latbits
+  1043                           ___latbits	equ	0
+  1044  0000                     	global	btemp
+  1045                           	btemp set 04Eh
+  1046  004E                     
+  1047                           	DABS	1,78,2	;btemp
+  1048                           	global	wtemp0
+  1049                           	wtemp0 set btemp+0
+  1050  004E                     	end
 
 
 Data Sizes:
@@ -1174,61 +1187,63 @@ DATA                 0      0      1A       6        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Mon Aug 06 14:14:26 2018
+Symbol Table                                                                                   Mon Aug 06 14:35:09 2018
 
-                      _i 001C                       l80 00D1                       l81 00CD  
-                     l90 00EF                       l82 00D0                       l83 00DF  
-                     l84 00DC                       l85 00DF                       l86 00EA  
-                     l78 00B9                       l87 00ED                       l79 00E2  
-                     l88 00EE                       l89 00EF                       _pa 0018  
-                     fsr 0004                      l801 00AD                      l811 00BF  
-                    l803 00AE                      l821 00D7                      l813 00C7  
-                    l805 00AF                      l823 00DC                      l815 00C8  
-                    l807 00B0                      l817 00CD                      l825 00E2  
-                    l809 00B9                      l827 00E8                      l819 00D1  
-                    l829 00EA                      l791 00A2                      l793 00A6  
-                    l795 00A9                      l797 00AB                      l789 009C  
-                    l799 00AC                      _GIE 005F                      u310 00BF  
-                    u311 00BE                      u320 00C6                      u321 00C5  
-                    u330 00D7                      u331 00D6                      u340 00E8  
-                    u341 00E7                      _PSA 040B                      fsr0 0004  
-                    indf 0000                     _T0IE 005D                     _T0IF 005A  
-                   _T0CS 040D                     _T0SE 040C                     i1l60 0092  
-                   i1l61 0090                     i1l70 008B                     i1l62 005D  
-                   i1l71 008D                     i1l63 0058                     i1l55 0092  
-                   i1l72 0091                     i1l64 008F                     i1l56 003A  
-                   i1l73 0093                     i1l65 0068                     i1l66 008E  
-                   i1l58 002A                     i1l67 008C                     i1l59 0039  
-                   i1l68 0082                     i1l69 0086                     _TMR0 0001  
-                   _main 009C                     btemp 004E                     start 000D  
-                  ?_main 0021                    i1l751 001D                    i1l761 0032  
-                  i1l753 001E                    i1l771 004B                    i1l763 0034  
-                  i1l755 0020                    i1l747 0015                    i1l781 0075  
-                  i1l773 005D                    i1l765 003A                    i1l757 0025  
-                  i1l749 0019                    i1l783 007D                    i1l775 0063  
-                  i1l767 0040                    i1l759 002E                    i1l785 0083  
-                  i1l777 0068                    i1l769 0047                    i1l787 0086  
-                  i1l779 006E                    u20_20 0025                    u20_21 0024  
-                  u21_20 002A                    u21_21 0029                    u30_20 0075  
-                  u22_20 002E                    u30_21 0074                    u22_21 002D  
-                  u23_20 0032                    u23_21 0031                    u24_20 0040  
-                  u24_21 003F                    u25_20 0047                    u25_21 0046  
-                  u26_20 004B                    u18_20 0019                    u26_21 004A  
-                  u18_21 0018                    u19_20 001D                    u19_21 001C  
-                  _PORTA 0005                    _PORTB 0006                    u27_24 0051  
-                  u27_25 004F                    u28_20 0063                    u28_21 0062  
-                  u29_20 006E                    u29_21 006D                    _TRISB 0086  
+                      _i 001C                       l80 00DB                       l81 00EA  
+                     l82 00E7                       l83 00EA                       l84 00F5  
+                     l76 00BD                       l85 00F7                       l77 00ED  
+                     l86 00F9                       l78 00DC                       l87 00FA  
+                     l79 00DA                       l88 00FA                       _pa 0018  
+                     fsr 0004                      l801 00AD                      l811 00B3  
+                    l803 00AF                      l821 00D1                      l813 00B4  
+                    l805 00B0                      l823 00D7                      l831 00ED  
+                    l815 00BD                      l807 00B1                      l833 00F3  
+                    l825 00DC                      l817 00C4                      l809 00B2  
+                    l835 00F5                      l827 00E2                      l819 00CB  
+                    l829 00E7                      l795 00A0                      l797 00A6  
+                    l799 00AA                      _GIE 005F                      u400 00F3  
+                    u401 00F2                      u350 00C4                      u351 00C3  
+                    u360 00CB                      u361 00CA                      u370 00D1  
+                    u371 00D0                      u380 00D7                      u381 00D6  
+                    u390 00E2                      u391 00E1                      _PSA 040B  
+                    fsr0 0004                      indf 0000                     _T0IE 005D  
+                   _T0IF 005A                     _T0CS 040D                     _T0SE 040C  
+                   i1l60 0095                     i1l61 0094                     i1l70 0090  
+                   i1l62 005D                     i1l71 0097                     i1l55 0096  
+                   i1l63 0058                     i1l64 0093                     i1l56 003A  
+                   i1l65 0068                     i1l66 0092                     i1l58 002A  
+                   i1l67 0091                     i1l59 0039                     i1l68 0082  
+                   i1l69 008B                     _TMR0 0001                     _main 00A0  
+                   btemp 004E                     start 000D                    ?_main 0021  
+                  i1l751 0019                    i1l761 002E                    i1l753 001D  
+                  i1l771 0047                    i1l763 0032                    i1l755 001E  
+                  i1l781 006E                    i1l773 004B                    i1l765 0034  
+                  i1l757 0020                    i1l749 0015                    i1l791 008B  
+                  i1l783 0075                    i1l775 005D                    i1l767 003A  
+                  i1l759 0025                    i1l785 007D                    i1l777 0063  
+                  i1l769 0040                    i1l793 0096                    i1l787 0082  
+                  i1l779 0068                    i1l789 0088                    u21_20 0019  
+                  u21_21 0018                    u22_20 001D                    u22_21 001C  
+                  u30_24 0051                    u30_25 004F                    u31_20 0063  
+                  u23_20 0025                    u31_21 0062                    u23_21 0024  
+                  u32_20 006E                    u24_20 002A                    u32_21 006D  
+                  u24_21 0029                    u33_20 0075                    u25_20 002E  
+                  u33_21 0074                    u25_21 002D                    u34_20 0088  
+                  u26_20 0032                    u34_21 0087                    u26_21 0031  
+                  u27_20 0040                    u27_21 003F                    _PORTA 0005  
+                  _PORTB 0006                    u28_20 0047                    u28_21 0046  
+                  u29_20 004B                    u29_21 004A                    _TRISB 0086  
                   _delay 0014                    _myIsr 0015                    pclath 000A  
                   status 0003                    wtemp0 004E          __initialization 000E  
-           __end_of_main 00F0                   ??_main 0000                   ?_myIsr 0021  
+           __end_of_main 00FB                   ??_main 0000                   ?_myIsr 0021  
                  _TRISA0 0428                   _TRISA1 0429                   _TRISA2 042A  
                  _TRISA3 042B                   _TRISA4 042C                   saved_w 004E  
-__end_of__initialization 0013           __pcstackCOMMON 0000            __end_of_myIsr 009C  
-                ??_myIsr 0021             _ps2DataArray 000C             _ps2DataCount 001D  
-           _ps2DataState 0020               __pbssBANK0 000C               __pmaintext 009C  
-             __pintentry 0004                  _ps2Data 001F                  __ptext1 0015  
-                _keyCode 001A                  clrloop0 00F1     end_of_initialization 0013  
-              _PORTAbits 0005      start_initialization 000E                ___latbits 0000  
-          __pcstackBANK0 0021           __size_of_myIsr 0087        interrupt_function 0004  
-              clear_ram0 00F0            __size_of_main 0054         _ps2DataBitsCount 001E  
+__end_of__initialization 0013           __pcstackCOMMON 0000            __end_of_myIsr 00A0  
+                ??_myIsr 0021             _ps2DataCount 001D             _ps2DataState 0020  
+             __pbssBANK0 000C             _ps2BitsCount 001E               __pmaintext 00A0  
+             __pintentry 0004                  _ps2Data 000C                  _ps2Bits 001F  
+                __ptext1 0015                  _keyCode 001A                  clrloop0 00FC  
+   end_of_initialization 0013                _PORTAbits 0005      start_initialization 000E  
+              ___latbits 0000            __pcstackBANK0 0021           __size_of_myIsr 008B  
+      interrupt_function 0004                clear_ram0 00FB            __size_of_main 005B  
                intlevel1 0000  

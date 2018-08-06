@@ -1,6 +1,6 @@
 
 Memory Summary:
-    Program space        used    F4h (   244) of   400h words   ( 23.8%)
+    Program space        used    FFh (   255) of   400h words   ( 24.9%)
     Data space           used    1Ch (    28) of    44h bytes   ( 41.2%)
     EEPROM space         used     0h (     0) of    40h bytes   (  0.0%)
     Data stack space     used     0h (     0) of    28h bytes   (  0.0%)

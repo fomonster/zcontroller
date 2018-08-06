@@ -25,16 +25,17 @@
 #define PS2DATA_RECEIVED 3
 int8_t ps2DataState = PS2DATA_WAIT;
 
-int8_t ps2Data = 0;
-int8_t ps2DataBitsCount = 0;
+uint8_t ps2Bits = 0;
+int8_t ps2BitsCount = 0;
 
 #define PS2DATA_MAX 8
-int8_t ps2DataArray[PS2DATA_MAX];
+uint8_t ps2Data[PS2DATA_MAX];
 int8_t ps2DataCount = 0;
 
 int8_t i = 0;
 int16_t keyCode = 0;
 uint32_t delay = 0;
+
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
@@ -53,35 +54,30 @@ void __interrupt(high_priority) myIsr(void)
         // https://youtu.be/vfIiLE0BhE8?t=204
         if ( ps2DataState == PS2DATA_WAIT || ps2DataState == PS2DATA_WAIT_NEXT ) {
             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) { // 0 start bit
-                ps2DataBitsCount = 0;
-                ps2Data = 0;
+                ps2BitsCount = 0;
+                ps2Bits = 0;
                 ps2DataState = PS2DATA_RECEIVING;             
             }
         } else if ( ps2DataState == PS2DATA_RECEIVING ) {
-            if ( ps2DataBitsCount < 8 ) { // 1,2,3,4,5,6,7,8 - data bits
+            if ( ps2BitsCount < 8 ) { // 1,2,3,4,5,6,7,8 - data bits
                 if ( PORTAbits.RA3 ) {
-                    ps2Data |= ( 1 << ps2DataBitsCount );
+                    ps2Bits |= ( 1 << ps2BitsCount );
                 }   
-                ps2DataBitsCount++;          
-            } else if ( ps2DataBitsCount == 8 ) { // 9 parity bit
-                ps2DataBitsCount++;       
-            } else if ( ps2DataBitsCount == 9 ) { // 10 stop bit
+                ps2BitsCount++;          
+            } else if ( ps2BitsCount == 8 ) { // 9 parity bit
+                ps2BitsCount++;       
+            } else if ( ps2BitsCount == 9 ) { // 10 stop bit
                 if ( ps2DataCount < PS2DATA_MAX ) {
-                    ps2DataArray[ps2DataCount] = ps2Data;
+                    ps2Data[ps2DataCount] = ps2Bits;
                     ps2DataCount++;
                 }
-                if ( ps2Data == 0xF0 ) {
+                if ( ps2Bits == 0xF0 ) {
                     ps2DataState = PS2DATA_WAIT_NEXT;
                 } else {
                     ps2DataState = PS2DATA_RECEIVED;
                 }
-            } else {
-                
-            }
-        } else {
-            //ps2DataState = PS2DATA_WAIT;
-            //ps2DataBitsCount = 0;
-        }
+            } 
+        } 
     } 
     GIE = 1;
 }
@@ -135,8 +131,8 @@ void main(void)
     
     
     ps2DataState = PS2DATA_WAIT;
-    ps2DataBitsCount = 0;
-    ps2Data = 0;
+    ps2BitsCount = 0;
+    ps2Bits = 0;
     pa = 0;
     
     while(1)
@@ -146,15 +142,15 @@ void main(void)
             
             if ( ps2DataCount > 1 ) {
             
-                if ( ps2DataArray[0] == 0xF0 && ps2DataArray[1] == 0x1a ) { // 0x31=N // 0x1a=Z
-                   pa = 1;
-                } else {
+                if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0x1a ) { // 0x31=N // 0x1a=Z
                    pa = 0;
+                } else {
+                   //pa = 0;
                 }
                     
             } else {
                             
-                if ( ps2DataArray[0] == 0x1a ) { // 0x31=N // 0x1a=Z
+                if ( ps2Data[0] == 0x1a ) { // 0x31=N // 0x1a=Z
                     pa = 1;
                 } else {
                     pa = 0;
@@ -171,7 +167,7 @@ void main(void)
         } else {
             PORTB = 0b00000010; // led off
         }
-        //CLRWDT();
+        CLRWDT();
         // delay
         //delay = 1000;
         //while(delay > 0 ) {

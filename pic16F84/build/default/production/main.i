@@ -787,16 +787,17 @@ typedef uint16_t uintptr_t;
 # 26 "main.c"
 int8_t ps2DataState = 0;
 
-int8_t ps2Data = 0;
-int8_t ps2DataBitsCount = 0;
+uint8_t ps2Bits = 0;
+int8_t ps2BitsCount = 0;
 
 
-int8_t ps2DataArray[8];
+uint8_t ps2Data[8];
 int8_t ps2DataCount = 0;
 
 int8_t i = 0;
 int16_t keyCode = 0;
 uint32_t delay = 0;
+
 
 
 
@@ -815,34 +816,29 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 
         if ( ps2DataState == 0 || ps2DataState == 1 ) {
             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
-                ps2DataBitsCount = 0;
-                ps2Data = 0;
+                ps2BitsCount = 0;
+                ps2Bits = 0;
                 ps2DataState = 2;
             }
         } else if ( ps2DataState == 2 ) {
-            if ( ps2DataBitsCount < 8 ) {
+            if ( ps2BitsCount < 8 ) {
                 if ( PORTAbits.RA3 ) {
-                    ps2Data |= ( 1 << ps2DataBitsCount );
+                    ps2Bits |= ( 1 << ps2BitsCount );
                 }
-                ps2DataBitsCount++;
-            } else if ( ps2DataBitsCount == 8 ) {
-                ps2DataBitsCount++;
-            } else if ( ps2DataBitsCount == 9 ) {
+                ps2BitsCount++;
+            } else if ( ps2BitsCount == 8 ) {
+                ps2BitsCount++;
+            } else if ( ps2BitsCount == 9 ) {
                 if ( ps2DataCount < 8 ) {
-                    ps2DataArray[ps2DataCount] = ps2Data;
+                    ps2Data[ps2DataCount] = ps2Bits;
                     ps2DataCount++;
                 }
-                if ( ps2Data == 0xF0 ) {
+                if ( ps2Bits == 0xF0 ) {
                     ps2DataState = 1;
                 } else {
                     ps2DataState = 3;
                 }
-            } else {
-
             }
-        } else {
-
-
         }
     }
     GIE = 1;
@@ -866,7 +862,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000010;
-# 128 "main.c"
+# 124 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -877,8 +873,8 @@ void main(void)
 
 
     ps2DataState = 0;
-    ps2DataBitsCount = 0;
-    ps2Data = 0;
+    ps2BitsCount = 0;
+    ps2Bits = 0;
     pa = 0;
 
     while(1)
@@ -888,15 +884,15 @@ void main(void)
 
             if ( ps2DataCount > 1 ) {
 
-                if ( ps2DataArray[0] == 0xF0 && ps2DataArray[1] == 0x1a ) {
-                   pa = 1;
-                } else {
+                if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0x1a ) {
                    pa = 0;
+                } else {
+
                 }
 
             } else {
 
-                if ( ps2DataArray[0] == 0x1a ) {
+                if ( ps2Data[0] == 0x1a ) {
                     pa = 1;
                 } else {
                     pa = 0;
@@ -913,7 +909,7 @@ void main(void)
         } else {
             PORTB = 0b00000010;
         }
-
+        __asm("clrwdt");
 
 
 
