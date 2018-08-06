@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\zcontrollerpic16F84.production.hex">
+  <executable name="dist/default/production\pic16F84.production.hex">
     <memory name="program">
       <units>words</units>
       <length>1024</length>
-      <used>53</used>
-      <free>971</free>
+      <used>284</used>
+      <free>740</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>68</length>
-      <used>7</used>
-      <free>61</free>
+      <used>34</used>
+      <free>34</free>
     </memory>
   </executable>
 </project>

@@ -1,6 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[t ~ __interrupt . k ]
+[t T1 __interrupt high_priority ]
+"713 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 713: extern volatile __bit T0IE __attribute__((address(0x5D)));
+[v _T0IE `Vb ~T0 @X0 0 e@93 ]
+"716
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 716: extern volatile __bit T0IF __attribute__((address(0x5A)));
+[v _T0IF `Vb ~T0 @X0 0 e@90 ]
+"59
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 59: extern volatile unsigned char TMR0 __attribute__((address(0x001)));
+[v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
+"172
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 172:     struct {
+[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S6 . RA0 RA1 RA2 RA3 RA4 ]
+"171
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 171: typedef union {
+[u S5 `S6 1 ]
+[n S5 . . ]
+"180
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 180: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
+[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
 [p mainexit ]
-"728 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+"728
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 728: extern volatile __bit TRISA0 __attribute__((address(0x428)));
 [v _TRISA0 `Vb ~T0 @X0 0 e@1064 ]
 "731
@@ -24,10 +46,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "210
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 210: extern volatile unsigned char PORTB __attribute__((address(0x006)));
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-[v F212 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h
-[v __delay `JF212 ~T0 @X0 0 e ]
-[p i __delay ]
+"710
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 710: extern volatile __bit T0CS __attribute__((address(0x40D)));
+[v _T0CS `Vb ~T0 @X0 0 e@1037 ]
+"719
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 719: extern volatile __bit T0SE __attribute__((address(0x40C)));
+[v _T0SE `Vb ~T0 @X0 0 e@1036 ]
+"629
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 629: extern volatile __bit GIE __attribute__((address(0x5F)));
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"653
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 653: extern volatile __bit PSA __attribute__((address(0x40B)));
+[v _PSA `Vb ~T0 @X0 0 e@1035 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -76,87 +106,334 @@ Version 4.0 HI-TECH Software Intermediate Code
 "606
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 606: __asm("EECON2 equ 089h");
 [; <" EECON2 equ 089h ;# ">
-"32 main.c
-[; ;main.c: 32: unsigned short pa=0;
+"26 main.c
+[; ;main.c: 26: int8_t ps2Data = 0;
+[v _ps2Data `c ~T0 @X0 1 e ]
+[i _ps2Data
+-> -> 0 `i `c
+]
+"27
+[; ;main.c: 27: _Bool ps2DataStarted = 0;
+[v _ps2DataStarted `a ~T0 @X0 1 e ]
+[i _ps2DataStarted
+-> -> 0 `i `a
+]
+"28
+[; ;main.c: 28: int8_t ps2DataBitsCount = 0;
+[v _ps2DataBitsCount `c ~T0 @X0 1 e ]
+[i _ps2DataBitsCount
+-> -> 0 `i `c
+]
+"30
+[; ;main.c: 30: int8_t ps2DataArray[10];
+[v _ps2DataArray `c ~T0 @X0 -> 10 `i e ]
+"31
+[; ;main.c: 31: int8_t ps2DataCount = 0;
+[v _ps2DataCount `c ~T0 @X0 1 e ]
+[i _ps2DataCount
+-> -> 0 `i `c
+]
+"36
+[; ;main.c: 36: unsigned short pa=0;
 [v _pa `us ~T0 @X0 1 e ]
 [i _pa
 -> -> 0 `i `us
 ]
-[v $root$_main `(v ~T0 @X0 0 e ]
+[v $root$_myIsr `(v ~T0 @X0 0 e ]
+"39
+[; ;main.c: 39: void __attribute__((picinterrupt("high_priority"))) myIsr(void)
+[v _myIsr `(v ~T1 @X0 1 ef ]
+"40
+[; ;main.c: 40: {
+{
+[e :U _myIsr ]
+[f ]
+"42
+[; ;main.c: 42:     if(T0IE && T0IF){
+[e $ ! && _T0IE _T0IF 29  ]
+{
+"44
+[; ;main.c: 44:         T0IF=0;
+[e = _T0IF -> -> 0 `i `b ]
+"45
+[; ;main.c: 45:         TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
+"47
+[; ;main.c: 47:         if ( !ps2DataStarted ) {
+[e $ ! ! != -> _ps2DataStarted `i -> 0 `i 30  ]
+{
+"48
+[; ;main.c: 48:             if ( !PORTAbits.RA4 ) {
+[e $ ! ! != -> . . _PORTAbits 0 4 `i -> 0 `i 31  ]
+{
+"49
+[; ;main.c: 49:                 ps2DataBitsCount = 0;
+[e = _ps2DataBitsCount -> -> 0 `i `c ]
+"50
+[; ;main.c: 50:                 ps2Data = 0;
+[e = _ps2Data -> -> 0 `i `c ]
+"51
+[; ;main.c: 51:                 ps2DataStarted = 1;
+[e = _ps2DataStarted -> -> 1 `i `a ]
+"52
+[; ;main.c: 52:                 return;
+[e $UE 28  ]
 "53
-[; ;main.c: 53: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
+[; ;main.c: 53:             }
+}
+[e :U 31 ]
 "54
-[; ;main.c: 54: {
+[; ;main.c: 54:         } else if ( ps2DataBitsCount < 8 ) {
+}
+[e $U 32  ]
+[e :U 30 ]
+[e $ ! < -> _ps2DataBitsCount `i -> 8 `i 33  ]
+{
+"55
+[; ;main.c: 55:             if ( PORTAbits.RA3 ) {
+[e $ ! != -> . . _PORTAbits 0 3 `i -> 0 `i 34  ]
+{
+"56
+[; ;main.c: 56:                 ps2Data |= ( 1 << ps2DataBitsCount );
+[e =| _ps2Data -> << -> 1 `i -> _ps2DataBitsCount `i `c ]
+"57
+[; ;main.c: 57:             }
+}
+[e :U 34 ]
+"58
+[; ;main.c: 58:             ps2DataBitsCount++;
+[e ++ _ps2DataBitsCount -> -> 1 `i `c ]
+"59
+[; ;main.c: 59:             return;
+[e $UE 28  ]
+"60
+[; ;main.c: 60:         } else if ( ps2DataBitsCount == 8 ) {
+}
+[e $U 35  ]
+[e :U 33 ]
+[e $ ! == -> _ps2DataBitsCount `i -> 8 `i 36  ]
+{
+"61
+[; ;main.c: 61:             ps2DataBitsCount++;
+[e ++ _ps2DataBitsCount -> -> 1 `i `c ]
+"62
+[; ;main.c: 62:             if ( ps2DataCount < 10 ) {
+[e $ ! < -> _ps2DataCount `i -> 10 `i 37  ]
+{
+"63
+[; ;main.c: 63:                 ps2DataArray[ps2DataCount] = ps2Data;
+[e = *U + &U _ps2DataArray * -> -> _ps2DataCount `uc `ux -> -> # *U &U _ps2DataArray `ui `ux _ps2Data ]
+"64
+[; ;main.c: 64:                 ps2DataCount++;
+[e ++ _ps2DataCount -> -> 1 `i `c ]
+"65
+[; ;main.c: 65:             }
+}
+[e :U 37 ]
+"66
+[; ;main.c: 66:         } else {
+}
+[e $U 38  ]
+[e :U 36 ]
+{
+"67
+[; ;main.c: 67:             ps2DataStarted = 0;
+[e = _ps2DataStarted -> -> 0 `i `a ]
+"68
+[; ;main.c: 68:             ps2DataBitsCount = 0;
+[e = _ps2DataBitsCount -> -> 0 `i `c ]
+"69
+[; ;main.c: 69:         }
+}
+[e :U 38 ]
+[e :U 35 ]
+[e :U 32 ]
+"71
+[; ;main.c: 71:     }
+}
+[e :U 29 ]
+"73
+[; ;main.c: 73: }
+[e :UE 28 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"85
+[; ;main.c: 85: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"86
+[; ;main.c: 86: {
 {
 [e :U _main ]
 [f ]
-"58
-[; ;main.c: 58:     TRISA0 = 1;
+"90
+[; ;main.c: 90:     TRISA0 = 1;
 [e = _TRISA0 -> -> 1 `i `b ]
-"59
-[; ;main.c: 59:     TRISA1 = 0;
+"91
+[; ;main.c: 91:     TRISA1 = 0;
 [e = _TRISA1 -> -> 0 `i `b ]
-"60
-[; ;main.c: 60:     TRISA2 = 0;
+"92
+[; ;main.c: 92:     TRISA2 = 0;
 [e = _TRISA2 -> -> 0 `i `b ]
-"61
-[; ;main.c: 61:     TRISA3 = 1;
-[e = _TRISA3 -> -> 1 `i `b ]
-"62
-[; ;main.c: 62:     TRISA4 = 1;
-[e = _TRISA4 -> -> 1 `i `b ]
-"64
-[; ;main.c: 64:     PORTA = 0b00000000;
-[e = _PORTA -> -> 0 `i `uc ]
-"66
-[; ;main.c: 66:     TRISB = 0b00000000;
-[e = _TRISB -> -> 0 `i `uc ]
-"67
-[; ;main.c: 67:     PORTB = 0b00000010;
-[e = _PORTB -> -> 2 `i `uc ]
 "93
-[; ;main.c: 93:     while(1)
-[e :U 30 ]
+[; ;main.c: 93:     TRISA3 = 1;
+[e = _TRISA3 -> -> 1 `i `b ]
 "94
-[; ;main.c: 94:     {
-{
+[; ;main.c: 94:     TRISA4 = 1;
+[e = _TRISA4 -> -> 1 `i `b ]
 "96
-[; ;main.c: 96:         if (pa) {
-[e $ ! != -> _pa `ui -> -> 0 `i `ui 32  ]
-{
-"97
-[; ;main.c: 97:             PORTB = 0b00000010;
-[e = _PORTB -> -> 2 `i `uc ]
+[; ;main.c: 96:     PORTA = 0b00000000;
+[e = _PORTA -> -> 0 `i `uc ]
 "98
-[; ;main.c: 98:            pa = 0;
-[e = _pa -> -> 0 `i `us ]
+[; ;main.c: 98:     TRISB = 0b00000000;
+[e = _TRISB -> -> 0 `i `uc ]
 "99
-[; ;main.c: 99:         } else {
-}
-[e $U 33  ]
-[e :U 32 ]
+[; ;main.c: 99:     PORTB = 0b00000010;
+[e = _PORTB -> -> 2 `i `uc ]
+"123
+[; ;main.c: 123:     T0CS = 1;
+[e = _T0CS -> -> 1 `i `b ]
+"124
+[; ;main.c: 124:     T0SE = 1;
+[e = _T0SE -> -> 1 `i `b ]
+"125
+[; ;main.c: 125:     GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
+"126
+[; ;main.c: 126:     T0IE = 1;
+[e = _T0IE -> -> 1 `i `b ]
+"127
+[; ;main.c: 127:     PSA = 1;
+[e = _PSA -> -> 1 `i `b ]
+"128
+[; ;main.c: 128:     T0IF = 0;
+[e = _T0IF -> -> 0 `i `b ]
+"129
+[; ;main.c: 129:     TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
+"132
+[; ;main.c: 132:     ps2DataStarted = 0;
+[e = _ps2DataStarted -> -> 0 `i `a ]
+"133
+[; ;main.c: 133:     ps2DataBitsCount = 0;
+[e = _ps2DataBitsCount -> -> 0 `i `c ]
+"134
+[; ;main.c: 134:     ps2Data = 0;
+[e = _ps2Data -> -> 0 `i `c ]
+"136
+[; ;main.c: 136:     while(1)
+[e :U 41 ]
+"137
+[; ;main.c: 137:     {
 {
-"100
-[; ;main.c: 100:             PORTB = 0b00000000;
-[e = _PORTB -> -> 0 `i `uc ]
-"101
-[; ;main.c: 101:            pa = 1;
+"138
+[; ;main.c: 138:         if ( ps2DataCount > 0 ) {
+[e $ ! > -> _ps2DataCount `i -> 0 `i 43  ]
+{
+"139
+[; ;main.c: 139:             int16_t keyCode = ps2DataArray[0];
+[v _keyCode `i ~T0 @X0 1 a ]
+[e = _keyCode -> *U + &U _ps2DataArray * -> -> -> 0 `i `ui `ux -> -> # *U &U _ps2DataArray `ui `ux `i ]
+"140
+[; ;main.c: 140:             for(int8_t i = 0; i < ps2DataCount; i++) {
+{
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `c ]
+[e $U 47  ]
+[e :U 44 ]
+{
+"141
+[; ;main.c: 141:                 ps2DataArray[i] = ps2DataArray[i-1];
+[e = *U + &U _ps2DataArray * -> -> _i `uc `ux -> -> # *U &U _ps2DataArray `ui `ux *U + &U _ps2DataArray * -> -> - -> _i `i -> 1 `i `ui `ux -> -> # *U &U _ps2DataArray `ui `ux ]
+"142
+[; ;main.c: 142:             }
+}
+[e ++ _i -> -> 1 `i `c ]
+[e :U 47 ]
+[e $ < -> _i `i -> _ps2DataCount `i 44  ]
+[e :U 45 ]
+}
+"143
+[; ;main.c: 143:             ps2DataCount--;
+[e -- _ps2DataCount -> -> 1 `i `c ]
+"145
+[; ;main.c: 145:             if ( keyCode == 0x1a ) {
+[e $ ! == _keyCode -> 26 `i 48  ]
+{
+"146
+[; ;main.c: 146:                if (pa) {
+[e $ ! != -> _pa `ui -> -> 0 `i `ui 49  ]
+{
+"147
+[; ;main.c: 147:                     pa = 0;
+[e = _pa -> -> 0 `i `us ]
+"148
+[; ;main.c: 148:                 } else {
+}
+[e $U 50  ]
+[e :U 49 ]
+{
+"149
+[; ;main.c: 149:                     pa = 1;
 [e = _pa -> -> 1 `i `us ]
-"102
-[; ;main.c: 102:         }
+"150
+[; ;main.c: 150:                 }
 }
-[e :U 33 ]
-"103
-[; ;main.c: 103:         _delay((unsigned long)((1000)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"105
-[; ;main.c: 105:     }
+[e :U 50 ]
+"151
+[; ;main.c: 151:             }
 }
-[e :U 29 ]
-[e $U 30  ]
-[e :U 31 ]
-"107
-[; ;main.c: 107: }
-[e :UE 28 ]
+[e :U 48 ]
+"152
+[; ;main.c: 152:         }
+}
+[e :U 43 ]
+"155
+[; ;main.c: 155:         if ( pa ) {
+[e $ ! != -> _pa `ui -> -> 0 `i `ui 51  ]
+{
+"156
+[; ;main.c: 156:             PORTB = 0b00000000;
+[e = _PORTB -> -> 0 `i `uc ]
+"157
+[; ;main.c: 157:         } else {
+}
+[e $U 52  ]
+[e :U 51 ]
+{
+"158
+[; ;main.c: 158:             PORTB = 0b00000010;
+[e = _PORTB -> -> 2 `i `uc ]
+"159
+[; ;main.c: 159:         }
+}
+[e :U 52 ]
+"162
+[; ;main.c: 162:         uint32_t delay = 30000;
+[v _delay `ul ~T0 @X0 1 a ]
+[e = _delay -> -> -> 30000 `i `l `ul ]
+"163
+[; ;main.c: 163:         while(delay > 0 ) {
+[e $U 53  ]
+[e :U 54 ]
+{
+"164
+[; ;main.c: 164:             delay--;
+[e -- _delay -> -> -> 1 `i `l `ul ]
+"165
+[; ;main.c: 165:         }
+}
+[e :U 53 ]
+"163
+[; ;main.c: 163:         while(delay > 0 ) {
+[e $ > _delay -> -> -> 0 `i `l `ul 54  ]
+[e :U 55 ]
+"167
+[; ;main.c: 167:     }
+}
+[e :U 40 ]
+[e $U 41  ]
+[e :U 42 ]
+"169
+[; ;main.c: 169: }
+[e :UE 39 ]
 }

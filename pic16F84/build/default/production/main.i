@@ -683,21 +683,7 @@ typedef signed char int8_t;
 
 
 typedef signed int int16_t;
-
-
-
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-
-
-
+# 36 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef signed long int int32_t;
 # 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef unsigned char uint8_t;
@@ -707,19 +693,7 @@ typedef unsigned char uint8_t;
 
 
 typedef unsigned int uint16_t;
-
-
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-
-
+# 72 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef unsigned long int uint32_t;
 # 88 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int_least8_t;
@@ -731,8 +705,8 @@ typedef signed char int_least8_t;
 
 
 typedef signed int int_least16_t;
-# 109 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_least24_t;
+# 105 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
+typedef signed long int int_least24_t;
 # 118 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef signed long int int_least32_t;
 # 136 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
@@ -744,8 +718,6 @@ typedef unsigned char uint_least8_t;
 
 
 typedef unsigned int uint_least16_t;
-# 154 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_least24_t;
 
 
 
@@ -753,6 +725,8 @@ typedef __uint24 uint_least24_t;
 
 
 
+typedef unsigned long int uint_least24_t;
+# 162 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef unsigned long int uint_least32_t;
 # 181 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int_fast8_t;
@@ -763,8 +737,6 @@ typedef signed char int_fast8_t;
 
 
 typedef signed int int_fast16_t;
-# 200 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_fast24_t;
 
 
 
@@ -772,6 +744,8 @@ typedef __int24 int_fast24_t;
 
 
 
+typedef signed long int int_fast24_t;
+# 208 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef signed long int int_fast32_t;
 # 224 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef unsigned char uint_fast8_t;
@@ -781,14 +755,14 @@ typedef unsigned char uint_fast8_t;
 
 
 typedef unsigned int uint_fast16_t;
-# 240 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_fast24_t;
 
 
 
 
 
 
+typedef unsigned long int uint_fast24_t;
+# 247 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef unsigned long int uint_fast32_t;
 # 268 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
 typedef int32_t intmax_t;
@@ -810,9 +784,56 @@ typedef uint16_t uintptr_t;
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdbool.h" 1 3
 # 12 "main.c" 2
-# 32 "main.c"
+# 26 "main.c"
+int8_t ps2Data = 0;
+_Bool ps2DataStarted = 0;
+int8_t ps2DataBitsCount = 0;
+
+int8_t ps2DataArray[10];
+int8_t ps2DataCount = 0;
+
+
+
+
 unsigned short pa=0;
-# 53 "main.c"
+
+
+void __attribute__((picinterrupt("high_priority"))) myIsr(void)
+{
+
+    if(T0IE && T0IF){
+
+        T0IF=0;
+        TMR0 = 255;
+
+        if ( !ps2DataStarted ) {
+            if ( !PORTAbits.RA4 ) {
+                ps2DataBitsCount = 0;
+                ps2Data = 0;
+                ps2DataStarted = 1;
+                return;
+            }
+        } else if ( ps2DataBitsCount < 8 ) {
+            if ( PORTAbits.RA3 ) {
+                ps2Data |= ( 1 << ps2DataBitsCount );
+            }
+            ps2DataBitsCount++;
+            return;
+        } else if ( ps2DataBitsCount == 8 ) {
+            ps2DataBitsCount++;
+            if ( ps2DataCount < 10 ) {
+                ps2DataArray[ps2DataCount] = ps2Data;
+                ps2DataCount++;
+            }
+        } else {
+            ps2DataStarted = 0;
+            ps2DataBitsCount = 0;
+        }
+
+    }
+
+}
+# 85 "main.c"
 void main(void)
 {
 
@@ -828,18 +849,50 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000010;
-# 93 "main.c"
+# 123 "main.c"
+    T0CS = 1;
+    T0SE = 1;
+    GIE = 1;
+    T0IE = 1;
+    PSA = 1;
+    T0IF = 0;
+    TMR0 = 255;
+
+
+    ps2DataStarted = 0;
+    ps2DataBitsCount = 0;
+    ps2Data = 0;
+
     while(1)
     {
+        if ( ps2DataCount > 0 ) {
+            int16_t keyCode = ps2DataArray[0];
+            for(int8_t i = 0; i < ps2DataCount; i++) {
+                ps2DataArray[i] = ps2DataArray[i-1];
+            }
+            ps2DataCount--;
 
-        if (pa) {
-            PORTB = 0b00000010;
-           pa = 0;
-        } else {
-            PORTB = 0b00000000;
-           pa = 1;
+            if ( keyCode == 0x1a ) {
+               if (pa) {
+                    pa = 0;
+                } else {
+                    pa = 1;
+                }
+            }
         }
-        _delay((unsigned long)((1000)*(8000000/4000.0)));
+
+
+        if ( pa ) {
+            PORTB = 0b00000000;
+        } else {
+            PORTB = 0b00000010;
+        }
+
+
+        uint32_t delay = 30000;
+        while(delay > 0 ) {
+            delay--;
+        }
 
     }
 

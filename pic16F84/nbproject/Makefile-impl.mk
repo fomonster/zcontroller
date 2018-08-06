@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=zcontrollerpic16F84
+PROJECTNAME=pic16F84
 
 # Active Configuration
 DEFAULTCONF=default

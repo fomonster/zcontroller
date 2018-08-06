@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/zcontrollerpic16F84.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=zcontrollerpic16F84.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=zcontrollerpic16f84/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/pic16F84.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=pic16F84.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=pic16f84/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/zcontrollerpic16f84/bin
+makeDirectory ${TMPDIR}/pic16f84/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/zcontrollerpic16f84.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/pic16f84.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/zcontrollerpic16f84.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/pic16f84.tar *
 checkReturnCode
 
 # Cleanup
