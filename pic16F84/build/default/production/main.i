@@ -784,7 +784,70 @@ typedef uint16_t uintptr_t;
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdbool.h" 1 3
 # 12 "main.c" 2
-# 26 "main.c"
+
+
+
+
+
+# 1 "./ps2tozxtable.h" 1
+# 27 "./ps2tozxtable.h"
+uint16_t codeToMatrix(uint8_t k, uint8_t s, uint8_t c, uint8_t n)
+{
+    uint16_t r;
+
+    switch (c) {
+        case 0x5A:
+            r = 0xFF06;
+            break;
+        case 0xFB:
+            r = 0x0043;
+            break;
+        case 0xF4:
+            r = 0x0024;
+            break;
+        case 0xF5:
+            r = 0x0034;
+            break;
+        case 0xF2:
+            r = 0x0044;
+            break;
+        case 0x16:
+            r = (s) ? 0x1703 : 0xFF03;
+            break;
+        case 0x1E:
+            r = (s) ? 0x1713 : 0xFF13;
+            break;
+        case 0x26:
+            r = (s) ? 0x1723 : 0xFF23;
+            break;
+        case 0x25:
+            r = (s) ? 0x1733 : 0xFF33;
+            break;
+        case 0x2E:
+            r = (s) ? 0x1743 : 0xFF43;
+            break;
+        case 0x36:
+            r = (s) ? 0x1746 : 0xFF44;
+            break;
+        case 0x3D:
+            r = (s) ? 0x1744 : 0xFF34;
+            break;
+        case 0x3E:
+            r = (s) ? 0x1747 : 0xFF24;
+            break;
+        case 0x46:
+            r = (s) ? 0x1724 : 0xFF14;
+            break;
+        case 0x45:
+            r = (s) ? 0x1714 : 0xFF04;
+            break;
+        default:
+            r = 0xFFFF;
+    }
+    return r;
+}
+# 17 "main.c" 2
+# 28 "main.c"
 int8_t ps2DataState = 0;
 
 uint8_t ps2Bits = 0;
@@ -794,17 +857,89 @@ int8_t ps2BitsCount = 0;
 uint8_t ps2Data[8];
 int8_t ps2DataCount = 0;
 
+
+
+uint8_t outPorts[11] =
+{
+
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+    0xff,
+
+    0xff,
+    0xff,
+    0xff
+};
+
+
+
+
 int8_t i = 0;
 int16_t keyCode = 0;
-uint32_t delay = 0;
+uint8_t shift = 0;
+uint8_t capsLock = 0;
+uint8_t numLock = 0;
+# 85 "main.c"
+uint8_t replaceCode(uint8_t code)
+{
+    uint8_t r = 0x00;
+    switch(code) {
+        case 0x12:
+            r = 0x00;
+            break;
+        case 0x77:
+            r = 0x00;
+            break;
+        case 0x70:
+            r = 0x00;
+            break;
+        case 0x6C:
+            r = 0x00;
+            break;
+        case 0x7D:
+            r = 0x00;
+            break;
+        case 0x71:
+            r = 0x00;
+            break;
+        case 0x69:
+            r = 0x00;
+            break;
+        case 0x7A:
+            r = 0x00;
+            break;
+        case 0x5A:
+            r = 0x00;
+            break;
+        case 0x75:
+            r = 0xF5;
+            break;
+        case 0x6B:
+            r = 0xFB;
+            break;
+        case 0x74:
+            r = 0xF4;
+            break;
+        case 0x72:
+            r = 0xF2;
+            break;
+        case 0x11:
+            r = 0x00;
+            break;
+        case 0x14:
+            r = 0x00;
+            break;
+    }
+    return r;
+}
 
 
 
-
-
-
-
-unsigned short pa=0;
 
 
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
@@ -813,6 +948,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 
         T0IF=0;
         TMR0 = 255;
+
 
         if ( ps2DataState == 0 || ps2DataState == 1 ) {
             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
@@ -833,10 +969,16 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                     ps2Data[ps2DataCount] = ps2Bits;
                     ps2DataCount++;
                 }
-                if ( ps2Bits == 0xF0 ) {
+                if ( ps2Bits == 0xF0 || ps2Bits == 0xE0 ) {
                     ps2DataState = 1;
                 } else {
-                    ps2DataState = 3;
+                    if ( ps2DataCount == 2 && ps2Data[1] == 0x12 ) {
+                       ps2DataState = 1;
+                    } else if ( ps2Data[0] == 0xe1 && ps2DataCount < 8 ) {
+                        ps2DataState = 1;
+                    } else {
+                        ps2DataState = 3;
+                    }
                 }
             }
         }
@@ -846,12 +988,55 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 
 
 
+void setPort(uint8_t bit_id)
+{
+    outPorts[bit_id & 0x07] |= (1 << (bit_id >> 4));
+}
+
+void resetPort(uint8_t bit_id)
+{
+    outPorts[bit_id & 0x07] &= ~(1 << (bit_id >> 4));
+}
+
+
+
+void keyDown(uint8_t key)
+{
+    uint16_t c = codeToMatrix(key, shift, capsLock, numLock );
+    if ( (c & 0xFF) != 0xFF ) setPort(c & 0xFF );
+    if ( (( c >> 8 ) & 0xFF) != 0xFF ) setPort( (c >> 8 ) & 0xFF );
+}
+
+void keyUp(uint8_t key)
+{
+    uint16_t c = codeToMatrix(key, shift, capsLock, numLock );
+    if ( (c & 0xFF) != 0xFF ) resetPort(c & 0xFF );
+    if ( (( c >> 8 ) & 0xFF ) != 0xFF ) setPort( (c >> 8 ) & 0xFF );
+}
+
+
+
+void sendDataToAltera()
+{
+
+}
+
+
+
+void sendToKeyboardRepeat()
+{
+
+}
+
+void sendToKeyboardLED(uint8_t id, uint8_t state)
+{
+
+}
+
+
 
 void main(void)
 {
-
-
-
     TRISA0 = 1;
     TRISA1 = 0;
     TRISA2 = 0;
@@ -862,7 +1047,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000010;
-# 124 "main.c"
+# 266 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -871,51 +1056,47 @@ void main(void)
     T0IF = 0;
     TMR0 = 255;
 
-
     ps2DataState = 0;
     ps2BitsCount = 0;
     ps2Bits = 0;
-    pa = 0;
+
 
     while(1)
     {
         if ( ps2DataState == 3 ) {
 
 
-            if ( ps2DataCount > 1 ) {
-
-                if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0x1a ) {
-                   pa = 0;
-                } else {
-
+            if ( ps2DataCount == 1) {
+                keyDown(ps2Data[0]);
+            } else if ( ps2DataCount == 2 ) {
+                if ( ps2Data[0] == 0xF0 ) {
+                    keyUp(ps2Data[1]);
+                } else if ( ps2Data[0] == 0xE0 ) {
+                    keyDown(replaceCode(ps2Data[1]));
                 }
-
-            } else {
-
-                if ( ps2Data[0] == 0x1a ) {
-                    pa = 1;
-                } else {
-                    pa = 0;
+            } else if ( ps2DataCount == 3 ){
+                if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0xE0 ) {
+                    keyUp(replaceCode(ps2Data[2]));
                 }
-
+            } else if ( ps2DataCount > 3 ){
+                if ( ps2Data[0] == 0xF0 ) {
+                    if ( ps2Data[1] == 0xE1 && ps2Data[2] == 0x14 ) keyUp(replaceCode(ps2Data[3]));
+                    if ( ps2Data[1] == 0xE0 && ps2Data[2] == 0x12 ) keyUp(replaceCode(ps2Data[2]));
+                } else {
+                    if ( ps2Data[0] == 0xE1 && ps2Data[1] == 0x14 ) keyDown(replaceCode(ps2Data[2]));
+                    if ( ps2Data[0] == 0xE0 && ps2Data[1] == 0x12 ) keyDown(replaceCode(ps2Data[1]));
+                }
             }
+
+
             ps2DataCount = 0;
             ps2DataState = 0;
-        }
 
 
-        if ( pa ) {
-            PORTB = 0b00000000;
-        } else {
-            PORTB = 0b00000010;
+            sendDataToAltera();
         }
+# 321 "main.c"
         __asm("clrwdt");
-
-
-
-
-
-
     }
 
 }

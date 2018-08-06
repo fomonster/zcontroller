@@ -3,6 +3,8 @@
 [d edition pro ]
 [d chip 16F84A ]
 [d frameptr 6 ]
+"27 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
+[v _codeToMatrix codeToMatrix `(ui  1 e 2 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8_16.c
@@ -11,9 +13,21 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"48 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"85 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+[v _replaceCode replaceCode `(uc  1 e 1 0 ]
+"142
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"88
+"188
+[v _setPort setPort `(v  1 e 1 0 ]
+"193
+[v _resetPort resetPort `(v  1 e 1 0 ]
+"200
+[v _keyDown keyDown `(v  1 e 1 0 ]
+"207
+[v _keyUp keyUp `(v  1 e 1 0 ]
+"216
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+"235
 [v _main main `(v  1 e 1 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -54,25 +68,101 @@
 [v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
 "740
 [v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
-"26 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"28 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _ps2DataState ps2DataState `c  1 e 1 0 ]
-"28
+"30
 [v _ps2Bits ps2Bits `uc  1 e 1 0 ]
-"29
+"31
 [v _ps2BitsCount ps2BitsCount `c  1 e 1 0 ]
-"32
+"34
 [v _ps2Data ps2Data `[8]uc  1 e 8 0 ]
-"33
+"35
 [v _ps2DataCount ps2DataCount `c  1 e 1 0 ]
-"45
-[v _pa pa `us  1 e 2 0 ]
-"88
+"39
+[v _outPorts outPorts `[11]uc  1 e 11 0 ]
+"61
+[v _shift shift `uc  1 e 1 0 ]
+"62
+[v _capsLock capsLock `uc  1 e 1 0 ]
+"63
+[v _numLock numLock `uc  1 e 1 0 ]
+"235
 [v _main main `(v  1 e 1 0 ]
 {
-"179
+"324
 } 0
-"48
+"216
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+{
+"219
+} 0
+"85
+[v _replaceCode replaceCode `(uc  1 e 1 0 ]
+{
+[v replaceCode@code code `uc  1 a 1 wreg ]
+"87
+[v replaceCode@r r `uc  1 a 1 8 ]
+"85
+[v replaceCode@code code `uc  1 a 1 wreg ]
+"87
+[v replaceCode@code code `uc  1 a 1 7 ]
+"136
+} 0
+"207
+[v _keyUp keyUp `(v  1 e 1 0 ]
+{
+[v keyUp@key key `uc  1 a 1 wreg ]
+"209
+[v keyUp@c c `ui  1 a 2 17 ]
+"207
+[v keyUp@key key `uc  1 a 1 wreg ]
+"209
+[v keyUp@key key `uc  1 a 1 16 ]
+"212
+} 0
+"193
+[v _resetPort resetPort `(v  1 e 1 0 ]
+{
+[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
+[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
+"195
+[v resetPort@bit_id bit_id `uc  1 a 1 8 ]
+"196
+} 0
+"200
+[v _keyDown keyDown `(v  1 e 1 0 ]
+{
+[v keyDown@key key `uc  1 a 1 wreg ]
+"202
+[v keyDown@c c `ui  1 a 2 17 ]
+"200
+[v keyDown@key key `uc  1 a 1 wreg ]
+"202
+[v keyDown@key key `uc  1 a 1 16 ]
+"205
+} 0
+"188
+[v _setPort setPort `(v  1 e 1 0 ]
+{
+[v setPort@bit_id bit_id `uc  1 a 1 wreg ]
+[v setPort@bit_id bit_id `uc  1 a 1 wreg ]
+"190
+[v setPort@bit_id bit_id `uc  1 a 1 8 ]
+"191
+} 0
+"27 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
+[v _codeToMatrix codeToMatrix `(ui  1 e 2 0 ]
+{
+"29
+[v codeToMatrix@r r `ui  1 a 2 10 ]
+"27
+[v codeToMatrix@s s `uc  1 p 1 5 ]
+[v codeToMatrix@c c `uc  1 p 1 6 ]
+[v codeToMatrix@n n `uc  1 p 1 7 ]
+"81
+} 0
+"142 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"83
+"184
 } 0
