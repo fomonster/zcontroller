@@ -13,23 +13,25 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "69 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"143
+"149
 [v _setPort setPort `(v  1 e 1 0 ]
-"148
+"154
 [v _resetPort resetPort `(v  1 e 1 0 ]
-"155
+"161
 [v _keyDown keyDown `(v  1 e 1 0 ]
-"176
+"182
 [v _keyUp keyUp `(v  1 e 1 0 ]
-"183
+"189
 [v _myDelay myDelay `(v  1 e 1 0 ]
-"191
+"197
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"251
+"257
 [v _main main `(v  1 e 1 0 ]
 "4 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[36]uc  1 e 36 0 ]
-"30
+"26
+[v _replaceTwoBytesCodes replaceTwoBytesCodes `DC[26]uc  1 e 26 0 ]
+"47
 [v _codeToMatrix codeToMatrix `DC[128]uc  1 e 128 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -100,59 +102,61 @@
 [v _ctrl ctrl `uc  1 e 1 0 ]
 "62
 [v _replaced replaced `uc  1 e 1 0 ]
-"251
+"257
 [v _main main `(v  1 e 1 0 ]
 {
-"340
+"367
 } 0
-"191
+"197
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"212
+"218
 } 0
-"183
+"189
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
-"186
+"192
 } 0
-"176
+"182
 [v _keyUp keyUp `(v  1 e 1 0 ]
 {
 [v keyUp@key key `uc  1 a 1 wreg ]
 [v keyUp@key key `uc  1 a 1 wreg ]
-"178
-[v keyUp@key key `uc  1 a 1 12 ]
-"181
+"184
+[v keyUp@key key `uc  1 a 1 15 ]
+"187
 } 0
-"155
+"161
 [v _keyDown keyDown `(v  1 e 1 0 ]
 {
 [v keyDown@key key `uc  1 a 1 wreg ]
 [v keyDown@key key `uc  1 a 1 wreg ]
-"157
-[v keyDown@key key `uc  1 a 1 12 ]
-"174
+"163
+[v keyDown@key key `uc  1 a 1 15 ]
+"180
 } 0
-"143
+"149
 [v _setPort setPort `(v  1 e 1 0 ]
 {
 [v setPort@bit_id bit_id `uc  1 a 1 wreg ]
 [v setPort@bit_id bit_id `uc  1 a 1 wreg ]
-"145
-[v setPort@bit_id bit_id `uc  1 a 1 10 ]
-"146
+"151
+[v setPort@bit_id bit_id `uc  1 a 1 13 ]
+"152
 } 0
-"148
+"154
 [v _resetPort resetPort `(v  1 e 1 0 ]
 {
 [v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
 [v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
-"150
-[v resetPort@bit_id bit_id `uc  1 a 1 10 ]
-"151
+"156
+[v resetPort@bit_id bit_id `uc  1 a 1 13 ]
+"157
 } 0
 "69
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"139
+"95
+[v myIsr@ii ii `i  1 a 2 8 ]
+"145
 } 0

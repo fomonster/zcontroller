@@ -92,7 +92,13 @@ void __interrupt(high_priority) myIsr(void)
             } else if ( ps2BitsCount == 9 ) { // 10 stop bit
                 ps2DataCount++;
                 if ( ps2NeedEncode ) {
-                    switch(ps2Bits) {
+                    for (int ii=0; ii < 25; ii+=2) {
+                        if ( ps2Bits == replaceTwoBytesCodes[ii] ) {
+                            ps2Data = replaceTwoBytesCodes[ii+1];
+                            break;
+                        }
+                    }
+                    /*switch(ps2Bits) {
                         //case 0x1f:  ps2Data = 2; break; // Windows left
                        // case 0x11:  ps2Data = 8; break; // Alt right
                        // case 0x27:  ps2Data = 15; break; // Windows right
@@ -110,7 +116,7 @@ void __interrupt(high_priority) myIsr(void)
                         case 0x74:  ps2Data = 55; break; // Right Arrow
                         case 0x4a:  ps2Data = 56; break; // "/"
                         case 0x5a:  ps2Data = 57; break; // Enter
-                    }                   
+                    }   */
                 } else {                    
                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits; // F7
                 }
@@ -300,6 +306,27 @@ void main(void)
             // replace data if shift pressed
             replaced = 0;
             if ( shift && !ctrl ) {
+                /*switch(ps2Data) {
+                    case 22: ps2Data = 79; break;
+                    case 30: ps2Data = 80; break;
+                    case 38: ps2Data = 81; break;
+                    case 37: ps2Data = 83; break;
+                    case 46: ps2Data = 86; break;
+                    case 54: ps2Data = 87; break;
+                    case 61: ps2Data = 92; break;
+                    case 62: ps2Data = 94; break;
+                    case 70: ps2Data = 95; break;
+                    case 69: ps2Data = 96; break;
+                    case 78: ps2Data = 97; break;
+                    case 85: ps2Data = 98; break;
+                    case 93: ps2Data = 99; break;
+                    case 76: ps2Data = 103; break;
+                    case 82: ps2Data = 104; break;
+                    case 65: ps2Data = 106; break;
+                    case 73: ps2Data = 109; break;
+                    case 74: ps2Data = 110; break;
+                }*/
+                
                 for(i = 0; i < 35 ;i+=2) {
                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
                         replaced = 1;

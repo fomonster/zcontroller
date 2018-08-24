@@ -815,6 +815,23 @@ const uint8_t replaceOnShiftKeyDown[36] =
     74, 110
 };
 
+const uint8_t replaceTwoBytesCodes[26] =
+{
+    0x14, 19,
+    0x70, 23,
+    0x6c, 24,
+    0x7d, 25,
+    0x71, 31,
+    0x69, 32,
+    0x7a, 39,
+    0x75, 40,
+    0x6b, 47,
+    0x72, 48,
+    0x74, 55,
+    0x4a, 56,
+    0x5a, 57
+};
+
 
 
 
@@ -838,10 +855,10 @@ const uint8_t codeToMatrix[128] =
 0x9C,
 0xFF,
 0xFF,
-0xF,
-0x0,
 0xFF,
-0x0,
+0xFF,
+0xFF,
+0xFF,
 0x2,
 0x3,
 0xFF,
@@ -905,14 +922,14 @@ const uint8_t codeToMatrix[128] =
 0x93,
 0x9C,
 0x9B,
-0xFF,
+0xE5,
 0x8E,
 0xA3,
 0xA6,
 0x4B,
 0xFF,
 0x6,
-0xFF,
+0xDD,
 0xA4,
 0xFF,
 0xA7,
@@ -948,7 +965,7 @@ const uint8_t codeToMatrix[128] =
 0xA7,
 0xC,
 0xFF,
-0xFF,
+0xFF
 };
 # 17 "main.c" 2
 # 27 "main.c"
@@ -1020,25 +1037,13 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
             } else if ( ps2BitsCount == 9 ) {
                 ps2DataCount++;
                 if ( ps2NeedEncode ) {
-                    switch(ps2Bits) {
-
-
-
-
-                        case 0x14: ps2Data = 19; break;
-                        case 0x70: ps2Data = 23; break;
-                        case 0x6c: ps2Data = 24; break;
-                        case 0x7d: ps2Data = 25; break;
-                        case 0x71: ps2Data = 31; break;
-                        case 0x69: ps2Data = 32; break;
-                        case 0x7a: ps2Data = 39; break;
-                        case 0x75: ps2Data = 40; break;
-                        case 0x6b: ps2Data = 47; break;
-                        case 0x72: ps2Data = 48; break;
-                        case 0x74: ps2Data = 55; break;
-                        case 0x4a: ps2Data = 56; break;
-                        case 0x5a: ps2Data = 57; break;
+                    for (int ii=0; ii < 25; ii+=2) {
+                        if ( ps2Bits == replaceTwoBytesCodes[ii] ) {
+                            ps2Data = replaceTwoBytesCodes[ii+1];
+                            break;
+                        }
                     }
+# 120 "main.c"
                 } else {
                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits;
                 }
@@ -1049,7 +1054,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
                 } else {
-# 132 "main.c"
+# 138 "main.c"
                     ps2DataState = 2;
                 }
 
@@ -1131,7 +1136,7 @@ void sendDataToAltera()
     RA2 = 1;
     PORTB = 0;
 }
-# 251 "main.c"
+# 257 "main.c"
 void main(void)
 {
     TRISA0 = 1;
@@ -1144,7 +1149,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000000;
-# 282 "main.c"
+# 288 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1166,6 +1171,7 @@ void main(void)
 
             replaced = 0;
             if ( shift && !ctrl ) {
+# 330 "main.c"
                 for(i = 0; i < 35 ;i+=2) {
                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
                         replaced = 1;
