@@ -22,120 +22,47 @@
 
 // ps2 receiver data
 #define PS2DATA_WAIT 0
-#define PS2DATA_WAIT_NEXT 1
-#define PS2DATA_RECEIVING 2
-#define PS2DATA_RECEIVED 3
-int8_t ps2DataState = PS2DATA_WAIT;
+#define PS2DATA_RECEIVING 1
+#define PS2DATA_RECEIVED 2
+static int8_t ps2DataState = PS2DATA_WAIT;
 
+// data mast zero for every byte
 uint8_t ps2Bits = 0;
-int8_t ps2BitsCount = 0;
+static int8_t ps2BitsCount = 0;
 
-#define PS2DATA_MAX 8
-uint8_t ps2Data[PS2DATA_MAX];
-int8_t ps2DataCount = 0;
-
+// data mast zero for every sequence
+static uint8_t ps2Data = 0; // do not store all data (only one byte)
+static int8_t ps2DataCount = 0;
+static int8_t ps2WaitCode = 0;
+static int8_t ps2Up = 0;
+static int8_t ps2NeedEncode = 0;
 
 // Array of ports data sended to Altera
 uint8_t outPorts[11] = 
 {
     // keyboard
-    0xff, // 0 - #FEFE - CS...V    "11111110"
-    0xff, // 1 - #FDFE - A...G     "11111101"  
-    0xff, // 2 - #FBFE - Q...T     "11111011"  
-    0xff, // 3 - #F7FE - 1...5     "11110111"  
-    0xff, // 4 - #EFFE - 0...6     "11101111"
-    0xff, // 5 - #DFFE - P...Y     "11011111"  
-    0xff, // 6 - #BFFE - Enter...H "10111111"   
-    0xff, // 7 - #7FFE - Space...B "01111111"
+    0x00, // 0 - #FEFE - CS...V    "11111110"
+    0x00, // 1 - #FDFE - A...G     "11111101"  
+    0x00, // 2 - #FBFE - Q...T     "11111011"  
+    0x00, // 3 - #F7FE - 1...5     "11110111"  
+    0x00, // 4 - #EFFE - 0...6     "11101111"
+    0x00, // 5 - #DFFE - P...Y     "11011111"  
+    0x00, // 6 - #BFFE - Enter...H "10111111"   
+    0x00, // 7 - #7FFE - Space...B "01111111"
     // mouse
-    0xff, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
-    0xff, // #FBDF - mouse X 
-    0xff  // #FFDF - mouse Y 
+    0x00, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
+    0x00, // #FBDF - mouse X 
+    0x00  // #FFDF - mouse Y 
 };
 
-
-
 // temp
-int8_t i = 0;
-int16_t keyCode = 0;
+uint8_t i = 0;
 uint8_t shift = 0;
-uint8_t capsLock = 0;
-uint8_t numLock = 0;
+uint8_t ctrl = 0;
+uint8_t replaced = 0;
+
 /*******************************************************************************
-  Replace non one byte codes to one byte
-*******************************************************************************/
-/*
-  E0(12)E07C Prt Scr =>
-  E114(77)E1F014F077 Pause Break =>
-  E070 Ins => 
-  E06C Home => 
-  E07D Page Up => 
-  E071 Del => 
-  E069 End => 
-  E07A Page Down => 
-  E04A NumPad "/" => 
-  E05A NumPad Enter => 
-  E075 Up => 
-  E06B Left => 
-  E074 Right => 
-  E072 Down => 
-  E011 Right Alt => 0x14
-  E014 Right Ctrl => 0x11   
- */
-uint8_t replaceCode(uint8_t code) 
-{
-    uint8_t r = 0x00;
-    switch(code) {
-        case 0x12: 
-            r = 0x00;
-            break;
-        case 0x77: 
-            r = 0x00;
-            break;
-        case 0x70: 
-            r = 0x00;
-            break;
-        case 0x6C: 
-            r = 0x00;
-            break;
-        case 0x7D: 
-            r = 0x00;
-            break;
-        case 0x71: 
-            r = 0x00;
-            break;
-        case 0x69: 
-            r = 0x00;
-            break;
-        case 0x7A: 
-            r = 0x00;
-            break;
-        case 0x5A: 
-            r = 0x00;
-            break;
-        case 0x75: 
-            r = 0xF5;
-            break;
-        case 0x6B: 
-            r = 0xFB;
-            break;
-        case 0x74: 
-            r = 0xF4;
-            break;
-        case 0x72: 
-            r = 0xF2;
-            break;
-        case 0x11: 
-            r = 0x00;
-            break;
-        case 0x14: 
-            r = 0x00;
-            break;
-    }
-    return r;
-}
-/*******************************************************************************
-    PS2 receiver
+    PS2 receiver with non one bytes keys encoder and state machine
 *******************************************************************************/
 
 // ps2 receiver interrupt
@@ -147,11 +74,12 @@ void __interrupt(high_priority) myIsr(void)
         TMR0 = 255;
         // https://youtu.be/vfIiLE0BhE8?t=204
         // http://www.piclist.com/techref/microchip/io/dev/keyboard/ps2-jc.htm
-        if ( ps2DataState == PS2DATA_WAIT || ps2DataState == PS2DATA_WAIT_NEXT ) {
-            if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) { // 0 start bit
+        // https://www.youtube.com/watch?v=A1YSbLnm4_o
+        if ( ps2DataState == PS2DATA_WAIT ) {
+            if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) { // 0 start bit                
                 ps2BitsCount = 0;
                 ps2Bits = 0;
-                ps2DataState = PS2DATA_RECEIVING;             
+                ps2DataState = PS2DATA_RECEIVING;
             }
         } else if ( ps2DataState == PS2DATA_RECEIVING ) {
             if ( ps2BitsCount < 8 ) { // 1,2,3,4,5,6,7,8 - data bits
@@ -162,21 +90,48 @@ void __interrupt(high_priority) myIsr(void)
             } else if ( ps2BitsCount == 8 ) { // 9 parity bit
                 ps2BitsCount++;       
             } else if ( ps2BitsCount == 9 ) { // 10 stop bit
-                if ( ps2DataCount < PS2DATA_MAX ) {
-                    ps2Data[ps2DataCount] = ps2Bits;
-                    ps2DataCount++;
+                ps2DataCount++;
+                if ( ps2NeedEncode ) {
+                    switch(ps2Bits) {
+                        //case 0x1f:  ps2Data = 2; break; // Windows left
+                       // case 0x11:  ps2Data = 8; break; // Alt right
+                       // case 0x27:  ps2Data = 15; break; // Windows right
+                       // case 0x2f:  ps2Data = 16; break; // Menus
+                        case 0x14:  ps2Data = 19; break; // Ctrl (right)
+                        case 0x70:  ps2Data = 23; break; // Insert
+                        case 0x6c:  ps2Data = 24; break; // Home
+                        case 0x7d:  ps2Data = 25; break; // Page Up
+                        case 0x71:  ps2Data = 31; break; // Delete
+                        case 0x69:  ps2Data = 32; break; // End 
+                        case 0x7a:  ps2Data = 39; break; // Page Down
+                        case 0x75:  ps2Data = 40; break; // Up Arrow
+                        case 0x6b:  ps2Data = 47; break; // Left Arrow
+                        case 0x72:  ps2Data = 48; break; // Down Arrow
+                        case 0x74:  ps2Data = 55; break; // Right Arrow
+                        case 0x4a:  ps2Data = 56; break; // "/"
+                        case 0x5a:  ps2Data = 57; break; // Enter
+                    }                   
+                } else {                    
+                    ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits; // F7
                 }
-                if ( ps2Bits == 0xF0 || ps2Bits == 0xE0 ) {
-                    ps2DataState = PS2DATA_WAIT_NEXT;
-                } else {
-                    if ( ps2DataCount == 2 && ps2Data[1] == 0x12 ) { // Prt Scr
-                       ps2DataState = PS2DATA_WAIT_NEXT; 
-                    } else if ( ps2Data[0] == 0xe1 && ps2DataCount < 8 ) { // Pause Break
-                        ps2DataState = PS2DATA_WAIT_NEXT;
-                    } else {
-                        ps2DataState = PS2DATA_RECEIVED;
-                    }
+                if ( ps2Bits == 0xF0 ) {
+                    ps2DataState = PS2DATA_WAIT;
+                    ps2Up = 1;
+                } else if ( ps2Bits == 0xE0 ) {
+                    ps2DataState = PS2DATA_WAIT;
+                    ps2NeedEncode = 1;
+                } /*else if ( ps2WaitCode == ps2Bits ) {
+                    ps2DataState = PS2DATA_RECEIVED;
+                } else if ( ps2DataCount >= 2 && ps2Bits == 0x12 ) { // Prt Scr
+                   ps2DataState = PS2DATA_WAIT;
+                   ps2WaitCode = 0x7C;
+                } else if ( ps2DataCount <= 2 && ps2Bits == 0xE1 ) { // Pause Break
+                    ps2DataState = PS2DATA_WAIT;
+                    ps2WaitCode = 0x77;
+                }*/ else {                        
+                    ps2DataState = PS2DATA_RECEIVED;
                 }
+                
             } 
         } 
     } 
@@ -187,48 +142,109 @@ void __interrupt(high_priority) myIsr(void)
 *******************************************************************************/
 void setPort(uint8_t bit_id)
 {
-    outPorts[bit_id & 0x07] |= (1 << (bit_id >> 4));
+    outPorts[bit_id & 7] |= (1 << ((bit_id >> 3) & 7));
 }
 
 void resetPort(uint8_t bit_id)
 {
-    outPorts[bit_id & 0x07] &= ~(1 << (bit_id >> 4));
+    outPorts[bit_id & 7] &= ~(1 << ((bit_id >> 3) & 7));
 }
 /*******************************************************************************
  Key Up and Down functions
 *******************************************************************************/
 void keyDown(uint8_t key)
-{
-    uint16_t c = codeToMatrix(key, shift, capsLock, numLock );
-    if ( (c & 0xFF) != 0xFF ) setPort(c & 0xFF );
-    if ( (( c >> 8 ) & 0xFF) != 0xFF ) setPort( (c >> 8 ) & 0xFF );
+{    
+    if ( key >= 128 ) return;
+    i = codeToMatrix[key];
+    if ( i != 0xFF ) {
+        setPort(i);
+        // caps shift
+        if ( (shift &&!replaced) || (i & 0b01000000) ) { 
+            setPort(0x00); 
+        } else {
+            resetPort(0x00);
+        }
+        // symbol shift
+        if ( ctrl || (i & 0b10000000) ) {
+            setPort(0x0F);
+        } else {
+            resetPort(0x0F);
+        }
+    }
 }
 
 void keyUp(uint8_t key)
 {
-    uint16_t c = codeToMatrix(key, shift, capsLock, numLock );
-    if ( (c & 0xFF) != 0xFF ) resetPort(c & 0xFF );
-    if ( (( c >> 8 ) & 0xFF ) != 0xFF ) setPort( (c >> 8 ) & 0xFF );
+    if ( key >= 128 ) return;
+    i = codeToMatrix[key];
+    if ( i != 0xFF ) resetPort(i);    
 }
+
+void myDelay()
+{
+   // for(uint8_t j = 0; j < 30; j++) { };
+}
+
 /*******************************************************************************
  Send data to Altera
 *******************************************************************************/
 void sendDataToAltera()
 {
-    
+    RA2 = 1; //STROBE
+    RA1 = 1; // RESTRIG
+    myDelay();
+    RA2 = 0; //STROBE
+    myDelay();
+    RA2 = 1; //STROBE
+    myDelay();
+    RA1 = 0; // RESTRIG
+    myDelay();
+    for(i=0;i<8;i++) {
+        RA2 = 1; //STROBE
+        myDelay();
+        PORTB = outPorts[i];
+        myDelay();
+        RA2 = 0; //STROBE
+        myDelay();
+    }
+    RA2 = 1; //STROBE
+    PORTB = 0;
 }
 /*******************************************************************************
  Send data to ps2 keyboard
 *******************************************************************************/
-void sendToKeyboardRepeat()
+
+/*
+void sendToKeyboard(uint8_t d)
 {
-    
+    TRISA4 = 0; // pin 3 output PS/2 CLK and T0CKI
+    TRISA3 = 0; // pin 2 output PS/2 DATA     
+    RA3 = 0;
+    RA4 = 0;    
+    myDelay();
+    RA3 = 1;
+    for(i=0;i<11;i++) {
+        myDelay();
+        RA4 = (d & 1);
+        RA3 = 0;
+        myDelay();
+        d = d << 1;
+        RA3 = 1;
+    }
+    TRISA4 = 1; // pin 3 input PS/2 CLK and T0CKI
+    TRISA3 = 1; // pin 2 input PS/2 DATA 
 }
+
 
 void sendToKeyboardLED(uint8_t id, uint8_t state)
 {
-    
-}
+    sendToKeyboard(0xED);
+    ps2DataState = PS2DATA_WAIT;
+    while ( ps2DataState != PS2DATA_RECEIVED ) {
+    }
+    sendToKeyboard(0b00000111);
+}*/
+
 /*******************************************************************************
     Main program
 *******************************************************************************/
@@ -237,13 +253,13 @@ void main(void)
     TRISA0 = 1; // pin 17 input select ps/2 device (0-keyboard, 1-mouse)
     TRISA1 = 0; // pin 18 output RESTRIG to ALTERA
     TRISA2 = 0; // pin 1 output STROBE to ALTERA
-    TRISA3 = 1; // pin 1 input PS/2 DATA 
-    TRISA4 = 1; // pin 1 input PS/2 CLK and T0CKI
+    TRISA3 = 1; // pin 2 input PS/2 DATA 
+    TRISA4 = 1; // pin 3 input PS/2 CLK and T0CKI
         
     PORTA = 0b00000000; // Setup port A
     
     TRISB = 0b00000000; // Port B all as output
-    PORTB = 0b00000010; // Setup port B
+    PORTB = 0b00000000; // Setup port B
 
     //OPTION_REG = 0b00111111;
         // 0 PORTB pull-up resistors disabled
@@ -271,52 +287,52 @@ void main(void)
     T0IF = 0;
     TMR0 = 255;
     
-    ps2DataState = PS2DATA_WAIT;
-    ps2BitsCount = 0;
-    ps2Bits = 0;
-    //pa = 0;
+    ps2Data = 0;
+    ps2DataCount = 0;
+    ps2WaitCode = 0;
+    ps2Up = 0;
+    ps2NeedEncode = 0;
+    ps2DataState = PS2DATA_WAIT;    
     
     while(1)
     {
         if ( ps2DataState == PS2DATA_RECEIVED ) {
-            
+            // replace data if shift pressed
+            replaced = 0;
+            if ( shift && !ctrl ) {
+                for(i = 0; i < 35 ;i+=2) {
+                    if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+                        replaced = 1;
+                        ps2Data = replaceOnShiftKeyDown[i+1];
+                        break;
+                    }
+                }
+            }
             // process data
-            if ( ps2DataCount == 1) { // one byte code
-                keyDown(ps2Data[0]);
-            } else if ( ps2DataCount == 2 ) { // two byte code                
-                if ( ps2Data[0] == 0xF0 ) {
-                    keyUp(ps2Data[1]); // one byte key up
-                } else if ( ps2Data[0] == 0xE0 )  { // two bytes key down
-                    keyDown(replaceCode(ps2Data[1]));
-                }
-            } else if ( ps2DataCount == 3 ){
-                if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0xE0 ) {
-                    keyUp(replaceCode(ps2Data[2]));
-                }
-            } else if ( ps2DataCount > 3 ){
-                if ( ps2Data[0] == 0xF0 ) {
-                    if ( ps2Data[1] == 0xE1 && ps2Data[2] == 0x14 ) keyUp(replaceCode(ps2Data[3]));
-                    if ( ps2Data[1] == 0xE0 && ps2Data[2] == 0x12 ) keyUp(replaceCode(ps2Data[2]));
-                } else {
-                    if ( ps2Data[0] == 0xE1 && ps2Data[1] == 0x14 ) keyDown(replaceCode(ps2Data[2]));
-                    if ( ps2Data[0] == 0xE0 && ps2Data[1] == 0x12 ) keyDown(replaceCode(ps2Data[1]));
-                }
+            if ( ps2Up == 0) { // one byte code
+                keyDown(ps2Data);
+                if ( ps2Data == 18 || ps2Data == 89) shift = 1;
+                if ( ps2Data == 20 || ps2Data == 19) ctrl = 1;
+                //if ( ps2Data == 0x77 ) numLock = !numLock;
+            } else {
+                if ( ps2Data == 18 || ps2Data == 89) shift = 0;
+                if ( ps2Data == 20 || ps2Data == 19) ctrl = 0;
+                keyUp(ps2Data); // one byte key up                
             }
         
             // wait new data
+            ps2Data = 0;
             ps2DataCount = 0;
+            ps2WaitCode = 0;
+            ps2Up = 0;
+            ps2NeedEncode = 0;
             ps2DataState = PS2DATA_WAIT;
-                 
+
             // send data
             sendDataToAltera();
         }
                 
-        // 
-        /*if ( pa ) {
-            PORTB = 0b00000000; // led on
-        } else {
-            PORTB = 0b00000010; // led off
-        }*/
+        
         
         CLRWDT();       
     }

@@ -3,8 +3,6 @@
 [d edition pro ]
 [d chip 16F84A ]
 [d frameptr 6 ]
-"27 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
-[v _codeToMatrix codeToMatrix `(ui  1 e 2 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8_16.c
@@ -13,22 +11,26 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"85 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-[v _replaceCode replaceCode `(uc  1 e 1 0 ]
-"142
+"69 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"188
+"143
 [v _setPort setPort `(v  1 e 1 0 ]
-"193
+"148
 [v _resetPort resetPort `(v  1 e 1 0 ]
-"200
+"155
 [v _keyDown keyDown `(v  1 e 1 0 ]
-"207
+"176
 [v _keyUp keyUp `(v  1 e 1 0 ]
-"216
+"183
+[v _myDelay myDelay `(v  1 e 1 0 ]
+"191
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"235
+"251
 [v _main main `(v  1 e 1 0 ]
+"4 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
+[v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[36]uc  1 e 36 0 ]
+"30
+[v _codeToMatrix codeToMatrix `DC[128]uc  1 e 128 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
@@ -50,6 +52,10 @@
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "653
 [v _PSA PSA `VEb  1 e 0 @1035 ]
+"659
+[v _RA1 RA1 `VEb  1 e 0 @41 ]
+"662
+[v _RA2 RA2 `VEb  1 e 0 @42 ]
 "710
 [v _T0CS T0CS `VEb  1 e 0 @1037 ]
 "713
@@ -68,101 +74,85 @@
 [v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
 "740
 [v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
-"28 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-[v _ps2DataState ps2DataState `c  1 e 1 0 ]
+"27 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+[v _ps2DataState ps2DataState `c  1 s 1 ps2DataState ]
 "30
 [v _ps2Bits ps2Bits `uc  1 e 1 0 ]
 "31
-[v _ps2BitsCount ps2BitsCount `c  1 e 1 0 ]
+[v _ps2BitsCount ps2BitsCount `c  1 s 1 ps2BitsCount ]
 "34
-[v _ps2Data ps2Data `[8]uc  1 e 8 0 ]
+[v _ps2Data ps2Data `uc  1 s 1 ps2Data ]
 "35
-[v _ps2DataCount ps2DataCount `c  1 e 1 0 ]
-"39
+[v _ps2DataCount ps2DataCount `c  1 s 1 ps2DataCount ]
+"36
+[v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
+"37
+[v _ps2Up ps2Up `c  1 s 1 ps2Up ]
+"38
+[v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
+"41
 [v _outPorts outPorts `[11]uc  1 e 11 0 ]
-"61
+"59
+[v _i i `uc  1 e 1 0 ]
+"60
 [v _shift shift `uc  1 e 1 0 ]
+"61
+[v _ctrl ctrl `uc  1 e 1 0 ]
 "62
-[v _capsLock capsLock `uc  1 e 1 0 ]
-"63
-[v _numLock numLock `uc  1 e 1 0 ]
-"235
+[v _replaced replaced `uc  1 e 1 0 ]
+"251
 [v _main main `(v  1 e 1 0 ]
 {
-"324
+"340
 } 0
-"216
+"191
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"219
+"212
 } 0
-"85
-[v _replaceCode replaceCode `(uc  1 e 1 0 ]
+"183
+[v _myDelay myDelay `(v  1 e 1 0 ]
 {
-[v replaceCode@code code `uc  1 a 1 wreg ]
-"87
-[v replaceCode@r r `uc  1 a 1 8 ]
-"85
-[v replaceCode@code code `uc  1 a 1 wreg ]
-"87
-[v replaceCode@code code `uc  1 a 1 7 ]
-"136
+"186
 } 0
-"207
+"176
 [v _keyUp keyUp `(v  1 e 1 0 ]
 {
 [v keyUp@key key `uc  1 a 1 wreg ]
-"209
-[v keyUp@c c `ui  1 a 2 17 ]
-"207
 [v keyUp@key key `uc  1 a 1 wreg ]
-"209
-[v keyUp@key key `uc  1 a 1 16 ]
-"212
+"178
+[v keyUp@key key `uc  1 a 1 12 ]
+"181
 } 0
-"193
-[v _resetPort resetPort `(v  1 e 1 0 ]
-{
-[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
-[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
-"195
-[v resetPort@bit_id bit_id `uc  1 a 1 8 ]
-"196
-} 0
-"200
+"155
 [v _keyDown keyDown `(v  1 e 1 0 ]
 {
 [v keyDown@key key `uc  1 a 1 wreg ]
-"202
-[v keyDown@c c `ui  1 a 2 17 ]
-"200
 [v keyDown@key key `uc  1 a 1 wreg ]
-"202
-[v keyDown@key key `uc  1 a 1 16 ]
-"205
+"157
+[v keyDown@key key `uc  1 a 1 12 ]
+"174
 } 0
-"188
+"143
 [v _setPort setPort `(v  1 e 1 0 ]
 {
 [v setPort@bit_id bit_id `uc  1 a 1 wreg ]
 [v setPort@bit_id bit_id `uc  1 a 1 wreg ]
-"190
-[v setPort@bit_id bit_id `uc  1 a 1 8 ]
-"191
+"145
+[v setPort@bit_id bit_id `uc  1 a 1 10 ]
+"146
 } 0
-"27 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
-[v _codeToMatrix codeToMatrix `(ui  1 e 2 0 ]
+"148
+[v _resetPort resetPort `(v  1 e 1 0 ]
 {
-"29
-[v codeToMatrix@r r `ui  1 a 2 10 ]
-"27
-[v codeToMatrix@s s `uc  1 p 1 5 ]
-[v codeToMatrix@c c `uc  1 p 1 6 ]
-[v codeToMatrix@n n `uc  1 p 1 7 ]
-"81
+[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
+[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
+"150
+[v resetPort@bit_id bit_id `uc  1 a 1 10 ]
+"151
 } 0
-"142 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"69
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"184
+"139
 } 0

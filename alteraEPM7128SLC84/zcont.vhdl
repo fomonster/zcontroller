@@ -58,7 +58,7 @@ IORQGE	 : inout std_logic := 'Z';  -- IRQGE on all ZX Spectrum models can disabl
 								 -- На плате этот сигнал формируется из IORQ/ (как показано на рис. 18).
 
 --------------------------------------------------------------------------------
---                     ВХОДНЫЕ СИГНАЛЫ ПЛИС КЛАВИАТУРА                        --
+--                     ВХОДНЫЕ СИГНАЛЫ ПЛИС PIC                               --
 --------------------------------------------------------------------------------
 
 PB        : in std_logic_vector(7 downto 0) := "00000000";
@@ -137,35 +137,45 @@ architecture RTL of zcontroller is
 --                       ВНУТРЕННИЕ СИГНАЛЫ ПЛИС                              --
 --------------------------------------------------------------------------------
 
+--signal port_data : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 signal port_read: std_logic := '0';
-
+signal port_read_fe: std_logic := '0';
 signal port_write: std_logic := '0';
 
-signal count   : STD_LOGIC_VECTOR (7 downto 0) := X"00";
+signal count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
 
-signal countA   : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
+--signal countA   : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 
--- матрица клавиатуры
-
-signal sdbuffer : STD_LOGIC_VECTOR (7 downto 0) := X"00";
+-- keyboard ports data
+signal portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portB : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portC : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portD : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portE : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portF : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portG : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+-- mouse ports data
+--signal portI : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+--signal portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+--signal portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 --------------------------------------------------------------------------------
 --                            ПРОЦЕССЫ                                        --
 --------------------------------------------------------------------------------
 
 begin
 
+	port_read <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
+	
+	IORQGE <= '1' when port_read = '1' and A(7 downto 0) = X"FE" else 'Z';
+	
+	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
+
 -- ПОРТ КЛАВИАТУРЫ #FE (254) "11111110"
 --  чтение
 --   D0-D4 - отображают состояние определённого полуряда клавиатуры ZX Spectrum. 
 --      младший байт всегда равен #FE (254), а в старшем сбрасывается соответствующий бит.
---		#7FFE - полуряд Space...B "01111111" 
---		#BFFE - полуряд Enter...H "10111111"
---		#DFFE - полуряд P...Y     "11011111"
---		#EFFE - полуряд 0...6     "11101111"
---		#F7FE - полуряд 1...5     "11110111"
---		#FBFE - полуряд Q...T     "11111011"
---		#FDFE - полуряд A...G     "11111101" 
---		#FEFE - полуряд CS...V    "11111110" 
+
 --      Возможно одновременное чтение нескольких полурядов при сбросе нескольких бит в старшем байте адреса порта.
 --   D6 - отображает состояние магнитофонного входа (EAR).
 --   D5, D7 - обычно не используются. 
@@ -175,76 +185,86 @@ begin
 --   D4 - управляет внутренним динамиком (бипером).
 --   D5-D7 - обычно не используются.
 
---Выборка порта происходит при a1,a2,a5,DOS/=1;IORQGE=0
---process ( IORQ )
---begin
-	
-	--if A(7 DOWNTO 0) = "11111110" THEN
-		
-		
-	  
-	  
-	--end if;
-	
---end process;
-
 -- ПОРТ МЫШКИ
---		#FADF — порт кнопок и (по отечественному стандарту) колёсика. "1111101011011111"
---			D0: левая кнопка (0=нажата)
---			D1: правая кнопка (0=нажата)
---			D2: средняя кнопка (0=нажата)
---			D3: зарезервировано под ещё одну кнопку (0=нажата)
---			D4-D7: координата колёсика
---		#FBDF — X-координата (растёт слева направо) "1111101111011111"
---		#FFDF — Y-координата (растёт снизу вверх)   "1111111111011111"
 
-	--process ( SDTAKT )
-	--begin
-	--	if ( rising_edge(SDTAKT ) ) then
-	--		countA <= countA + '1';
-	--		if countA(24) = '1' then
-	--			count <= count + '1';
-	--		end if;
-	--	end if;
-			
-		--if ( IORQ = '0' and RD = '0' ) then
-			
-			--count <= count + '1';
-			
-			--case A is
-			--	when X"FBDF" => D <= count;
-			--	when others => D <= "ZZZZZZZZ";			
-			--end case;
-		--else 
-		--	D <= "ZZZZZZZZ";
-		--end if;
-
-	--end process;
-
-	-- debug
-	SDEN <= PB(1);
-	
-	-- 
-	
-	--port_read <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
-	
-	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 	
 	-- keyboard
+
+	-- receive data from PIC ps2 reader
 	
-	--IORQGE <= '1' when port_access = '1' and A(7 downto 0) = X"FE" else 'Z';
+	-------------------
+
+	clk_proc : process (STROBE)
+    begin
+        if falling_edge(STROBE) then
+            if RESTRIG = '0' then
+                
+                if count = 0 then portA <= PB(4 downto 0);
+                elsif count = 1 then portB <= PB(4 downto 0);
+                elsif count = 2 then portC <= PB(4 downto 0);
+                elsif count = 3 then portD <= PB(4 downto 0);
+                elsif count = 4 then portE <= PB(4 downto 0);
+                elsif count = 5 then portF <= PB(4 downto 0);
+                elsif count = 6 then portG <= PB(4 downto 0);
+                elsif count = 7 then portH <= PB(4 downto 0);
+                end if;
+                
+                count <= count + 1;
+            else
+                count <= (others => '0');
+            end if;
+        end if;
+    end process;
+    
+    -------------------
+    
+	--count <= "0000" when RESTRIG = '1' else count + X"1" when falling_edge(STROBE);
+		
+	-- keyboard
+	--portA <= PB(4 downto 0) when count = X"0" and falling_edge(STROBE) else portA;
+	--portB <= PB(4 downto 0) when count = X"1" and falling_edge(STROBE) else portB;
+	--portC <= PB(4 downto 0) when count = X"2" and falling_edge(STROBE) else portC;
+	--portD <= PB(4 downto 0) when count = X"3" and falling_edge(STROBE) else portD;
+	--portE <= PB(4 downto 0) when count = X"4" and falling_edge(STROBE) else portE;
+	--portF <= PB(4 downto 0) when count = X"5" and falling_edge(STROBE) else portF;
+	--portG <= PB(4 downto 0) when count = X"6" and falling_edge(STROBE) else portG;
+	--portH <= PB(4 downto 0) when count = X"7" and falling_edge(STROBE) else portH;
+	--portG <= PB(4 downto 0) when STROBE = '0' else portG;
 	
+	-- mouse
+	--portI <= PB when count = "1000" and falling_edge(STROBE);
+	--portJ <= PB when count = "1001" and falling_edge(STROBE);
+	--portK <= PB when count = "1010" and falling_edge(STROBE);
 	
-	--D(7 downto 0) <= "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"7FFE" else -- #7FFE
-	--				 "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"BFFE" else -- #BFFE
-	--				 "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"DFFE" else -- #DFFE
-	--				 "ZZZ1111" & count(0) when port_access = '1' and A(15 downto 0) = X"EFFE" else -- #EFFE
-	--				 "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"F7FE" else -- #F7FE
-	--				 "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"FBFE" else -- #FBFE
-	--				 "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"FDFE" else -- #FDFE
-	--				 "ZZZ11111" when port_access = '1' and A(15 downto 0) = X"FEFE" else -- #FEFE	
-	--				 "ZZZ1111" & count(0) when port_access = '1' and A(7 downto 0) = X"FE" else -- #FE
-	--				 "ZZZZZZZZ";
+	--		#7FFE - Space...B "01111111" 
+	--		#BFFE - Enter...H "10111111"
+	--		#DFFE - P...Y     "11011111"
+	--		#EFFE - 0...6     "11101111"
+	--		#F7FE - 1...5     "11110111"
+	--		#FBFE - Q...T     "11111011"
+	--		#FDFE - A...G     "11111101" 
+	--		#FEFE - CS...V    "11111110" 
+	--		#FADF - buttons and wheel
+	--		#FBDF — X-coord
+	--		#FFDF — Y-coord 
+	
+	port_read_fe <= '1' when port_read = '1' and A(7 downto 0) = X"FE" else '0';
+
+	D(7 downto 0) <= "ZZZZZZZZ" when port_read_fe = '0' else				
+					 "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
+					 "111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
+					 "111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
+					 "111" & not portD(4 downto 0) when A(15 downto 8) = X"F7" else
+					 "111" & not portE(4 downto 0) when A(15 downto 8) = X"EF" else 
+					 "111" & not portF(4 downto 0) when A(15 downto 8) = X"DF" else 
+					 "111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
+					 "111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
+					 "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
+					 
+					 
+					 --portI when port_read = '1' and A(15 downto 0) = X"FADF" else 
+					 --portJ when port_read = '1' and A(15 downto 0) = X"FBDF" else
+					 --portK when port_read = '1' and A(15 downto 0) = X"FFDF" else	
 	
 	
 	-- mouse
@@ -256,8 +276,8 @@ begin
 	
 	
 	-- sd card
-	
-	
+	--portG <= PB(4 downto 0);
+	SDEN <= not portG(1);
 	
 end RTL;
 

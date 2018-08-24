@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\pic16F84.production.sym \
   --cmf=dist/default/production\pic16F84.production.cmf -z -Q16F84A \
-  -oC:\Users\FOMONS~1\AppData\Local\Temp\s6qs.2 \
+  -oC:\Users\FOMONS~1\AppData\Local\Temp\sk70.2 \
   -Mdist/default/production/pic16F84.production.map -E1 -ver=XC8 \
-  --acfsm=1493 -ASTACK=03Ch-04dh -pstack=STACK -ACODE=00h-03FFh \
+  --acfsm=1493 -ASTACK=031h-04dh -pstack=STACK -ACODE=00h-03FFh \
   -ASTRCODE=00h-03FFh -ASTRING=00h-0FFhx4 -ACONST=00h-0FFhx4 \
   -AENTRY=00h-0FFhx4 -ABANK0=0Ch-04Dh -ARAM=0Ch-04Dh -AABS1=0Ch-04Fh \
   -ACOMMON=04Eh-04Fh -ASFR0=00h-0Bh -ASFR1=080h-0CDh \
@@ -15,7 +15,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-03Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\s6qs.o \
+  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sk70.o \
   dist/default/production\pic16F84.production.o 
 
 Object code version is 3.11
@@ -25,59 +25,55 @@ Machine type is 16F84A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\FOMONS~1\AppData\Local\Temp\s6qs.o
+C:\Users\FOMONS~1\AppData\Local\Temp\sk70.o
                 end_init                              D        D        1        8       0
                 reset_vec                             0        0        1        0       0
 dist/default/production\pic16F84.production.o
-                cinit                                 E        E       1D        8       0
+                cinit                                 E        E        7        8       0
                 intentry                              4        4        9        8       0
-                text8                               1E6      1E6       B2        8       0
-                text7                                2B       2B       FD        8       0
-                text6                               398      398       1E        8       0
-                text5                               33D      33D       3C        8       0
-                text4                               379      379       1F        8       0
-                text3                               301      301       3C        8       0
-                text2                               298      298       69        8       0
-                text1                               3C9      3C9        1        8       0
-                maintext                            128      128       BE        8       0
-                cstackBANK0                           C        C       13        C       1
-                clrtext                             3C1      3C1        8        8       0
-                dataBANK0                            31       31        B        C       1
-                bssBANK0                             1F       1F       12        C       1
-                idataBANK0                          3B6      3B6        B        8       0
+                text7                                15       15      111        8       0
+                text6                               31D      31D       20      554       0
+                text5                               33D      33D       1F      554       0
+                text4                               2AA      2AA       41      554       0
+                text3                               35C      35C       1A      554       0
+                text2                               37E      37E        1      554       0
+                text1                               2EB      2EB       32      554       0
+                maintext                            126      126       AC        8       0
+                cstackBANK0                          23       23        E        C       1
+                clrtext                             376      376        8      554       0
+                bssBANK0                              C        C       17        C       1
+                strings                             200      200       AA      400       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              D        D        1         0
-                cinit                                 E        E       1D         0
+                cinit                                 E        E        7         0
                 intentry                              4        4        9         0
                 reset_vec                             0        0        1         0
-                text8                               1E6      1E6       B2         0
-                text7                                2B       2B       FD         0
-                text6                               398      398       1E         0
-                text5                               33D      33D       3C         0
-                text4                               379      379       1F         0
-                text3                               301      301       3C         0
-                text2                               298      298       69         0
-                text1                               3C9      3C9        1         0
-                maintext                            128      128       BE         0
-                clrtext                             3C1      3C1        8         0
-                idataBANK0                          3B6      3B6        B         0
+                text7                                15       15      111         0
+                text6                               31D      31D       20         0
+                text5                               33D      33D       1F         0
+                text4                               2AA      2AA       41         0
+                text3                               35C      35C       1A         0
+                text2                               37E      37E        1         0
+                text1                               2EB      2EB       32         0
+                maintext                            126      126       AC         0
+                clrtext                             376      376        8         0
 
         CLASS   STRCODE        
 
         CLASS   STRING         
+                strings                             200      200       AA         0
 
         CLASS   CONST          
 
         CLASS   ENTRY          
 
         CLASS   BANK0          
-                cstackBANK0                           C        C       13         1
-                dataBANK0                            31       31        B         1
-                bssBANK0                             1F       1F       12         1
+                cstackBANK0                          23       23        E         1
+                bssBANK0                              C        C       17         1
 
         CLASS   RAM            
 
@@ -103,211 +99,214 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000001  000001         0       0  CODE        2
-                intentry                       000004  0003C6  0003CA         8       0  CODE        2
-                cstackBANK0                    00000C  000030  00003C         C       1  BANK0       1
+                intentry                       000004  0001CE  0001D2         8       0  CODE        2
+                bssBANK0                       00000C  000025  000031         C       1  BANK0       1
+                strings                        000200  0000AA  0002AA       400       0  STRING      2
+                text4                          0002AA  0000D5  00037F       554       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            03C-04D            12           1
+        BANK0            031-04D            1D           1
         CODE             001-003             3           2
-                         3CA-3FF            36
+                         1D2-1FF            2E
+                         37F-3FF            81
         CONFIG           2007-2007             1           2
         CONST            001-003             3           2
-                         3CA-3FF            36
+                         1D2-1FF            2E
+                         37F-3FF            81
         EEDATA           2100-213F            40           2
         ENTRY            001-003             3           2
-                         3CA-3FF            36
+                         1D2-1FF            2E
+                         37F-3FF            81
         IDLOC            2000-2003             4           2
-        RAM              03C-04D            12           1
+        RAM              031-04D            1D           1
         SFR0             000-00B             C           1
         SFR1             080-0CD            4E           1
-        STACK            03C-04D            12           1
+        STACK            031-04D            1D           1
         STRCODE          001-003             3           2
-                         3CA-3FF            36
+                         1D2-1FF            2E
+                         37F-3FF            81
         STRING           001-003             3           2
-                         3CA-3FF            36
+                         1D2-1FF            2E
+                         37F-3FF            81
 
                                   Symbol Table
 
-?_codeToMatrix             cstackBANK0  011
-_GIE                       (abs)        05F
-_PORTA                     (abs)        005
-_PORTAbits                 (abs)        005
-_PORTB                     (abs)        006
-_PSA                       (abs)        40B
-_T0CS                      (abs)        40D
-_T0IE                      (abs)        05D
-_T0IF                      (abs)        05A
-_T0SE                      (abs)        40C
-_TMR0                      (abs)        001
-_TRISA0                    (abs)        428
-_TRISA1                    (abs)        429
-_TRISA2                    (abs)        42A
-_TRISA3                    (abs)        42B
-_TRISA4                    (abs)        42C
-_TRISB                     (abs)        086
-__Habs1                    abs1         000
-__Hbank0                   bank0        000
-__Hbank1                   bank1        000
-__HbssBANK0                bssBANK0     000
-__Hcinit                   cinit        02B
-__Hclrtext                 clrtext      000
-__Hcode                    code         000
-__Hcommon                  common       000
-__Hconfig                  config       000
-__HcstackBANK0             cstackBANK0  000
-__HcstackCOMMON            cstackCOMMON 000
-__HdataBANK0               dataBANK0    000
-__Heeprom_data             eeprom_data  000
-__Hend_init                end_init     00E
-__Hfunctab                 functab      000
-__HidataBANK0              idataBANK0   000
-__Hidloc                   idloc        000
-__Hinit                    init         00D
-__Hintentry                intentry     00D
-__Hmaintext                maintext     000
-__Hpowerup                 powerup      000
-__Hram                     ram          000
-__Hreset_vec               reset_vec    001
-__Hsfr0                    sfr0         000
-__Hsfr1                    sfr1         000
-__Hspace_0                 (abs)        3CA
-__Hspace_1                 (abs)        03C
-__Hspace_2                 (abs)        000
-__Hspace_3                 (abs)        000
-__Hstack                   stack        000
-__Hstrings                 strings      000
-__Htext                    text         000
-__Labs1                    abs1         000
-__Lbank0                   bank0        000
-__Lbank1                   bank1        000
-__LbssBANK0                bssBANK0     000
-__Lcinit                   cinit        00E
-__Lclrtext                 clrtext      000
-__Lcode                    code         000
-__Lcommon                  common       000
-__Lconfig                  config       000
-__LcstackBANK0             cstackBANK0  000
-__LcstackCOMMON            cstackCOMMON 000
-__LdataBANK0               dataBANK0    000
-__Leeprom_data             eeprom_data  000
-__Lend_init                end_init     00D
-__Lfunctab                 functab      000
-__LidataBANK0              idataBANK0   000
-__Lidloc                   idloc        000
-__Linit                    init         00D
-__Lintentry                intentry     004
-__Lmaintext                maintext     000
-__Lpowerup                 powerup      000
-__Lram                     ram          000
-__Lreset_vec               reset_vec    000
-__Lsfr0                    sfr0         000
-__Lsfr1                    sfr1         000
-__Lspace_0                 (abs)        000
-__Lspace_1                 (abs)        000
-__Lspace_2                 (abs)        000
-__Lspace_3                 (abs)        000
-__Lstack                   stack        000
-__Lstrings                 strings      000
-__Ltext                    text         000
-__S0                       (abs)        3CA
-__S1                       (abs)        03C
-__S2                       (abs)        000
-__S3                       (abs)        000
-___int_sp                  stack        000
-___latbits                 (abs)        000
-___sp                      stack        000
-__end_of__initialization   cinit        029
-__end_of_codeToMatrix      text7        128
-__end_of_keyDown           text5        379
-__end_of_keyUp             text3        33D
-__end_of_main              maintext     1E6
-__end_of_myIsr             text8        298
-__end_of_replaceCode       text2        301
-__end_of_resetPort         text4        398
-__end_of_sendDataToAltera  text1        3CA
-__end_of_setPort           text6        3B6
-__initialization           cinit        00E
-__pbssBANK0                bssBANK0     01F
-__pcstackBANK0             cstackBANK0  00C
-__pcstackCOMMON            cstackCOMMON 000
-__pdataBANK0               dataBANK0    031
-__pidataBANK0              idataBANK0   3B6
-__pintentry                intentry     004
-__pmaintext                maintext     128
-__ptext1                   text1        3C9
-__ptext2                   text2        298
-__ptext3                   text3        301
-__ptext4                   text4        379
-__ptext5                   text5        33D
-__ptext6                   text6        398
-__ptext7                   text7        02B
-__ptext8                   text8        1E6
-__size_of_codeToMatrix     (abs)        000
-__size_of_keyDown          (abs)        000
-__size_of_keyUp            (abs)        000
-__size_of_main             (abs)        000
-__size_of_myIsr            (abs)        000
-__size_of_replaceCode      (abs)        000
-__size_of_resetPort        (abs)        000
-__size_of_sendDataToAltera (abs)        000
-__size_of_setPort          (abs)        000
-_capsLock                  bssBANK0     02A
-_codeToMatrix              text7        02B
-_keyDown                   text5        33D
-_keyUp                     text3        301
-_main                      maintext     128
-_myIsr                     text8        1E6
-_numLock                   bssBANK0     029
-_outPorts                  dataBANK0    031
-_ps2Bits                   bssBANK0     02F
-_ps2BitsCount              bssBANK0     02E
-_ps2Data                   bssBANK0     01F
-_ps2DataCount              bssBANK0     02D
-_ps2DataState              bssBANK0     030
-_replaceCode               text2        298
-_resetPort                 text4        379
-_sendDataToAltera          text1        3C9
-_setPort                   text6        398
-_shift                     bssBANK0     02B
-btemp                      (abs)        04E
-clear_ram0                 clrtext      3C1
-codeToMatrix@c             cstackBANK0  012
-codeToMatrix@n             cstackBANK0  013
-codeToMatrix@r             cstackBANK0  016
-codeToMatrix@s             cstackBANK0  011
-end_of_initialization      cinit        029
-interrupt_function         intentry     004
-intlevel0                  functab      000
-intlevel1                  functab      000
-intlevel2                  functab      000
-intlevel3                  functab      000
-intlevel4                  functab      000
-intlevel5                  functab      000
-keyDown@c                  cstackBANK0  01D
-keyDown@key                cstackBANK0  01C
-keyUp@c                    cstackBANK0  01D
-keyUp@key                  cstackBANK0  01C
-replaceCode@code           cstackBANK0  013
-replaceCode@r              cstackBANK0  014
-resetPort@bit_id           cstackBANK0  014
-reset_vec                  reset_vec    000
-saved_w                    (abs)        04E
-setPort@bit_id             cstackBANK0  014
-stackhi                    (abs)        000
-stacklo                    (abs)        000
-start                      init         00D
-start_initialization       cinit        00E
-wtemp0                     (abs)        04E
+_GIE                           (abs)        05F
+_PORTA                         (abs)        005
+_PORTAbits                     (abs)        005
+_PORTB                         (abs)        006
+_PSA                           (abs)        40B
+_RA1                           (abs)        029
+_RA2                           (abs)        02A
+_T0CS                          (abs)        40D
+_T0IE                          (abs)        05D
+_T0IF                          (abs)        05A
+_T0SE                          (abs)        40C
+_TMR0                          (abs)        001
+_TRISA0                        (abs)        428
+_TRISA1                        (abs)        429
+_TRISA2                        (abs)        42A
+_TRISA3                        (abs)        42B
+_TRISA4                        (abs)        42C
+_TRISB                         (abs)        086
+__Habs1                        abs1         000
+__Hbank0                       bank0        000
+__Hbank1                       bank1        000
+__HbssBANK0                    bssBANK0     000
+__Hcinit                       cinit        015
+__Hclrtext                     clrtext      000
+__Hcode                        code         000
+__Hcommon                      common       000
+__Hconfig                      config       000
+__HcstackBANK0                 cstackBANK0  000
+__HcstackCOMMON                cstackCOMMON 000
+__Heeprom_data                 eeprom_data  000
+__Hend_init                    end_init     00E
+__Hfunctab                     functab      000
+__Hidloc                       idloc        000
+__Hinit                        init         00D
+__Hintentry                    intentry     00D
+__Hmaintext                    maintext     000
+__Hpowerup                     powerup      000
+__Hram                         ram          000
+__Hreset_vec                   reset_vec    001
+__Hsfr0                        sfr0         000
+__Hsfr1                        sfr1         000
+__Hspace_0                     (abs)        37F
+__Hspace_1                     (abs)        031
+__Hspace_2                     (abs)        000
+__Hspace_3                     (abs)        000
+__Hstack                       stack        000
+__Hstrings                     strings      000
+__Htext                        text         000
+__Labs1                        abs1         000
+__Lbank0                       bank0        000
+__Lbank1                       bank1        000
+__LbssBANK0                    bssBANK0     000
+__Lcinit                       cinit        00E
+__Lclrtext                     clrtext      000
+__Lcode                        code         000
+__Lcommon                      common       000
+__Lconfig                      config       000
+__LcstackBANK0                 cstackBANK0  000
+__LcstackCOMMON                cstackCOMMON 000
+__Leeprom_data                 eeprom_data  000
+__Lend_init                    end_init     00D
+__Lfunctab                     functab      000
+__Lidloc                       idloc        000
+__Linit                        init         00D
+__Lintentry                    intentry     004
+__Lmaintext                    maintext     000
+__Lpowerup                     powerup      000
+__Lram                         ram          000
+__Lreset_vec                   reset_vec    000
+__Lsfr0                        sfr0         000
+__Lsfr1                        sfr1         000
+__Lspace_0                     (abs)        000
+__Lspace_1                     (abs)        000
+__Lspace_2                     (abs)        000
+__Lspace_3                     (abs)        000
+__Lstack                       stack        000
+__Lstrings                     strings      000
+__Ltext                        text         000
+__S0                           (abs)        37F
+__S1                           (abs)        031
+__S2                           (abs)        000
+__S3                           (abs)        000
+___int_sp                      stack        000
+___latbits                     (abs)        000
+___sp                          stack        000
+__end_of__initialization       cinit        013
+__end_of__stringtab            strings      206
+__end_of_codeToMatrix          strings      286
+__end_of_keyDown               text4        2EB
+__end_of_keyUp                 text3        376
+__end_of_main                  maintext     1D2
+__end_of_myDelay               text2        37F
+__end_of_myIsr                 text7        126
+__end_of_replaceOnShiftKeyDown strings      2AA
+__end_of_resetPort             text6        33D
+__end_of_sendDataToAltera      text1        31D
+__end_of_setPort               text5        35C
+__initialization               cinit        00E
+__pbssBANK0                    bssBANK0     00C
+__pcstackBANK0                 cstackBANK0  023
+__pcstackCOMMON                cstackCOMMON 000
+__pintentry                    intentry     004
+__pmaintext                    maintext     126
+__pstrings                     strings      200
+__ptext1                       text1        2EB
+__ptext2                       text2        37E
+__ptext3                       text3        35C
+__ptext4                       text4        2AA
+__ptext5                       text5        33D
+__ptext6                       text6        31D
+__ptext7                       text7        015
+__size_of_keyDown              (abs)        000
+__size_of_keyUp                (abs)        000
+__size_of_main                 (abs)        000
+__size_of_myDelay              (abs)        000
+__size_of_myIsr                (abs)        000
+__size_of_resetPort            (abs)        000
+__size_of_sendDataToAltera     (abs)        000
+__size_of_setPort              (abs)        000
+__stringbase                   strings      205
+__stringtab                    strings      200
+_codeToMatrix                  strings      206
+_ctrl                          bssBANK0     018
+_i                             bssBANK0     01A
+_keyDown                       text4        2AA
+_keyUp                         text3        35C
+_main                          maintext     126
+_myDelay                       text2        37E
+_myIsr                         text7        015
+_myIsr$79                      cstackBANK0  028
+_outPorts                      bssBANK0     00C
+_ps2Bits                       bssBANK0     021
+_ps2BitsCount                  bssBANK0     020
+_ps2Data                       bssBANK0     01F
+_ps2DataCount                  bssBANK0     01E
+_ps2DataState                  bssBANK0     022
+_ps2NeedEncode                 bssBANK0     01B
+_ps2Up                         bssBANK0     01C
+_ps2WaitCode                   bssBANK0     01D
+_replaceOnShiftKeyDown         strings      286
+_replaced                      bssBANK0     017
+_resetPort                     text6        31D
+_sendDataToAltera              text1        2EB
+_setPort                       text5        33D
+_shift                         bssBANK0     019
+btemp                          (abs)        04E
+clear_ram0                     clrtext      376
+end_of_initialization          cinit        013
+interrupt_function             intentry     004
+intlevel0                      functab      000
+intlevel1                      functab      000
+intlevel2                      functab      000
+intlevel3                      functab      000
+intlevel4                      functab      000
+intlevel5                      functab      000
+keyDown@key                    cstackBANK0  02F
+keyUp@key                      cstackBANK0  02F
+resetPort@bit_id               cstackBANK0  02D
+reset_vec                      reset_vec    000
+saved_w                        (abs)        04E
+setPort@bit_id                 cstackBANK0  02D
+stackhi                        (abs)        000
+stacklo                        (abs)        000
+start                          init         00D
+start_initialization           cinit        00E
+wtemp0                         (abs)        04E
 
 
 FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 235 in file "main.c"
+		line 251 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -323,14 +322,13 @@ FUNCTION INFORMATION:
  Data sizes:     COMMON   BANK0
       Params:         0       0
       Locals:         0       0
-      Temps:          0       0
-      Totals:         0       0
-Total ram usage:        0 bytes
+      Temps:          0       1
+      Totals:         0       1
+Total ram usage:        1 bytes
  Hardware stack levels required when called:    3
  This function calls:
 		_keyDown
 		_keyUp
-		_replaceCode
 		_sendDataToAltera
  This function is called by:
 		Startup code after reset
@@ -339,7 +337,37 @@ Total ram usage:        0 bytes
 
  *************** function _sendDataToAltera *****************
  Defined at:
-		line 216 in file "main.c"
+		line 191 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0
+      Params:         0       0
+      Locals:         0       0
+      Temps:          0       1
+      Totals:         0       1
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		_myDelay
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _myDelay *****************
+ Defined at:
+		line 183 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -363,85 +391,21 @@ Total ram usage:        0 bytes
  This function calls:
 		Nothing
  This function is called by:
-		_main
- This function uses a non-reentrant model
-
-
- *************** function _replaceCode *****************
- Defined at:
-		line 85 in file "main.c"
- Parameters:    Size  Location     Type
-  code            1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  code            1    7[BANK0 ] unsigned char 
-  r               1    8[BANK0 ] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      unsigned char 
- Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMMON   BANK0
-      Params:         0       0
-      Locals:         0       2
-      Temps:          0       2
-      Totals:         0       4
-Total ram usage:        4 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		Nothing
- This function is called by:
-		_main
+		_sendDataToAltera
  This function uses a non-reentrant model
 
 
  *************** function _keyUp *****************
  Defined at:
-		line 207 in file "main.c"
+		line 176 in file "main.c"
  Parameters:    Size  Location     Type
   key             1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
-  key             1   16[BANK0 ] unsigned char 
-  c               2   17[BANK0 ] unsigned int 
+  key             1   12[BANK0 ] unsigned char 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
 		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMMON   BANK0
-      Params:         0       0
-      Locals:         0       3
-      Temps:          0       4
-      Totals:         0       7
-Total ram usage:        7 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    2
- This function calls:
-		_codeToMatrix
-		_resetPort
-		_setPort
- This function is called by:
-		_main
- This function uses a non-reentrant model
-
-
- *************** function _resetPort *****************
- Defined at:
-		line 193 in file "main.c"
- Parameters:    Size  Location     Type
-  bit_id          1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  bit_id          1    8[BANK0 ] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -449,26 +413,25 @@ Total ram usage:        7 bytes
  Data sizes:     COMMON   BANK0
       Params:         0       0
       Locals:         0       1
-      Temps:          0       3
-      Totals:         0       4
-Total ram usage:        4 bytes
+      Temps:          0       1
+      Totals:         0       2
+Total ram usage:        2 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    2
  This function calls:
-		Nothing
+		_resetPort
  This function is called by:
-		_keyUp
+		_main
  This function uses a non-reentrant model
 
 
  *************** function _keyDown *****************
  Defined at:
-		line 200 in file "main.c"
+		line 155 in file "main.c"
  Parameters:    Size  Location     Type
   key             1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
-  key             1   16[BANK0 ] unsigned char 
-  c               2   17[BANK0 ] unsigned int 
+  key             1   12[BANK0 ] unsigned char 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
@@ -479,14 +442,14 @@ Total ram usage:        4 bytes
 		Unchanged: 
  Data sizes:     COMMON   BANK0
       Params:         0       0
-      Locals:         0       3
-      Temps:          0       4
-      Totals:         0       7
-Total ram usage:        7 bytes
+      Locals:         0       1
+      Temps:          0       1
+      Totals:         0       2
+Total ram usage:        2 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    2
  This function calls:
-		_codeToMatrix
+		_resetPort
 		_setPort
  This function is called by:
 		_main
@@ -495,11 +458,11 @@ Total ram usage:        7 bytes
 
  *************** function _setPort *****************
  Defined at:
-		line 188 in file "main.c"
+		line 143 in file "main.c"
  Parameters:    Size  Location     Type
   bit_id          1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
-  bit_id          1    8[BANK0 ] unsigned char 
+  bit_id          1   10[BANK0 ] unsigned char 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
@@ -520,23 +483,18 @@ Total ram usage:        4 bytes
 		Nothing
  This function is called by:
 		_keyDown
-		_keyUp
  This function uses a non-reentrant model
 
 
- *************** function _codeToMatrix *****************
+ *************** function _resetPort *****************
  Defined at:
-		line 27 in file "./ps2tozxtable.h"
+		line 148 in file "main.c"
  Parameters:    Size  Location     Type
-  k               1    wreg     unsigned char 
-  s               1    5[BANK0 ] unsigned char 
-  c               1    6[BANK0 ] unsigned char 
-  n               1    7[BANK0 ] unsigned char 
+  bit_id          1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
-  k               1    0[BANK0 ] unsigned char 
-  r               2   10[BANK0 ] unsigned int 
+  bit_id          1   10[BANK0 ] unsigned char 
  Return value:  Size  Location     Type
-                  2    5[BANK0 ] unsigned int 
+                  1    wreg      void 
  Registers used:
 		wreg, fsr0l, fsr0h, status,2, status,0
  Tracked objects:
@@ -544,11 +502,11 @@ Total ram usage:        4 bytes
 		On exit  : 
 		Unchanged: 
  Data sizes:     COMMON   BANK0
-      Params:         0       3
-      Locals:         0       2
-      Temps:          0       2
-      Totals:         0       7
-Total ram usage:        7 bytes
+      Params:         0       0
+      Locals:         0       1
+      Temps:          0       3
+      Totals:         0       4
+Total ram usage:        4 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    1
  This function calls:
@@ -561,7 +519,7 @@ Total ram usage:        7 bytes
 
  *************** function _myIsr *****************
  Defined at:
-		line 142 in file "main.c"
+		line 69 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -576,10 +534,10 @@ Total ram usage:        7 bytes
 		Unchanged: 
  Data sizes:     COMMON   BANK0
       Params:         0       0
-      Locals:         0       0
+      Locals:         0       2
       Temps:          0       5
-      Totals:         0       5
-Total ram usage:        5 bytes
+      Totals:         0       7
+Total ram usage:        7 bytes
  Hardware stack levels used:    1
  This function calls:
 		Nothing
@@ -592,25 +550,23 @@ Total ram usage:        5 bytes
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
-./ps2tozxtable.h
-		_codeToMatrix  		CODE           	002B	0000	254
-
-./ps2tozxtable.h estimated size: 254
-
 shared
-		__initialization		CODE           	000E	0000	28
+		__stringtab    		STRING         	0200	0000	7
+		_codeToMatrix  		STRING         	0206	0000	129
+		__initialization		CODE           	000E	0000	6
+		_replaceOnShiftKeyDown		STRING         	0286	0000	37
 
-shared estimated size: 28
+shared estimated size: 179
 
 main.c
-		_keyDown       		CODE           	033D	0000	61
-		_keyUp         		CODE           	0301	0000	61
-		_main          		CODE           	0128	0000	191
-		_setPort       		CODE           	0398	0000	31
-		_myIsr         		CODE           	01E6	0000	179
-		_sendDataToAltera		CODE           	03C9	0000	2
-		_replaceCode   		CODE           	0298	0000	106
-		_resetPort     		CODE           	0379	0000	32
+		_keyDown       		CODE           	02AA	0000	66
+		_keyUp         		CODE           	035C	0000	27
+		_main          		CODE           	0126	0000	173
+		_setPort       		CODE           	033D	0000	32
+		_myIsr         		CODE           	0015	0000	274
+		_myDelay       		CODE           	037E	0000	2
+		_sendDataToAltera		CODE           	02EB	0000	51
+		_resetPort     		CODE           	031D	0000	33
 
-main.c estimated size: 663
+main.c estimated size: 658
 

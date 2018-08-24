@@ -1,5 +1,5 @@
 Fitter report for zcontroller
-Mon Aug 06 15:48:39 2018
+Fri Aug 24 11:21:46 2018
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -20,13 +20,16 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
  12. Dedicated Inputs I/O
  13. Output Pin Default Load For Reported TCO
  14. Fitter Resource Utilization by Entity
- 15. Non-Global High Fan-Out Signals
- 16. Interconnect Usage Summary
- 17. LAB External Interconnect
- 18. LAB Macrocells
- 19. Logic Cell Interconnection
- 20. Fitter Device Options
- 21. Fitter Messages
+ 15. Control Signals
+ 16. Global & Other Fast Signals
+ 17. Non-Global High Fan-Out Signals
+ 18. Interconnect Usage Summary
+ 19. LAB External Interconnect
+ 20. LAB Macrocells
+ 21. Shareable Expander
+ 22. Logic Cell Interconnection
+ 23. Fitter Device Options
+ 24. Fitter Messages
 
 
 
@@ -52,14 +55,14 @@ applicable agreement for further details.
 +----------------------------------------------------------------------+
 ; Fitter Summary                                                       ;
 +-----------------------+----------------------------------------------+
-; Fitter Status         ; Successful - Mon Aug 06 15:48:39 2018        ;
+; Fitter Status         ; Successful - Fri Aug 24 11:21:46 2018        ;
 ; Quartus II Version    ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name         ; zcontroller                                  ;
 ; Top-level Entity Name ; zcontroller                                  ;
 ; Family                ; MAX7000S                                     ;
 ; Device                ; EPM7128SLC84-15                              ;
 ; Timing Models         ; Final                                        ;
-; Total macrocells      ; 25 / 128 ( 20 % )                            ;
+; Total macrocells      ; 74 / 128 ( 58 % )                            ;
 ; Total pins            ; 68 / 68 ( 100 % )                            ;
 +-----------------------+----------------------------------------------+
 
@@ -108,23 +111,23 @@ The pin-out file can be found in C:/Users/fomonster/Dropbox/ZX/z-controller/zcon
 +-----------------------------------+-------------------+
 ; Resource                          ; Usage             ;
 +-----------------------------------+-------------------+
-; Logic cells                       ; 25 / 128 ( 20 % ) ;
-; Registers                         ; 0 / 128 ( 0 % )   ;
-; Number of pterms used             ; 1                 ;
+; Logic cells                       ; 74 / 128 ( 58 % ) ;
+; Registers                         ; 44 / 128 ( 34 % ) ;
+; Number of pterms used             ; 168               ;
 ; User inserted logic elements      ; 0                 ;
 ; I/O pins                          ; 68 / 68 ( 100 % ) ;
 ;     -- Clock pins                 ; 2 / 2 ( 100 % )   ;
 ;     -- Dedicated input pins       ; 2 / 2 ( 100 % )   ;
-; Global signals                    ; 0                 ;
-; Shareable expanders               ; 0 / 128 ( 0 % )   ;
+; Global signals                    ; 1                 ;
+; Shareable expanders               ; 53 / 128 ( 41 % ) ;
 ; Parallel expanders                ; 0 / 120 ( 0 % )   ;
-; Cells using turbo bit             ; 25 / 128 ( 20 % ) ;
-; Maximum fan-out node              ; PB[1]~1           ;
-; Maximum fan-out                   ; 1                 ;
-; Highest non-global fan-out signal ; PB[1]~1           ;
-; Highest non-global fan-out        ; 1                 ;
-; Total fan-out                     ; 26                ;
-; Average fan-out                   ; 0.28              ;
+; Cells using turbo bit             ; 74 / 128 ( 58 % ) ;
+; Maximum fan-out node              ; A[8]              ;
+; Maximum fan-out                   ; 56                ;
+; Highest non-global fan-out signal ; A[8]              ;
+; Highest non-global fan-out        ; 56                ;
+; Total fan-out                     ; 959               ;
+; Average fan-out                   ; 4.92              ;
 +-----------------------------------+-------------------+
 
 
@@ -133,44 +136,44 @@ The pin-out file can be found in C:/Users/fomonster/Dropbox/ZX/z-controller/zcon
 +---------+-------+----------+-----+-----------------------+--------------------+--------+----------------+--------------+----------------------+
 ; Name    ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; I/O Standard ; Location assigned by ;
 +---------+-------+----------+-----+-----------------------+--------------------+--------+----------------+--------------+----------------------+
-; A[0]    ; 84    ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[10]   ; 22    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[11]   ; 29    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[12]   ; 74    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[13]   ; 76    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[14]   ; 73    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[15]   ; 70    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[1]    ; 4     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[2]    ; 5     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[3]    ; 8     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[4]    ; 16    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[5]    ; 21    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[6]    ; 18    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[7]    ; 58    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[8]    ; 24    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; A[9]    ; 27    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; DOS     ; 77    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[0]    ; 84    ; --       ; --  ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[10]   ; 22    ; --       ; 2   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[11]   ; 29    ; --       ; 3   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[12]   ; 74    ; --       ; 8   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[13]   ; 76    ; --       ; 8   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[14]   ; 73    ; --       ; 8   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[15]   ; 70    ; --       ; 7   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[1]    ; 4     ; --       ; 1   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[2]    ; 5     ; --       ; 1   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[3]    ; 8     ; --       ; 1   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[4]    ; 16    ; --       ; 2   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[5]    ; 21    ; --       ; 2   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[6]    ; 18    ; --       ; 2   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[7]    ; 58    ; --       ; 6   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[8]    ; 24    ; --       ; 3   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; A[9]    ; 27    ; --       ; 3   ; 56                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; DOS     ; 77    ; --       ; 8   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; IO3D    ; 60    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; IORQ    ; 12    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; M1      ; 15    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; IORQ    ; 12    ; --       ; 1   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; M1      ; 15    ; --       ; 2   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; NMI     ; 25    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; PB[0]   ; 56    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; PB[1]   ; 49    ; --       ; 5   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; PB[2]   ; 48    ; --       ; 5   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; PB[3]   ; 33    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; PB[4]   ; 50    ; --       ; 5   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[0]   ; 56    ; --       ; 6   ; 8                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[1]   ; 49    ; --       ; 5   ; 8                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[2]   ; 48    ; --       ; 5   ; 8                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[3]   ; 33    ; --       ; 4   ; 8                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; PB[4]   ; 50    ; --       ; 5   ; 8                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; PB[5]   ; 46    ; --       ; 5   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; PB[6]   ; 35    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; PB[7]   ; 34    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; RD      ; 11    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; RD      ; 11    ; --       ; 1   ; 1                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; RES     ; 55    ; --       ; 6   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; RESTRIG ; 1     ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; RESTRIG ; 1     ; --       ; --  ; 44                    ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; SDCS    ; 31    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; SDDET   ; 28    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; SDIN    ; 20    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; SDRO    ; 17    ; --       ; 2   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 ; SDTAKT  ; 2     ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
-; STROBE  ; 83    ; --       ; --  ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
+; STROBE  ; 83    ; --       ; --  ; 44                    ; 0                  ; yes    ; no             ; TTL          ; User                 ;
 ; WR      ; 30    ; --       ; 3   ; 0                     ; 0                  ; no     ; no             ; TTL          ; User                 ;
 +---------+-------+----------+-----+-----------------------+--------------------+--------+----------------+--------------+----------------------+
 
@@ -204,15 +207,15 @@ The pin-out file can be found in C:/Users/fomonster/Dropbox/ZX/z-controller/zcon
 +--------+-------+----------+-----+-----------------------+--------------------+--------+----------------+-----------------+----------------+------------+--------------+----------------------+-------+----------------------+---------------------+
 ; Name   ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Output Register ; Slow Slew Rate ; Open Drain ; I/O Standard ; Location assigned by ; Load  ; Output Enable Source ; Output Enable Group ;
 +--------+-------+----------+-----+-----------------------+--------------------+--------+----------------+-----------------+----------------+------------+--------------+----------------------+-------+----------------------+---------------------+
-; D[0]   ; 79    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~4 (inverted)    ; -                   ;
-; D[1]   ; 68    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~5 (inverted)    ; -                   ;
-; D[2]   ; 80    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~6 (inverted)    ; -                   ;
-; D[3]   ; 6     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~7 (inverted)    ; -                   ;
-; D[4]   ; 9     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~8 (inverted)    ; -                   ;
-; D[5]   ; 10    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~9 (inverted)    ; -                   ;
-; D[6]   ; 69    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~10 (inverted)   ; -                   ;
-; D[7]   ; 67    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~11 (inverted)   ; -                   ;
-; IORQGE ; 36    ; --       ; 4   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; yes        ; TTL          ; User                 ; 10 pF ; ~VCC~3 (inverted)    ; -                   ;
+; D[0]   ; 79    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[1]   ; 68    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[2]   ; 80    ; --       ; 8   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[3]   ; 6     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[4]   ; 9     ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[5]   ; 10    ; --       ; 1   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[6]   ; 69    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; D[7]   ; 67    ; --       ; 7   ; 0                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
+; IORQGE ; 36    ; --       ; 4   ; 1                     ; 0                  ; no     ; no             ; no              ; no             ; no         ; TTL          ; User                 ; 10 pF ; port_read_fe~12      ; -                   ;
 +--------+-------+----------+-----+-----------------------+--------------------+--------+----------------+-----------------+----------------+------------+--------------+----------------------+-------+----------------------+---------------------+
 
 
@@ -342,116 +345,257 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 Note: User assignments will override these defaults. The user specified values are listed in the Output Pins and Bidir Pins tables.
 
 
-+-------------------------------------------------------------------------------------+
-; Fitter Resource Utilization by Entity                                               ;
-+----------------------------+------------+------+---------------------+--------------+
-; Compilation Hierarchy Node ; Macrocells ; Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+------------+------+---------------------+--------------+
-; |zcontroller               ; 25         ; 68   ; |zcontroller        ; work         ;
-+----------------------------+------------+------+---------------------+--------------+
++--------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                  ;
++------------------------------+------------+------+--------------------------------------+--------------+
+; Compilation Hierarchy Node   ; Macrocells ; Pins ; Full Hierarchy Name                  ; Library Name ;
++------------------------------+------------+------+--------------------------------------+--------------+
+; |zcontroller                 ; 74         ; 68   ; |zcontroller                         ; work         ;
+;    |lpm_counter:count_rtl_0| ; 4          ; 0    ; |zcontroller|lpm_counter:count_rtl_0 ; work         ;
++------------------------------+------------+------+--------------------------------------+--------------+
 
 
-+---------------------------------+
-; Non-Global High Fan-Out Signals ;
-+---------+-----------------------+
-; Name    ; Fan-Out               ;
-+---------+-----------------------+
-; PB[1]   ; 1                     ;
-; ~VCC~11 ; 1                     ;
-; ~VCC~10 ; 1                     ;
-; ~VCC~9  ; 1                     ;
-; ~VCC~8  ; 1                     ;
-; ~VCC~7  ; 1                     ;
-; ~VCC~6  ; 1                     ;
-; ~VCC~5  ; 1                     ;
-; ~VCC~4  ; 1                     ;
-; ~VCC~3  ; 1                     ;
-; ~GND~11 ; 1                     ;
-; ~GND~10 ; 1                     ;
-; ~GND~9  ; 1                     ;
-; ~GND~8  ; 1                     ;
-; ~GND~7  ; 1                     ;
-; ~GND~6  ; 1                     ;
-; ~GND~5  ; 1                     ;
-; ~GND~4  ; 1                     ;
-; ~GND~3  ; 1                     ;
-; ~GND~2  ; 1                     ;
-; ~VCC~2  ; 1                     ;
-; ~GND~1  ; 1                     ;
-; ~VCC~1  ; 1                     ;
-; ~VCC~0  ; 1                     ;
-; ~GND~0  ; 1                     ;
-; PB[1]~1 ; 1                     ;
-+---------+-----------------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                        ;
++---------------------------------+----------+---------+--------------+--------+----------------------+------------------+
+; Name                            ; Location ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ;
++---------------------------------+----------+---------+--------------+--------+----------------------+------------------+
+; RESTRIG                         ; PIN_1    ; 44      ; Clock enable ; no     ; --                   ; --               ;
+; STROBE                          ; PIN_83   ; 44      ; Clock        ; yes    ; On                   ; --               ;
+; lpm_counter:count_rtl_0|dffs[0] ; LC7      ; 44      ; Clock enable ; no     ; --                   ; --               ;
+; lpm_counter:count_rtl_0|dffs[1] ; LC4      ; 43      ; Clock enable ; no     ; --                   ; --               ;
+; lpm_counter:count_rtl_0|dffs[2] ; LC3      ; 42      ; Clock enable ; no     ; --                   ; --               ;
+; lpm_counter:count_rtl_0|dffs[3] ; LC1      ; 41      ; Clock enable ; no     ; --                   ; --               ;
++---------------------------------+----------+---------+--------------+--------+----------------------+------------------+
 
 
-+------------------------------------------------+
-; Interconnect Usage Summary                     ;
-+----------------------------+-------------------+
-; Interconnect Resource Type ; Usage             ;
-+----------------------------+-------------------+
-; Output enables             ; 0 / 6 ( 0 % )     ;
-; PIA buffers                ; 1 / 288 ( < 1 % ) ;
-; PIAs                       ; 1 / 288 ( < 1 % ) ;
-+----------------------------+-------------------+
++-----------------------------------------------------------------------+
+; Global & Other Fast Signals                                           ;
++--------+----------+---------+----------------------+------------------+
+; Name   ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ;
++--------+----------+---------+----------------------+------------------+
+; STROBE ; PIN_83   ; 44      ; On                   ; --               ;
++--------+----------+---------+----------------------+------------------+
 
 
-+----------------------------------------------------------------------------+
-; LAB External Interconnect                                                  ;
-+----------------------------------------------+-----------------------------+
-; LAB External Interconnects  (Average = 0.13) ; Number of LABs  (Total = 1) ;
-+----------------------------------------------+-----------------------------+
-; 0                                            ; 7                           ;
-; 1                                            ; 1                           ;
-+----------------------------------------------+-----------------------------+
++-------------------------------------------+
+; Non-Global High Fan-Out Signals           ;
++---------------------------------+---------+
+; Name                            ; Fan-Out ;
++---------------------------------+---------+
+; A[15]                           ; 56      ;
+; A[13]                           ; 56      ;
+; A[12]                           ; 56      ;
+; A[14]                           ; 56      ;
+; A[10]                           ; 56      ;
+; A[11]                           ; 56      ;
+; A[9]                            ; 56      ;
+; A[8]                            ; 56      ;
+; RESTRIG                         ; 44      ;
+; lpm_counter:count_rtl_0|dffs[0] ; 44      ;
+; lpm_counter:count_rtl_0|dffs[1] ; 43      ;
+; lpm_counter:count_rtl_0|dffs[2] ; 42      ;
+; lpm_counter:count_rtl_0|dffs[3] ; 41      ;
+; port_read_fe~12                 ; 9       ;
+; PB[4]                           ; 8       ;
+; PB[3]                           ; 8       ;
+; PB[2]                           ; 8       ;
+; PB[0]                           ; 8       ;
+; PB[1]                           ; 8       ;
+; D~260                           ; 6       ;
+; Equal11~6                       ; 4       ;
+; D~182sexp2                      ; 4       ;
+; D~182sexp1                      ; 4       ;
+; D~264                           ; 3       ;
+; D~262                           ; 3       ;
+; portG[1]                        ; 3       ;
+; D~163                           ; 3       ;
+; Equal11~8                       ; 2       ;
+; Equal11~7                       ; 2       ;
+; Equal13~4                       ; 2       ;
+; D~259                           ; 2       ;
+; Equal16~5                       ; 2       ;
+; Equal11~5sexpand0               ; 2       ;
+; Equal16~3sexpand0               ; 2       ;
+; portA[4]                        ; 2       ;
+; portB[4]                        ; 2       ;
+; portH[4]                        ; 2       ;
+; portG[4]                        ; 2       ;
+; portF[4]                        ; 2       ;
+; portE[4]                        ; 2       ;
+; portD[4]                        ; 2       ;
+; portC[4]                        ; 2       ;
+; portA[3]                        ; 2       ;
+; portB[3]                        ; 2       ;
+; portH[3]                        ; 2       ;
+; portG[3]                        ; 2       ;
+; portF[3]                        ; 2       ;
+; portE[3]                        ; 2       ;
+; portD[3]                        ; 2       ;
+; portC[3]                        ; 2       ;
++---------------------------------+---------+
+
+
++-------------------------------------------------+
+; Interconnect Usage Summary                      ;
++----------------------------+--------------------+
+; Interconnect Resource Type ; Usage              ;
++----------------------------+--------------------+
+; Output enables             ; 1 / 6 ( 17 % )     ;
+; PIA buffers                ; 107 / 288 ( 37 % ) ;
+; PIAs                       ; 119 / 288 ( 41 % ) ;
++----------------------------+--------------------+
+
+
++-----------------------------------------------------------------------------+
+; LAB External Interconnect                                                   ;
++-----------------------------------------------+-----------------------------+
+; LAB External Interconnects  (Average = 14.88) ; Number of LABs  (Total = 6) ;
++-----------------------------------------------+-----------------------------+
+; 0 - 2                                         ; 3                           ;
+; 3 - 5                                         ; 0                           ;
+; 6 - 8                                         ; 0                           ;
+; 9 - 11                                        ; 0                           ;
+; 12 - 14                                       ; 0                           ;
+; 15 - 17                                       ; 1                           ;
+; 18 - 20                                       ; 1                           ;
+; 21 - 23                                       ; 0                           ;
+; 24 - 26                                       ; 2                           ;
+; 27 - 29                                       ; 0                           ;
+; 30 - 32                                       ; 1                           ;
++-----------------------------------------------+-----------------------------+
 
 
 +----------------------------------------------------------------------+
 ; LAB Macrocells                                                       ;
 +----------------------------------------+-----------------------------+
-; Number of Macrocells  (Average = 3.13) ; Number of LABs  (Total = 6) ;
+; Number of Macrocells  (Average = 9.25) ; Number of LABs  (Total = 8) ;
 +----------------------------------------+-----------------------------+
-; 0                                      ; 2                           ;
+; 0                                      ; 0                           ;
 ; 1                                      ; 0                           ;
 ; 2                                      ; 0                           ;
-; 3                                      ; 2                           ;
-; 4                                      ; 2                           ;
+; 3                                      ; 1                           ;
+; 4                                      ; 1                           ;
 ; 5                                      ; 1                           ;
 ; 6                                      ; 1                           ;
+; 7                                      ; 0                           ;
+; 8                                      ; 1                           ;
+; 9                                      ; 0                           ;
+; 10                                     ; 0                           ;
+; 11                                     ; 0                           ;
+; 12                                     ; 0                           ;
+; 13                                     ; 0                           ;
+; 14                                     ; 0                           ;
+; 15                                     ; 0                           ;
+; 16                                     ; 3                           ;
 +----------------------------------------+-----------------------------+
 
 
-+-----------------------------------+
-; Logic Cell Interconnection        ;
-+-----+------------+-------+--------+
-; LAB ; Logic Cell ; Input ; Output ;
-+-----+------------+-------+--------+
-;  A  ; LC13       ;       ; D[3]   ;
-;  A  ; LC8        ;       ; D[4]   ;
-;  A  ; LC6        ;       ; D[5]   ;
-;  D  ; LC51       ; PB[1] ; SDEN   ;
-;  D  ; LC49       ;       ; IOR    ;
-;  D  ; LC53       ;       ; EBL    ;
-;  D  ; LC56       ;       ; SDDO   ;
-;  D  ; LC57       ;       ; IORQGE ;
-;  E  ; LC65       ;       ; IOW    ;
-;  E  ; LC67       ;       ; RDH    ;
-;  E  ; LC77       ;       ; IO0    ;
-;  E  ; LC80       ;       ; IO1    ;
-;  F  ; LC83       ;       ; WRH    ;
-;  F  ; LC88       ;       ; IO2    ;
-;  F  ; LC94       ;       ; IO4    ;
-;  G  ; LC99       ;       ; SC     ;
-;  G  ; LC97       ;       ; IO3    ;
-;  G  ; LC101      ;       ; IO5    ;
-;  G  ; LC105      ;       ; D[1]   ;
-;  G  ; LC107      ;       ; D[6]   ;
-;  G  ; LC104      ;       ; D[7]   ;
-;  H  ; LC118      ;       ; IO6    ;
-;  H  ; LC128      ;       ; IO7    ;
-;  H  ; LC125      ;       ; D[0]   ;
-;  H  ; LC126      ;       ; D[2]   ;
-+-----+------------+-------+--------+
++-------------------------------------------------------------------------------+
+; Shareable Expander                                                            ;
++-------------------------------------------------+-----------------------------+
+; Number of shareable expanders  (Average = 6.63) ; Number of LABs  (Total = 4) ;
++-------------------------------------------------+-----------------------------+
+; 0                                               ; 4                           ;
+; 1                                               ; 0                           ;
+; 2                                               ; 0                           ;
+; 3                                               ; 0                           ;
+; 4                                               ; 0                           ;
+; 5                                               ; 0                           ;
+; 6                                               ; 0                           ;
+; 7                                               ; 0                           ;
+; 8                                               ; 0                           ;
+; 9                                               ; 0                           ;
+; 10                                              ; 0                           ;
+; 11                                              ; 2                           ;
+; 12                                              ; 0                           ;
+; 13                                              ; 0                           ;
+; 14                                              ; 0                           ;
+; 15                                              ; 1                           ;
+; 16                                              ; 1                           ;
++-------------------------------------------------+-----------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Logic Cell Interconnection                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
++-----+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; LAB ; Logic Cell ; Input                                                                                                                                                              ; Output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
++-----+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+;  A  ; LC1        ; STROBE, RESTRIG, lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[3]                ; portG[1], lpm_counter:count_rtl_0|dffs[3], portC[0], portD[0], portE[0], portF[0], portG[0], portH[0], portB[0], portA[0], portC[1], portD[1], portE[1], portF[1], portH[1], portB[1], portA[1], portC[2], portD[2], portE[2], portF[2], portG[2], portH[2], portB[2], portA[2], portC[3], portD[3], portE[3], portF[3], portG[3], portH[3], portB[3], portA[3], portC[4], portD[4], portE[4], portF[4], portG[4], portH[4], portB[4], portA[4]                                                                                                    ;
+;  A  ; LC15       ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~182sexp2, D~190sexp4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  A  ; LC6        ;                                                                                                                                                                    ; D[5]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  A  ; LC16       ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~182sexp1, D~182sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  A  ; LC14       ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1]         ; D~198, D~182sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
+;  A  ; LC13       ; portA[3], Equal16~5, A[11], A[9], A[12], A[13], A[15], A[14], A[10], A[8], D~235sexpand0bal                                                                        ; D[3]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  A  ; LC8        ; portA[4], Equal16~5, A[11], A[9], A[12], A[13], A[15], A[14], A[10], A[8], D~255sexpand0bal                                                                        ; D[4]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  A  ; LC9        ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; portG[1]~6, D~182sexp2, D~190sexp3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
+;  A  ; LC3        ; STROBE, RESTRIG, lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2]                                                 ; portG[1], lpm_counter:count_rtl_0|dffs[2], lpm_counter:count_rtl_0|dffs[3], portC[0], portD[0], portE[0], portF[0], portG[0], portH[0], portB[0], portA[0], portC[1], portD[1], portE[1], portF[1], portH[1], portB[1], portA[1], portC[2], portD[2], portE[2], portF[2], portG[2], portH[2], portB[2], portA[2], portC[3], portD[3], portE[3], portF[3], portG[3], portH[3], portB[3], portA[3], portC[4], portD[4], portE[4], portF[4], portG[4], portH[4], portB[4], portA[4]                                                                   ;
+;  A  ; LC2        ; A[14], A[12], A[13], A[15], A[8], A[11], A[10], A[9], D~242sexp1, D~242sexp2, portC[4], D~261, Equal13~5, D~250sexp1, D~250sexp2, D~250sexp3, D~250sexp4, portD[4] ; D~258                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
+;  A  ; LC4        ; STROBE, RESTRIG, lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]                                                                                  ; portG[1], lpm_counter:count_rtl_0|dffs[2], lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], portC[0], portD[0], portE[0], portF[0], portG[0], portH[0], portB[0], portA[0], portC[1], portD[1], portE[1], portF[1], portH[1], portB[1], portA[1], portC[2], portD[2], portE[2], portF[2], portG[2], portH[2], portB[2], portA[2], portC[3], portD[3], portE[3], portF[3], portG[3], portH[3], portB[3], portA[3], portC[4], portD[4], portE[4], portF[4], portG[4], portH[4], portB[4], portA[4]                                  ;
+;  A  ; LC7        ; STROBE, RESTRIG, lpm_counter:count_rtl_0|dffs[0]                                                                                                                   ; portG[1], lpm_counter:count_rtl_0|dffs[2], lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], portC[0], portD[0], portE[0], portF[0], portG[0], portH[0], portB[0], portA[0], portC[1], portD[1], portE[1], portF[1], portH[1], portB[1], portA[1], portC[2], portD[2], portE[2], portF[2], portG[2], portH[2], portB[2], portA[2], portC[3], portD[3], portE[3], portF[3], portG[3], portH[3], portB[3], portA[3], portC[4], portD[4], portE[4], portF[4], portG[4], portH[4], portB[4], portA[4] ;
+;  A  ; LC10       ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~195sexpand1, D~182sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ;
+;  A  ; LC11       ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~195sexpand4, D~182sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ;
+;  A  ; LC5        ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~182sexp2, D~190sexp1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  A  ; LC12       ; STROBE, PB[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~182sexp2, D~190sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC32       ; DOS, IORQGE, A[7], A[6], A[2], A[0], A[5], A[3], IORQ, A[1], RD, M1, A[4]                                                                                          ; IORQGE, D[0], D[1], D[2], D[3], D[4], D[5], D[6], D[7]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC21       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1]         ; D~258, D~242sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
+;  B  ; LC22       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~242sexp1, D~242sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC31       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~242sexp2, D~250sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC27       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~242sexp2, D~250sexp4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC24       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~242sexp2, D~250sexp3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC30       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~242sexp2, D~250sexp1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC29       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~242sexp2, D~255sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  B  ; LC28       ; STROBE, PB[4], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~242sexp2, D~255sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  B  ; LC17       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1]         ; D~238, D~222sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
+;  B  ; LC26       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~222sexp1, D~222sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC25       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~222sexp2, D~230sexp4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC19       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~222sexp2, D~230sexp1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC20       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~222sexp2, D~230sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  B  ; LC18       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~222sexp2, D~235sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  B  ; LC23       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~222sexp2, D~230sexp3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  C  ; LC36       ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~202sexp2, D~210sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  C  ; LC38       ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~202sexp2, D~210sexp3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  C  ; LC40       ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~202sexp2, D~210sexp4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  C  ; LC41       ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~202sexp1, D~202sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  C  ; LC42       ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1]         ; D~218, D~202sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
+;  C  ; LC44       ; STROBE, PB[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~222sexp2, D~235sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  C  ; LC45       ; A[14], A[12], A[13], A[15], A[8], A[11], A[10], A[9], D~222sexp1, D~222sexp2, portC[3], D~259, Equal13~4, D~230sexp1, D~230sexp2, D~230sexp3, D~230sexp4, portD[3] ; D~238                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
+;  C  ; LC46       ; A[14], A[12], A[13], A[15], A[8], A[11], A[10], A[9], D~162sexp1, D~162sexp2, portC[0], D~259, Equal13~4, D~170sexp1, D~170sexp2, D~170sexp3, D~170sexp4, portD[0] ; D~178                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
+;  D  ; LC56       ;                                                                                                                                                                    ; SDDO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  D  ; LC57       ;                                                                                                                                                                    ; IORQGE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  D  ; LC51       ; portG[1]                                                                                                                                                           ; SDEN                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  D  ; LC49       ;                                                                                                                                                                    ; IOR                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  D  ; LC53       ;                                                                                                                                                                    ; EBL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  E  ; LC65       ;                                                                                                                                                                    ; IOW                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  E  ; LC67       ;                                                                                                                                                                    ; RDH                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  E  ; LC77       ;                                                                                                                                                                    ; IO0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  E  ; LC80       ;                                                                                                                                                                    ; IO1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  F  ; LC83       ;                                                                                                                                                                    ; WRH                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  F  ; LC88       ;                                                                                                                                                                    ; IO2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  F  ; LC94       ;                                                                                                                                                                    ; IO4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  G  ; LC105      ; portA[1], Equal16~4, A[11], A[9], A[12], A[13], A[15], A[14], A[10], A[8], D~195sexpand0, D~195sexpand1, D~195sexpand2, D~195sexpand4                              ; D[1]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  G  ; LC99       ;                                                                                                                                                                    ; SC                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;
+;  G  ; LC97       ;                                                                                                                                                                    ; IO3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  G  ; LC101      ;                                                                                                                                                                    ; IO5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  G  ; LC107      ;                                                                                                                                                                    ; D[6]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  G  ; LC104      ;                                                                                                                                                                    ; D[7]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  H  ; LC121      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~162sexp2, D~170sexp1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  H  ; LC115      ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~202sexp2, D~215sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  H  ; LC120      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~162sexp2, D~175sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  H  ; LC117      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~162sexp2, D~175sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  H  ; LC126      ; portA[2], Equal16~3sexpand0, A[11], A[9], A[12], A[13], A[15], A[14], A[10], A[8], D~215sexpand0bal                                                                ; D[2]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  H  ; LC127      ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~202sexp2, D~210sexp1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  H  ; LC116      ; STROBE, PB[2], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~202sexp2, D~215sexpand0bal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
+;  H  ; LC113      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1]         ; D~178, D~162sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
+;  H  ; LC118      ;                                                                                                                                                                    ; IO6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  H  ; LC128      ;                                                                                                                                                                    ; IO7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+;  H  ; LC119      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~162sexp1, D~162sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  H  ; LC125      ; portA[0], Equal16~3sexpand0, A[11], A[9], A[12], A[13], A[15], A[14], A[10], A[8], D~175sexpand0bal                                                                ; D[0]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+;  H  ; LC124      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~162sexp2, D~170sexp4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  H  ; LC123      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[0]         ; D~162sexp2, D~170sexp3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  H  ; LC122      ; STROBE, PB[0], lpm_counter:count_rtl_0|dffs[0], lpm_counter:count_rtl_0|dffs[1], lpm_counter:count_rtl_0|dffs[2], RESTRIG, lpm_counter:count_rtl_0|dffs[3]         ; D~162sexp2, D~170sexp2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+;  H  ; LC114      ; A[14], A[12], A[13], A[15], A[8], A[11], A[10], A[9], D~202sexp1, D~202sexp2, portC[2], D~263, Equal13~6, D~210sexp1, D~210sexp2, D~210sexp3, D~210sexp4, portD[2] ; D~218                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
++-----+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------+
@@ -475,7 +619,7 @@ Note: User assignments will override these defaults. The user specified values a
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Mon Aug 06 15:48:38 2018
+    Info: Processing started: Fri Aug 24 11:21:46 2018
 Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off zcontroller -c zcontroller
 Info: Selected device EPM7128SLC84-15 for design "zcontroller"
 Warning: Ignored locations or region assignments to the following nodes
@@ -485,8 +629,8 @@ Warning: Ignored locations or region assignments to the following nodes
     Warning: Node "TMS" is assigned to location or region, but does not exist in design
 Info: Quartus II Fitter was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 224 megabytes
-    Info: Processing ended: Mon Aug 06 15:48:39 2018
-    Info: Elapsed time: 00:00:01
+    Info: Processing ended: Fri Aug 24 11:21:46 2018
+    Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:00
 
 

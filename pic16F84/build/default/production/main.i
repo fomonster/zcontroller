@@ -790,153 +790,205 @@ typedef uint16_t uintptr_t;
 
 
 # 1 "./ps2tozxtable.h" 1
-# 27 "./ps2tozxtable.h"
-uint16_t codeToMatrix(uint8_t k, uint8_t s, uint8_t c, uint8_t n)
+
+
+
+const uint8_t replaceOnShiftKeyDown[36] =
 {
-    uint16_t r;
-
-    switch (c) {
-        case 0x5A:
-            r = 0xFF06;
-            break;
-        case 0xFB:
-            r = 0x0043;
-            break;
-        case 0xF4:
-            r = 0x0024;
-            break;
-        case 0xF5:
-            r = 0x0034;
-            break;
-        case 0xF2:
-            r = 0x0044;
-            break;
-        case 0x16:
-            r = (s) ? 0x1703 : 0xFF03;
-            break;
-        case 0x1E:
-            r = (s) ? 0x1713 : 0xFF13;
-            break;
-        case 0x26:
-            r = (s) ? 0x1723 : 0xFF23;
-            break;
-        case 0x25:
-            r = (s) ? 0x1733 : 0xFF33;
-            break;
-        case 0x2E:
-            r = (s) ? 0x1743 : 0xFF43;
-            break;
-        case 0x36:
-            r = (s) ? 0x1746 : 0xFF44;
-            break;
-        case 0x3D:
-            r = (s) ? 0x1744 : 0xFF34;
-            break;
-        case 0x3E:
-            r = (s) ? 0x1747 : 0xFF24;
-            break;
-        case 0x46:
-            r = (s) ? 0x1724 : 0xFF14;
-            break;
-        case 0x45:
-            r = (s) ? 0x1714 : 0xFF04;
-            break;
-        default:
-            r = 0xFFFF;
-    }
-    return r;
-}
-# 17 "main.c" 2
-# 28 "main.c"
-int8_t ps2DataState = 0;
-
-uint8_t ps2Bits = 0;
-int8_t ps2BitsCount = 0;
-
-
-uint8_t ps2Data[8];
-int8_t ps2DataCount = 0;
-
-
-
-uint8_t outPorts[11] =
-{
-
-    0xff,
-    0xff,
-    0xff,
-    0xff,
-    0xff,
-    0xff,
-    0xff,
-    0xff,
-
-    0xff,
-    0xff,
-    0xff
+    22, 79,
+    30, 80,
+    38, 81,
+    37, 83,
+    46, 86,
+    54, 87,
+    61, 92,
+    62, 94,
+    70, 95,
+    69, 96,
+    78, 97,
+    85, 98,
+    93, 99,
+    76, 103,
+    82, 104,
+    65, 106,
+    73, 109,
+    74, 110
 };
 
 
 
 
-int8_t i = 0;
-int16_t keyCode = 0;
-uint8_t shift = 0;
-uint8_t capsLock = 0;
-uint8_t numLock = 0;
-# 85 "main.c"
-uint8_t replaceCode(uint8_t code)
+
+const uint8_t codeToMatrix[128] =
 {
-    uint8_t r = 0x00;
-    switch(code) {
-        case 0x12:
-            r = 0x00;
-            break;
-        case 0x77:
-            r = 0x00;
-            break;
-        case 0x70:
-            r = 0x00;
-            break;
-        case 0x6C:
-            r = 0x00;
-            break;
-        case 0x7D:
-            r = 0x00;
-            break;
-        case 0x71:
-            r = 0x00;
-            break;
-        case 0x69:
-            r = 0x00;
-            break;
-        case 0x7A:
-            r = 0x00;
-            break;
-        case 0x5A:
-            r = 0x00;
-            break;
-        case 0x75:
-            r = 0xF5;
-            break;
-        case 0x6B:
-            r = 0xFB;
-            break;
-        case 0x74:
-            r = 0xF4;
-            break;
-        case 0x72:
-            r = 0xF2;
-            break;
-        case 0x11:
-            r = 0x00;
-            break;
-        case 0x14:
-            r = 0x00;
-            break;
-    }
-    return r;
-}
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0xFF,
+0x9C,
+0xFF,
+0xFF,
+0xF,
+0x0,
+0xFF,
+0x0,
+0x2,
+0x3,
+0xFF,
+0xFF,
+0xFF,
+0x8,
+0x9,
+0x1,
+0xA,
+0xB,
+0x44,
+0xFF,
+0x18,
+0x10,
+0x11,
+0x12,
+0x1B,
+0x13,
+0xFF,
+0x5C,
+0x7,
+0x20,
+0x19,
+0x22,
+0x1A,
+0x23,
+0x63,
+0x64,
+0x1F,
+0x27,
+0x26,
+0x21,
+0x25,
+0x24,
+0x54,
+0xA0,
+0x6,
+0x17,
+0x1E,
+0x1D,
+0x1C,
+0x14,
+0xFF,
+0xFF,
+0x9F,
+0x16,
+0x15,
+0xD,
+0x4,
+0xC,
+0xFF,
+0xFF,
+0x97,
+0xA0,
+0xE,
+0x8D,
+0x5,
+0x9E,
+0x83,
+0x8B,
+0x93,
+0x9C,
+0x9B,
+0xFF,
+0x8E,
+0xA3,
+0xA6,
+0x4B,
+0xFF,
+0x6,
+0xFF,
+0xA4,
+0xFF,
+0xA7,
+0x94,
+0x8C,
+0x84,
+0x96,
+0x90,
+0xFF,
+0xFF,
+0x44,
+0x88,
+0x85,
+0x3,
+0x9A,
+0x1B,
+0x1C,
+0xA2,
+0x98,
+0xFF,
+0x4,
+0x97,
+0xB,
+0x23,
+0x24,
+0x14,
+0x43,
+0xFF,
+0xFF,
+0x96,
+0x13,
+0x9E,
+0xA7,
+0xC,
+0xFF,
+0xFF,
+};
+# 17 "main.c" 2
+# 27 "main.c"
+static int8_t ps2DataState = 0;
+
+
+uint8_t ps2Bits = 0;
+static int8_t ps2BitsCount = 0;
+
+
+static uint8_t ps2Data = 0;
+static int8_t ps2DataCount = 0;
+static int8_t ps2WaitCode = 0;
+static int8_t ps2Up = 0;
+static int8_t ps2NeedEncode = 0;
+
+
+uint8_t outPorts[11] =
+{
+
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+
+    0x00,
+    0x00,
+    0x00
+};
+
+
+uint8_t i = 0;
+uint8_t shift = 0;
+uint8_t ctrl = 0;
+uint8_t replaced = 0;
+
 
 
 
@@ -950,13 +1002,14 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
         TMR0 = 255;
 
 
-        if ( ps2DataState == 0 || ps2DataState == 1 ) {
+
+        if ( ps2DataState == 0 ) {
             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
                 ps2BitsCount = 0;
                 ps2Bits = 0;
-                ps2DataState = 2;
+                ps2DataState = 1;
             }
-        } else if ( ps2DataState == 2 ) {
+        } else if ( ps2DataState == 1 ) {
             if ( ps2BitsCount < 8 ) {
                 if ( PORTAbits.RA3 ) {
                     ps2Bits |= ( 1 << ps2BitsCount );
@@ -965,21 +1018,41 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
             } else if ( ps2BitsCount == 8 ) {
                 ps2BitsCount++;
             } else if ( ps2BitsCount == 9 ) {
-                if ( ps2DataCount < 8 ) {
-                    ps2Data[ps2DataCount] = ps2Bits;
-                    ps2DataCount++;
-                }
-                if ( ps2Bits == 0xF0 || ps2Bits == 0xE0 ) {
-                    ps2DataState = 1;
-                } else {
-                    if ( ps2DataCount == 2 && ps2Data[1] == 0x12 ) {
-                       ps2DataState = 1;
-                    } else if ( ps2Data[0] == 0xe1 && ps2DataCount < 8 ) {
-                        ps2DataState = 1;
-                    } else {
-                        ps2DataState = 3;
+                ps2DataCount++;
+                if ( ps2NeedEncode ) {
+                    switch(ps2Bits) {
+
+
+
+
+                        case 0x14: ps2Data = 19; break;
+                        case 0x70: ps2Data = 23; break;
+                        case 0x6c: ps2Data = 24; break;
+                        case 0x7d: ps2Data = 25; break;
+                        case 0x71: ps2Data = 31; break;
+                        case 0x69: ps2Data = 32; break;
+                        case 0x7a: ps2Data = 39; break;
+                        case 0x75: ps2Data = 40; break;
+                        case 0x6b: ps2Data = 47; break;
+                        case 0x72: ps2Data = 48; break;
+                        case 0x74: ps2Data = 55; break;
+                        case 0x4a: ps2Data = 56; break;
+                        case 0x5a: ps2Data = 57; break;
                     }
+                } else {
+                    ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits;
                 }
+                if ( ps2Bits == 0xF0 ) {
+                    ps2DataState = 0;
+                    ps2Up = 1;
+                } else if ( ps2Bits == 0xE0 ) {
+                    ps2DataState = 0;
+                    ps2NeedEncode = 1;
+                } else {
+# 132 "main.c"
+                    ps2DataState = 2;
+                }
+
             }
         }
     }
@@ -990,51 +1063,75 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 
 void setPort(uint8_t bit_id)
 {
-    outPorts[bit_id & 0x07] |= (1 << (bit_id >> 4));
+    outPorts[bit_id & 7] |= (1 << ((bit_id >> 3) & 7));
 }
 
 void resetPort(uint8_t bit_id)
 {
-    outPorts[bit_id & 0x07] &= ~(1 << (bit_id >> 4));
+    outPorts[bit_id & 7] &= ~(1 << ((bit_id >> 3) & 7));
 }
 
 
 
 void keyDown(uint8_t key)
 {
-    uint16_t c = codeToMatrix(key, shift, capsLock, numLock );
-    if ( (c & 0xFF) != 0xFF ) setPort(c & 0xFF );
-    if ( (( c >> 8 ) & 0xFF) != 0xFF ) setPort( (c >> 8 ) & 0xFF );
+    if ( key >= 128 ) return;
+    i = codeToMatrix[key];
+    if ( i != 0xFF ) {
+        setPort(i);
+
+        if ( (shift &&!replaced) || (i & 0b01000000) ) {
+            setPort(0x00);
+        } else {
+            resetPort(0x00);
+        }
+
+        if ( ctrl || (i & 0b10000000) ) {
+            setPort(0x0F);
+        } else {
+            resetPort(0x0F);
+        }
+    }
 }
 
 void keyUp(uint8_t key)
 {
-    uint16_t c = codeToMatrix(key, shift, capsLock, numLock );
-    if ( (c & 0xFF) != 0xFF ) resetPort(c & 0xFF );
-    if ( (( c >> 8 ) & 0xFF ) != 0xFF ) setPort( (c >> 8 ) & 0xFF );
+    if ( key >= 128 ) return;
+    i = codeToMatrix[key];
+    if ( i != 0xFF ) resetPort(i);
 }
+
+void myDelay()
+{
+
+}
+
 
 
 
 void sendDataToAltera()
 {
-
+    RA2 = 1;
+    RA1 = 1;
+    myDelay();
+    RA2 = 0;
+    myDelay();
+    RA2 = 1;
+    myDelay();
+    RA1 = 0;
+    myDelay();
+    for(i=0;i<8;i++) {
+        RA2 = 1;
+        myDelay();
+        PORTB = outPorts[i];
+        myDelay();
+        RA2 = 0;
+        myDelay();
+    }
+    RA2 = 1;
+    PORTB = 0;
 }
-
-
-
-void sendToKeyboardRepeat()
-{
-
-}
-
-void sendToKeyboardLED(uint8_t id, uint8_t state)
-{
-
-}
-
-
-
+# 251 "main.c"
 void main(void)
 {
     TRISA0 = 1;
@@ -1046,8 +1143,8 @@ void main(void)
     PORTA = 0b00000000;
 
     TRISB = 0b00000000;
-    PORTB = 0b00000010;
-# 266 "main.c"
+    PORTB = 0b00000000;
+# 282 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1056,46 +1153,53 @@ void main(void)
     T0IF = 0;
     TMR0 = 255;
 
+    ps2Data = 0;
+    ps2DataCount = 0;
+    ps2WaitCode = 0;
+    ps2Up = 0;
+    ps2NeedEncode = 0;
     ps2DataState = 0;
-    ps2BitsCount = 0;
-    ps2Bits = 0;
-
 
     while(1)
     {
-        if ( ps2DataState == 3 ) {
+        if ( ps2DataState == 2 ) {
 
-
-            if ( ps2DataCount == 1) {
-                keyDown(ps2Data[0]);
-            } else if ( ps2DataCount == 2 ) {
-                if ( ps2Data[0] == 0xF0 ) {
-                    keyUp(ps2Data[1]);
-                } else if ( ps2Data[0] == 0xE0 ) {
-                    keyDown(replaceCode(ps2Data[1]));
-                }
-            } else if ( ps2DataCount == 3 ){
-                if ( ps2Data[0] == 0xF0 && ps2Data[1] == 0xE0 ) {
-                    keyUp(replaceCode(ps2Data[2]));
-                }
-            } else if ( ps2DataCount > 3 ){
-                if ( ps2Data[0] == 0xF0 ) {
-                    if ( ps2Data[1] == 0xE1 && ps2Data[2] == 0x14 ) keyUp(replaceCode(ps2Data[3]));
-                    if ( ps2Data[1] == 0xE0 && ps2Data[2] == 0x12 ) keyUp(replaceCode(ps2Data[2]));
-                } else {
-                    if ( ps2Data[0] == 0xE1 && ps2Data[1] == 0x14 ) keyDown(replaceCode(ps2Data[2]));
-                    if ( ps2Data[0] == 0xE0 && ps2Data[1] == 0x12 ) keyDown(replaceCode(ps2Data[1]));
+            replaced = 0;
+            if ( shift && !ctrl ) {
+                for(i = 0; i < 35 ;i+=2) {
+                    if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+                        replaced = 1;
+                        ps2Data = replaceOnShiftKeyDown[i+1];
+                        break;
+                    }
                 }
             }
 
+            if ( ps2Up == 0) {
+                keyDown(ps2Data);
+                if ( ps2Data == 18 || ps2Data == 89) shift = 1;
+                if ( ps2Data == 20 || ps2Data == 19) ctrl = 1;
 
+            } else {
+                if ( ps2Data == 18 || ps2Data == 89) shift = 0;
+                if ( ps2Data == 20 || ps2Data == 19) ctrl = 0;
+                keyUp(ps2Data);
+            }
+
+
+            ps2Data = 0;
             ps2DataCount = 0;
+            ps2WaitCode = 0;
+            ps2Up = 0;
+            ps2NeedEncode = 0;
             ps2DataState = 0;
 
 
             sendDataToAltera();
         }
-# 321 "main.c"
+
+
+
         __asm("clrwdt");
     }
 
