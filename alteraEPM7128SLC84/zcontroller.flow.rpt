@@ -1,5 +1,5 @@
 Flow report for zcontroller
-Sat Aug 25 12:17:58 2018
+Sat Aug 25 13:58:27 2018
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------+
 ; Flow Summary                                                           ;
 +-------------------------+----------------------------------------------+
-; Flow Status             ; Successful - Sat Aug 25 12:17:58 2018        ;
+; Flow Status             ; Successful - Sat Aug 25 13:58:27 2018        ;
 ; Quartus II Version      ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name           ; zcontroller                                  ;
 ; Top-level Entity Name   ; zcontroller                                  ;
@@ -46,7 +46,7 @@ applicable agreement for further details.
 ; Device                  ; EPM7128SLC84-15                              ;
 ; Timing Models           ; Final                                        ;
 ; Met timing requirements ; Yes                                          ;
-; Total macrocells        ; 81 / 128 ( 63 % )                            ;
+; Total macrocells        ; 109 / 128 ( 85 % )                           ;
 ; Total pins              ; 68 / 68 ( 100 % )                            ;
 +-------------------------+----------------------------------------------+
 
@@ -56,7 +56,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/25/2018 12:17:55 ;
+; Start date & time ; 08/25/2018 13:58:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; zcontroller         ;
 +-------------------+---------------------+
@@ -67,7 +67,7 @@ applicable agreement for further details.
 +------------------------------------+-------------------------------------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                    ; Value                                                                                     ; Default Value ; Entity Name ; Section Id     ;
 +------------------------------------+-------------------------------------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID              ; 53447166804730.153518867518252                                                            ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID              ; 53447166804730.153519470422596                                                            ; --            ; --          ; --             ;
 ; MAX7000_OPTIMIZATION_TECHNIQUE     ; Area                                                                                      ; Speed         ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP             ; 85                                                                                        ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP             ; 0                                                                                         ; --            ; --          ; --             ;
@@ -84,9 +84,9 @@ applicable agreement for further details.
 ; Module Name             ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis    ; 00:00:01     ; 1.0                     ; 263 MB              ; 00:00:01                           ;
-; Fitter                  ; 00:00:00     ; 1.0                     ; 198 MB              ; 00:00:00                           ;
+; Fitter                  ; 00:00:00     ; 1.0                     ; 199 MB              ; 00:00:00                           ;
 ; Assembler               ; 00:00:00     ; 1.0                     ; 203 MB              ; 00:00:00                           ;
-; Classic Timing Analyzer ; 00:00:00     ; 1.0                     ; 173 MB              ; 00:00:00                           ;
+; Classic Timing Analyzer ; 00:00:00     ; 1.0                     ; 174 MB              ; 00:00:00                           ;
 ; Total                   ; 00:00:01     ; --                      ; --                  ; 00:00:01                           ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 

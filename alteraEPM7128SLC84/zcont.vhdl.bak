@@ -139,9 +139,8 @@ architecture RTL of zcontroller is
 
 --signal port_data : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 signal port_read: std_logic := '0';
-signal port_read_fe: std_logic := '0';
-signal port_read_df: std_logic := '0';
 signal port_write: std_logic := '0';
+signal port_read_sel: STD_LOGIC_VECTOR (1 downto 0) := "00";
 
 signal count : integer range 0 to 15 := 0;
 
@@ -174,7 +173,12 @@ begin
 
 	port_read <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 	
-	IORQGE <= '1' when port_read = '1' and A(7 downto 0) = X"FE" else 'Z';
+	port_read_sel <= "00" when port_read = '0' else
+					 "01"  when A(7 downto 0) = X"FE" else 
+					 "10"  when A(7 downto 0) = X"DF" else 
+					 "00";
+	
+	IORQGE <= '1' when port_read = '1' and not port_read_sel == "00" else 'Z';
 	
 	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 
@@ -231,9 +235,9 @@ begin
                 elsif count = 5 then portF <= PB(4 downto 0); 
                 elsif count = 6 then portG <= PB(4 downto 0); 
                 elsif count = 7 then portH <= PB(4 downto 0); 
-                --elsif count = 8 then portI <= PB(7 downto 0); 
-                --elsif count = 9 then portJ <= PB(7 downto 0);
-                --elsif count = 10 then portK <= PB(7 downto 0);
+                elsif count = 8 then portI <= PB(7 downto 0); 
+                elsif count = 9 then portJ <= PB(7 downto 0);
+                elsif count = 10 then portK <= PB(7 downto 0);
                 end if;
                 
                 count <= count + 1;
@@ -277,8 +281,7 @@ begin
 	--		#FBDF — X-coord
 	--		#FFDF — Y-coord 
 	
-	port_read_fe <= '1' when port_read = '1' and A(7 downto 0) = X"FE" else '0';
-	port_read_df <= '1' when port_read = '1' and A(7 downto 0) = X"DF" else '0';		 
+			 
 
 	
 	keyboardData <= portA when A(8) = '0' else
@@ -291,9 +294,9 @@ begin
 					portH when A(15) = '0' else	
 					portA or portB or portC or portD or portE or portF or portG or portH;
 				
-	mouseData <= portI when A(15 downto 8) = "11110101" else 
-				 portJ when A(15 downto 8) = "11110111" else
-				 portK when A(15 downto 8) = "11110111" else
+	mouseData <= portI when A(15 downto 8) = X"FA" else 
+				 portJ when A(15 downto 8) = X"FB" else
+				 portK when A(15 downto 8) = X"FF" else
 				 "ZZZZZZZZ";
 				 
 	--key_proc: process (port_read_fe) 
@@ -367,8 +370,8 @@ begin
 	--				 "111" & not ( portA or portB or portC or portD or portE or portF or portG or portH );
 					  
 	
-	D(7 downto 0) <= "111" & not keyboardData when port_read_fe = '1' else 
-					 mouseData when port_read_df = '1' else 
+	D(7 downto 0) <= "111" & not keyboardData when port_read_sel = "01" else 
+					 mouseData when port_read_sel = "10" else 
 					 "ZZZZZZZZ";
 		
 	SDEN <= not portG(1);

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for zcontroller
-Sat Aug 25 12:17:56 2018
+Sat Aug 25 13:58:25 2018
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -41,12 +41,12 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                               ;
 +-----------------------------+----------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Sat Aug 25 12:17:56 2018        ;
+; Analysis & Synthesis Status ; Successful - Sat Aug 25 13:58:25 2018        ;
 ; Quartus II Version          ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name               ; zcontroller                                  ;
 ; Top-level Entity Name       ; zcontroller                                  ;
 ; Family                      ; MAX7000S                                     ;
-; Total macrocells            ; 81                                           ;
+; Total macrocells            ; 109                                          ;
 ; Total pins                  ; 64                                           ;
 +-----------------------------+----------------------------------------------+
 
@@ -136,14 +136,15 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------+---------------------------------+
 ; Resource             ; Usage                           ;
 +----------------------+---------------------------------+
-; Logic cells          ; 81                              ;
-; Total registers      ; 44                              ;
+; Logic cells          ; 109                             ;
+; Total registers      ; 68                              ;
 ; I/O pins             ; 64                              ;
+; Shareable expanders  ; 4                               ;
 ; Parallel expanders   ; 5                               ;
 ; Maximum fan-out node ; lpm_counter:count_rtl_0|dffs[0] ;
-; Maximum fan-out      ; 44                              ;
-; Total fan-out        ; 500                             ;
-; Average fan-out      ; 3.45                            ;
+; Maximum fan-out      ; 68                              ;
+; Total fan-out        ; 854                             ;
+; Average fan-out      ; 4.82                            ;
 +----------------------+---------------------------------+
 
 
@@ -152,7 +153,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------+------------+------+--------------------------------------+--------------+
 ; Compilation Hierarchy Node   ; Macrocells ; Pins ; Full Hierarchy Name                  ; Library Name ;
 +------------------------------+------------+------+--------------------------------------+--------------+
-; |zcontroller                 ; 81         ; 64   ; |zcontroller                         ; work         ;
+; |zcontroller                 ; 109        ; 64   ; |zcontroller                         ; work         ;
 ;    |lpm_counter:count_rtl_0| ; 4          ; 0    ; |zcontroller|lpm_counter:count_rtl_0 ; work         ;
 +------------------------------+------------+------+--------------------------------------+--------------+
 
@@ -201,7 +202,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Sat Aug 25 12:17:55 2018
+    Info: Processing started: Sat Aug 25 13:58:24 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off zcontroller -c zcontroller
 Info: Found 2 design units, including 1 entities, in source file zcont.vhdl
     Info: Found design unit 1: zcontroller-RTL
@@ -222,9 +223,6 @@ Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(125): used explic
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(126): used explicit default value for signal "IO5" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(127): used explicit default value for signal "IO6" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(128): used explicit default value for signal "IO7" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(162): used explicit default value for signal "portI" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(163): used explicit default value for signal "portJ" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(164): used explicit default value for signal "portK" because signal was never assigned a value
 Info: Inferred 1 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: "count[0]~0"
 Info: Elaborated megafunction instantiation "lpm_counter:count_rtl_0"
@@ -241,6 +239,8 @@ Warning: Tri-state node(s) do not directly drive top-level pin(s)
     Warning: Converted the fan-out from the tri-state buffer "mouseData[5]" to the node "D[5]" into an OR gate
     Warning: Converted the fan-out from the tri-state buffer "mouseData[6]" to the node "D[6]" into an OR gate
     Warning: Converted the fan-out from the tri-state buffer "mouseData[7]" to the node "D[7]" into an OR gate
+Warning: TRI or OPNDRN buffers permanently disabled
+    Warning: Node "IORQGE~synth"
 Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "WRH" is stuck at GND
     Warning (13410): Pin "IOW" is stuck at VCC
@@ -259,11 +259,8 @@ Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "IO7" is stuck at GND
 Info: Promoted pin-driven signal(s) to global signal
     Info: Promoted clock signal driven by pin "STROBE" to global clock signal
-Warning: Design contains 12 input pin(s) that do not drive logic
+Warning: Design contains 9 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "WR"
-    Warning (15610): No output dependent on input pin "PB[5]"
-    Warning (15610): No output dependent on input pin "PB[6]"
-    Warning (15610): No output dependent on input pin "PB[7]"
     Warning (15610): No output dependent on input pin "SDTAKT"
     Warning (15610): No output dependent on input pin "SDDET"
     Warning (15610): No output dependent on input pin "SDRO"
@@ -272,14 +269,15 @@ Warning: Design contains 12 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "RES"
     Warning (15610): No output dependent on input pin "NMI"
     Warning (15610): No output dependent on input pin "IO3D"
-Info: Implemented 145 device resources after synthesis - the final resource count might be different
+Info: Implemented 177 device resources after synthesis - the final resource count might be different
     Info: Implemented 39 input pins
     Info: Implemented 16 output pins
     Info: Implemented 9 bidirectional pins
-    Info: Implemented 81 macrocells
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 56 warnings
+    Info: Implemented 109 macrocells
+    Info: Implemented 4 shareable expanders
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 52 warnings
     Info: Peak virtual memory: 263 megabytes
-    Info: Processing ended: Sat Aug 25 12:17:56 2018
+    Info: Processing ended: Sat Aug 25 13:58:25 2018
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
