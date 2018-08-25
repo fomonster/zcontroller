@@ -995,9 +995,9 @@ uint8_t outPorts[11] =
     0x00,
     0x00,
 
-    0x01,
-    0x02,
-    0x03
+    0x00,
+    0xF5,
+    0xDA
 };
 
 
@@ -1112,7 +1112,7 @@ void keyUp(uint8_t key)
 
 void myDelay()
 {
-
+    for(uint8_t j = 0; j < 1; j++) { };
 }
 
 
@@ -1129,7 +1129,8 @@ void sendDataToAltera()
     myDelay();
     RA1 = 0;
     myDelay();
-    for(i=0;i<11;i++) {
+    for(i=0;i<8;i++) {
+        myDelay();
         RA2 = 1;
         myDelay();
         PORTB = outPorts[i];
@@ -1140,7 +1141,7 @@ void sendDataToAltera()
     RA2 = 1;
     PORTB = 0;
 }
-# 243 "main.c"
+# 244 "main.c"
 void main(void)
 {
     TRISA0 = 1;
@@ -1153,7 +1154,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000000;
-# 274 "main.c"
+# 275 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1207,7 +1208,7 @@ void main(void)
 
             sendDataToAltera();
         }
-# 349 "main.c"
+# 350 "main.c"
         __asm("clrwdt");
     }
 

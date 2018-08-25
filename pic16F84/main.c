@@ -50,9 +50,9 @@ uint8_t outPorts[11] =
     0x00, // 6 - #BFFE - Enter...H "10111111"   
     0x00, // 7 - #7FFE - Space...B "01111111"
     // mouse
-    0x01, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
-    0x02, // #FBDF - mouse X 
-    0x03  // #FFDF - mouse Y 
+    0x00, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
+    0xF5, // #FBDF - mouse X 
+    0xDA  // #FFDF - mouse Y 
 };
 
 // temp
@@ -174,7 +174,7 @@ void keyUp(uint8_t key)
 
 void myDelay()
 {
-   // for(uint8_t j = 0; j < 30; j++) { };
+    for(uint8_t j = 0; j < 1; j++) { };
 }
 
 /*******************************************************************************
@@ -191,7 +191,8 @@ void sendDataToAltera()
     myDelay();
     RA1 = 0; // RESTRIG
     myDelay();
-    for(i=0;i<11;i++) {
+    for(i=0;i<8;i++) {
+        myDelay();
         RA2 = 1; //STROBE
         myDelay();
         PORTB = outPorts[i];
@@ -342,7 +343,7 @@ void main(void)
             }
             sendDataToAltera();
              
-            mouseDelay = 0;            
+            mouseDelay = 0;
         }*/
         
         

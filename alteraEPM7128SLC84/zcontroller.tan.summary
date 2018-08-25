@@ -7,7 +7,7 @@ Slack          : N/A
 Required Time  : None
 Actual Time    : 11.000 ns
 From           : PB[1]
-To             : portI[1]
+To             : portJ[1]
 From Clock     : --
 To Clock       : STROBE
 Failed Paths   : 0
@@ -26,7 +26,7 @@ Type           : Worst-case tpd
 Slack          : N/A
 Required Time  : None
 Actual Time    : 33.000 ns
-From           : A[15]
+From           : A[12]
 To             : D[0]
 From Clock     : --
 To Clock       : --
@@ -37,7 +37,7 @@ Slack          : N/A
 Required Time  : None
 Actual Time    : -3.000 ns
 From           : PB[1]
-To             : portI[1]
+To             : portJ[1]
 From Clock     : --
 To Clock       : STROBE
 Failed Paths   : 0
@@ -47,7 +47,7 @@ Slack          : N/A
 Required Time  : None
 Actual Time    : 76.92 MHz ( period = 13.000 ns )
 From           : lpm_counter:count_rtl_0|dffs[3]
-To             : portF[1]
+To             : portD[0]
 From Clock     : STROBE
 To Clock       : STROBE
 Failed Paths   : 0

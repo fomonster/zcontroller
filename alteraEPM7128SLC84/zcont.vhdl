@@ -146,7 +146,7 @@ signal count : integer range 0 to 15 := 0;
 
 --signal countA   : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 signal keyboardData : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+--signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 
 -- keyboard ports data
 signal portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
@@ -158,7 +158,7 @@ signal portF : STD_LOGIC_VECTOR (4 downto 0) := "00000";
 signal portG : STD_LOGIC_VECTOR (4 downto 0) := "00000";
 signal portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
 -- mouse ports data
-signal portI : STD_LOGIC_VECTOR (7 downto 0) := "11111111";
+signal portI : STD_LOGIC_VECTOR (2 downto 0) := "000";
 signal portJ : STD_LOGIC_VECTOR (7 downto 0) := "11111111";
 signal portK : STD_LOGIC_VECTOR (7 downto 0) := "11111111";
 
@@ -171,14 +171,14 @@ signal portK : STD_LOGIC_VECTOR (7 downto 0) := "11111111";
 
 begin
 
-	port_read <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
+	port_read <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0';  -- 
 	
 	port_read_sel <= "00" when port_read = '0' else
 					 "01"  when A(7 downto 0) = X"FE" else 
 					 "10"  when A(7 downto 0) = X"DF" else 
 					 "00";
 	
-	IORQGE <= '1' when port_read = '1' and not port_read_sel = "00" else 'Z';
+	IORQGE <= '1' when port_read = '1' and ( not (port_read_sel = "00")) else 'Z';
 	
 	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 
@@ -235,7 +235,7 @@ begin
                 elsif count = 5 then portF <= PB(4 downto 0); 
                 elsif count = 6 then portG <= PB(4 downto 0); 
                 elsif count = 7 then portH <= PB(4 downto 0); 
-                elsif count = 8 then portI <= PB(7 downto 0); 
+                elsif count = 8 then portI <= PB(2 downto 0); 
                 elsif count = 9 then portJ <= PB(7 downto 0);
                 elsif count = 10 then portK <= PB(7 downto 0);
                 end if;
@@ -294,10 +294,7 @@ begin
 					portH when A(15) = '0' else	
 					portA or portB or portC or portD or portE or portF or portG or portH;
 				
-	mouseData <= portI when A(15 downto 8) = X"FA" else 
-				 portJ when A(15 downto 8) = X"FB" else
-				 portK when A(15 downto 8) = X"FF" else
-				 "ZZZZZZZZ";
+	
 				 
 	--key_proc: process (port_read_fe) 
 	--begin
@@ -371,8 +368,12 @@ begin
 					  
 	
 	D(7 downto 0) <= "111" & not keyboardData when port_read_sel = "01" else 
-					 mouseData when port_read_sel = "10" else 
-					 "ZZZZZZZZ";
+					"ZZZZZZZZ" when port_read_sel = "00" else
+					"00000" & portI when A(15 downto 8) = X"FA" else 
+					portJ when A(15 downto 8) = X"FB" else
+					portK when A(15 downto 8) = X"FF" else
+					"ZZZZZZZZ";
+					
 		
 	SDEN <= not portG(1);
 	
