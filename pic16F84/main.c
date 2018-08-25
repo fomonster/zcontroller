@@ -50,9 +50,9 @@ uint8_t outPorts[11] =
     0x00, // 6 - #BFFE - Enter...H "10111111"   
     0x00, // 7 - #7FFE - Space...B "01111111"
     // mouse
-    0x00, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
-    0x00, // #FBDF - mouse X 
-    0x00  // #FFDF - mouse Y 
+    0x01, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
+    0x02, // #FBDF - mouse X 
+    0x03  // #FFDF - mouse Y 
 };
 
 // temp
@@ -60,6 +60,11 @@ uint8_t i = 0;
 uint8_t shift = 0;
 uint8_t ctrl = 0;
 uint8_t replaced = 0;
+
+/* mouse test */
+uint8_t mouseX = 220;
+uint8_t mouseY = 110;
+uint16_t mouseDelay = 0;
 
 /*******************************************************************************
     PS2 receiver with non one bytes keys encoder and state machine
@@ -97,26 +102,7 @@ void __interrupt(high_priority) myIsr(void)
                             ps2Data = replaceTwoBytesCodes[ii+1];
                             break;
                         }
-                    }
-                    /*switch(ps2Bits) {
-                        //case 0x1f:  ps2Data = 2; break; // Windows left
-                       // case 0x11:  ps2Data = 8; break; // Alt right
-                       // case 0x27:  ps2Data = 15; break; // Windows right
-                       // case 0x2f:  ps2Data = 16; break; // Menus
-                        case 0x14:  ps2Data = 19; break; // Ctrl (right)
-                        case 0x70:  ps2Data = 23; break; // Insert
-                        case 0x6c:  ps2Data = 24; break; // Home
-                        case 0x7d:  ps2Data = 25; break; // Page Up
-                        case 0x71:  ps2Data = 31; break; // Delete
-                        case 0x69:  ps2Data = 32; break; // End 
-                        case 0x7a:  ps2Data = 39; break; // Page Down
-                        case 0x75:  ps2Data = 40; break; // Up Arrow
-                        case 0x6b:  ps2Data = 47; break; // Left Arrow
-                        case 0x72:  ps2Data = 48; break; // Down Arrow
-                        case 0x74:  ps2Data = 55; break; // Right Arrow
-                        case 0x4a:  ps2Data = 56; break; // "/"
-                        case 0x5a:  ps2Data = 57; break; // Enter
-                    }   */
+                    }                   
                 } else {                    
                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits; // F7
                 }
@@ -205,7 +191,7 @@ void sendDataToAltera()
     myDelay();
     RA1 = 0; // RESTRIG
     myDelay();
-    for(i=0;i<8;i++) {
+    for(i=0;i<11;i++) {
         RA2 = 1; //STROBE
         myDelay();
         PORTB = outPorts[i];
@@ -298,7 +284,7 @@ void main(void)
     ps2WaitCode = 0;
     ps2Up = 0;
     ps2NeedEncode = 0;
-    ps2DataState = PS2DATA_WAIT;    
+    ps2DataState = PS2DATA_WAIT;
     
     while(1)
     {
@@ -306,27 +292,7 @@ void main(void)
             // replace data if shift pressed
             replaced = 0;
             if ( shift && !ctrl ) {
-                /*switch(ps2Data) {
-                    case 22: ps2Data = 79; break;
-                    case 30: ps2Data = 80; break;
-                    case 38: ps2Data = 81; break;
-                    case 37: ps2Data = 83; break;
-                    case 46: ps2Data = 86; break;
-                    case 54: ps2Data = 87; break;
-                    case 61: ps2Data = 92; break;
-                    case 62: ps2Data = 94; break;
-                    case 70: ps2Data = 95; break;
-                    case 69: ps2Data = 96; break;
-                    case 78: ps2Data = 97; break;
-                    case 85: ps2Data = 98; break;
-                    case 93: ps2Data = 99; break;
-                    case 76: ps2Data = 103; break;
-                    case 82: ps2Data = 104; break;
-                    case 65: ps2Data = 106; break;
-                    case 73: ps2Data = 109; break;
-                    case 74: ps2Data = 110; break;
-                }*/
-                
+               
                 for(i = 0; i < 35 ;i+=2) {
                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
                         replaced = 1;
@@ -359,6 +325,25 @@ void main(void)
             sendDataToAltera();
         }
                 
+        
+        // random mouse movement
+        
+        /*mouseDelay++;
+        if ( mouseDelay > 65000 ) {
+            
+            if ( outPorts[9] > mouseX ) outPorts[9]--;
+            else if ( outPorts[9] < mouseX ) outPorts[9]++;
+            if ( outPorts[10] > mouseY ) outPorts[10]--;
+            else if ( outPorts[10] < mouseY ) outPorts[10]++;
+                
+            if (  outPorts[9] ==  mouseX && outPorts[10] ==  mouseY ) {
+                mouseX -= 128;
+                mouseY += 200;
+            }
+            sendDataToAltera();
+             
+            mouseDelay = 0;            
+        }*/
         
         
         CLRWDT();       

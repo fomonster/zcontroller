@@ -995,9 +995,9 @@ uint8_t outPorts[11] =
     0x00,
     0x00,
 
-    0x00,
-    0x00,
-    0x00
+    0x01,
+    0x02,
+    0x03
 };
 
 
@@ -1005,6 +1005,11 @@ uint8_t i = 0;
 uint8_t shift = 0;
 uint8_t ctrl = 0;
 uint8_t replaced = 0;
+
+
+uint8_t mouseX = 220;
+uint8_t mouseY = 110;
+uint16_t mouseDelay = 0;
 
 
 
@@ -1043,7 +1048,6 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                             break;
                         }
                     }
-# 120 "main.c"
                 } else {
                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits;
                 }
@@ -1054,7 +1058,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
                 } else {
-# 138 "main.c"
+# 124 "main.c"
                     ps2DataState = 2;
                 }
 
@@ -1125,7 +1129,7 @@ void sendDataToAltera()
     myDelay();
     RA1 = 0;
     myDelay();
-    for(i=0;i<8;i++) {
+    for(i=0;i<11;i++) {
         RA2 = 1;
         myDelay();
         PORTB = outPorts[i];
@@ -1136,7 +1140,7 @@ void sendDataToAltera()
     RA2 = 1;
     PORTB = 0;
 }
-# 257 "main.c"
+# 243 "main.c"
 void main(void)
 {
     TRISA0 = 1;
@@ -1149,7 +1153,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000000;
-# 288 "main.c"
+# 274 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1171,7 +1175,7 @@ void main(void)
 
             replaced = 0;
             if ( shift && !ctrl ) {
-# 330 "main.c"
+
                 for(i = 0; i < 35 ;i+=2) {
                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
                         replaced = 1;
@@ -1203,9 +1207,7 @@ void main(void)
 
             sendDataToAltera();
         }
-
-
-
+# 349 "main.c"
         __asm("clrwdt");
     }
 

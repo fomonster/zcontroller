@@ -11,21 +11,21 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"69 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"74 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"149
+"135
 [v _setPort setPort `(v  1 e 1 0 ]
-"154
+"140
 [v _resetPort resetPort `(v  1 e 1 0 ]
-"161
+"147
 [v _keyDown keyDown `(v  1 e 1 0 ]
-"182
+"168
 [v _keyUp keyUp `(v  1 e 1 0 ]
-"189
+"175
 [v _myDelay myDelay `(v  1 e 1 0 ]
-"197
+"183
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"257
+"243
 [v _main main `(v  1 e 1 0 ]
 "4 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[36]uc  1 e 36 0 ]
@@ -102,61 +102,61 @@
 [v _ctrl ctrl `uc  1 e 1 0 ]
 "62
 [v _replaced replaced `uc  1 e 1 0 ]
-"257
+"243
 [v _main main `(v  1 e 1 0 ]
 {
-"367
+"352
 } 0
-"197
+"183
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"218
+"204
 } 0
-"189
+"175
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
-"192
+"178
 } 0
-"182
+"168
 [v _keyUp keyUp `(v  1 e 1 0 ]
 {
 [v keyUp@key key `uc  1 a 1 wreg ]
 [v keyUp@key key `uc  1 a 1 wreg ]
-"184
+"170
 [v keyUp@key key `uc  1 a 1 15 ]
-"187
+"173
 } 0
-"161
+"147
 [v _keyDown keyDown `(v  1 e 1 0 ]
 {
 [v keyDown@key key `uc  1 a 1 wreg ]
 [v keyDown@key key `uc  1 a 1 wreg ]
-"163
-[v keyDown@key key `uc  1 a 1 15 ]
-"180
-} 0
 "149
+[v keyDown@key key `uc  1 a 1 15 ]
+"166
+} 0
+"135
 [v _setPort setPort `(v  1 e 1 0 ]
 {
 [v setPort@bit_id bit_id `uc  1 a 1 wreg ]
 [v setPort@bit_id bit_id `uc  1 a 1 wreg ]
-"151
+"137
 [v setPort@bit_id bit_id `uc  1 a 1 13 ]
-"152
+"138
 } 0
-"154
+"140
 [v _resetPort resetPort `(v  1 e 1 0 ]
 {
 [v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
 [v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
-"156
+"142
 [v resetPort@bit_id bit_id `uc  1 a 1 13 ]
-"157
+"143
 } 0
-"69
+"74
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"95
+"100
 [v myIsr@ii ii `i  1 a 2 8 ]
-"145
+"131
 } 0
