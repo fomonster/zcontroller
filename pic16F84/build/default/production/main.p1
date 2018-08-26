@@ -384,7 +384,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
--> -> 0 `i `uc
+-> -> 1 `i `uc
 -> -> 245 `i `uc
 -> -> 218 `i `uc
 ..
@@ -831,10 +831,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 193:     myDelay();
 [e ( _myDelay ..  ]
 "194
-[; ;main.c: 194:     for(i=0;i<8;i++) {
+[; ;main.c: 194:     for(i=0;i<11;i++) {
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 67  ]
+[e $ < -> _i `i -> 11 `i 67  ]
 [e $U 68  ]
 [e :U 67 ]
 {
@@ -863,7 +863,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 202:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 67  ]
+[e $ < -> _i `i -> 11 `i 67  ]
 [e :U 68 ]
 }
 "203

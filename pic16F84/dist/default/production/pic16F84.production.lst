@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Sat Aug 25 20:18:15 2018
+                                                                                               Sun Aug 26 10:28:58 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -237,8 +237,8 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    175  035F  3400               	retlw	low(0)
    176  0360  3400               	retlw	low(0)
    177  0361  3400               	retlw	low(0)
-   178  0362  3400               	retlw	low(0)
-   179  0363  3400               	retlw	0F5h
+   178  0362  3400               	retlw	01h
+   179  0363  3401               	retlw	0F5h
    180  0364  34F5               	retlw	0DAh
    181  0365  34DA               	line	66
    182                           
@@ -530,7 +530,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    467  0429                     	global	_TRISA0
    468                           _TRISA0	set	0x428
    469  0428                     ; #config settings
-   470                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sgms."
+   470                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sb4c."
    471                           	line	#
    472                           psect cinit,class=CODE,delta=2
    473                           global start_initialization
@@ -600,7 +600,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    537                           _mouseX:
    538  0037                            ds      1
    539  0037                     
-   540                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sgms."
+   540                           	file	"C:\Users\FOMONS~1\AppData\Local\Temp\sb4c."
    541                           	line	#
    542                           ; Initialize objects allocated to BANK0
    543                           	global __pidataBANK0
@@ -1409,13 +1409,13 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1346  02C6  2347               	line	194
   1347                           	
   1348                           l1043:	
-  1349  02C7                     ;main.c: 194:     for(i=0;i<8;i++) {
+  1349  02C7                     ;main.c: 194:     for(i=0;i<11;i++) {
   1350                           	bcf	status, 5	;RP0=0, select bank0
   1351  02C7  1283               	clrf	(_i)
   1352  02C8  01A2               	
   1353                           l1045:	
-  1354  02C9                     	movlw	low(08h)
-  1355  02C9  3008               	subwf	(_i),w
+  1354  02C9                     	movlw	low(0Bh)
+  1355  02C9  300B               	subwf	(_i),w
   1356  02CA  0222               	skipc
   1357  02CB  1C03               	goto	u661
   1358  02CC  2ACE               	goto	u660
@@ -1480,8 +1480,8 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1417  02E3  0818               	addwf	(_i),f
   1418  02E4  07A2               	
   1419                           l1063:	
-  1420  02E5                     	movlw	low(08h)
-  1421  02E5  3008               	subwf	(_i),w
+  1420  02E5                     	movlw	low(0Bh)
+  1421  02E5  300B               	subwf	(_i),w
   1422  02E6  0222               	skipc
   1423  02E7  1C03               	goto	u671
   1424  02E8  2AEA               	goto	u670
@@ -2743,7 +2743,7 @@ EEDATA              40      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Sat Aug 25 20:18:15 2018
+Symbol Table                                                                                   Sun Aug 26 10:28:58 2018
 
                             _i 0022                              pc 0002                             fsr 0004  
                           l120 02A7                            l112 0283                            l121 02B5  

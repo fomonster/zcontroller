@@ -995,7 +995,7 @@ uint8_t outPorts[11] =
     0x00,
     0x00,
 
-    0x00,
+    0x01,
     0xF5,
     0xDA
 };
@@ -1129,7 +1129,7 @@ void sendDataToAltera()
     myDelay();
     RA1 = 0;
     myDelay();
-    for(i=0;i<8;i++) {
+    for(i=0;i<11;i++) {
         myDelay();
         RA2 = 1;
         myDelay();

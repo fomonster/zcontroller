@@ -50,9 +50,9 @@ uint8_t outPorts[11] =
     0x00, // 6 - #BFFE - Enter...H "10111111"   
     0x00, // 7 - #7FFE - Space...B "01111111"
     // mouse
-    0x00, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel
-    0xF5, // #FBDF - mouse X 
-    0xDA  // #FFDF - mouse Y 
+    0x01, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel 
+    0xF5, // #FBDF - mouse X  245
+    0xDA  // #FFDF - mouse Y  218
 };
 
 // temp
@@ -191,7 +191,7 @@ void sendDataToAltera()
     myDelay();
     RA1 = 0; // RESTRIG
     myDelay();
-    for(i=0;i<8;i++) {
+    for(i=0;i<11;i++) {
         myDelay();
         RA2 = 1; //STROBE
         myDelay();
@@ -329,7 +329,7 @@ void main(void)
         
         // random mouse movement
         
-        /*mouseDelay++;
+        /*  mouseDelay++;
         if ( mouseDelay > 65000 ) {
             
             if ( outPorts[9] > mouseX ) outPorts[9]--;

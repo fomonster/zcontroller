@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\pic16F84.production.sym \
   --cmf=dist/default/production\pic16F84.production.cmf -z -Q16F84A \
-  -oC:\Users\FOMONS~1\AppData\Local\Temp\sgms.2 \
+  -oC:\Users\FOMONS~1\AppData\Local\Temp\sb4c.2 \
   -Mdist/default/production/pic16F84.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=038h-04dh -pstack=STACK -ACODE=00h-03FFh \
   -ASTRCODE=00h-03FFh -ASTRING=00h-0FFhx4 -ACONST=00h-0FFhx4 \
@@ -15,7 +15,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-03Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sgms.o \
+  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sb4c.o \
   dist/default/production\pic16F84.production.o 
 
 Object code version is 3.11
@@ -25,7 +25,7 @@ Machine type is 16F84A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\FOMONS~1\AppData\Local\Temp\sgms.o
+C:\Users\FOMONS~1\AppData\Local\Temp\sb4c.o
                 end_init                              F        F        1        8       0
                 reset_vec                             0        0        1        0       0
 dist/default/production\pic16F84.production.o

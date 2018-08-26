@@ -139,46 +139,35 @@ architecture RTL of zcontroller is
 
 --signal port_data : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 signal port_read: std_logic := '0';
-signal port_read_sel: std_logic := '0';
-signal port_read_kbdmouse: std_logic := '0';
+signal port_read_fe: std_logic := '0';
 signal port_write: std_logic := '0';
 
-shared variable count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
-signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
+signal count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
+
 --signal countA   : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 
 -- keyboard ports data
-shared variable portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portB : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portC : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portD : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portE : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portF : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portG : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portB : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portC : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portD : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portE : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portF : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portG : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+signal portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
 -- mouse ports data
-shared variable portI : STD_LOGIC_VECTOR (2 downto 0) := "000";
-shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
-shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+--signal portI : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+--signal portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+--signal portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 --------------------------------------------------------------------------------
 --                            œ–Œ÷≈——€                                        --
 --------------------------------------------------------------------------------
 
 begin
 
-	port_read <= '1' when (IORQ = '0') and (RD = '0') and (M1 = '1') and (DOS = '1') and (IORQGE = '0') else '0'; 
+	port_read <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 	
-	mouseData <= "11111" & portI(2 downto 0) when ( A(15 downto 8) = X"FA" ) else	
-				  portJ(7 downto 0) when ( A(15 downto 8) = X"FB" ) else
-				  portK(7 downto 0) when ( A(15 downto 8) = X"FF" ) else
-				  "11111111";
-				  
-	port_read_sel <= '0' when (A(7 downto 0) = X"FE") else 
-					 '1' when (A(7 downto 0) = X"DF") else
-					 'Z';
-					 
-	
-	IORQGE <= 'Z' when (port_read = '0' ) or (port_read_sel = 'Z') else '1';
+	IORQGE <= '1' when port_read = '1' and A(7 downto 0) = X"FE" else 'Z';
 	
 	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 
@@ -210,22 +199,19 @@ begin
         if falling_edge(STROBE) then
             if RESTRIG = '0' then
                 
-                if count = 0 then portA := PB(4 downto 0);
-                elsif count = 1 then portB := PB(4 downto 0);
-                elsif count = 2 then portC := PB(4 downto 0);
-                elsif count = 3 then portD := PB(4 downto 0);
-                elsif count = 4 then portE := PB(4 downto 0);
-                elsif count = 5 then portF := PB(4 downto 0);
-                elsif count = 6 then portG := PB(4 downto 0);
-                elsif count = 7 then portH := PB(4 downto 0);
-                elsif count = 8 then portI := PB(2 downto 0);
-                elsif count = 9 then portJ := PB(7 downto 0);
-                elsif count = 10 then portK := PB(7 downto 0);
+                if count = 0 then portA <= PB(4 downto 0);
+                elsif count = 1 then portB <= PB(4 downto 0);
+                elsif count = 2 then portC <= PB(4 downto 0);
+                elsif count = 3 then portD <= PB(4 downto 0);
+                elsif count = 4 then portE <= PB(4 downto 0);
+                elsif count = 5 then portF <= PB(4 downto 0);
+                elsif count = 6 then portG <= PB(4 downto 0);
+                elsif count = 7 then portH <= PB(4 downto 0);
                 end if;
                 
-                count := count + 1;
+                count <= count + 1;
             else
-                count := "0000"; --(others => '0');
+                count <= (others => '0');
             end if;
         end if;
     end process;
@@ -262,14 +248,9 @@ begin
 	--		#FBDF ó X-coord
 	--		#FFDF ó Y-coord 
 	
-	
+	port_read_fe <= '1' when port_read = '1' and A(7 downto 0) = X"FE" else '0';
 
-	-- works but bad
-	D(7 downto 0) <= "ZZZZZZZZ" when (port_read = '0') or (port_read_sel = 'Z') else	
-					 mouseData(7 downto 0) when port_read_sel = '1' else
-					 --"11111" & portI when ( A(15 downto 8) = X"FA" ) and (port_read_sel = "10") else	
-					--portJ when ( A(15 downto 8) = X"FB" ) and (port_read_sel = "10")  else
-					--portK when ( A(15 downto 8) = X"FF" ) and (port_read_sel = "10")  else				
+	D(7 downto 0) <= "ZZZZZZZZ" when port_read_fe = '0' else				
 					 "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
 					 "111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
 					 "111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
@@ -279,49 +260,12 @@ begin
 					 "111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
 					 "111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
 					 "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-	
-  --data_bus : process(port_read_sel)
-  --begin
-   -- if port_read_sel = "01" then
-	--		if A(15 downto 8) = X"FE" then dataBus <= "111" & not portA(4 downto 0);
-	--		elsif A(15 downto 8) = X"FD" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"FB" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"F7" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"EF" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"DF" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"BF" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"7F" then dataBus <= "111" & not portB(4 downto 0);
-	--		else dataBus <= "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-	--		end if;
-		--when "10" => 
-			--if A(15 downto 8) = X"FE" then D(7 downto 0) <= "11111" & not portI(2 downto 0);
-			--elsif A(15 downto 8) = X"FD" then D(7 downto 0) <= portJ(7 downto 0);
-			--elsif A(15 downto 8) = X"FB" then D(7 downto 0) <= portK(7 downto 0);
-			--else D(7 downto 0) <= "ZZZZZZZZ";
-			--end if;
-	--else
-	--		dataBus <= "ZZZZZZZZ";
-    --end if;
-  --end process data_bus;
-  
-  --D(7 downto 0) <= dataBus;
-		--case port_read_sel is
-			--when "01" =>  "11110000";
-					 --if "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
-					 --"111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
-					 --"111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
-					 --"111" & not portD(4 downto 0) when A(15 downto 8) = X"F7" else
-					 --"111" & not portE(4 downto 0) when A(15 downto 8) = X"EF" else 
-					 ---"111" & not portF(4 downto 0) when A(15 downto 8) = X"DF" else 
-					 --"111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
-					 --"111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
-					 --"111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-			--when "10" => "11111111";
-			--when others =>  "ZZZZZZZZ";
+					 
+					 
 					 --portI when port_read = '1' and A(15 downto 0) = X"FADF" else 
 					 --portJ when port_read = '1' and A(15 downto 0) = X"FBDF" else
 					 --portK when port_read = '1' and A(15 downto 0) = X"FFDF" else	
-	--end case;
+	
 	
 	-- mouse
 	
