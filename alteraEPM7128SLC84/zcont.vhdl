@@ -137,7 +137,8 @@ architecture RTL of zcontroller is
 --                       ¬Õ”“–≈ÕÕ»≈ —»√Õ¿À€ œÀ»—                              --
 --------------------------------------------------------------------------------
 
---signal port_data : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+signal dataBus : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
+signal iorqgeBus : std_logic := 'Z';
 signal port_read: std_logic := '0';
 signal port_read_sel: std_logic := '0';
 signal port_write: std_logic := '0';
@@ -165,19 +166,19 @@ shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 
 begin
 
-	port_read <= '1' when (IORQ = '0') and (RD = '0') and (M1 = '1') and (DOS = '1') and (IORQGE = '0') else '0'; 
+	port_read <= '1' when (IORQ = '0') and (RD = '0') and (M1 = '1') and (DOS = '1')  else '0';  -- and (IORQGE = '0')
 	
-	mouseData <= "11111" & portI(2 downto 0) when ( A(15 downto 8) = X"FA" ) else	
-				  portJ(7 downto 0) when ( A(15 downto 8) = X"FB" ) else
-				  portK(7 downto 0) when ( A(15 downto 8) = X"FF" ) else
-				  "11111111";
+	--mouseData <= "11111" & portI(2 downto 0) when ( A(15 downto 8) = X"FA" ) else
+	--			  portJ(7 downto 0) when ( A(15 downto 8) = X"FB" ) else
+	--			  portK(7 downto 0) when ( A(15 downto 8) = X"FF" ) else
+	--			  "11111111";
 				  
-	port_read_sel <= '0' when (A(7 downto 0) = X"FE") else 
-					 '1' when (A(7 downto 0) = X"DF") else
-					 'Z';
+	--port_read_sel <= '0' when (A(7 downto 0) = X"FE") else 
+	--				 '1' when (A(7 downto 0) = X"DF") else
+	--				 'Z';
 					 
 	
-	IORQGE <= 'Z' when (port_read = '0' ) or (port_read_sel = 'Z') else '1';
+	--IORQGE <= 'Z' when (port_read = '0' ) or (port_read_sel = 'Z') else '1';
 	
 	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
 
@@ -264,46 +265,65 @@ begin
 	
 
 	-- works but bad
-	D(7 downto 0) <= "ZZZZZZZZ" when (port_read = '0') or (port_read_sel = 'Z') else	
-					 mouseData(7 downto 0) when port_read_sel = '1' else
+	--D(7 downto 0) <= "ZZZZZZZZ" when (port_read = '0') or (port_read_sel = 'Z') else	
+	--				 mouseData(7 downto 0) when port_read_sel = '1' else
 					 --"11111" & portI when ( A(15 downto 8) = X"FA" ) and (port_read_sel = "10") else	
 					--portJ when ( A(15 downto 8) = X"FB" ) and (port_read_sel = "10")  else
 					--portK when ( A(15 downto 8) = X"FF" ) and (port_read_sel = "10")  else				
-					 "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
-					 "111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
-					 "111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
-					 "111" & not portD(4 downto 0) when A(15 downto 8) = X"F7" else
-					 "111" & not portE(4 downto 0) when A(15 downto 8) = X"EF" else 
-					 "111" & not portF(4 downto 0) when A(15 downto 8) = X"DF" else 
-					 "111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
-					 "111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
-					 "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
+	--				 "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
+	--				 "111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
+	--				 "111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
+	--				 "111" & not portD(4 downto 0) when A(15 downto 8) = X"F7" else
+	--				 "111" & not portE(4 downto 0) when A(15 downto 8) = X"EF" else 
+	--				 "111" & not portF(4 downto 0) when A(15 downto 8) = X"DF" else 
+	--				 "111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
+	--				 "111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
+	--				 "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
 	
-  --data_bus : process(port_read_sel)
-  --begin
-   -- if port_read_sel = "01" then
-	--		if A(15 downto 8) = X"FE" then dataBus <= "111" & not portA(4 downto 0);
-	--		elsif A(15 downto 8) = X"FD" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"FB" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"F7" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"EF" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"DF" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"BF" then dataBus <= "111" & not portB(4 downto 0);
-	--		elsif A(15 downto 8) = X"7F" then dataBus <= "111" & not portB(4 downto 0);
-	--		else dataBus <= "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-	--		end if;
-		--when "10" => 
-			--if A(15 downto 8) = X"FE" then D(7 downto 0) <= "11111" & not portI(2 downto 0);
-			--elsif A(15 downto 8) = X"FD" then D(7 downto 0) <= portJ(7 downto 0);
-			--elsif A(15 downto 8) = X"FB" then D(7 downto 0) <= portK(7 downto 0);
-			--else D(7 downto 0) <= "ZZZZZZZZ";
-			--end if;
-	--else
-	--		dataBus <= "ZZZZZZZZ";
-    --end if;
-  --end process data_bus;
+  data_bus : process(port_read)
+  begin
+	if (port_read = '1') and (IORQGE = '0') then
+		if (A(7 downto 0) = X"FE") then
+			
+			if A(15 downto 8) = X"FE" then dataBus <= "111" & not portA(4 downto 0);
+			elsif A(15 downto 8) = X"FD" then dataBus <= "111" & not portB(4 downto 0);
+			elsif A(15 downto 8) = X"FB" then dataBus <= "111" & not portC(4 downto 0);
+			elsif A(15 downto 8) = X"F7" then dataBus <= "111" & not portD(4 downto 0);
+			elsif A(15 downto 8) = X"EF" then dataBus <= "111" & not portE(4 downto 0);
+			elsif A(15 downto 8) = X"DF" then dataBus <= "111" & not portF(4 downto 0);
+			elsif A(15 downto 8) = X"BF" then dataBus <= "111" & not portG(4 downto 0);
+			elsif A(15 downto 8) = X"7F" then dataBus <= "111" & not portH(4 downto 0);
+			else dataBus <= "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
+			end if;
+			
+			iorqgeBus <= '1';
+
+		elsif (A(7 downto 0) = X"DF") then
+			
+			if A(15 downto 8) = X"FA" then dataBus <= "11111111"; -- & not portI(2 downto 0);
+			elsif A(15 downto 8) = X"FB" then dataBus <= portJ(7 downto 0);
+			elsif A(15 downto 8) = X"FF" then dataBus <= portK(7 downto 0);
+			else dataBus <= "ZZZZZZZZ";
+			end if;		
+			
+			iorqgeBus <= '1';
+		else
+			
+			dataBus <= "ZZZZZZZZ";
+			iorqgeBus <= 'Z';
+			
+		end if;
+	else
+			
+		dataBus <= "ZZZZZZZZ";
+		iorqgeBus <= 'Z';
+				
+	end if;
+  end process data_bus;
   
-  --D(7 downto 0) <= dataBus;
+  D(7 downto 0) <= dataBus;
+  IORQGE <= iorqgeBus;
+  
 		--case port_read_sel is
 			--when "01" =>  "11110000";
 					 --if "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
@@ -332,7 +352,7 @@ begin
 	
 	-- sd card
 	--portG <= PB(4 downto 0);
-	SDEN <= not portG(1);
+	SDEN <= not portG(0);
 	
 end RTL;
 

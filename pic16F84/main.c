@@ -50,7 +50,7 @@ uint8_t outPorts[11] =
     0x00, // 6 - #BFFE - Enter...H "10111111"   
     0x00, // 7 - #7FFE - Space...B "01111111"
     // mouse
-    0x01, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel 
+    0x07, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel 
     0xF5, // #FBDF - mouse X  245
     0xDA  // #FFDF - mouse Y  218
 };
@@ -169,12 +169,12 @@ void keyUp(uint8_t key)
 {
     if ( key >= 128 ) return;
     i = codeToMatrix[key];
-    if ( i != 0xFF ) resetPort(i);    
+    if ( i != 0xFF ) resetPort(i);
 }
 
 void myDelay()
 {
-    for(uint8_t j = 0; j < 1; j++) { };
+    //for(uint8_t j = 0; j < 1; j++) { };
 }
 
 /*******************************************************************************
@@ -329,8 +329,8 @@ void main(void)
         
         // random mouse movement
         
-        /*  mouseDelay++;
-        if ( mouseDelay > 65000 ) {
+        mouseDelay++;
+        if ( mouseDelay > 20000 ) {
             
             if ( outPorts[9] > mouseX ) outPorts[9]--;
             else if ( outPorts[9] < mouseX ) outPorts[9]++;
@@ -344,7 +344,7 @@ void main(void)
             sendDataToAltera();
              
             mouseDelay = 0;
-        }*/
+        }
         
         
         CLRWDT();       

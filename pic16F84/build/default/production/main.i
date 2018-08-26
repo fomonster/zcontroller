@@ -995,7 +995,7 @@ uint8_t outPorts[11] =
     0x00,
     0x00,
 
-    0x01,
+    0x07,
     0xF5,
     0xDA
 };
@@ -1112,7 +1112,7 @@ void keyUp(uint8_t key)
 
 void myDelay()
 {
-    for(uint8_t j = 0; j < 1; j++) { };
+
 }
 
 
@@ -1208,7 +1208,28 @@ void main(void)
 
             sendDataToAltera();
         }
-# 350 "main.c"
+
+
+
+
+        mouseDelay++;
+        if ( mouseDelay > 20000 ) {
+
+            if ( outPorts[9] > mouseX ) outPorts[9]--;
+            else if ( outPorts[9] < mouseX ) outPorts[9]++;
+            if ( outPorts[10] > mouseY ) outPorts[10]--;
+            else if ( outPorts[10] < mouseY ) outPorts[10]++;
+
+            if ( outPorts[9] == mouseX && outPorts[10] == mouseY ) {
+                mouseX -= 128;
+                mouseY += 200;
+            }
+            sendDataToAltera();
+
+            mouseDelay = 0;
+        }
+
+
         __asm("clrwdt");
     }
 

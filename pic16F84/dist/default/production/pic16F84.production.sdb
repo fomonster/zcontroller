@@ -102,6 +102,12 @@
 [v _ctrl ctrl `uc  1 e 1 0 ]
 "62
 [v _replaced replaced `uc  1 e 1 0 ]
+"65
+[v _mouseX mouseX `uc  1 e 1 0 ]
+"66
+[v _mouseY mouseY `uc  1 e 1 0 ]
+"67
+[v _mouseDelay mouseDelay `ui  1 e 2 0 ]
 "244
 [v _main main `(v  1 e 1 0 ]
 {
@@ -115,8 +121,6 @@
 "175
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
-"177
-[v myDelay@j j `uc  1 a 1 11 ]
 "178
 } 0
 "168
