@@ -24,6 +24,7 @@
 #define PS2DATA_WAIT 0
 #define PS2DATA_RECEIVING 1
 #define PS2DATA_RECEIVED 2
+#define PS2DATA_DALAYED_CALL 3
 static int_fast8_t ps2DataState = PS2DATA_WAIT;
 
 // data mast zero for every byte
@@ -58,13 +59,15 @@ uint_fast8_t outPorts[11] =
 // temp
 uint_fast8_t i = 0;
 uint_fast8_t shift = false;
+//int_fast8_t localCtrl = 0;
+//int_fast8_t localShift = 0;
 uint_fast8_t ctrl = false;
-uint_fast8_t replaced = false;
+uint_fast8_t replaced = 0;
 
 /* mouse test */
 uint_fast8_t mouseX = 220;
 uint_fast8_t mouseY = 110;
-uint_fast16_t mouseDelay = 0;
+uint_fast16_t delay = 0;
 
 /*******************************************************************************
     PS2 receiver with non one bytes keys encoder and state machine
@@ -146,16 +149,18 @@ void updatePort(uint_fast8_t bit_id, uint_fast8_t set)
 void updateKey(uint_fast8_t key, uint_fast8_t set) // true when down
 {   
     i = 0xFF;
-    uint_fast8_t localShift = shift && !replaced;
-    uint_fast8_t localCtrl = ctrl;
-    if ( key < 128 ) i = codeToMatrix[key];    
+    uint_fast8_t localShift = (shift && replaced == 0); // All replaced keys is when shift pressed  
+    uint_fast8_t localCtrl = 0;
+    if ( key < 128 ) i = codeToMatrix[key];
     if ( i != 0xFF ) {
         updatePort(i, set);
-        localShift |= (i & 0b01000000) > 0 && set;
-        localCtrl |= (i & 0b10000000) > 0 && set;
+        localShift |= (i & 0b01000000) > 0;
+        localCtrl |= (i & 0b10000000) > 0;
     }   
-    updatePort(0x00, localShift); // caps shift    
-    updatePort(0x0F, localCtrl); // symbol shift
+    if ( set ) {
+        updatePort(0x00, localShift > 0 || ( shift && replaced == 0)); // caps shift  
+        updatePort(0x0F, localCtrl > 0); // symbol shift
+    }
 }
 /*******************************************************************************
  Send data to Altera
@@ -259,24 +264,35 @@ void main(void)
     ps2NeedEncode = 0;
     ps2DataState = PS2DATA_WAIT;
     
+    //for(int i=0;i < 11; i++ ) outPorts[i] = 0;
+    
+    //localCtrl = 0;
+    //localShift = 0;
+    shift = false;
+    ctrl = false;
+    replaced = 0;
+    
     while(1)
     {
         if ( ps2DataState == PS2DATA_RECEIVED ) {
-            // replace data if shift pressed
-            replaced = false;
-            if ( shift && !ctrl ) {
-               
-                for(i = 0; i < 35 ;i+=2) {
-                    if ( ps2Data == replaceOnShiftKeyDown[i] ) {
-                        replaced = true;
+            
+            // replace data if shift down for some keys in replaceOnShiftKeyDown table            
+            for(i = 0; i < 35 ;i+=2) {
+                if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+                    if ( (shift && replaced == 0) || replaced == ps2Data) {
+                        if ( ps2Down ) replaced = ps2Data;
+                        else replaced = 0;
                         ps2Data = replaceOnShiftKeyDown[i+1];
-                        break;
+                    } else {
+                        if ( replaced != 0 ) ps2Data = 0; // Ignore this key
                     }
+                    break;                    
                 }
             }
+            
             // process data            
             if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
-            if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
+            if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;          
             updateKey(ps2Data, ps2Down ); // ps2Down when key is down, else is up
         
             // wait new data
@@ -291,11 +307,15 @@ void main(void)
             sendDataToAltera();
         }
                 
-        
+        //if ( ps2DataState == PS2DATA_DALAYED_CALL ) {
+        //    for(int delay=0; delay < 3000; delay++ ) {                
+        //    }
+        //    
+        //}        
         // random mouse movement
         
-        mouseDelay++;
-        if ( mouseDelay > 2000 ) {
+        delay++;
+        if ( delay > 2000 ) {
             
             if ( outPorts[9] > mouseX ) outPorts[9]--;
             else if ( outPorts[9] < mouseX ) outPorts[9]++;
@@ -308,7 +328,7 @@ void main(void)
             }
             sendDataToAltera();
              
-            mouseDelay = 0;
+            delay = 0;
         }
         
         

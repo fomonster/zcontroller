@@ -968,7 +968,7 @@ const uint8_t codeToMatrix[128] =
 0xFF
 };
 # 17 "main.c" 2
-# 27 "main.c"
+# 28 "main.c"
 static int_fast8_t ps2DataState = 0;
 
 
@@ -1003,13 +1003,15 @@ uint_fast8_t outPorts[11] =
 
 uint_fast8_t i = 0;
 uint_fast8_t shift = 0;
+
+
 uint_fast8_t ctrl = 0;
 uint_fast8_t replaced = 0;
 
 
 uint_fast8_t mouseX = 220;
 uint_fast8_t mouseY = 110;
-uint_fast16_t mouseDelay = 0;
+uint_fast16_t delay = 0;
 
 
 
@@ -1058,7 +1060,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
                 } else {
-# 124 "main.c"
+# 127 "main.c"
                     ps2DataState = 2;
                 }
 
@@ -1084,16 +1086,19 @@ void updatePort(uint_fast8_t bit_id, uint_fast8_t set)
 void updateKey(uint_fast8_t key, uint_fast8_t set)
 {
     i = 0xFF;
-    uint_fast8_t localShift = shift && !replaced;
-    uint_fast8_t localCtrl = ctrl;
+    uint_fast8_t localShift = (shift && replaced == 0);
+    uint_fast8_t localCtrl = 0;
     if ( key < 128 ) i = codeToMatrix[key];
     if ( i != 0xFF ) {
         updatePort(i, set);
-        localShift |= (i & 0b01000000) > 0 && set;
-        localCtrl |= (i & 0b10000000) > 0 && set;
+# 167 "main.c"
+        localShift |= (i & 0b01000000) > 0;
+        localCtrl |= (i & 0b10000000) > 0;
     }
-    updatePort(0x00, localShift);
-    updatePort(0x0F, localCtrl);
+    if ( set ) {
+        updatePort(0x00, localShift > 0 || ( shift && replaced == 0));
+        updatePort(0x0F, localCtrl > 0);
+    }
 }
 
 
@@ -1113,7 +1118,7 @@ void sendDataToAltera()
     RA2 = 1;
     PORTB = 0;
 }
-# 216 "main.c"
+# 231 "main.c"
 void main(void)
 {
     TRISA0 = 1;
@@ -1126,7 +1131,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000000;
-# 247 "main.c"
+# 262 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1142,21 +1147,38 @@ void main(void)
     ps2NeedEncode = 0;
     ps2DataState = 0;
 
+
+
+
+
+    shift = 0;
+    ctrl = 0;
+    replaced = 0;
+
     while(1)
     {
         if ( ps2DataState == 2 ) {
 
-            replaced = 0;
-            if ( shift && !ctrl ) {
 
-                for(i = 0; i < 35 ;i+=2) {
-                    if ( ps2Data == replaceOnShiftKeyDown[i] ) {
-                        replaced = 1;
+            for(i = 0; i < 35 ;i+=2) {
+                if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+
+
+
+
+
+
+                    if ( (shift && replaced == 0) || replaced == ps2Data) {
+                        if ( ps2Down ) replaced = ps2Data;
+                        else replaced = 0;
                         ps2Data = replaceOnShiftKeyDown[i+1];
-                        break;
+                    } else {
+                        if ( replaced != 0 ) ps2Data = 0;
                     }
+                    break;
                 }
             }
+
 
             if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
             if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
@@ -1173,12 +1195,9 @@ void main(void)
 
             sendDataToAltera();
         }
-
-
-
-
-        mouseDelay++;
-        if ( mouseDelay > 2000 ) {
+# 333 "main.c"
+        delay++;
+        if ( delay > 2000 ) {
 
             if ( outPorts[9] > mouseX ) outPorts[9]--;
             else if ( outPorts[9] < mouseX ) outPorts[9]++;
@@ -1191,7 +1210,7 @@ void main(void)
             }
             sendDataToAltera();
 
-            mouseDelay = 0;
+            delay = 0;
         }
 
 

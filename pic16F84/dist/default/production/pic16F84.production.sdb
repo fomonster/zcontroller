@@ -11,15 +11,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"74 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"77 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"135
+"138
 [v _updatePort updatePort `(v  1 e 1 0 ]
-"146
+"149
 [v _updateKey updateKey `(v  1 e 1 0 ]
-"163
+"178
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"216
+"231
 [v _main main `(v  1 e 1 0 ]
 "4 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[36]uc  1 e 36 0 ]
@@ -70,82 +70,82 @@
 [v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
 "740
 [v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
-"27 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"28 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _ps2DataState ps2DataState `c  1 s 1 ps2DataState ]
-"30
-[v _ps2Bits ps2Bits `uc  1 e 1 0 ]
 "31
+[v _ps2Bits ps2Bits `uc  1 e 1 0 ]
+"32
 [v _ps2BitsCount ps2BitsCount `c  1 s 1 ps2BitsCount ]
-"34
-[v _ps2Data ps2Data `uc  1 s 1 ps2Data ]
 "35
-[v _ps2DataCount ps2DataCount `c  1 s 1 ps2DataCount ]
+[v _ps2Data ps2Data `uc  1 s 1 ps2Data ]
 "36
-[v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
+[v _ps2DataCount ps2DataCount `c  1 s 1 ps2DataCount ]
 "37
-[v _ps2Down ps2Down `c  1 s 1 ps2Down ]
+[v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
 "38
+[v _ps2Down ps2Down `c  1 s 1 ps2Down ]
+"39
 [v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
-"41
+"42
 [v _outPorts outPorts `[11]uc  1 e 11 0 ]
-"59
-[v _i i `uc  1 e 1 0 ]
 "60
-[v _shift shift `uc  1 e 1 0 ]
+[v _i i `uc  1 e 1 0 ]
 "61
+[v _shift shift `uc  1 e 1 0 ]
+"64
 [v _ctrl ctrl `uc  1 e 1 0 ]
-"62
-[v _replaced replaced `uc  1 e 1 0 ]
 "65
+[v _replaced replaced `uc  1 e 1 0 ]
+"68
 [v _mouseX mouseX `uc  1 e 1 0 ]
-"66
+"69
 [v _mouseY mouseY `uc  1 e 1 0 ]
-"67
-[v _mouseDelay mouseDelay `ui  1 e 2 0 ]
-"216
+"70
+[v _delay delay `ui  1 e 2 0 ]
+"231
 [v _main main `(v  1 e 1 0 ]
 {
-"318
+"354
 } 0
-"146
+"149
 [v _updateKey updateKey `(v  1 e 1 0 ]
 {
 [v updateKey@key key `uc  1 a 1 wreg ]
-"150
+"153
 [v updateKey@localCtrl localCtrl `uc  1 a 1 21 ]
-"149
+"152
 [v updateKey@localShift localShift `uc  1 a 1 19 ]
-"146
+"149
 [v updateKey@key key `uc  1 a 1 wreg ]
 [v updateKey@set set `uc  1 p 1 17 ]
-"148
-[v updateKey@key key `uc  1 a 1 24 ]
-"159
+"151
+[v updateKey@key key `uc  1 a 1 23 ]
+"174
 } 0
-"135
+"138
 [v _updatePort updatePort `(v  1 e 1 0 ]
 {
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
-"138
+"141
 [v updatePort@a a `uc  1 a 1 15 ]
-"137
+"140
 [v updatePort@b b `uc  1 a 1 14 ]
-"135
+"138
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
 [v updatePort@set set `uc  1 p 1 10 ]
-"137
+"140
 [v updatePort@bit_id bit_id `uc  1 a 1 16 ]
-"142
+"145
 } 0
-"163
+"178
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"177
+"192
 } 0
-"74
+"77
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"100
+"103
 [v myIsr@ii ii `i  1 a 2 8 ]
-"131
+"134
 } 0
