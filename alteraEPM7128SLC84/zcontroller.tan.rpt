@@ -1,5 +1,5 @@
 Classic Timing Analyzer report for zcontroller
-Mon Aug 27 01:31:02 2018
+Mon Aug 27 13:25:44 2018
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -44,11 +44,11 @@ applicable agreement for further details.
 +------------------------------+-------+---------------+----------------------------------+---------------------------------+----------+------------+----------+--------------+
 ; Type                         ; Slack ; Required Time ; Actual Time                      ; From                            ; To       ; From Clock ; To Clock ; Failed Paths ;
 +------------------------------+-------+---------------+----------------------------------+---------------------------------+----------+------------+----------+--------------+
-; Worst-case tsu               ; N/A   ; None          ; 11.000 ns                        ; PB[0]                           ; portJ[0] ; --         ; STROBE   ; 0            ;
+; Worst-case tsu               ; N/A   ; None          ; 11.000 ns                        ; PB[0]                           ; portC[0] ; --         ; STROBE   ; 0            ;
 ; Worst-case tco               ; N/A   ; None          ; 45.000 ns                        ; portH[0]                        ; D[0]     ; STROBE     ; --       ; 0            ;
-; Worst-case tpd               ; N/A   ; None          ; 43.000 ns                        ; A[8]                            ; D[0]     ; --         ; --       ; 0            ;
-; Worst-case th                ; N/A   ; None          ; -3.000 ns                        ; PB[0]                           ; portJ[0] ; --         ; STROBE   ; 0            ;
-; Clock Setup: 'STROBE'        ; N/A   ; None          ; 76.92 MHz ( period = 13.000 ns ) ; lpm_counter:count_rtl_0|dffs[3] ; portB[0] ; STROBE     ; STROBE   ; 0            ;
+; Worst-case tpd               ; N/A   ; None          ; 43.000 ns                        ; A[15]                           ; D[0]     ; --         ; --       ; 0            ;
+; Worst-case th                ; N/A   ; None          ; -3.000 ns                        ; PB[0]                           ; portC[0] ; --         ; STROBE   ; 0            ;
+; Clock Setup: 'STROBE'        ; N/A   ; None          ; 76.92 MHz ( period = 13.000 ns ) ; lpm_counter:count_rtl_0|dffs[3] ; portF[0] ; STROBE     ; STROBE   ; 0            ;
 ; Total number of failed paths ;       ;               ;                                  ;                                 ;          ;            ;          ; 0            ;
 +------------------------------+-------+---------------+----------------------------------+---------------------------------+----------+------------+----------+--------------+
 
@@ -112,23 +112,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-----------------------------------------+-----------------------------------------------------+---------------------------------+----------+------------+----------+-----------------------------+---------------------------+-------------------------+
 ; Slack                                   ; Actual fmax (period)                                ; From                            ; To       ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
 +-----------------------------------------+-----------------------------------------------------+---------------------------------+----------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portF[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portB[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portB[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portB[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portB[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portA[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portA[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portA[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portA[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portC[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portC[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portC[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portC[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portK[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portK[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portK[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portK[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portJ[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portJ[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portJ[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portJ[0] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portI[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portI[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portI[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portI[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portG[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portG[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portG[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
@@ -161,14 +165,18 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portC[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portC[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portC[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portK[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portJ[1] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portI[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portI[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portI[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portI[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
+; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portG[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portG[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portG[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
@@ -201,14 +209,6 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portC[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portC[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portC[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portK[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
-; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[3] ; portJ[2] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[2] ; portG[3] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[1] ; portG[3] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A                                     ; 76.92 MHz ( period = 13.000 ns )                    ; lpm_counter:count_rtl_0|dffs[0] ; portG[3] ; STROBE     ; STROBE   ; None                        ; None                      ; 8.000 ns                ;
@@ -347,6 +347,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 11.000 ns  ; PB[3]   ; portC[3]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[3]   ; portK[3]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[3]   ; portJ[3]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portI[2]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portJ[2]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portK[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portG[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portH[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portD[2]                        ; STROBE   ;
@@ -355,8 +358,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portB[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portA[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portC[2]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portK[2]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[2]   ; portJ[2]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portI[1]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portJ[1]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portK[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portG[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portH[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portD[1]                        ; STROBE   ;
@@ -365,22 +369,24 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portB[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portA[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portC[1]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portK[1]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[1]   ; portJ[1]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portG[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portA[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; lpm_counter:count_rtl_0|dffs[2] ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; lpm_counter:count_rtl_0|dffs[1] ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; lpm_counter:count_rtl_0|dffs[0] ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; lpm_counter:count_rtl_0|dffs[3] ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portI[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portG[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portH[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portD[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portE[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portF[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portB[0]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portA[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portC[0]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[0]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portI[1]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[1]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portG[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portH[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portD[1]                        ; STROBE   ;
@@ -389,8 +395,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portB[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portA[1]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portC[1]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[1]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[1]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portI[2]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[2]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portG[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portH[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portD[2]                        ; STROBE   ;
@@ -399,8 +406,6 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portB[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portA[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portC[2]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[2]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[2]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portG[3]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portH[3]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portD[3]                        ; STROBE   ;
@@ -427,16 +432,17 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[6]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portK[7]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; RESTRIG ; portJ[7]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portA[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portI[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portJ[0]                        ; STROBE   ;
+; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portK[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portG[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portH[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portD[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portE[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portF[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portB[0]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portA[0]                        ; STROBE   ;
 ; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portC[0]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portK[0]                        ; STROBE   ;
-; N/A   ; None         ; 11.000 ns  ; PB[0]   ; portJ[0]                        ; STROBE   ;
 +-------+--------------+------------+---------+---------------------------------+----------+
 
 
@@ -480,28 +486,31 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 26.000 ns  ; portC[3] ; D[3] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portK[3] ; D[3] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portJ[3] ; D[3] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portI[2] ; D[2] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portJ[2] ; D[2] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portK[2] ; D[2] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portB[2] ; D[2] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portA[2] ; D[2] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portC[2] ; D[2] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portK[2] ; D[2] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portJ[2] ; D[2] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portI[1] ; D[1] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portJ[1] ; D[1] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portK[1] ; D[1] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portB[1] ; D[1] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portA[1] ; D[1] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portC[1] ; D[1] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portK[1] ; D[1] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portJ[1] ; D[1] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portB[0] ; D[0] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portA[0] ; D[0] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portC[0] ; D[0] ; STROBE     ;
-; N/A   ; None         ; 26.000 ns  ; portK[0] ; D[0] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portI[0] ; D[0] ; STROBE     ;
 ; N/A   ; None         ; 26.000 ns  ; portJ[0] ; D[0] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portK[0] ; D[0] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portB[0] ; D[0] ; STROBE     ;
+; N/A   ; None         ; 26.000 ns  ; portC[0] ; D[0] ; STROBE     ;
 ; N/A   ; None         ; 17.000 ns  ; portK[7] ; D[7] ; STROBE     ;
 ; N/A   ; None         ; 17.000 ns  ; portJ[7] ; D[7] ; STROBE     ;
 ; N/A   ; None         ; 17.000 ns  ; portK[6] ; D[6] ; STROBE     ;
 ; N/A   ; None         ; 17.000 ns  ; portJ[6] ; D[6] ; STROBE     ;
 ; N/A   ; None         ; 17.000 ns  ; portK[5] ; D[5] ; STROBE     ;
 ; N/A   ; None         ; 17.000 ns  ; portJ[5] ; D[5] ; STROBE     ;
-; N/A   ; None         ; 17.000 ns  ; portG[0] ; SDEN ; STROBE     ;
+; N/A   ; None         ; 17.000 ns  ; portA[0] ; SDEN ; STROBE     ;
 +-------+--------------+------------+----------+------+------------+
 
 
@@ -510,46 +519,46 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------+-------------------+-----------------+--------+--------+
 ; Slack ; Required P2P Time ; Actual P2P Time ; From   ; To     ;
 +-------+-------------------+-----------------+--------+--------+
+; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[4]   ;
+; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[4]   ;
+; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[4]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[11]  ; D[4]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[12]  ; D[4]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[13]  ; D[4]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[14]  ; D[4]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[15]  ; D[4]   ;
-; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[4]   ;
-; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[4]   ;
-; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[4]   ;
+; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[3]   ;
+; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[3]   ;
+; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[3]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[11]  ; D[3]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[12]  ; D[3]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[13]  ; D[3]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[14]  ; D[3]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[15]  ; D[3]   ;
-; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[3]   ;
-; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[3]   ;
-; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[3]   ;
+; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[2]   ;
+; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[2]   ;
+; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[2]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[11]  ; D[2]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[12]  ; D[2]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[13]  ; D[2]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[14]  ; D[2]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[15]  ; D[2]   ;
-; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[2]   ;
-; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[2]   ;
-; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[2]   ;
+; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[1]   ;
+; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[1]   ;
+; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[1]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[11]  ; D[1]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[12]  ; D[1]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[13]  ; D[1]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[14]  ; D[1]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[15]  ; D[1]   ;
-; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[1]   ;
-; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[1]   ;
-; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[1]   ;
+; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[0]   ;
+; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[0]   ;
+; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[0]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[11]  ; D[0]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[12]  ; D[0]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[13]  ; D[0]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[14]  ; D[0]   ;
 ; N/A   ; None              ; 43.000 ns       ; A[15]  ; D[0]   ;
-; N/A   ; None              ; 43.000 ns       ; A[9]   ; D[0]   ;
-; N/A   ; None              ; 43.000 ns       ; A[10]  ; D[0]   ;
-; N/A   ; None              ; 43.000 ns       ; A[8]   ; D[0]   ;
 ; N/A   ; None              ; 32.000 ns       ; A[6]   ; D[4]   ;
 ; N/A   ; None              ; 32.000 ns       ; A[4]   ; D[4]   ;
 ; N/A   ; None              ; 32.000 ns       ; A[1]   ; D[4]   ;
@@ -566,54 +575,54 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None              ; 32.000 ns       ; A[3]   ; D[3]   ;
 ; N/A   ; None              ; 32.000 ns       ; A[5]   ; D[3]   ;
 ; N/A   ; None              ; 32.000 ns       ; A[0]   ; D[3]   ;
-; N/A   ; None              ; 32.000 ns       ; A[6]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[4]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[1]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[2]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[7]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[3]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[5]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[0]   ; D[2]   ;
-; N/A   ; None              ; 32.000 ns       ; A[6]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[4]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[1]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[2]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[7]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[3]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[5]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[0]   ; D[1]   ;
-; N/A   ; None              ; 32.000 ns       ; A[6]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[4]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[1]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[2]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[7]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[3]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[5]   ; D[0]   ;
-; N/A   ; None              ; 32.000 ns       ; A[0]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[10]  ; D[7]   ;
+; N/A   ; None              ; 23.000 ns       ; A[8]   ; D[7]   ;
+; N/A   ; None              ; 23.000 ns       ; A[9]   ; D[7]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[11]  ; D[7]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[12]  ; D[7]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[13]  ; D[7]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[14]  ; D[7]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[15]  ; D[7]   ;
-; N/A   ; None              ; 23.000 ns       ; A[9]   ; D[7]   ;
-; N/A   ; None              ; 23.000 ns       ; A[10]  ; D[7]   ;
-; N/A   ; None              ; 23.000 ns       ; A[8]   ; D[7]   ;
+; N/A   ; None              ; 23.000 ns       ; A[10]  ; D[6]   ;
+; N/A   ; None              ; 23.000 ns       ; A[8]   ; D[6]   ;
+; N/A   ; None              ; 23.000 ns       ; A[9]   ; D[6]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[11]  ; D[6]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[12]  ; D[6]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[13]  ; D[6]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[14]  ; D[6]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[15]  ; D[6]   ;
-; N/A   ; None              ; 23.000 ns       ; A[9]   ; D[6]   ;
-; N/A   ; None              ; 23.000 ns       ; A[10]  ; D[6]   ;
-; N/A   ; None              ; 23.000 ns       ; A[8]   ; D[6]   ;
+; N/A   ; None              ; 23.000 ns       ; A[10]  ; D[5]   ;
+; N/A   ; None              ; 23.000 ns       ; A[8]   ; D[5]   ;
+; N/A   ; None              ; 23.000 ns       ; A[9]   ; D[5]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[11]  ; D[5]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[12]  ; D[5]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[13]  ; D[5]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[14]  ; D[5]   ;
 ; N/A   ; None              ; 23.000 ns       ; A[15]  ; D[5]   ;
-; N/A   ; None              ; 23.000 ns       ; A[9]   ; D[5]   ;
-; N/A   ; None              ; 23.000 ns       ; A[10]  ; D[5]   ;
-; N/A   ; None              ; 23.000 ns       ; A[8]   ; D[5]   ;
+; N/A   ; None              ; 23.000 ns       ; A[6]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[4]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[1]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[2]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[7]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[3]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[5]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[0]   ; D[2]   ;
+; N/A   ; None              ; 23.000 ns       ; A[6]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[4]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[1]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[2]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[7]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[3]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[5]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[0]   ; D[1]   ;
+; N/A   ; None              ; 23.000 ns       ; A[6]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[4]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[1]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[2]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[7]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[3]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[5]   ; D[0]   ;
+; N/A   ; None              ; 23.000 ns       ; A[0]   ; D[0]   ;
 ; N/A   ; None              ; 22.000 ns       ; RD     ; D[7]   ;
 ; N/A   ; None              ; 22.000 ns       ; DOS    ; D[7]   ;
 ; N/A   ; None              ; 22.000 ns       ; IORQGE ; D[7]   ;
@@ -725,6 +734,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A           ; None        ; -3.000 ns ; PB[3]   ; portC[3]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[3]   ; portK[3]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[3]   ; portJ[3]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[2]   ; portI[2]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[2]   ; portJ[2]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[2]   ; portK[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[2]   ; portG[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[2]   ; portH[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[2]   ; portD[2]                        ; STROBE   ;
@@ -733,8 +745,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A           ; None        ; -3.000 ns ; PB[2]   ; portB[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[2]   ; portA[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[2]   ; portC[2]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[2]   ; portK[2]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[2]   ; portJ[2]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[1]   ; portI[1]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[1]   ; portJ[1]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[1]   ; portK[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[1]   ; portG[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[1]   ; portH[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[1]   ; portD[1]                        ; STROBE   ;
@@ -743,22 +756,24 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A           ; None        ; -3.000 ns ; PB[1]   ; portB[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[1]   ; portA[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[1]   ; portC[1]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[1]   ; portK[1]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[1]   ; portJ[1]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portG[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portA[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; lpm_counter:count_rtl_0|dffs[2] ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; lpm_counter:count_rtl_0|dffs[1] ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; lpm_counter:count_rtl_0|dffs[0] ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; lpm_counter:count_rtl_0|dffs[3] ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portI[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portG[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portH[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portD[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portE[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portF[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portB[0]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portA[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portC[0]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[0]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portI[1]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[1]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portG[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portH[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portD[1]                        ; STROBE   ;
@@ -767,8 +782,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portB[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portA[1]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portC[1]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[1]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[1]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portI[2]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[2]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portG[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portH[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portD[2]                        ; STROBE   ;
@@ -777,8 +793,6 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portB[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portA[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portC[2]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[2]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[2]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portG[3]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portH[3]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portD[3]                        ; STROBE   ;
@@ -805,16 +819,17 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[6]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portK[7]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; RESTRIG ; portJ[7]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[0]   ; portA[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[0]   ; portI[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[0]   ; portJ[0]                        ; STROBE   ;
+; N/A           ; None        ; -3.000 ns ; PB[0]   ; portK[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portG[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portH[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portD[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portE[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portF[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portB[0]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[0]   ; portA[0]                        ; STROBE   ;
 ; N/A           ; None        ; -3.000 ns ; PB[0]   ; portC[0]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[0]   ; portK[0]                        ; STROBE   ;
-; N/A           ; None        ; -3.000 ns ; PB[0]   ; portJ[0]                        ; STROBE   ;
 +---------------+-------------+-----------+---------+---------------------------------+----------+
 
 
@@ -824,81 +839,81 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II Classic Timing Analyzer
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Mon Aug 27 01:31:02 2018
+    Info: Processing started: Mon Aug 27 13:25:44 2018
 Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off zcontroller -c zcontroller
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
 Warning: Timing Analysis does not support the analysis of latches as synchronous elements for the currently selected device family
 Warning: Found pins functioning as undefined clocks and/or memory enables
     Info: Assuming node "STROBE" is an undefined clock
-Info: Clock "STROBE" has Internal fmax of 76.92 MHz between source register "lpm_counter:count_rtl_0|dffs[3]" and destination register "portB[0]" (period= 13.0 ns)
+Info: Clock "STROBE" has Internal fmax of 76.92 MHz between source register "lpm_counter:count_rtl_0|dffs[3]" and destination register "portF[0]" (period= 13.0 ns)
     Info: + Longest register to register delay is 8.000 ns
-        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC109; Fanout = 58; REG Node = 'lpm_counter:count_rtl_0|dffs[3]'
-        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 8.000 ns; Loc. = LC30; Fanout = 2; REG Node = 'portB[0]'
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC117; Fanout = 61; REG Node = 'lpm_counter:count_rtl_0|dffs[3]'
+        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 8.000 ns; Loc. = LC23; Fanout = 2; REG Node = 'portF[0]'
         Info: Total cell delay = 6.000 ns ( 75.00 % )
         Info: Total interconnect delay = 2.000 ns ( 25.00 % )
     Info: - Smallest clock skew is 0.000 ns
         Info: + Shortest clock path from clock "STROBE" to destination register is 3.000 ns
-            Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 60; CLK Node = 'STROBE'
-            Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC30; Fanout = 2; REG Node = 'portB[0]'
+            Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 63; CLK Node = 'STROBE'
+            Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC23; Fanout = 2; REG Node = 'portF[0]'
             Info: Total cell delay = 3.000 ns ( 100.00 % )
         Info: - Longest clock path from clock "STROBE" to source register is 3.000 ns
-            Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 60; CLK Node = 'STROBE'
-            Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC109; Fanout = 58; REG Node = 'lpm_counter:count_rtl_0|dffs[3]'
+            Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 63; CLK Node = 'STROBE'
+            Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC117; Fanout = 61; REG Node = 'lpm_counter:count_rtl_0|dffs[3]'
             Info: Total cell delay = 3.000 ns ( 100.00 % )
     Info: + Micro clock to output delay of source is 1.000 ns
     Info: + Micro setup delay of destination is 4.000 ns
 Info: tsu for register "portK[7]" (data pin = "PB[7]", clock pin = "STROBE") is 11.000 ns
     Info: + Longest pin to register delay is 10.000 ns
         Info: 1: + IC(0.000 ns) + CELL(2.000 ns) = 2.000 ns; Loc. = PIN_34; Fanout = 2; PIN Node = 'PB[7]'
-        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC50; Fanout = 1; REG Node = 'portK[7]'
+        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC124; Fanout = 1; REG Node = 'portK[7]'
         Info: Total cell delay = 8.000 ns ( 80.00 % )
         Info: Total interconnect delay = 2.000 ns ( 20.00 % )
     Info: + Micro setup delay of destination is 4.000 ns
     Info: - Shortest clock path from clock "STROBE" to destination register is 3.000 ns
-        Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 60; CLK Node = 'STROBE'
-        Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC50; Fanout = 1; REG Node = 'portK[7]'
+        Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 63; CLK Node = 'STROBE'
+        Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC124; Fanout = 1; REG Node = 'portK[7]'
         Info: Total cell delay = 3.000 ns ( 100.00 % )
 Info: tco from clock "STROBE" to destination pin "D[4]" through register "portG[4]" is 45.000 ns
     Info: + Longest clock path from clock "STROBE" to source register is 3.000 ns
-        Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 60; CLK Node = 'STROBE'
-        Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC75; Fanout = 2; REG Node = 'portG[4]'
+        Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 63; CLK Node = 'STROBE'
+        Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC50; Fanout = 2; REG Node = 'portG[4]'
         Info: Total cell delay = 3.000 ns ( 100.00 % )
     Info: + Micro clock to output delay of source is 1.000 ns
     Info: + Longest register to pin delay is 41.000 ns
-        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC75; Fanout = 2; REG Node = 'portG[4]'
-        Info: 2: + IC(2.000 ns) + CELL(7.000 ns) = 9.000 ns; Loc. = LC87; Fanout = 3; COMB Node = 'dataBus~304'
-        Info: 3: + IC(2.000 ns) + CELL(6.000 ns) = 17.000 ns; Loc. = LC81; Fanout = 1; COMB Node = 'dataBus~356'
-        Info: 4: + IC(0.000 ns) + CELL(2.000 ns) = 19.000 ns; Loc. = LC82; Fanout = 1; COMB Node = 'dataBus~310'
-        Info: 5: + IC(2.000 ns) + CELL(7.000 ns) = 28.000 ns; Loc. = LC89; Fanout = 1; COMB Node = 'dataBus~315'
-        Info: 6: + IC(2.000 ns) + CELL(7.000 ns) = 37.000 ns; Loc. = LC8; Fanout = 1; COMB Node = 'dataBus[4]~323'
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC50; Fanout = 2; REG Node = 'portG[4]'
+        Info: 2: + IC(2.000 ns) + CELL(7.000 ns) = 9.000 ns; Loc. = LC72; Fanout = 3; COMB Node = 'dataBus~309'
+        Info: 3: + IC(2.000 ns) + CELL(6.000 ns) = 17.000 ns; Loc. = LC1; Fanout = 1; COMB Node = 'dataBus~360'
+        Info: 4: + IC(0.000 ns) + CELL(2.000 ns) = 19.000 ns; Loc. = LC2; Fanout = 1; COMB Node = 'dataBus~315'
+        Info: 5: + IC(2.000 ns) + CELL(7.000 ns) = 28.000 ns; Loc. = LC66; Fanout = 1; COMB Node = 'dataBus~320'
+        Info: 6: + IC(2.000 ns) + CELL(7.000 ns) = 37.000 ns; Loc. = LC8; Fanout = 1; COMB Node = 'dataBus[4]~327'
         Info: 7: + IC(0.000 ns) + CELL(4.000 ns) = 41.000 ns; Loc. = PIN_9; Fanout = 0; PIN Node = 'D[4]'
         Info: Total cell delay = 33.000 ns ( 80.49 % )
         Info: Total interconnect delay = 8.000 ns ( 19.51 % )
-Info: Longest tpd from source pin "A[11]" to destination pin "D[4]" is 43.000 ns
-    Info: 1: + IC(0.000 ns) + CELL(2.000 ns) = 2.000 ns; Loc. = PIN_29; Fanout = 89; PIN Node = 'A[11]'
-    Info: 2: + IC(2.000 ns) + CELL(7.000 ns) = 11.000 ns; Loc. = LC87; Fanout = 3; COMB Node = 'dataBus~304'
-    Info: 3: + IC(2.000 ns) + CELL(6.000 ns) = 19.000 ns; Loc. = LC81; Fanout = 1; COMB Node = 'dataBus~356'
-    Info: 4: + IC(0.000 ns) + CELL(2.000 ns) = 21.000 ns; Loc. = LC82; Fanout = 1; COMB Node = 'dataBus~310'
-    Info: 5: + IC(2.000 ns) + CELL(7.000 ns) = 30.000 ns; Loc. = LC89; Fanout = 1; COMB Node = 'dataBus~315'
-    Info: 6: + IC(2.000 ns) + CELL(7.000 ns) = 39.000 ns; Loc. = LC8; Fanout = 1; COMB Node = 'dataBus[4]~323'
+Info: Longest tpd from source pin "A[10]" to destination pin "D[4]" is 43.000 ns
+    Info: 1: + IC(0.000 ns) + CELL(2.000 ns) = 2.000 ns; Loc. = PIN_22; Fanout = 79; PIN Node = 'A[10]'
+    Info: 2: + IC(2.000 ns) + CELL(7.000 ns) = 11.000 ns; Loc. = LC72; Fanout = 3; COMB Node = 'dataBus~309'
+    Info: 3: + IC(2.000 ns) + CELL(6.000 ns) = 19.000 ns; Loc. = LC1; Fanout = 1; COMB Node = 'dataBus~360'
+    Info: 4: + IC(0.000 ns) + CELL(2.000 ns) = 21.000 ns; Loc. = LC2; Fanout = 1; COMB Node = 'dataBus~315'
+    Info: 5: + IC(2.000 ns) + CELL(7.000 ns) = 30.000 ns; Loc. = LC66; Fanout = 1; COMB Node = 'dataBus~320'
+    Info: 6: + IC(2.000 ns) + CELL(7.000 ns) = 39.000 ns; Loc. = LC8; Fanout = 1; COMB Node = 'dataBus[4]~327'
     Info: 7: + IC(0.000 ns) + CELL(4.000 ns) = 43.000 ns; Loc. = PIN_9; Fanout = 0; PIN Node = 'D[4]'
     Info: Total cell delay = 35.000 ns ( 81.40 % )
     Info: Total interconnect delay = 8.000 ns ( 18.60 % )
 Info: th for register "portK[7]" (data pin = "PB[7]", clock pin = "STROBE") is -3.000 ns
     Info: + Longest clock path from clock "STROBE" to destination register is 3.000 ns
-        Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 60; CLK Node = 'STROBE'
-        Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC50; Fanout = 1; REG Node = 'portK[7]'
+        Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 63; CLK Node = 'STROBE'
+        Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC124; Fanout = 1; REG Node = 'portK[7]'
         Info: Total cell delay = 3.000 ns ( 100.00 % )
     Info: + Micro hold delay of destination is 4.000 ns
     Info: - Shortest pin to register delay is 10.000 ns
         Info: 1: + IC(0.000 ns) + CELL(2.000 ns) = 2.000 ns; Loc. = PIN_34; Fanout = 2; PIN Node = 'PB[7]'
-        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC50; Fanout = 1; REG Node = 'portK[7]'
+        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC124; Fanout = 1; REG Node = 'portK[7]'
         Info: Total cell delay = 8.000 ns ( 80.00 % )
         Info: Total interconnect delay = 2.000 ns ( 20.00 % )
 Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 2 warnings
     Info: Peak virtual memory: 188 megabytes
-    Info: Processing ended: Mon Aug 27 01:31:02 2018
+    Info: Processing ended: Mon Aug 27 13:25:44 2018
     Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:00
 

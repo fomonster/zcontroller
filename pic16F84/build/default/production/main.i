@@ -969,21 +969,21 @@ const uint8_t codeToMatrix[128] =
 };
 # 17 "main.c" 2
 # 27 "main.c"
-static int8_t ps2DataState = 0;
+static int_fast8_t ps2DataState = 0;
 
 
-uint8_t ps2Bits = 0;
-static int8_t ps2BitsCount = 0;
+uint_fast8_t ps2Bits = 0;
+static int_fast8_t ps2BitsCount = 0;
 
 
-static uint8_t ps2Data = 0;
-static int8_t ps2DataCount = 0;
-static int8_t ps2WaitCode = 0;
-static int8_t ps2Up = 0;
-static int8_t ps2NeedEncode = 0;
+static uint_fast8_t ps2Data = 0;
+static int_fast8_t ps2DataCount = 0;
+static int_fast8_t ps2WaitCode = 0;
+static int_fast8_t ps2Down = 0;
+static int_fast8_t ps2NeedEncode = 0;
 
 
-uint8_t outPorts[11] =
+uint_fast8_t outPorts[11] =
 {
 
     0x00,
@@ -1001,15 +1001,15 @@ uint8_t outPorts[11] =
 };
 
 
-uint8_t i = 0;
-uint8_t shift = 0;
-uint8_t ctrl = 0;
-uint8_t replaced = 0;
+uint_fast8_t i = 0;
+uint_fast8_t shift = 0;
+uint_fast8_t ctrl = 0;
+uint_fast8_t replaced = 0;
 
 
-uint8_t mouseX = 220;
-uint8_t mouseY = 110;
-uint16_t mouseDelay = 0;
+uint_fast8_t mouseX = 220;
+uint_fast8_t mouseY = 110;
+uint_fast16_t mouseDelay = 0;
 
 
 
@@ -1053,7 +1053,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                 }
                 if ( ps2Bits == 0xF0 ) {
                     ps2DataState = 0;
-                    ps2Up = 1;
+                    ps2Down = 0;
                 } else if ( ps2Bits == 0xE0 ) {
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
@@ -1070,51 +1070,31 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 
 
 
-void setPort(uint8_t bit_id)
+void updatePort(uint_fast8_t bit_id, uint_fast8_t set)
 {
-    outPorts[bit_id & 7] |= (1 << ((bit_id >> 3) & 7));
+    uint_fast8_t b = outPorts[bit_id & 7];
+    uint_fast8_t a = (1 << ((bit_id >> 3) & 7));
+    if ( set ) b |= a;
+    else b &= ~a;
+    outPorts[bit_id & 7] = b;
 }
 
-void resetPort(uint8_t bit_id)
+
+
+void updateKey(uint_fast8_t key, uint_fast8_t set)
 {
-    outPorts[bit_id & 7] &= ~(1 << ((bit_id >> 3) & 7));
-}
-
-
-
-void keyDown(uint8_t key)
-{
-    if ( key >= 128 ) return;
-    i = codeToMatrix[key];
+    i = 0xFF;
+    uint_fast8_t localShift = shift && !replaced;
+    uint_fast8_t localCtrl = ctrl;
+    if ( key < 128 ) i = codeToMatrix[key];
     if ( i != 0xFF ) {
-        setPort(i);
-
-        if ( (shift &&!replaced) || (i & 0b01000000) ) {
-            setPort(0x00);
-        } else {
-            resetPort(0x00);
-        }
-
-        if ( ctrl || (i & 0b10000000) ) {
-            setPort(0x0F);
-        } else {
-            resetPort(0x0F);
-        }
+        updatePort(i, set);
+        localShift |= (i & 0b01000000) > 0 && set;
+        localCtrl |= (i & 0b10000000) > 0 && set;
     }
+    updatePort(0x00, localShift);
+    updatePort(0x0F, localCtrl);
 }
-
-void keyUp(uint8_t key)
-{
-    if ( key >= 128 ) return;
-    i = codeToMatrix[key];
-    if ( i != 0xFF ) resetPort(i);
-}
-
-void myDelay()
-{
-
-}
-
 
 
 
@@ -1122,26 +1102,18 @@ void sendDataToAltera()
 {
     RA2 = 1;
     RA1 = 1;
-    myDelay();
     RA2 = 0;
-    myDelay();
     RA2 = 1;
-    myDelay();
     RA1 = 0;
-    myDelay();
     for(i=0;i<11;i++) {
-        myDelay();
         RA2 = 1;
-        myDelay();
         PORTB = outPorts[i];
-        myDelay();
         RA2 = 0;
-        myDelay();
     }
     RA2 = 1;
     PORTB = 0;
 }
-# 244 "main.c"
+# 216 "main.c"
 void main(void)
 {
     TRISA0 = 1;
@@ -1154,7 +1126,7 @@ void main(void)
 
     TRISB = 0b00000000;
     PORTB = 0b00000000;
-# 275 "main.c"
+# 247 "main.c"
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1166,7 +1138,7 @@ void main(void)
     ps2Data = 0;
     ps2DataCount = 0;
     ps2WaitCode = 0;
-    ps2Up = 0;
+    ps2Down = 1;
     ps2NeedEncode = 0;
     ps2DataState = 0;
 
@@ -1186,22 +1158,15 @@ void main(void)
                 }
             }
 
-            if ( ps2Up == 0) {
-                keyDown(ps2Data);
-                if ( ps2Data == 18 || ps2Data == 89) shift = 1;
-                if ( ps2Data == 20 || ps2Data == 19) ctrl = 1;
-
-            } else {
-                if ( ps2Data == 18 || ps2Data == 89) shift = 0;
-                if ( ps2Data == 20 || ps2Data == 19) ctrl = 0;
-                keyUp(ps2Data);
-            }
+            if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
+            if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
+            updateKey(ps2Data, ps2Down );
 
 
             ps2Data = 0;
             ps2DataCount = 0;
             ps2WaitCode = 0;
-            ps2Up = 0;
+            ps2Down = 1;
             ps2NeedEncode = 0;
             ps2DataState = 0;
 
@@ -1213,7 +1178,7 @@ void main(void)
 
 
         mouseDelay++;
-        if ( mouseDelay > 20000 ) {
+        if ( mouseDelay > 2000 ) {
 
             if ( outPorts[9] > mouseX ) outPorts[9]--;
             else if ( outPorts[9] < mouseX ) outPorts[9]++;

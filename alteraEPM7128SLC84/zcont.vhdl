@@ -140,11 +140,11 @@ architecture RTL of zcontroller is
 signal dataBus : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
 signal iorqgeBus : std_logic := 'Z';
 signal port_read: std_logic := '0';
-signal port_read_sel: std_logic := '0';
-signal port_write: std_logic := '0';
+--signal port_read_sel: std_logic := '0';
+--signal port_write: std_logic := '0';
 
 shared variable count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
-signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
+--signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
 --signal countA   : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 
 -- keyboard ports data
@@ -225,7 +225,7 @@ begin
                 
                 count := count + 1;
             else
-                count := "0000"; --(others => '0');
+                count := "0000"; 
             end if;
         end if;
     end process;
@@ -285,22 +285,24 @@ begin
 	if (port_read = '1') and (IORQGE = '0') then
 		if (A(7 downto 0) = X"FE") then
 			
-			if A(15 downto 8) = X"FE" then dataBus <= "111" & not portA(4 downto 0);
-			elsif A(15 downto 8) = X"FD" then dataBus <= "111" & not portB(4 downto 0);
-			elsif A(15 downto 8) = X"FB" then dataBus <= "111" & not portC(4 downto 0);
-			elsif A(15 downto 8) = X"F7" then dataBus <= "111" & not portD(4 downto 0);
-			elsif A(15 downto 8) = X"EF" then dataBus <= "111" & not portE(4 downto 0);
-			elsif A(15 downto 8) = X"DF" then dataBus <= "111" & not portF(4 downto 0);
-			elsif A(15 downto 8) = X"BF" then dataBus <= "111" & not portG(4 downto 0);
-			elsif A(15 downto 8) = X"7F" then dataBus <= "111" & not portH(4 downto 0);
-			else dataBus <= "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
+			if A(15 downto 8) = X"FE" then dataBus(4 downto 0) <= not portA(4 downto 0);
+			elsif A(15 downto 8) = X"FD" then dataBus(4 downto 0) <= not portB(4 downto 0);
+			elsif A(15 downto 8) = X"FB" then dataBus(4 downto 0) <= not portC(4 downto 0);
+			elsif A(15 downto 8) = X"F7" then dataBus(4 downto 0) <= not portD(4 downto 0);
+			elsif A(15 downto 8) = X"EF" then dataBus(4 downto 0) <= not portE(4 downto 0);
+			elsif A(15 downto 8) = X"DF" then dataBus(4 downto 0) <= not portF(4 downto 0);
+			elsif A(15 downto 8) = X"BF" then dataBus(4 downto 0) <= not portG(4 downto 0);
+			elsif A(15 downto 8) = X"7F" then dataBus(4 downto 0) <= not portH(4 downto 0);
+			else dataBus(4 downto 0) <= not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
 			end if;
+			
+			dataBus(7 downto 5) <= "111";
 			
 			iorqgeBus <= '1';
 
 		elsif (A(7 downto 0) = X"DF") then
 			
-			if A(15 downto 8) = X"FA" then dataBus <= "11111111"; -- & not portI(2 downto 0);
+			if A(15 downto 8) = X"FA" then dataBus <= "11111" & portI(2 downto 0);
 			elsif A(15 downto 8) = X"FB" then dataBus <= portJ(7 downto 0);
 			elsif A(15 downto 8) = X"FF" then dataBus <= portK(7 downto 0);
 			else dataBus <= "ZZZZZZZZ";
@@ -352,7 +354,7 @@ begin
 	
 	-- sd card
 	--portG <= PB(4 downto 0);
-	SDEN <= not portG(0);
+	SDEN <= not portA(0);
 	
 end RTL;
 

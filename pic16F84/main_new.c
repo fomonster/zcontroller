@@ -132,12 +132,21 @@ void __interrupt(high_priority) myIsr(void)
 /*******************************************************************************
    PortsData
 *******************************************************************************/
+/*void setPort(uint_fast8_t bit_id)
+{
+     outPorts[bit_id & 7] |= (1 << ((bit_id >> 3) & 7));
+}
+
+void resetPort(uint_fast8_t bit_id)
+{
+    outPorts[bit_id & 7] &= ~(1 << ((bit_id >> 3) & 7));
+}
+*/
 void updatePort(uint_fast8_t bit_id, uint_fast8_t set)
 {
     uint_fast8_t b = outPorts[bit_id & 7];
-    uint_fast8_t a = (1 << ((bit_id >> 3) & 7));
-    if ( set ) b |= a;
-    else b &= ~a;
+    if ( set ) b |= (1 << ((bit_id >> 3) & 7));
+    else b &= ~(1 << ((bit_id >> 3) & 7));
     outPorts[bit_id & 7] = b;
 }
 /*******************************************************************************
@@ -150,27 +159,44 @@ void updateKey(uint_fast8_t key, uint_fast8_t set) // true when down
     uint_fast8_t localCtrl = ctrl;
     if ( key < 128 ) i = codeToMatrix[key];    
     if ( i != 0xFF ) {
+        //if ( set ) setPort(i); else resetPort(i);
         updatePort(i, set);
         localShift |= (i & 0b01000000) > 0 && set;
         localCtrl |= (i & 0b10000000) > 0 && set;
     }   
+    //if ( localShift ) setPort(0x00); else resetPort(i);
+    //if ( set ) setPort(i); else resetPort(i);
     updatePort(0x00, localShift); // caps shift    
     updatePort(0x0F, localCtrl); // symbol shift
 }
+
+//void myDelay()
+//{
+    //for(uint8_t j = 0; j < 1; j++) { };
+//}
+
 /*******************************************************************************
  Send data to Altera
 *******************************************************************************/
 void sendDataToAltera()
 {
     RA2 = 1; //STROBE
-    RA1 = 1; //RESTRIG
+    RA1 = 1; // RESTRIG
+    //myDelay();
     RA2 = 0; //STROBE
+    //myDelay();
     RA2 = 1; //STROBE
-    RA1 = 0; //RESTRIG
+    //myDelay();
+    RA1 = 0; // RESTRIG
+    //myDelay();
     for(i=0;i<11;i++) {
+        //myDelay();
         RA2 = 1; //STROBE
+        //myDelay();
         PORTB = outPorts[i];
+        //myDelay();
         RA2 = 0; //STROBE
+        //myDelay();
     }
     RA2 = 1; //STROBE
     PORTB = 0;
@@ -275,9 +301,9 @@ void main(void)
                 }
             }
             // process data            
-            if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
-            if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
-            updateKey(ps2Data, ps2Down ); // ps2Down when key is down, else is up
+            shift = ( ps2Data == 18 || ps2Data == 89) && ps2Down;
+            ctrl = ( ps2Data == 20 || ps2Data == 19) && ps2Down;
+            updateKey(ps2Data, ps2Down ); // ps2Up == 0 when key is down, else is up
         
             // wait new data
             ps2Data = 0;

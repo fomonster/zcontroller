@@ -14,18 +14,12 @@
 "74 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 "135
-[v _setPort setPort `(v  1 e 1 0 ]
-"140
-[v _resetPort resetPort `(v  1 e 1 0 ]
-"147
-[v _keyDown keyDown `(v  1 e 1 0 ]
-"168
-[v _keyUp keyUp `(v  1 e 1 0 ]
-"175
-[v _myDelay myDelay `(v  1 e 1 0 ]
-"183
+[v _updatePort updatePort `(v  1 e 1 0 ]
+"146
+[v _updateKey updateKey `(v  1 e 1 0 ]
+"163
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"244
+"216
 [v _main main `(v  1 e 1 0 ]
 "4 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[36]uc  1 e 36 0 ]
@@ -89,7 +83,7 @@
 "36
 [v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
 "37
-[v _ps2Up ps2Up `c  1 s 1 ps2Up ]
+[v _ps2Down ps2Down `c  1 s 1 ps2Down ]
 "38
 [v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
 "41
@@ -108,56 +102,45 @@
 [v _mouseY mouseY `uc  1 e 1 0 ]
 "67
 [v _mouseDelay mouseDelay `ui  1 e 2 0 ]
-"244
+"216
 [v _main main `(v  1 e 1 0 ]
 {
-"353
+"318
 } 0
-"183
-[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+"146
+[v _updateKey updateKey `(v  1 e 1 0 ]
 {
-"205
-} 0
-"175
-[v _myDelay myDelay `(v  1 e 1 0 ]
-{
-"178
-} 0
-"168
-[v _keyUp keyUp `(v  1 e 1 0 ]
-{
-[v keyUp@key key `uc  1 a 1 wreg ]
-[v keyUp@key key `uc  1 a 1 wreg ]
-"170
-[v keyUp@key key `uc  1 a 1 15 ]
-"173
-} 0
-"147
-[v _keyDown keyDown `(v  1 e 1 0 ]
-{
-[v keyDown@key key `uc  1 a 1 wreg ]
-[v keyDown@key key `uc  1 a 1 wreg ]
+[v updateKey@key key `uc  1 a 1 wreg ]
+"150
+[v updateKey@localCtrl localCtrl `uc  1 a 1 21 ]
 "149
-[v keyDown@key key `uc  1 a 1 15 ]
-"166
+[v updateKey@localShift localShift `uc  1 a 1 19 ]
+"146
+[v updateKey@key key `uc  1 a 1 wreg ]
+[v updateKey@set set `uc  1 p 1 17 ]
+"148
+[v updateKey@key key `uc  1 a 1 24 ]
+"159
 } 0
 "135
-[v _setPort setPort `(v  1 e 1 0 ]
+[v _updatePort updatePort `(v  1 e 1 0 ]
 {
-[v setPort@bit_id bit_id `uc  1 a 1 wreg ]
-[v setPort@bit_id bit_id `uc  1 a 1 wreg ]
-"137
-[v setPort@bit_id bit_id `uc  1 a 1 13 ]
+[v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
 "138
-} 0
-"140
-[v _resetPort resetPort `(v  1 e 1 0 ]
-{
-[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
-[v resetPort@bit_id bit_id `uc  1 a 1 wreg ]
+[v updatePort@a a `uc  1 a 1 15 ]
+"137
+[v updatePort@b b `uc  1 a 1 14 ]
+"135
+[v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
+[v updatePort@set set `uc  1 p 1 10 ]
+"137
+[v updatePort@bit_id bit_id `uc  1 a 1 16 ]
 "142
-[v resetPort@bit_id bit_id `uc  1 a 1 13 ]
-"143
+} 0
+"163
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+{
+"177
 } 0
 "74
 [v _myIsr myIsr `II(v  1 e 1 0 ]
