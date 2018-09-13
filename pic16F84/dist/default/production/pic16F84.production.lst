@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Mon Aug 27 22:41:00 2018
+                                                                                               Thu Sep 13 00:29:51 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1                           	processor	16F84A
@@ -14,1616 +14,1838 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
      8                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
      9                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
     10                           	psect	clrtext,global,class=CODE,delta=2
-    11                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
-    12                           	psect	maintext,global,class=CODE,split=1,delta=2
-    13                           	psect	text1,local,class=CODE,merge=1,delta=2
-    14                           	psect	text2,local,class=CODE,merge=1,delta=2
-    15                           	psect	text3,local,class=CODE,merge=1,delta=2
-    16                           	psect	text4,local,class=CODE,merge=1,delta=2
-    17                           	psect	intentry,global,class=CODE,delta=2
-    18                           	dabs	1,0x4E,2
-    19  0000                     
-    20                           ; Version 2.00
-    21                           ; Generated 27/05/2018 GMT
-    22                           ; 
-    23                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
-    24                           ; All rights reserved.
-    25                           ; 
-    26                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
-      +                          ip").
+    11                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    12                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    13                           	psect	maintext,global,class=CODE,split=1,delta=2
+    14                           	psect	text1,local,class=CODE,merge=1,delta=2
+    15                           	psect	text2,local,class=CODE,merge=1,delta=2
+    16                           	psect	text3,local,class=CODE,merge=1,delta=2
+    17                           	psect	text4,local,class=CODE,merge=1,delta=2
+    18                           	psect	text5,local,class=CODE,merge=1,delta=2
+    19                           	psect	intentry,global,class=CODE,delta=2
+    20                           	dabs	1,0x4E,2
+    21  0000                     
+    22                           ; Version 2.00
+    23                           ; Generated 27/05/2018 GMT
+    24                           ; 
+    25                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    26                           ; All rights reserved.
     27                           ; 
-    28                           ; Redistribution and use in source and binary forms, with or without modification, are
-    29                           ; permitted provided that the following conditions are met:
-    30                           ; 
-    31                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+    28                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    29                           ; 
+    30                           ; Redistribution and use in source and binary forms, with or without modification, are
+    31                           ; permitted provided that the following conditions are met:
+    32                           ; 
+    33                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
       +                          t of
-    32                           ;        conditions and the following disclaimer.
-    33                           ; 
-    34                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+    34                           ;        conditions and the following disclaimer.
+    35                           ; 
+    36                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
       +                          list
-    35                           ;        of conditions and the following disclaimer in the documentation and/or other
-    36                           ;        materials provided with the distribution.
-    37                           ; 
-    38                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+    37                           ;        of conditions and the following disclaimer in the documentation and/or other
+    38                           ;        materials provided with the distribution.
+    39                           ; 
+    40                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
       +                          is
-    39                           ;        software without specific prior written permission.
-    40                           ; 
-    41                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-    42                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+    41                           ;        software without specific prior written permission.
+    42                           ; 
+    43                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    44                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
       +                          OR
-    43                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+    45                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
       +                          T,
-    44                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-    45                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-    46                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+    46                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    47                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    48                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
       +                          RICT
-    47                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+    49                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
       +                          SE OF
-    48                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    49                           ; 
-    50                           ; 
-    51                           ; Code-generator required, PIC16F84A Definitions
+    50                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    51                           ; 
     52                           ; 
-    53                           ; SFR Addresses
-    54  0000                     	;# 
-    55  0001                     	;# 
-    56  0002                     	;# 
-    57  0003                     	;# 
-    58  0004                     	;# 
-    59  0005                     	;# 
-    60  0006                     	;# 
-    61  0008                     	;# 
-    62  0009                     	;# 
-    63  000A                     	;# 
-    64  000B                     	;# 
-    65  0081                     	;# 
-    66  0085                     	;# 
-    67  0086                     	;# 
-    68  0088                     	;# 
-    69  0089                     	;# 
-    70  0000                     	;# 
-    71  0001                     	;# 
-    72  0002                     	;# 
-    73  0003                     	;# 
-    74  0004                     	;# 
-    75  0005                     	;# 
-    76  0006                     	;# 
-    77  0008                     	;# 
-    78  0009                     	;# 
-    79  000A                     	;# 
-    80  000B                     	;# 
-    81  0081                     	;# 
-    82  0085                     	;# 
-    83  0086                     	;# 
-    84  0088                     	;# 
-    85  0089                     	;# 
-    86                           
-    87                           	psect	idataBANK0
-    88  02F9                     __pidataBANK0:	
-    89                           
-    90                           ;initializer for _outPorts
-    91  02F9  3400               	retlw	0
-    92  02FA  3400               	retlw	0
-    93  02FB  3400               	retlw	0
-    94  02FC  3400               	retlw	0
-    95  02FD  3400               	retlw	0
-    96  02FE  3400               	retlw	0
-    97  02FF  3400               	retlw	0
-    98  0300  3400               	retlw	0
-    99  0301  3407               	retlw	7
-   100  0302  34F5               	retlw	245
-   101  0303  34DA               	retlw	218
-   102                           
-   103                           ;initializer for _mouseY
-   104  0304  346E               	retlw	110
-   105                           
-   106                           ;initializer for _mouseX
-   107  0305  34DC               	retlw	220
-   108                           
-   109                           	psect	strings
-   110  0031                     __pstrings:	
-   111  0031                     stringtab:	
-   112  0031                     __stringtab:	
-   113  0031                     stringcode:	
-   114                           ;	String table - string pointers are 1 byte each
-   115                           
-   116  0031                     stringdir:	
-   117  0031  3000               	movlw	high stringdir
-   118  0032  008A               	movwf	10
-   119  0033  0804               	movf	4,w
-   120  0034  0A84               	incf	4,f
-   121  0035  0782               	addwf	2,f
-   122  0036                     __stringbase:	
-   123  0036  3400               	retlw	0
-   124  0037                     __end_of__stringtab:	
-   125  0037                     _codeToMatrix:	
-   126  0037  34FF               	retlw	255
-   127  0038  34FF               	retlw	255
-   128  0039  34FF               	retlw	255
-   129  003A  34FF               	retlw	255
-   130  003B  34FF               	retlw	255
-   131  003C  34FF               	retlw	255
-   132  003D  34FF               	retlw	255
-   133  003E  34FF               	retlw	255
-   134  003F  34FF               	retlw	255
-   135  0040  34FF               	retlw	255
-   136  0041  34FF               	retlw	255
-   137  0042  34FF               	retlw	255
-   138  0043  34FF               	retlw	255
-   139  0044  34FF               	retlw	255
-   140  0045  349C               	retlw	156
-   141  0046  34FF               	retlw	255
-   142  0047  34FF               	retlw	255
-   143  0048  34FF               	retlw	255
-   144  0049  34FF               	retlw	255
-   145  004A  34FF               	retlw	255
-   146  004B  34FF               	retlw	255
-   147  004C  3402               	retlw	2
-   148  004D  3403               	retlw	3
-   149  004E  34FF               	retlw	255
-   150  004F  34FF               	retlw	255
-   151  0050  34FF               	retlw	255
-   152  0051  3408               	retlw	8
-   153  0052  3409               	retlw	9
-   154  0053  3401               	retlw	1
-   155  0054  340A               	retlw	10
-   156  0055  340B               	retlw	11
-   157  0056  3444               	retlw	68
-   158  0057  34FF               	retlw	255
-   159  0058  3418               	retlw	24
-   160  0059  3410               	retlw	16
-   161  005A  3411               	retlw	17
-   162  005B  3412               	retlw	18
-   163  005C  341B               	retlw	27
-   164  005D  3413               	retlw	19
-   165  005E  34FF               	retlw	255
-   166  005F  345C               	retlw	92
-   167  0060  3407               	retlw	7
-   168  0061  3420               	retlw	32
-   169  0062  3419               	retlw	25
-   170  0063  3422               	retlw	34
-   171  0064  341A               	retlw	26
-   172  0065  3423               	retlw	35
-   173  0066  3463               	retlw	99
-   174  0067  3464               	retlw	100
-   175  0068  341F               	retlw	31
-   176  0069  3427               	retlw	39
-   177  006A  3426               	retlw	38
-   178  006B  3421               	retlw	33
-   179  006C  3425               	retlw	37
-   180  006D  3424               	retlw	36
-   181  006E  3454               	retlw	84
-   182  006F  34A0               	retlw	160
-   183  0070  3406               	retlw	6
-   184  0071  3417               	retlw	23
-   185  0072  341E               	retlw	30
-   186  0073  341D               	retlw	29
-   187  0074  341C               	retlw	28
-   188  0075  3414               	retlw	20
-   189  0076  34FF               	retlw	255
-   190  0077  34FF               	retlw	255
-   191  0078  349F               	retlw	159
-   192  0079  3416               	retlw	22
-   193  007A  3415               	retlw	21
-   194  007B  340D               	retlw	13
-   195  007C  3404               	retlw	4
-   196  007D  340C               	retlw	12
-   197  007E  34FF               	retlw	255
-   198  007F  34FF               	retlw	255
-   199  0080  3497               	retlw	151
-   200  0081  34A0               	retlw	160
-   201  0082  340E               	retlw	14
-   202  0083  348D               	retlw	141
-   203  0084  3405               	retlw	5
-   204  0085  349E               	retlw	158
-   205  0086  3483               	retlw	131
-   206  0087  348B               	retlw	139
-   207  0088  3493               	retlw	147
-   208  0089  349C               	retlw	156
-   209  008A  349B               	retlw	155
-   210  008B  34E5               	retlw	229
-   211  008C  348E               	retlw	142
-   212  008D  34A3               	retlw	163
-   213  008E  34A6               	retlw	166
-   214  008F  344B               	retlw	75
-   215  0090  34FF               	retlw	255
-   216  0091  3406               	retlw	6
-   217  0092  34DD               	retlw	221
-   218  0093  34A4               	retlw	164
-   219  0094  34FF               	retlw	255
-   220  0095  34A7               	retlw	167
-   221  0096  3494               	retlw	148
-   222  0097  348C               	retlw	140
-   223  0098  3484               	retlw	132
-   224  0099  3496               	retlw	150
-   225  009A  3490               	retlw	144
-   226  009B  34FF               	retlw	255
-   227  009C  34FF               	retlw	255
-   228  009D  3444               	retlw	68
-   229  009E  3488               	retlw	136
-   230  009F  3485               	retlw	133
-   231  00A0  3403               	retlw	3
-   232  00A1  349A               	retlw	154
-   233  00A2  341B               	retlw	27
-   234  00A3  341C               	retlw	28
-   235  00A4  34A2               	retlw	162
-   236  00A5  3498               	retlw	152
-   237  00A6  34FF               	retlw	255
-   238  00A7  3404               	retlw	4
-   239  00A8  3497               	retlw	151
-   240  00A9  340B               	retlw	11
-   241  00AA  3423               	retlw	35
-   242  00AB  3424               	retlw	36
-   243  00AC  3414               	retlw	20
-   244  00AD  3443               	retlw	67
-   245  00AE  34FF               	retlw	255
-   246  00AF  34FF               	retlw	255
-   247  00B0  3496               	retlw	150
-   248  00B1  3413               	retlw	19
-   249  00B2  349E               	retlw	158
-   250  00B3  34A7               	retlw	167
-   251  00B4  340C               	retlw	12
-   252  00B5  34FF               	retlw	255
-   253  00B6  34FF               	retlw	255
-   254  00B7                     __end_of_codeToMatrix:	
-   255  00B7                     _replaceOnShiftKeyDown:	
-   256  00B7  3416               	retlw	22
-   257  00B8  344F               	retlw	79
-   258  00B9  341E               	retlw	30
-   259  00BA  3450               	retlw	80
-   260  00BB  3426               	retlw	38
-   261  00BC  3451               	retlw	81
-   262  00BD  3425               	retlw	37
-   263  00BE  3453               	retlw	83
-   264  00BF  342E               	retlw	46
-   265  00C0  3456               	retlw	86
-   266  00C1  3436               	retlw	54
-   267  00C2  3457               	retlw	87
-   268  00C3  343D               	retlw	61
-   269  00C4  345C               	retlw	92
-   270  00C5  343E               	retlw	62
-   271  00C6  345E               	retlw	94
-   272  00C7  3446               	retlw	70
-   273  00C8  345F               	retlw	95
-   274  00C9  3445               	retlw	69
-   275  00CA  3460               	retlw	96
-   276  00CB  344E               	retlw	78
-   277  00CC  3461               	retlw	97
-   278  00CD  3455               	retlw	85
-   279  00CE  3462               	retlw	98
-   280  00CF  345D               	retlw	93
-   281  00D0  3463               	retlw	99
-   282  00D1  344C               	retlw	76
-   283  00D2  3467               	retlw	103
-   284  00D3  3452               	retlw	82
-   285  00D4  3468               	retlw	104
-   286  00D5  3441               	retlw	65
-   287  00D6  346A               	retlw	106
-   288  00D7  3449               	retlw	73
-   289  00D8  346D               	retlw	109
-   290  00D9  344A               	retlw	74
-   291  00DA  346E               	retlw	110
-   292  00DB                     __end_of_replaceOnShiftKeyDown:	
-   293  00DB                     _replaceTwoBytesCodes:	
-   294  00DB  3414               	retlw	20
-   295  00DC  3413               	retlw	19
-   296  00DD  3470               	retlw	112
-   297  00DE  3417               	retlw	23
-   298  00DF  346C               	retlw	108
-   299  00E0  3418               	retlw	24
-   300  00E1  347D               	retlw	125
-   301  00E2  3419               	retlw	25
-   302  00E3  3471               	retlw	113
-   303  00E4  341F               	retlw	31
-   304  00E5  3469               	retlw	105
-   305  00E6  3420               	retlw	32
-   306  00E7  347A               	retlw	122
-   307  00E8  3427               	retlw	39
-   308  00E9  3475               	retlw	117
-   309  00EA  3428               	retlw	40
-   310  00EB  346B               	retlw	107
-   311  00EC  342F               	retlw	47
-   312  00ED  3472               	retlw	114
-   313  00EE  3430               	retlw	48
-   314  00EF  3474               	retlw	116
-   315  00F0  3437               	retlw	55
-   316  00F1  344A               	retlw	74
-   317  00F2  3438               	retlw	56
-   318  00F3  345A               	retlw	90
-   319  00F4  3439               	retlw	57
-   320  00F5                     __end_of_replaceTwoBytesCodes:	
-   321                           
-   322                           	psect	nvBANK0
-   323  003F                     __pnvBANK0:	
-   324  003F                     _ps2Down:	
-   325  003F                     	ds	1
-   326  0005                     _PORTA	set	5
-   327  0006                     _PORTB	set	6
-   328  0005                     _PORTAbits	set	5
-   329  0001                     _TMR0	set	1
-   330  0029                     _RA1	set	41
-   331  002A                     _RA2	set	42
-   332  005F                     _GIE	set	95
-   333  005A                     _T0IF	set	90
-   334  005D                     _T0IE	set	93
-   335  0086                     _TRISB	set	134
-   336  040B                     _PSA	set	1035
-   337  040C                     _T0SE	set	1036
-   338  040D                     _T0CS	set	1037
-   339  042C                     _TRISA4	set	1068
-   340  042B                     _TRISA3	set	1067
-   341  042A                     _TRISA2	set	1066
-   342  0429                     _TRISA1	set	1065
-   343  0428                     _TRISA0	set	1064
-   344                           
-   345                           	psect	cinit
-   346  0010                     start_initialization:	
-   347                           ; #config settings
-   348                           
-   349  0010                     __initialization:	
-   350                           
-   351                           ; Initialize objects allocated to BANK0
-   352  0010  22F9               	fcall	__pidataBANK0	;fetch initializer
-   353  0011  00B2               	movwf	__pdataBANK0& (0+127)
-   354  0012  22FA               	fcall	__pidataBANK0+1	;fetch initializer
-   355  0013  00B3               	movwf	(__pdataBANK0+1)& (0+127)
-   356  0014  22FB               	fcall	__pidataBANK0+2	;fetch initializer
-   357  0015  00B4               	movwf	(__pdataBANK0+2)& (0+127)
-   358  0016  22FC               	fcall	__pidataBANK0+3	;fetch initializer
-   359  0017  00B5               	movwf	(__pdataBANK0+3)& (0+127)
-   360  0018  22FD               	fcall	__pidataBANK0+4	;fetch initializer
-   361  0019  00B6               	movwf	(__pdataBANK0+4)& (0+127)
-   362  001A  22FE               	fcall	__pidataBANK0+5	;fetch initializer
-   363  001B  00B7               	movwf	(__pdataBANK0+5)& (0+127)
-   364  001C  22FF               	fcall	__pidataBANK0+6	;fetch initializer
-   365  001D  00B8               	movwf	(__pdataBANK0+6)& (0+127)
-   366  001E  2300               	fcall	__pidataBANK0+7	;fetch initializer
-   367  001F  00B9               	movwf	(__pdataBANK0+7)& (0+127)
-   368  0020  2301               	fcall	__pidataBANK0+8	;fetch initializer
-   369  0021  00BA               	movwf	(__pdataBANK0+8)& (0+127)
-   370  0022  2302               	fcall	__pidataBANK0+9	;fetch initializer
-   371  0023  00BB               	movwf	(__pdataBANK0+9)& (0+127)
-   372  0024  2303               	fcall	__pidataBANK0+10	;fetch initializer
-   373  0025  00BC               	movwf	(__pdataBANK0+10)& (0+127)
-   374  0026  2304               	fcall	__pidataBANK0+11	;fetch initializer
-   375  0027  00BD               	movwf	(__pdataBANK0+11)& (0+127)
-   376  0028  2305               	fcall	__pidataBANK0+12	;fetch initializer
-   377  0029  00BE               	movwf	(__pdataBANK0+12)& (0+127)
+    53                           ; Code-generator required, PIC16F84A Definitions
+    54                           ; 
+    55                           ; SFR Addresses
+    56  0000                     	;# 
+    57  0001                     	;# 
+    58  0002                     	;# 
+    59  0003                     	;# 
+    60  0004                     	;# 
+    61  0005                     	;# 
+    62  0006                     	;# 
+    63  0008                     	;# 
+    64  0009                     	;# 
+    65  000A                     	;# 
+    66  000B                     	;# 
+    67  0081                     	;# 
+    68  0085                     	;# 
+    69  0086                     	;# 
+    70  0088                     	;# 
+    71  0089                     	;# 
+    72  0000                     	;# 
+    73  0001                     	;# 
+    74  0002                     	;# 
+    75  0003                     	;# 
+    76  0004                     	;# 
+    77  0005                     	;# 
+    78  0006                     	;# 
+    79  0008                     	;# 
+    80  0009                     	;# 
+    81  000A                     	;# 
+    82  000B                     	;# 
+    83  0081                     	;# 
+    84  0085                     	;# 
+    85  0086                     	;# 
+    86  0088                     	;# 
+    87  0089                     	;# 
+    88                           
+    89                           	psect	idataBANK0
+    90  03E3                     __pidataBANK0:	
+    91                           
+    92                           ;initializer for _outPorts
+    93  03E3  3400               	retlw	0
+    94  03E4  3400               	retlw	0
+    95  03E5  3400               	retlw	0
+    96  03E6  3400               	retlw	0
+    97  03E7  3400               	retlw	0
+    98  03E8  3400               	retlw	0
+    99  03E9  3400               	retlw	0
+   100  03EA  3400               	retlw	0
+   101  03EB  3407               	retlw	7
+   102  03EC  34F5               	retlw	245
+   103  03ED  34DA               	retlw	218
+   104                           
+   105                           ;initializer for _mouseY
+   106  03EE  3464               	retlw	100
+   107                           
+   108                           ;initializer for _mouseX
+   109  03EF  3432               	retlw	50
+   110                           
+   111                           	psect	strings
+   112  0200                     __pstrings:	
+   113  0200                     stringtab:	
+   114  0200                     __stringtab:	
+   115  0200                     stringcode:	
+   116                           ;	String table - string pointers are 1 byte each
+   117                           
+   118  0200                     stringdir:	
+   119  0200  3002               	movlw	high stringdir
+   120  0201  008A               	movwf	10
+   121  0202  0804               	movf	4,w
+   122  0203  0A84               	incf	4,f
+   123  0204  0782               	addwf	2,f
+   124  0205                     __stringbase:	
+   125  0205  3400               	retlw	0
+   126  0206                     __end_of__stringtab:	
+   127  0206                     _codeToMatrix:	
+   128  0206  34FF               	retlw	255
+   129  0207  34FF               	retlw	255
+   130  0208  34FF               	retlw	255
+   131  0209  34FF               	retlw	255
+   132  020A  34FF               	retlw	255
+   133  020B  34FF               	retlw	255
+   134  020C  34FF               	retlw	255
+   135  020D  34FF               	retlw	255
+   136  020E  34FF               	retlw	255
+   137  020F  34FF               	retlw	255
+   138  0210  34FF               	retlw	255
+   139  0211  34FF               	retlw	255
+   140  0212  34FF               	retlw	255
+   141  0213  34FF               	retlw	255
+   142  0214  349C               	retlw	156
+   143  0215  34FF               	retlw	255
+   144  0216  34FF               	retlw	255
+   145  0217  34FF               	retlw	255
+   146  0218  34FF               	retlw	255
+   147  0219  34FF               	retlw	255
+   148  021A  34FF               	retlw	255
+   149  021B  3402               	retlw	2
+   150  021C  3403               	retlw	3
+   151  021D  34FF               	retlw	255
+   152  021E  34FF               	retlw	255
+   153  021F  34FF               	retlw	255
+   154  0220  3408               	retlw	8
+   155  0221  3409               	retlw	9
+   156  0222  3401               	retlw	1
+   157  0223  340A               	retlw	10
+   158  0224  340B               	retlw	11
+   159  0225  34D6               	retlw	214
+   160  0226  34FF               	retlw	255
+   161  0227  3418               	retlw	24
+   162  0228  3410               	retlw	16
+   163  0229  3411               	retlw	17
+   164  022A  3412               	retlw	18
+   165  022B  341B               	retlw	27
+   166  022C  3413               	retlw	19
+   167  022D  34FF               	retlw	255
+   168  022E  345C               	retlw	92
+   169  022F  3407               	retlw	7
+   170  0230  3420               	retlw	32
+   171  0231  3419               	retlw	25
+   172  0232  3422               	retlw	34
+   173  0233  341A               	retlw	26
+   174  0234  3423               	retlw	35
+   175  0235  3463               	retlw	99
+   176  0236  3464               	retlw	100
+   177  0237  341F               	retlw	31
+   178  0238  3427               	retlw	39
+   179  0239  3426               	retlw	38
+   180  023A  3421               	retlw	33
+   181  023B  3425               	retlw	37
+   182  023C  3424               	retlw	36
+   183  023D  3454               	retlw	84
+   184  023E  34A0               	retlw	160
+   185  023F  3406               	retlw	6
+   186  0240  3417               	retlw	23
+   187  0241  341E               	retlw	30
+   188  0242  341D               	retlw	29
+   189  0243  341C               	retlw	28
+   190  0244  3414               	retlw	20
+   191  0245  34FF               	retlw	255
+   192  0246  34FF               	retlw	255
+   193  0247  349F               	retlw	159
+   194  0248  3416               	retlw	22
+   195  0249  3415               	retlw	21
+   196  024A  340D               	retlw	13
+   197  024B  3404               	retlw	4
+   198  024C  340C               	retlw	12
+   199  024D  34FF               	retlw	255
+   200  024E  34C1               	retlw	193
+   201  024F  3497               	retlw	151
+   202  0250  34A0               	retlw	160
+   203  0251  340E               	retlw	14
+   204  0252  348D               	retlw	141
+   205  0253  3405               	retlw	5
+   206  0254  349E               	retlw	158
+   207  0255  3483               	retlw	131
+   208  0256  348B               	retlw	139
+   209  0257  3493               	retlw	147
+   210  0258  349C               	retlw	156
+   211  0259  349B               	retlw	155
+   212  025A  34E5               	retlw	229
+   213  025B  348E               	retlw	142
+   214  025C  34A3               	retlw	163
+   215  025D  34A6               	retlw	166
+   216  025E  344B               	retlw	75
+   217  025F  34FF               	retlw	255
+   218  0260  3406               	retlw	6
+   219  0261  34DD               	retlw	221
+   220  0262  34A4               	retlw	164
+   221  0263  34D1               	retlw	209
+   222  0264  34A7               	retlw	167
+   223  0265  3494               	retlw	148
+   224  0266  348C               	retlw	140
+   225  0267  3484               	retlw	132
+   226  0268  3496               	retlw	150
+   227  0269  34C9               	retlw	201
+   228  026A  34D9               	retlw	217
+   229  026B  34E1               	retlw	225
+   230  026C  3444               	retlw	68
+   231  026D  3488               	retlw	136
+   232  026E  3485               	retlw	133
+   233  026F  3403               	retlw	3
+   234  0270  349A               	retlw	154
+   235  0271  341B               	retlw	27
+   236  0272  341C               	retlw	28
+   237  0273  34A2               	retlw	162
+   238  0274  3498               	retlw	152
+   239  0275  34C0               	retlw	192
+   240  0276  3404               	retlw	4
+   241  0277  3497               	retlw	151
+   242  0278  340B               	retlw	11
+   243  0279  3423               	retlw	35
+   244  027A  3424               	retlw	36
+   245  027B  3414               	retlw	20
+   246  027C  3443               	retlw	67
+   247  027D  34FF               	retlw	255
+   248  027E  34FF               	retlw	255
+   249  027F  3496               	retlw	150
+   250  0280  3413               	retlw	19
+   251  0281  349E               	retlw	158
+   252  0282  34A7               	retlw	167
+   253  0283  340C               	retlw	12
+   254  0284  34FF               	retlw	255
+   255  0285  34FF               	retlw	255
+   256  0286                     __end_of_codeToMatrix:	
+   257  0286                     _replaceOnShiftKeyDown:	
+   258  0286  3416               	retlw	22
+   259  0287  344F               	retlw	79
+   260  0288  341E               	retlw	30
+   261  0289  3450               	retlw	80
+   262  028A  3426               	retlw	38
+   263  028B  3451               	retlw	81
+   264  028C  3425               	retlw	37
+   265  028D  3453               	retlw	83
+   266  028E  342E               	retlw	46
+   267  028F  3456               	retlw	86
+   268  0290  3436               	retlw	54
+   269  0291  3457               	retlw	87
+   270  0292  343D               	retlw	61
+   271  0293  345C               	retlw	92
+   272  0294  343E               	retlw	62
+   273  0295  345E               	retlw	94
+   274  0296  3446               	retlw	70
+   275  0297  345F               	retlw	95
+   276  0298  3445               	retlw	69
+   277  0299  3460               	retlw	96
+   278  029A  344E               	retlw	78
+   279  029B  3461               	retlw	97
+   280  029C  3455               	retlw	85
+   281  029D  3462               	retlw	98
+   282  029E  345D               	retlw	93
+   283  029F  3463               	retlw	99
+   284  02A0  344C               	retlw	76
+   285  02A1  3467               	retlw	103
+   286  02A2  3452               	retlw	82
+   287  02A3  3468               	retlw	104
+   288  02A4  3441               	retlw	65
+   289  02A5  346A               	retlw	106
+   290  02A6  3449               	retlw	73
+   291  02A7  346D               	retlw	109
+   292  02A8  344A               	retlw	74
+   293  02A9  346E               	retlw	110
+   294  02AA  340E               	retlw	14
+   295  02AB  3448               	retlw	72
+   296  02AC  3454               	retlw	84
+   297  02AD  3464               	retlw	100
+   298  02AE  345B               	retlw	91
+   299  02AF  3465               	retlw	101
+   300  02B0                     __end_of_replaceOnShiftKeyDown:	
+   301  02B0                     _replaceTwoBytesCodes:	
+   302  02B0  3414               	retlw	20
+   303  02B1  3413               	retlw	19
+   304  02B2  3470               	retlw	112
+   305  02B3  3417               	retlw	23
+   306  02B4  346C               	retlw	108
+   307  02B5  3418               	retlw	24
+   308  02B6  347D               	retlw	125
+   309  02B7  3419               	retlw	25
+   310  02B8  3471               	retlw	113
+   311  02B9  341F               	retlw	31
+   312  02BA  3469               	retlw	105
+   313  02BB  3420               	retlw	32
+   314  02BC  347A               	retlw	122
+   315  02BD  3427               	retlw	39
+   316  02BE  3475               	retlw	117
+   317  02BF  3428               	retlw	40
+   318  02C0  346B               	retlw	107
+   319  02C1  342F               	retlw	47
+   320  02C2  3472               	retlw	114
+   321  02C3  3430               	retlw	48
+   322  02C4  3474               	retlw	116
+   323  02C5  3437               	retlw	55
+   324  02C6  344A               	retlw	74
+   325  02C7  3438               	retlw	56
+   326  02C8  345A               	retlw	90
+   327  02C9  3439               	retlw	57
+   328  02CA                     __end_of_replaceTwoBytesCodes:	
+   329  02CA                     _replaceOnDelayKeyDown:	
+   330  02CA  341F               	retlw	31
+   331  02CB  3454               	retlw	84
+   332  02CC  345B               	retlw	91
+   333  02CD  3463               	retlw	99
+   334  02CE  3464               	retlw	100
+   335  02CF  3465               	retlw	101
+   336  02D0  3448               	retlw	72
+   337  02D1  345D               	retlw	93
+   338  02D2                     __end_of_replaceOnDelayKeyDown:	
+   339  02D2                     _digitsTable:	
+   340  02D2  3445               	retlw	69
+   341  02D3  3416               	retlw	22
+   342  02D4  341E               	retlw	30
+   343  02D5  3426               	retlw	38
+   344  02D6  3425               	retlw	37
+   345  02D7  342E               	retlw	46
+   346  02D8  3436               	retlw	54
+   347  02D9  343D               	retlw	61
+   348  02DA                     __end_of_digitsTable:	
+   349                           
+   350                           	psect	nvBANK0
+   351  0041                     __pnvBANK0:	
+   352  0041                     _ps2Down:	
+   353  0041                     	ds	1
+   354  0005                     _PORTA	set	5
+   355  0006                     _PORTB	set	6
+   356  0005                     _PORTAbits	set	5
+   357  0001                     _TMR0	set	1
+   358  0029                     _RA1	set	41
+   359  002A                     _RA2	set	42
+   360  005F                     _GIE	set	95
+   361  005A                     _T0IF	set	90
+   362  005D                     _T0IE	set	93
+   363  0086                     _TRISB	set	134
+   364  040B                     _PSA	set	1035
+   365  040C                     _T0SE	set	1036
+   366  040D                     _T0CS	set	1037
+   367  042A                     _TRISA2	set	1066
+   368  0429                     _TRISA1	set	1065
+   369  042B                     _TRISA3	set	1067
+   370  042C                     _TRISA4	set	1068
+   371  0428                     _TRISA0	set	1064
+   372                           
+   373                           	psect	cinit
+   374  0010                     start_initialization:	
+   375                           ; #config settings
+   376                           
+   377  0010                     __initialization:	
    378                           
-   379                           ; Clear objects allocated to BANK0
-   380  002A  1383               	bcf	3,7	;select IRP bank0
-   381  002B  3025               	movlw	low __pbssBANK0
-   382  002C  0084               	movwf	4
-   383  002D  3032               	movlw	low (__pbssBANK0+13)
-   384  002E  2306               	fcall	clear_ram0
-   385  002F                     end_of_initialization:	
-   386                           ;End of C runtime variable initialization code
-   387                           
-   388  002F                     __end_of__initialization:	
-   389  002F  0183               	clrf	3
-   390  0030  28F5               	ljmp	_main	;jump to C main() function
-   391                           
-   392                           	psect	bssBANK0
-   393  0025                     __pbssBANK0:	
-   394  0025                     _delay:	
-   395  0025                     	ds	2
-   396  0027                     _replaced:	
-   397  0027                     	ds	1
-   398  0028                     _ctrl:	
-   399  0028                     	ds	1
-   400  0029                     _shift:	
-   401  0029                     	ds	1
-   402  002A                     _i:	
-   403  002A                     	ds	1
-   404  002B                     _ps2NeedEncode:	
-   405  002B                     	ds	1
-   406  002C                     _ps2WaitCode:	
-   407  002C                     	ds	1
-   408  002D                     _ps2DataCount:	
-   409  002D                     	ds	1
-   410  002E                     _ps2Data:	
-   411  002E                     	ds	1
-   412  002F                     _ps2BitsCount:	
-   413  002F                     	ds	1
-   414  0030                     _ps2Bits:	
-   415  0030                     	ds	1
-   416  0031                     _ps2DataState:	
-   417  0031                     	ds	1
-   418                           
-   419                           	psect	dataBANK0
-   420  0032                     __pdataBANK0:	
-   421  0032                     _outPorts:	
-   422  0032                     	ds	11
-   423  003D                     _mouseY:	
-   424  003D                     	ds	1
-   425  003E                     _mouseX:	
-   426  003E                     	ds	1
-   427                           
-   428                           	psect	clrtext
-   429  0306                     clear_ram0:	
-   430                           ;	Called with FSR containing the base address, and
-   431                           ;	W with the last address+1
-   432                           
-   433  0306  0064               	clrwdt	;clear the watchdog before getting into this loop
-   434  0307                     clrloop0:	
-   435  0307  0180               	clrf	0	;clear RAM location pointed to by FSR
-   436  0308  0A84               	incf	4,f	;increment pointer
-   437  0309  0604               	xorwf	4,w	;XOR with final address
-   438  030A  1903               	btfsc	3,2	;have we reached the end yet?
-   439  030B  3400               	retlw	0	;all done for this memory range, return
-   440  030C  0604               	xorwf	4,w	;XOR again to restore value
-   441  030D  2B07               	goto	clrloop0	;do the next byte
-   442                           
-   443                           	psect	cstackBANK0
-   444  000C                     __pcstackBANK0:	
-   445  000C                     ?_myIsr:	
-   446  000C                     ??_myIsr:	
-   447                           ; 1 bytes @ 0x0
+   379                           ; Initialize objects allocated to BANK0
+   380  0010  23E3               	fcall	__pidataBANK0	;fetch initializer
+   381  0011  00B4               	movwf	__pdataBANK0& (0+127)
+   382  0012  23E4               	fcall	__pidataBANK0+1	;fetch initializer
+   383  0013  00B5               	movwf	(__pdataBANK0+1)& (0+127)
+   384  0014  23E5               	fcall	__pidataBANK0+2	;fetch initializer
+   385  0015  00B6               	movwf	(__pdataBANK0+2)& (0+127)
+   386  0016  23E6               	fcall	__pidataBANK0+3	;fetch initializer
+   387  0017  00B7               	movwf	(__pdataBANK0+3)& (0+127)
+   388  0018  23E7               	fcall	__pidataBANK0+4	;fetch initializer
+   389  0019  00B8               	movwf	(__pdataBANK0+4)& (0+127)
+   390  001A  23E8               	fcall	__pidataBANK0+5	;fetch initializer
+   391  001B  00B9               	movwf	(__pdataBANK0+5)& (0+127)
+   392  001C  23E9               	fcall	__pidataBANK0+6	;fetch initializer
+   393  001D  00BA               	movwf	(__pdataBANK0+6)& (0+127)
+   394  001E  23EA               	fcall	__pidataBANK0+7	;fetch initializer
+   395  001F  00BB               	movwf	(__pdataBANK0+7)& (0+127)
+   396  0020  23EB               	fcall	__pidataBANK0+8	;fetch initializer
+   397  0021  00BC               	movwf	(__pdataBANK0+8)& (0+127)
+   398  0022  23EC               	fcall	__pidataBANK0+9	;fetch initializer
+   399  0023  00BD               	movwf	(__pdataBANK0+9)& (0+127)
+   400  0024  23ED               	fcall	__pidataBANK0+10	;fetch initializer
+   401  0025  00BE               	movwf	(__pdataBANK0+10)& (0+127)
+   402  0026  23EE               	fcall	__pidataBANK0+11	;fetch initializer
+   403  0027  00BF               	movwf	(__pdataBANK0+11)& (0+127)
+   404  0028  23EF               	fcall	__pidataBANK0+12	;fetch initializer
+   405  0029  00C0               	movwf	(__pdataBANK0+12)& (0+127)
+   406                           
+   407                           ; Clear objects allocated to BANK0
+   408  002A  1383               	bcf	3,7	;select IRP bank0
+   409  002B  3025               	movlw	low __pbssBANK0
+   410  002C  0084               	movwf	4
+   411  002D  3034               	movlw	low (__pbssBANK0+15)
+   412  002E  23F0               	fcall	clear_ram0
+   413  002F                     end_of_initialization:	
+   414                           ;End of C runtime variable initialization code
+   415                           
+   416  002F                     __end_of__initialization:	
+   417  002F  0183               	clrf	3
+   418  0030  2831               	ljmp	_main	;jump to C main() function
+   419                           
+   420                           	psect	bssBANK0
+   421  0025                     __pbssBANK0:	
+   422  0025                     _delayA:	
+   423  0025                     	ds	2
+   424  0027                     _delay:	
+   425  0027                     	ds	2
+   426  0029                     _delayedKey:	
+   427  0029                     	ds	1
+   428  002A                     _replaced:	
+   429  002A                     	ds	1
+   430  002B                     _ctrl:	
+   431  002B                     	ds	1
+   432  002C                     _shift:	
+   433  002C                     	ds	1
+   434  002D                     _ps2NeedEncode:	
+   435  002D                     	ds	1
+   436  002E                     _ps2WaitCode:	
+   437  002E                     	ds	1
+   438  002F                     _ps2Device:	
+   439  002F                     	ds	1
+   440  0030                     _ps2Data:	
+   441  0030                     	ds	1
+   442  0031                     _ps2BitsCount:	
+   443  0031                     	ds	1
+   444  0032                     _ps2Bits:	
+   445  0032                     	ds	1
+   446  0033                     _ps2DataState:	
+   447  0033                     	ds	1
    448                           
-   449  000C                     ?_sendDataToAltera:	
-   450                           ; 1 bytes @ 0x0
-   451                           
-   452  000C                     ?_main:	
-   453                           ; 1 bytes @ 0x0
-   454                           
-   455                           
-   456                           ; 1 bytes @ 0x0
-   457  000C                     	ds	6
-   458  0012                     _myIsr$84:	
-   459                           
-   460                           ; 2 bytes @ 0x6
-   461  0012                     	ds	2
-   462  0014                     myIsr@ii:	
-   463                           
-   464                           ; 2 bytes @ 0x8
-   465  0014                     	ds	2
-   466  0016                     ?_updatePort:	
-   467  0016                     ??_sendDataToAltera:	
-   468                           ; 1 bytes @ 0xA
-   469                           
-   470  0016                     updatePort@set:	
-   471                           ; 1 bytes @ 0xA
+   449                           	psect	dataBANK0
+   450  0034                     __pdataBANK0:	
+   451  0034                     _outPorts:	
+   452  0034                     	ds	11
+   453  003F                     _mouseY:	
+   454  003F                     	ds	1
+   455  0040                     _mouseX:	
+   456  0040                     	ds	1
+   457                           
+   458                           	psect	clrtext
+   459  03F0                     clear_ram0:	
+   460                           ;	Called with FSR containing the base address, and
+   461                           ;	W with the last address+1
+   462                           
+   463  03F0  0064               	clrwdt	;clear the watchdog before getting into this loop
+   464  03F1                     clrloop0:	
+   465  03F1  0180               	clrf	0	;clear RAM location pointed to by FSR
+   466  03F2  0A84               	incf	4,f	;increment pointer
+   467  03F3  0604               	xorwf	4,w	;XOR with final address
+   468  03F4  1903               	btfsc	3,2	;have we reached the end yet?
+   469  03F5  3400               	retlw	0	;all done for this memory range, return
+   470  03F6  0604               	xorwf	4,w	;XOR again to restore value
+   471  03F7  2BF1               	goto	clrloop0	;do the next byte
    472                           
-   473                           
-   474                           ; 1 bytes @ 0xA
-   475  0016                     	ds	1
-   476  0017                     ??_updatePort:	
-   477                           
-   478                           ; 1 bytes @ 0xB
-   479  0017                     	ds	3
-   480  001A                     updatePort@b:	
-   481                           
-   482                           ; 1 bytes @ 0xE
-   483  001A                     	ds	1
-   484  001B                     updatePort@a:	
-   485                           
-   486                           ; 1 bytes @ 0xF
-   487  001B                     	ds	1
-   488  001C                     updatePort@bit_id:	
-   489                           
-   490                           ; 1 bytes @ 0x10
-   491  001C                     	ds	1
-   492  001D                     ?_updateKey:	
-   493  001D                     updateKey@set:	
-   494                           ; 1 bytes @ 0x11
-   495                           
-   496                           
-   497                           ; 1 bytes @ 0x11
-   498  001D                     	ds	1
-   499  001E                     ??_updateKey:	
-   500                           
-   501                           ; 1 bytes @ 0x12
-   502  001E                     	ds	1
-   503  001F                     updateKey@localShift:	
-   504                           
-   505                           ; 1 bytes @ 0x13
-   506  001F                     	ds	1
-   507  0020                     _updateKey$94:	
+   473                           	psect	cstackCOMMON
+   474  0000                     __pcstackCOMMON:	
+   475  0000                     ??_myDelay:	
+   476                           
+   477                           	psect	cstackBANK0
+   478  000C                     __pcstackBANK0:	
+   479                           ; 1 bytes @ 0x0
+   480                           
+   481  000C                     ?_myIsr:	
+   482  000C                     ??_myIsr:	
+   483                           ; 1 bytes @ 0x0
+   484                           
+   485  000C                     ?_myDelay:	
+   486                           ; 1 bytes @ 0x0
+   487                           
+   488  000C                     ?_sendDataToAltera:	
+   489                           ; 1 bytes @ 0x0
+   490                           
+   491  000C                     ?_main:	
+   492                           ; 1 bytes @ 0x0
+   493                           
+   494                           
+   495                           ; 1 bytes @ 0x0
+   496  000C                     	ds	6
+   497  0012                     _myIsr$87:	
+   498                           
+   499                           ; 2 bytes @ 0x6
+   500  0012                     	ds	2
+   501  0014                     myIsr@i:	
+   502                           
+   503                           ; 1 bytes @ 0x8
+   504  0014                     	ds	1
+   505  0015                     ?_updatePort:	
+   506  0015                     ??_sendDataToAltera:	
+   507                           ; 1 bytes @ 0x9
    508                           
-   509                           ; 1 bytes @ 0x14
-   510  0020                     	ds	1
-   511  0021                     updateKey@localCtrl:	
+   509  0015                     updatePort@set:	
+   510                           ; 1 bytes @ 0x9
+   511                           
    512                           
-   513                           ; 1 bytes @ 0x15
-   514  0021                     	ds	1
-   515  0022                     _updateKey$97:	
-   516                           
-   517                           ; 1 bytes @ 0x16
-   518  0022                     	ds	1
-   519  0023                     updateKey@key:	
-   520                           
-   521                           ; 1 bytes @ 0x17
-   522  0023                     	ds	1
-   523  0024                     ??_main:	
-   524                           
-   525                           ; 1 bytes @ 0x18
-   526  0024                     	ds	1
+   513                           ; 1 bytes @ 0x9
+   514  0015                     	ds	1
+   515  0016                     ??_updatePort:	
+   516  0016                     sendDataToAltera@i:	
+   517                           ; 1 bytes @ 0xA
+   518                           
+   519                           
+   520                           ; 1 bytes @ 0xA
+   521  0016                     	ds	3
+   522  0019                     updatePort@a:	
+   523                           
+   524                           ; 1 bytes @ 0xD
+   525  0019                     	ds	1
+   526  001A                     updatePort@bit_id:	
    527                           
-   528                           	psect	maintext
-   529  00F5                     __pmaintext:	
-   530 ;;
-   531 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
-   532 ;;
-   533 ;; *************** function _main *****************
-   534 ;; Defined at:
-   535 ;;		line 231 in file "main.c"
-   536 ;; Parameters:    Size  Location     Type
-   537 ;;		None
-   538 ;; Auto vars:     Size  Location     Type
-   539 ;;		None
-   540 ;; Return value:  Size  Location     Type
-   541 ;;                  1    wreg      void 
-   542 ;; Registers used:
-   543 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   544 ;; Tracked objects:
-   545 ;;		On entry : B00/0
-   546 ;;		On exit  : 0/0
-   547 ;;		Unchanged: 0/0
-   548 ;; Data sizes:     COMMON   BANK0
-   549 ;;      Params:         0       0
-   550 ;;      Locals:         0       0
-   551 ;;      Temps:          0       1
-   552 ;;      Totals:         0       1
-   553 ;;Total ram usage:        1 bytes
-   554 ;; Hardware stack levels required when called:    4
-   555 ;; This function calls:
-   556 ;;		_sendDataToAltera
-   557 ;;		_updateKey
-   558 ;; This function is called by:
-   559 ;;		Startup code after reset
-   560 ;; This function uses a non-reentrant model
-   561 ;;
+   528                           ; 1 bytes @ 0xE
+   529  001A                     	ds	1
+   530  001B                     ?_updateKey:	
+   531  001B                     updateKey@set:	
+   532                           ; 1 bytes @ 0xF
+   533                           
+   534                           
+   535                           ; 1 bytes @ 0xF
+   536  001B                     	ds	1
+   537  001C                     ??_updateKey:	
+   538                           
+   539                           ; 1 bytes @ 0x10
+   540  001C                     	ds	1
+   541  001D                     updateKey@localShift:	
+   542                           
+   543                           ; 1 bytes @ 0x11
+   544  001D                     	ds	1
+   545  001E                     _updateKey$97:	
+   546                           
+   547                           ; 1 bytes @ 0x12
+   548  001E                     	ds	1
+   549  001F                     updateKey@localCtrl:	
+   550                           
+   551                           ; 1 bytes @ 0x13
+   552  001F                     	ds	1
+   553  0020                     updateKey@key:	
+   554                           
+   555                           ; 1 bytes @ 0x14
+   556  0020                     	ds	1
+   557  0021                     updateKey@code:	
+   558                           
+   559                           ; 1 bytes @ 0x15
+   560  0021                     	ds	1
+   561  0022                     ??_main:	
    562                           
-   563                           
-   564                           ;psect for function _main
-   565  00F5                     _main:	
+   563                           ; 1 bytes @ 0x16
+   564  0022                     	ds	1
+   565  0023                     main@i_112:	
    566                           
-   567                           ;main.c: 233:     TRISA0 = 1;
-   568                           
-   569                           ;incstack = 0
-   570                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   571  00F5  1683               	bsf	3,5	;RP0=1, select bank1
-   572  00F6  1405               	bsf	5,0	;volatile
+   567                           ; 1 bytes @ 0x17
+   568  0023                     	ds	1
+   569  0024                     main@i:	
+   570                           
+   571                           ; 1 bytes @ 0x18
+   572  0024                     	ds	1
    573                           
-   574                           ;main.c: 234:     TRISA1 = 0;
-   575  00F7  1085               	bcf	5,1	;volatile
-   576                           
-   577                           ;main.c: 235:     TRISA2 = 0;
-   578  00F8  1105               	bcf	5,2	;volatile
-   579                           
-   580                           ;main.c: 236:     TRISA3 = 1;
-   581  00F9  1585               	bsf	5,3	;volatile
-   582                           
-   583                           ;main.c: 237:     TRISA4 = 1;
-   584  00FA  1605               	bsf	5,4	;volatile
-   585                           
-   586                           ;main.c: 239:     PORTA = 0b00000000;
-   587  00FB  1283               	bcf	3,5	;RP0=0, select bank0
-   588  00FC  0185               	clrf	5	;volatile
-   589                           
-   590                           ;main.c: 241:     TRISB = 0b00000000;
-   591  00FD  1683               	bsf	3,5	;RP0=1, select bank1
-   592  00FE  0186               	clrf	6	;volatile
-   593                           
-   594                           ;main.c: 242:     PORTB = 0b00000000;
-   595  00FF  1283               	bcf	3,5	;RP0=0, select bank0
-   596  0100  0186               	clrf	6	;volatile
-   597                           
-   598                           ;main.c: 262:     T0CS = 1;
-   599  0101  1683               	bsf	3,5	;RP0=1, select bank1
-   600  0102  1681               	bsf	1,5	;volatile
-   601                           
-   602                           ;main.c: 263:     T0SE = 1;
-   603  0103  1601               	bsf	1,4	;volatile
-   604                           
-   605                           ;main.c: 264:     GIE = 1;
-   606  0104  178B               	bsf	11,7	;volatile
-   607                           
-   608                           ;main.c: 265:     T0IE = 1;
-   609  0105  168B               	bsf	11,5	;volatile
+   574                           	psect	maintext
+   575  0031                     __pmaintext:	
+   576 ;;
+   577 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   578 ;;
+   579 ;; *************** function _main *****************
+   580 ;; Defined at:
+   581 ;;		line 334 in file "main.c"
+   582 ;; Parameters:    Size  Location     Type
+   583 ;;		None
+   584 ;; Auto vars:     Size  Location     Type
+   585 ;;  i               1   23[BANK0 ] char 
+   586 ;;  i               1   24[BANK0 ] char 
+   587 ;; Return value:  Size  Location     Type
+   588 ;;                  1    wreg      void 
+   589 ;; Registers used:
+   590 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   591 ;; Tracked objects:
+   592 ;;		On entry : B00/0
+   593 ;;		On exit  : 0/0
+   594 ;;		Unchanged: 0/0
+   595 ;; Data sizes:     COMMON   BANK0
+   596 ;;      Params:         0       0
+   597 ;;      Locals:         0       2
+   598 ;;      Temps:          0       1
+   599 ;;      Totals:         0       3
+   600 ;;Total ram usage:        3 bytes
+   601 ;; Hardware stack levels required when called:    4
+   602 ;; This function calls:
+   603 ;;		_sendDataToAltera
+   604 ;;		_updateKey
+   605 ;;		_updatePort
+   606 ;; This function is called by:
+   607 ;;		Startup code after reset
+   608 ;; This function uses a non-reentrant model
+   609 ;;
    610                           
-   611                           ;main.c: 266:     PSA = 1;
-   612  0106  1581               	bsf	1,3	;volatile
-   613                           
-   614                           ;main.c: 267:     T0IF = 0;
-   615  0107  110B               	bcf	11,2	;volatile
+   611                           
+   612                           ;psect for function _main
+   613  0031                     _main:	
+   614                           
+   615                           ;main.c: 336:     TRISA1 = 0;
    616                           
-   617                           ;main.c: 268:     TMR0 = 255;
-   618  0108  30FF               	movlw	255
-   619  0109  1283               	bcf	3,5	;RP0=0, select bank0
-   620  010A  0081               	movwf	1	;volatile
+   617                           ;incstack = 0
+   618                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   619  0031  1683               	bsf	3,5	;RP0=1, select bank1
+   620  0032  1085               	bcf	5,1	;volatile
    621                           
-   622                           ;main.c: 270:     ps2Data = 0;
-   623  010B  01AE               	clrf	_ps2Data
+   622                           ;main.c: 337:     TRISA2 = 0;
+   623  0033  1105               	bcf	5,2	;volatile
    624                           
-   625                           ;main.c: 271:     ps2DataCount = 0;
-   626  010C  01AD               	clrf	_ps2DataCount
+   625                           ;main.c: 338:     TRISA0 = 1;
+   626  0034  1405               	bsf	5,0	;volatile
    627                           
-   628                           ;main.c: 272:     ps2WaitCode = 0;
-   629  010D  01AC               	clrf	_ps2WaitCode
+   628                           ;main.c: 339:     TRISA4 = 1;
+   629  0035  1605               	bsf	5,4	;volatile
    630                           
-   631                           ;main.c: 273:     ps2Down = 1;
-   632  010E  01BF               	clrf	_ps2Down
-   633  010F  0ABF               	incf	_ps2Down,f
-   634                           
-   635                           ;main.c: 274:     ps2NeedEncode = 0;
-   636  0110  01AB               	clrf	_ps2NeedEncode
+   631                           ;main.c: 340:     TRISA3 = 1;
+   632  0036  1585               	bsf	5,3	;volatile
+   633                           
+   634                           ;main.c: 342:     PORTA = 0;
+   635  0037  1283               	bcf	3,5	;RP0=0, select bank0
+   636  0038  0185               	clrf	5	;volatile
    637                           
-   638                           ;main.c: 275:     ps2DataState = 0;
-   639  0111  01B1               	clrf	_ps2DataState
-   640                           
-   641                           ;main.c: 281:     shift = 0;
-   642  0112  01A9               	clrf	_shift
-   643                           
-   644                           ;main.c: 282:     ctrl = 0;
-   645  0113  01A8               	clrf	_ctrl
-   646                           
-   647                           ;main.c: 283:     replaced = 0;
-   648  0114  01A7               	clrf	_replaced
-   649  0115                     l1195:	
-   650                           ;main.c: 285:     while(1)
+   638                           ;main.c: 344:     TRISB = 0;
+   639  0039  1683               	bsf	3,5	;RP0=1, select bank1
+   640  003A  0186               	clrf	6	;volatile
+   641                           
+   642                           ;main.c: 345:     PORTB = 0;
+   643  003B  1283               	bcf	3,5	;RP0=0, select bank0
+   644  003C  0186               	clrf	6	;volatile
+   645                           
+   646                           ;main.c: 365:     ps2Data = 0;
+   647  003D  01B0               	clrf	_ps2Data
+   648                           
+   649                           ;main.c: 367:     ps2WaitCode = 0;
+   650  003E  01AE               	clrf	_ps2WaitCode
    651                           
-   652                           
-   653                           ;main.c: 286:     {;main.c: 287:         if ( ps2DataState == 2 ) {
-   654  0115  3002               	movlw	2
-   655  0116  1283               	bcf	3,5	;RP0=0, select bank0
-   656  0117  0631               	xorwf	_ps2DataState,w
-   657  0118  1D03               	btfss	3,2
-   658  0119  2976               	goto	l1255
-   659                           
-   660                           ;main.c: 290:             for(i = 0; i < 35 ;i+=2) {
-   661  011A  01AA               	clrf	_i
-   662  011B  3023               	movlw	35
-   663  011C  022A               	subwf	_i,w
-   664  011D  1803               	btfsc	3,0
-   665  011E  294F               	goto	l1227
-   666  011F                     l1203:	
-   667                           
-   668                           ;main.c: 291:                 if ( ps2Data == replaceOnShiftKeyDown[i] ) {
-   669  011F  082A               	movf	_i,w
-   670  0120  3E81               	addlw	low ((_replaceOnShiftKeyDown-__stringbase)| (0+32768))
-   671  0121  0084               	movwf	4
-   672  0122  2031               	fcall	stringdir
-   673  0123  062E               	xorwf	_ps2Data,w
-   674  0124  1D03               	skipz
-   675  0125  2947               	goto	l1223
-   676                           
-   677                           ;main.c: 298:                     if ( (shift && replaced == 0) || replaced == ps2Data) 
-      +                          {
-   678  0126  0829               	movf	_shift,w
-   679  0127  1903               	btfsc	3,2
-   680  0128  292C               	goto	l1209
-   681  0129  0827               	movf	_replaced,w
-   682  012A  1903               	btfsc	3,2
-   683  012B  2930               	goto	l1211
-   684  012C                     l1209:	
-   685  012C  0827               	movf	_replaced,w
-   686  012D  062E               	xorwf	_ps2Data,w
-   687  012E  1D03               	skipz
-   688  012F  2942               	goto	l1219
-   689  0130                     l1211:	
+   652                           ;main.c: 368:     ps2Down = 1;
+   653  003F  01C1               	clrf	_ps2Down
+   654  0040  0AC1               	incf	_ps2Down,f
+   655                           
+   656                           ;main.c: 369:     ps2NeedEncode = 0;
+   657  0041  01AD               	clrf	_ps2NeedEncode
+   658                           
+   659                           ;main.c: 370:     ps2DataState = 0;
+   660  0042  01B3               	clrf	_ps2DataState
+   661                           
+   662                           ;main.c: 372:     delay = 0;
+   663  0043  01A7               	clrf	_delay
+   664  0044  01A8               	clrf	_delay+1
+   665                           
+   666                           ;main.c: 373:     delayedKey = 0;
+   667  0045  01A9               	clrf	_delayedKey
+   668                           
+   669                           ;main.c: 374:     shift = 0;
+   670  0046  01AC               	clrf	_shift
+   671                           
+   672                           ;main.c: 375:     ctrl = 0;
+   673  0047  01AB               	clrf	_ctrl
+   674                           
+   675                           ;main.c: 376:     replaced = 0;
+   676  0048  01AA               	clrf	_replaced
+   677                           
+   678                           ;main.c: 382:     T0CS = 1;
+   679  0049  1683               	bsf	3,5	;RP0=1, select bank1
+   680  004A  1681               	bsf	1,5	;volatile
+   681                           
+   682                           ;main.c: 383:     T0SE = 1;
+   683  004B  1601               	bsf	1,4	;volatile
+   684                           
+   685                           ;main.c: 384:     GIE = 1;
+   686  004C  178B               	bsf	11,7	;volatile
+   687                           
+   688                           ;main.c: 385:     T0IE = 1;
+   689  004D  168B               	bsf	11,5	;volatile
    690                           
-   691                           ;main.c: 299:                         if ( ps2Down ) replaced = ps2Data;
-   692  0130  083F               	movf	_ps2Down,w
-   693  0131  1903               	btfsc	3,2
-   694  0132  2938               	goto	l1215
-   695  0133  082E               	movf	_ps2Data,w
-   696  0134  00A4               	movwf	??_main
-   697  0135  0824               	movf	??_main,w
-   698  0136  00A7               	movwf	_replaced
-   699  0137  2939               	goto	l1217
-   700  0138                     l1215:	
-   701                           ;main.c: 300:                         else replaced = 0;
-   702                           
-   703  0138  01A7               	clrf	_replaced
-   704  0139                     l1217:	
-   705                           
-   706                           ;main.c: 301:                         ps2Data = replaceOnShiftKeyDown[i+1];
-   707  0139  082A               	movf	_i,w
-   708  013A  3E01               	addlw	1
-   709  013B  3E81               	addlw	low ((_replaceOnShiftKeyDown-__stringbase)| (0+32768))
-   710  013C  0084               	movwf	4
-   711  013D  2031               	fcall	stringdir
-   712  013E  00A4               	movwf	??_main
-   713  013F  0824               	movf	??_main,w
-   714  0140  00AE               	movwf	_ps2Data
-   715                           
-   716                           ;main.c: 302:                     } else {
-   717  0141  294F               	goto	l1227
-   718  0142                     l1219:	
-   719                           
-   720                           ;main.c: 303:                         if ( replaced != 0 ) ps2Data = 0;
-   721  0142  0827               	movf	_replaced,w
-   722  0143  1903               	btfsc	3,2
-   723  0144  294F               	goto	l1227
-   724  0145  01AE               	clrf	_ps2Data
+   691                           ;main.c: 386:     PSA = 1;
+   692  004E  1581               	bsf	1,3	;volatile
+   693                           
+   694                           ;main.c: 387:     T0IF = 0;
+   695  004F  110B               	bcf	11,2	;volatile
+   696                           
+   697                           ;main.c: 388:     TMR0 = 255;
+   698  0050  30FF               	movlw	255
+   699  0051  1283               	bcf	3,5	;RP0=0, select bank0
+   700  0052  0081               	movwf	1	;volatile
+   701  0053                     l1210:	
+   702                           ;main.c: 390:     while(1)
+   703                           
+   704                           
+   705                           ;main.c: 391:     {;main.c: 393:         if ( ps2DataState == 2 ) {
+   706  0053  3002               	movlw	2
+   707  0054  1283               	bcf	3,5	;RP0=0, select bank0
+   708  0055  0633               	xorwf	_ps2DataState,w
+   709  0056  1D03               	btfss	3,2
+   710  0057  28E4               	goto	l1286
+   711                           
+   712                           ;main.c: 395:             if ( ps2Device == 0 ) {
+   713  0058  082F               	movf	_ps2Device,w
+   714  0059  1D03               	btfss	3,2
+   715  005A  28DD               	goto	l1282
+   716                           
+   717                           ;main.c: 407:                 for(int8_t i = 0; i < 41 ;i+=2) {
+   718  005B  01A4               	clrf	main@i
+   719  005C  0824               	movf	main@i,w
+   720  005D  3A80               	xorlw	128
+   721  005E  3E57               	addlw	-169
+   722  005F  1803               	btfsc	3,0
+   723  0060  2892               	goto	l1244
+   724  0061                     l1220:	
    725                           
-   726                           ;main.c: 305:                     break;
-   727                           
-   728                           ;main.c: 304:                     }
-   729  0146  294F               	goto	l1227
-   730  0147                     l1223:	
-   731                           ;main.c: 306:                 }
-   732                           
-   733                           
-   734                           ;main.c: 307:             }
-   735  0147  3002               	movlw	2
-   736  0148  00A4               	movwf	??_main
-   737  0149  0824               	movf	??_main,w
-   738  014A  07AA               	addwf	_i,f
-   739  014B  3023               	movlw	35
-   740  014C  022A               	subwf	_i,w
-   741  014D  1C03               	skipc
-   742  014E  291F               	goto	l1203
-   743  014F                     l1227:	
-   744                           
-   745                           ;main.c: 310:             if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
-   746  014F  3012               	movlw	18
-   747  0150  062E               	xorwf	_ps2Data,w
-   748  0151  1903               	btfsc	3,2
-   749  0152  2957               	goto	l1231
-   750  0153  3059               	movlw	89
-   751  0154  062E               	xorwf	_ps2Data,w
-   752  0155  1D03               	btfss	3,2
-   753  0156  295B               	goto	l1233
-   754  0157                     l1231:	
-   755  0157  083F               	movf	_ps2Down,w
-   756  0158  00A4               	movwf	??_main
-   757  0159  0824               	movf	??_main,w
-   758  015A  00A9               	movwf	_shift
-   759  015B                     l1233:	
+   726                           ;main.c: 408:                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+   727  0061  0824               	movf	main@i,w
+   728  0062  3E81               	addlw	low ((_replaceOnShiftKeyDown-__stringbase)| (0+32768))
+   729  0063  0084               	movwf	4
+   730  0064  2200               	fcall	stringdir
+   731  0065  0630               	xorwf	_ps2Data,w
+   732  0066  1D03               	skipz
+   733  0067  2889               	goto	l1240
+   734                           
+   735                           ;main.c: 409:                         if ( (shift && replaced == 0) || replaced == ps2Da
+      +                          ta) {
+   736  0068  082C               	movf	_shift,w
+   737  0069  1903               	btfsc	3,2
+   738  006A  286E               	goto	l1226
+   739  006B  082A               	movf	_replaced,w
+   740  006C  1903               	btfsc	3,2
+   741  006D  2872               	goto	l1228
+   742  006E                     l1226:	
+   743  006E  082A               	movf	_replaced,w
+   744  006F  0630               	xorwf	_ps2Data,w
+   745  0070  1D03               	skipz
+   746  0071  2884               	goto	l1236
+   747  0072                     l1228:	
+   748                           
+   749                           ;main.c: 410:                             if ( ps2Down ) replaced = ps2Data;
+   750  0072  0841               	movf	_ps2Down,w
+   751  0073  1903               	btfsc	3,2
+   752  0074  287A               	goto	l1232
+   753  0075  0830               	movf	_ps2Data,w
+   754  0076  00A2               	movwf	??_main
+   755  0077  0822               	movf	??_main,w
+   756  0078  00AA               	movwf	_replaced
+   757  0079  287B               	goto	l1234
+   758  007A                     l1232:	
+   759                           ;main.c: 411:                             else replaced = 0;
    760                           
-   761                           ;main.c: 311:             if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
-   762  015B  3014               	movlw	20
-   763  015C  062E               	xorwf	_ps2Data,w
-   764  015D  1903               	btfsc	3,2
-   765  015E  2963               	goto	l1237
-   766  015F  3013               	movlw	19
-   767  0160  062E               	xorwf	_ps2Data,w
-   768  0161  1D03               	btfss	3,2
-   769  0162  2967               	goto	l1239
-   770  0163                     l1237:	
-   771  0163  083F               	movf	_ps2Down,w
-   772  0164  00A4               	movwf	??_main
-   773  0165  0824               	movf	??_main,w
-   774  0166  00A8               	movwf	_ctrl
-   775  0167                     l1239:	
-   776                           
-   777                           ;main.c: 312:             updateKey(ps2Data, ps2Down );
-   778  0167  083F               	movf	_ps2Down,w
-   779  0168  00A4               	movwf	??_main
-   780  0169  0824               	movf	??_main,w
-   781  016A  009D               	movwf	updateKey@set
-   782  016B  082E               	movf	_ps2Data,w
-   783  016C  2249               	fcall	_updateKey
-   784                           
-   785                           ;main.c: 315:             ps2Data = 0;
-   786  016D  1283               	bcf	3,5	;RP0=0, select bank0
-   787  016E  01AE               	clrf	_ps2Data
-   788                           
-   789                           ;main.c: 316:             ps2DataCount = 0;
-   790  016F  01AD               	clrf	_ps2DataCount
+   761  007A  01AA               	clrf	_replaced
+   762  007B                     l1234:	
+   763                           
+   764                           ;main.c: 412:                             ps2Data = replaceOnShiftKeyDown[i+1];
+   765  007B  0824               	movf	main@i,w
+   766  007C  3E01               	addlw	1
+   767  007D  3E81               	addlw	low ((_replaceOnShiftKeyDown-__stringbase)| (0+32768))
+   768  007E  0084               	movwf	4
+   769  007F  2200               	fcall	stringdir
+   770  0080  00A2               	movwf	??_main
+   771  0081  0822               	movf	??_main,w
+   772  0082  00B0               	movwf	_ps2Data
+   773                           
+   774                           ;main.c: 413:                         } else {
+   775  0083  2892               	goto	l1244
+   776  0084                     l1236:	
+   777                           
+   778                           ;main.c: 414:                             if ( replaced != 0 ) ps2Data = 0;
+   779  0084  082A               	movf	_replaced,w
+   780  0085  1903               	btfsc	3,2
+   781  0086  2892               	goto	l1244
+   782  0087  01B0               	clrf	_ps2Data
+   783                           
+   784                           ;main.c: 416:                         break;
+   785                           
+   786                           ;main.c: 415:                         }
+   787  0088  2892               	goto	l1244
+   788  0089                     l1240:	
+   789                           ;main.c: 417:                     }
+   790                           
    791                           
-   792                           ;main.c: 317:             ps2WaitCode = 0;
-   793  0170  01AC               	clrf	_ps2WaitCode
-   794                           
-   795                           ;main.c: 318:             ps2Down = 1;
-   796  0171  01BF               	clrf	_ps2Down
-   797  0172  0ABF               	incf	_ps2Down,f
-   798                           
-   799                           ;main.c: 319:             ps2NeedEncode = 0;
-   800  0173  01AB               	clrf	_ps2NeedEncode
-   801                           
-   802                           ;main.c: 320:             ps2DataState = 0;
-   803  0174  01B1               	clrf	_ps2DataState
-   804                           
-   805                           ;main.c: 323:             sendDataToAltera();
-   806  0175  22DB               	fcall	_sendDataToAltera
-   807  0176                     l1255:	
-   808                           ;main.c: 324:         }
-   809                           
-   810                           
-   811                           ;main.c: 333:         delay++;
-   812  0176  3001               	movlw	1
-   813  0177  1283               	bcf	3,5	;RP0=0, select bank0
-   814  0178  07A5               	addwf	_delay,f
-   815  0179  1803               	skipnc
-   816  017A  0AA6               	incf	_delay+1,f
-   817  017B  3000               	movlw	0
-   818  017C  07A6               	addwf	_delay+1,f
-   819                           
-   820                           ;main.c: 334:         if ( delay > 2000 ) {
-   821  017D  3007               	movlw	7
-   822  017E  0226               	subwf	_delay+1,w
-   823  017F  30D1               	movlw	209
-   824  0180  1903               	skipnz
-   825  0181  0225               	subwf	_delay,w
-   826  0182  1C03               	skipc
-   827  0183  29B4               	goto	l148
-   828                           
-   829                           ;main.c: 336:             if ( outPorts[9] > mouseX ) outPorts[9]--;
-   830  0184  083B               	movf	_outPorts+9,w
-   831  0185  023E               	subwf	_mouseX,w
-   832  0186  1803               	skipnc
-   833  0187  298B               	goto	l1263
-   834  0188  3001               	movlw	1
-   835  0189  02BB               	subwf	_outPorts+9,f
-   836  018A  2993               	goto	l1267
-   837  018B                     l1263:	
-   838                           ;main.c: 337:             else if ( outPorts[9] < mouseX ) outPorts[9]++;
-   839                           
-   840  018B  083E               	movf	_mouseX,w
-   841  018C  023B               	subwf	_outPorts+9,w
-   842  018D  1803               	skipnc
-   843  018E  2993               	goto	l1267
-   844  018F  3001               	movlw	1
-   845  0190  00A4               	movwf	??_main
-   846  0191  0824               	movf	??_main,w
-   847  0192  07BB               	addwf	_outPorts+9,f
-   848  0193                     l1267:	
-   849                           
-   850                           ;main.c: 338:             if ( outPorts[10] > mouseY ) outPorts[10]--;
-   851  0193  083C               	movf	_outPorts+10,w
-   852  0194  023D               	subwf	_mouseY,w
-   853  0195  1803               	skipnc
-   854  0196  299A               	goto	l1271
-   855  0197  3001               	movlw	1
-   856  0198  02BC               	subwf	_outPorts+10,f
-   857  0199  29A2               	goto	l1275
-   858  019A                     l1271:	
-   859                           ;main.c: 339:             else if ( outPorts[10] < mouseY ) outPorts[10]++;
-   860                           
-   861  019A  083D               	movf	_mouseY,w
-   862  019B  023C               	subwf	_outPorts+10,w
-   863  019C  1803               	skipnc
-   864  019D  29A2               	goto	l1275
-   865  019E  3001               	movlw	1
-   866  019F  00A4               	movwf	??_main
-   867  01A0  0824               	movf	??_main,w
-   868  01A1  07BC               	addwf	_outPorts+10,f
-   869  01A2                     l1275:	
-   870                           
-   871                           ;main.c: 341:             if ( outPorts[9] == mouseX && outPorts[10] == mouseY ) {
-   872  01A2  083B               	movf	_outPorts+9,w
-   873  01A3  063E               	xorwf	_mouseX,w
-   874  01A4  1D03               	skipz
-   875  01A5  29B0               	goto	l1281
-   876  01A6  083C               	movf	_outPorts+10,w
-   877  01A7  063D               	xorwf	_mouseY,w
-   878  01A8  1D03               	skipz
-   879  01A9  29B0               	goto	l1281
-   880                           
-   881                           ;main.c: 342:                 mouseX -= 128;
-   882  01AA  3080               	movlw	128
-   883  01AB  02BE               	subwf	_mouseX,f
-   884                           
-   885                           ;main.c: 343:                 mouseY += 200;
-   886  01AC  30C8               	movlw	200
-   887  01AD  00A4               	movwf	??_main
-   888  01AE  0824               	movf	??_main,w
-   889  01AF  07BD               	addwf	_mouseY,f
-   890  01B0                     l1281:	
-   891                           ;main.c: 344:             }
-   892                           
-   893                           
-   894                           ;main.c: 345:             sendDataToAltera();
-   895  01B0  22DB               	fcall	_sendDataToAltera
-   896                           
-   897                           ;main.c: 347:             delay = 0;
-   898  01B1  1283               	bcf	3,5	;RP0=0, select bank0
-   899  01B2  01A5               	clrf	_delay
-   900  01B3  01A6               	clrf	_delay+1
-   901  01B4                     l148:	
-   902                           ;main.c: 348:         }
-   903                           
-   904  01B4  0064               	clrwdt	;# 
-   905                           
-   906                           ;main.c: 352:     }
-   907  01B5  2915               	goto	l1195
-   908  01B6                     __end_of_main:	
-   909                           
-   910                           	psect	text1
-   911  0249                     __ptext1:	
-   912 ;; *************** function _updateKey *****************
-   913 ;; Defined at:
-   914 ;;		line 149 in file "main.c"
-   915 ;; Parameters:    Size  Location     Type
-   916 ;;  key             1    wreg     unsigned char 
-   917 ;;  set             1   17[BANK0 ] unsigned char 
-   918 ;; Auto vars:     Size  Location     Type
-   919 ;;  key             1   23[BANK0 ] unsigned char 
-   920 ;;  localCtrl       1   21[BANK0 ] unsigned char 
-   921 ;;  localShift      1   19[BANK0 ] unsigned char 
-   922 ;; Return value:  Size  Location     Type
-   923 ;;                  1    wreg      void 
-   924 ;; Registers used:
-   925 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   926 ;; Tracked objects:
-   927 ;;		On entry : 0/0
-   928 ;;		On exit  : 0/0
-   929 ;;		Unchanged: 0/0
-   930 ;; Data sizes:     COMMON   BANK0
-   931 ;;      Params:         0       1
-   932 ;;      Locals:         0       5
-   933 ;;      Temps:          0       1
-   934 ;;      Totals:         0       7
-   935 ;;Total ram usage:        7 bytes
-   936 ;; Hardware stack levels used:    1
-   937 ;; Hardware stack levels required when called:    3
-   938 ;; This function calls:
-   939 ;;		_updatePort
-   940 ;; This function is called by:
-   941 ;;		_main
-   942 ;; This function uses a non-reentrant model
-   943 ;;
-   944                           
-   945                           
-   946                           ;psect for function _updateKey
-   947  0249                     _updateKey:	
-   948                           
-   949                           ;incstack = 0
-   950                           ; Regs used in _updateKey: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   951                           ;updateKey@key stored from wreg
-   952  0249  1283               	bcf	3,5	;RP0=0, select bank0
-   953  024A  00A3               	movwf	updateKey@key
-   954                           
-   955                           ;main.c: 149: void updateKey(uint_fast8_t key, uint_fast8_t set);main.c: 150: {;main.c: 
-      +                          151:     i = 0xFF;
-   956  024B  30FF               	movlw	255
-   957  024C  009E               	movwf	??_updateKey
-   958  024D  081E               	movf	??_updateKey,w
-   959  024E  00AA               	movwf	_i
-   960                           
-   961                           ;main.c: 152:     uint_fast8_t localShift = (shift && replaced == 0);
-   962  024F  01A0               	clrf	_updateKey$94
-   963  0250  0829               	movf	_shift,w
-   964  0251  1903               	btfsc	3,2
-   965  0252  2A58               	goto	l1041
-   966  0253  0827               	movf	_replaced,w
-   967  0254  1D03               	btfss	3,2
-   968  0255  2A58               	goto	l1041
-   969  0256  01A0               	clrf	_updateKey$94
-   970  0257  0AA0               	incf	_updateKey$94,f
-   971  0258                     l1041:	
-   972  0258  0820               	movf	_updateKey$94,w
-   973  0259  009E               	movwf	??_updateKey
-   974  025A  081E               	movf	??_updateKey,w
-   975  025B  009F               	movwf	updateKey@localShift
-   976                           
-   977                           ;main.c: 153:     uint_fast8_t localCtrl = 0;
-   978  025C  01A1               	clrf	updateKey@localCtrl
-   979                           
-   980                           ;main.c: 154:     if ( key < 128 ) i = codeToMatrix[key];
-   981  025D  3080               	movlw	128
-   982  025E  0223               	subwf	updateKey@key,w
-   983  025F  1803               	skipnc
-   984  0260  2A68               	goto	l1049
-   985  0261  0823               	movf	updateKey@key,w
-   986  0262  3E01               	addlw	low ((_codeToMatrix-__stringbase)| (0+32768))
-   987  0263  0084               	movwf	4
-   988  0264  2031               	fcall	stringdir
-   989  0265  009E               	movwf	??_updateKey
-   990  0266  081E               	movf	??_updateKey,w
-   991  0267  00AA               	movwf	_i
-   992  0268                     l1049:	
+   792                           ;main.c: 418:                 }
+   793  0089  3002               	movlw	2
+   794  008A  00A2               	movwf	??_main
+   795  008B  0822               	movf	??_main,w
+   796  008C  07A4               	addwf	main@i,f
+   797  008D  0824               	movf	main@i,w
+   798  008E  3A80               	xorlw	128
+   799  008F  3E57               	addlw	-169
+   800  0090  1C03               	skipc
+   801  0091  2861               	goto	l1220
+   802  0092                     l1244:	
+   803                           
+   804                           ;main.c: 422:                 for(int8_t i = 0; i < 8; i++) {
+   805  0092  01A3               	clrf	main@i_112
+   806  0093  0823               	movf	main@i_112,w
+   807  0094  3A80               	xorlw	128
+   808  0095  3E78               	addlw	-136
+   809  0096  1803               	btfsc	3,0
+   810  0097  28BE               	goto	l1264
+   811  0098                     l1250:	
+   812                           
+   813                           ;main.c: 423:                     if ( ps2Data == replaceOnDelayKeyDown[i] && ps2Down ) 
+      +                          {
+   814  0098  0823               	movf	main@i_112,w
+   815  0099  3EC5               	addlw	low ((_replaceOnDelayKeyDown-__stringbase)| (0+32768))
+   816  009A  0084               	movwf	4
+   817  009B  2200               	fcall	stringdir
+   818  009C  0630               	xorwf	_ps2Data,w
+   819  009D  1D03               	skipz
+   820  009E  28B5               	goto	l1260
+   821  009F  0841               	movf	_ps2Down,w
+   822  00A0  1903               	btfsc	3,2
+   823  00A1  28B5               	goto	l1260
+   824                           
+   825                           ;main.c: 424:                         if ( delay == 0 ) {
+   826  00A2  0827               	movf	_delay,w
+   827  00A3  0428               	iorwf	_delay+1,w
+   828  00A4  1D03               	btfss	3,2
+   829  00A5  28B3               	goto	l1258
+   830                           
+   831                           ;main.c: 425:                             delayedKey = ps2Data;
+   832  00A6  0830               	movf	_ps2Data,w
+   833  00A7  00A2               	movwf	??_main
+   834  00A8  0822               	movf	??_main,w
+   835  00A9  00A9               	movwf	_delayedKey
+   836                           
+   837                           ;main.c: 426:                             delay = 3000;
+   838  00AA  30B8               	movlw	184
+   839  00AB  00A7               	movwf	_delay
+   840  00AC  300B               	movlw	11
+   841  00AD  00A8               	movwf	_delay+1
+   842                           
+   843                           ;main.c: 427:                             ps2Data = 111;
+   844  00AE  306F               	movlw	111
+   845  00AF  00A2               	movwf	??_main
+   846  00B0  0822               	movf	??_main,w
+   847  00B1  00B0               	movwf	_ps2Data
+   848                           
+   849                           ;main.c: 428:                         } else {
+   850  00B2  28BE               	goto	l1264
+   851  00B3                     l1258:	
+   852                           
+   853                           ;main.c: 429:                             ps2Data = 0;
+   854  00B3  01B0               	clrf	_ps2Data
+   855                           
+   856                           ;main.c: 431:                         break;
+   857                           
+   858                           ;main.c: 430:                         }
+   859  00B4  28BE               	goto	l1264
+   860  00B5                     l1260:	
+   861                           ;main.c: 432:                     }
+   862                           
+   863                           
+   864                           ;main.c: 433:                 }
+   865  00B5  3001               	movlw	1
+   866  00B6  00A2               	movwf	??_main
+   867  00B7  0822               	movf	??_main,w
+   868  00B8  07A3               	addwf	main@i_112,f
+   869  00B9  0823               	movf	main@i_112,w
+   870  00BA  3A80               	xorlw	128
+   871  00BB  3E78               	addlw	-136
+   872  00BC  1C03               	skipc
+   873  00BD  2898               	goto	l1250
+   874  00BE                     l1264:	
+   875                           
+   876                           ;main.c: 436:                 if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
+   877  00BE  3012               	movlw	18
+   878  00BF  0630               	xorwf	_ps2Data,w
+   879  00C0  1903               	btfsc	3,2
+   880  00C1  28C6               	goto	l1268
+   881  00C2  3059               	movlw	89
+   882  00C3  0630               	xorwf	_ps2Data,w
+   883  00C4  1D03               	btfss	3,2
+   884  00C5  28CA               	goto	l1270
+   885  00C6                     l1268:	
+   886  00C6  0841               	movf	_ps2Down,w
+   887  00C7  00A2               	movwf	??_main
+   888  00C8  0822               	movf	??_main,w
+   889  00C9  00AC               	movwf	_shift
+   890  00CA                     l1270:	
+   891                           
+   892                           ;main.c: 437:                 if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
+   893  00CA  3014               	movlw	20
+   894  00CB  0630               	xorwf	_ps2Data,w
+   895  00CC  1903               	btfsc	3,2
+   896  00CD  28D2               	goto	l1274
+   897  00CE  3013               	movlw	19
+   898  00CF  0630               	xorwf	_ps2Data,w
+   899  00D0  1D03               	btfss	3,2
+   900  00D1  28D6               	goto	l1276
+   901  00D2                     l1274:	
+   902  00D2  0841               	movf	_ps2Down,w
+   903  00D3  00A2               	movwf	??_main
+   904  00D4  0822               	movf	??_main,w
+   905  00D5  00AB               	movwf	_ctrl
+   906  00D6                     l1276:	
+   907                           
+   908                           ;main.c: 438:                 updateKey(ps2Data, ps2Down );
+   909  00D6  0841               	movf	_ps2Down,w
+   910  00D7  00A2               	movwf	??_main
+   911  00D8  0822               	movf	??_main,w
+   912  00D9  009B               	movwf	updateKey@set
+   913  00DA  0830               	movf	_ps2Data,w
+   914  00DB  2366               	fcall	_updateKey
+   915                           
+   916                           ;main.c: 441:                 sendDataToAltera();
+   917  00DC  2145               	fcall	_sendDataToAltera
+   918  00DD                     l1282:	
+   919                           ;main.c: 446:             }
+   920                           
+   921                           ;main.c: 443:             } else if ( ps2Device == 1 ) {
+   922                           
+   923                           
+   924                           ;main.c: 449:             ps2Data = 0;
+   925  00DD  1283               	bcf	3,5	;RP0=0, select bank0
+   926  00DE  01B0               	clrf	_ps2Data
+   927                           
+   928                           ;main.c: 451:             ps2WaitCode = 0;
+   929  00DF  01AE               	clrf	_ps2WaitCode
+   930                           
+   931                           ;main.c: 452:             ps2Down = 1;
+   932  00E0  01C1               	clrf	_ps2Down
+   933  00E1  0AC1               	incf	_ps2Down,f
+   934                           
+   935                           ;main.c: 453:             ps2NeedEncode = 0;
+   936  00E2  01AD               	clrf	_ps2NeedEncode
+   937                           
+   938                           ;main.c: 454:             ps2DataState = 0;
+   939  00E3  01B3               	clrf	_ps2DataState
+   940  00E4                     l1286:	
+   941                           ;main.c: 458:         }
+   942                           
+   943                           
+   944                           ;main.c: 462:         if ( delay != 0 ) {
+   945  00E4  0827               	movf	_delay,w
+   946  00E5  0428               	iorwf	_delay+1,w
+   947  00E6  1903               	btfsc	3,2
+   948  00E7  2905               	goto	l1302
+   949                           
+   950                           ;main.c: 464:             delay--;
+   951  00E8  3001               	movlw	1
+   952  00E9  02A7               	subwf	_delay,f
+   953  00EA  3000               	movlw	0
+   954  00EB  1C03               	skipc
+   955  00EC  03A8               	decf	_delay+1,f
+   956  00ED  02A8               	subwf	_delay+1,f
+   957                           
+   958                           ;main.c: 465:             if ( delay == 0 ) {
+   959  00EE  0827               	movf	_delay,w
+   960  00EF  0428               	iorwf	_delay+1,w
+   961  00F0  1D03               	btfss	3,2
+   962  00F1  28F6               	goto	l1294
+   963                           
+   964                           ;main.c: 467:                 updatePort(0x00, 0);
+   965  00F2  0195               	clrf	updatePort@set
+   966  00F3  3000               	movlw	0
+   967  00F4  23B3               	fcall	_updatePort
+   968  00F5  2904               	goto	L1
+   969  00F6                     l1294:	
+   970                           ;main.c: 471:             } else if ( delay == 1500 ) {
+   971                           
+   972                           ;main.c: 469:                 sendDataToAltera();
+   973                           
+   974  00F6  30DC               	movlw	220
+   975  00F7  1283               	bcf	3,5	;RP0=0, select bank0
+   976  00F8  0627               	xorwf	_delay,w
+   977  00F9  3005               	movlw	5
+   978  00FA  1903               	skipnz
+   979  00FB  0628               	xorwf	_delay+1,w
+   980  00FC  1D03               	btfss	3,2
+   981  00FD  2905               	goto	l1302
+   982                           
+   983                           ;main.c: 473:                 updateKey(delayedKey, 1 );
+   984  00FE  019B               	clrf	updateKey@set
+   985  00FF  0A9B               	incf	updateKey@set,f
+   986  0100  0829               	movf	_delayedKey,w
+   987  0101  2366               	fcall	_updateKey
+   988                           
+   989                           ;main.c: 474:                 delayedKey = 0;
+   990  0102  1283               	bcf	3,5	;RP0=0, select bank0
+   991  0103  01A9               	clrf	_delayedKey
+   992  0104                     L1:	
    993                           
-   994                           ;main.c: 155:     if ( i != 0xFF ) {
-   995  0268  0A2A               	incf	_i,w
-   996  0269  1903               	btfsc	3,2
-   997  026A  2A82               	goto	l1057
+   994                           ;main.c: 475:                 sendDataToAltera();
+   995  0104  2145               	fcall	_sendDataToAltera
+   996  0105                     l1302:	
+   997                           ;main.c: 477:         }
    998                           
-   999                           ;main.c: 156:         updatePort(i, set);
-  1000  026B  081D               	movf	updateKey@set,w
-  1001  026C  009E               	movwf	??_updateKey
-  1002  026D  081E               	movf	??_updateKey,w
-  1003  026E  0096               	movwf	updatePort@set
-  1004  026F  082A               	movf	_i,w
-  1005  0270  22A4               	fcall	_updatePort
-  1006                           
-  1007                           ;main.c: 167:         localShift |= (i & 0b01000000) > 0;
-  1008  0271  1283               	bcf	3,5	;RP0=0, select bank0
-  1009  0272  1F2A               	btfss	_i,6
-  1010  0273  2A76               	goto	u650
-  1011  0274  3001               	movlw	1
-  1012  0275  2A77               	goto	u660
-  1013  0276                     u650:	
-  1014  0276  3000               	movlw	0
-  1015  0277                     u660:	
-  1016  0277  009E               	movwf	??_updateKey
-  1017  0278  081E               	movf	??_updateKey,w
-  1018  0279  049F               	iorwf	updateKey@localShift,f
+   999                           ;main.c: 476:             }
+  1000                           
+  1001                           
+  1002                           ;main.c: 480:         delayA++;
+  1003  0105  3001               	movlw	1
+  1004  0106  1283               	bcf	3,5	;RP0=0, select bank0
+  1005  0107  07A5               	addwf	_delayA,f
+  1006  0108  1803               	skipnc
+  1007  0109  0AA6               	incf	_delayA+1,f
+  1008  010A  3000               	movlw	0
+  1009  010B  07A6               	addwf	_delayA+1,f
+  1010                           
+  1011                           ;main.c: 481:         if ( delayA > 5000 ) {
+  1012  010C  3013               	movlw	19
+  1013  010D  0226               	subwf	_delayA+1,w
+  1014  010E  3089               	movlw	137
+  1015  010F  1903               	skipnz
+  1016  0110  0225               	subwf	_delayA,w
+  1017  0111  1C03               	skipc
+  1018  0112  2943               	goto	l175
   1019                           
-  1020                           ;main.c: 168:         localCtrl |= (i & 0b10000000) > 0;
-  1021  027A  1FAA               	btfss	_i,7
-  1022  027B  2A7E               	goto	u670
-  1023  027C  3001               	movlw	1
-  1024  027D  2A7F               	goto	u680
-  1025  027E                     u670:	
-  1026  027E  3000               	movlw	0
-  1027  027F                     u680:	
-  1028  027F  009E               	movwf	??_updateKey
-  1029  0280  081E               	movf	??_updateKey,w
-  1030  0281  04A1               	iorwf	updateKey@localCtrl,f
-  1031  0282                     l1057:	
-  1032                           ;main.c: 169:     }
-  1033                           
-  1034                           
-  1035                           ;main.c: 170:     if ( set ) {
-  1036  0282  081D               	movf	updateKey@set,w
-  1037  0283  1903               	btfsc	3,2
-  1038  0284  0008               	return
-  1039                           
-  1040                           ;main.c: 171:         updatePort(0x00, localShift > 0 || ( shift && replaced == 0));
-  1041  0285  01A2               	clrf	_updateKey$97
-  1042  0286  0AA2               	incf	_updateKey$97,f
-  1043  0287  081F               	movf	updateKey@localShift,w
-  1044  0288  1D03               	btfss	3,2
-  1045  0289  2A91               	goto	l1069
-  1046  028A  0829               	movf	_shift,w
-  1047  028B  1903               	btfsc	3,2
-  1048  028C  2A90               	goto	l1067
-  1049  028D  0827               	movf	_replaced,w
-  1050  028E  1903               	btfsc	3,2
-  1051  028F  2A91               	goto	l1069
-  1052  0290                     l1067:	
-  1053  0290  01A2               	clrf	_updateKey$97
-  1054  0291                     l1069:	
-  1055  0291  0822               	movf	_updateKey$97,w
-  1056  0292  009E               	movwf	??_updateKey
-  1057  0293  081E               	movf	??_updateKey,w
-  1058  0294  0096               	movwf	updatePort@set
-  1059  0295  3000               	movlw	0
-  1060  0296  22A4               	fcall	_updatePort
+  1020                           ;main.c: 486:             if ( outPorts[9] > mouseX ) outPorts[9]--;
+  1021  0113  083D               	movf	_outPorts+9,w
+  1022  0114  0240               	subwf	_mouseX,w
+  1023  0115  1803               	skipnc
+  1024  0116  291A               	goto	l1310
+  1025  0117  3001               	movlw	1
+  1026  0118  02BD               	subwf	_outPorts+9,f
+  1027  0119  2922               	goto	l1314
+  1028  011A                     l1310:	
+  1029                           ;main.c: 487:             else if ( outPorts[9] < mouseX ) outPorts[9]++;
+  1030                           
+  1031  011A  0840               	movf	_mouseX,w
+  1032  011B  023D               	subwf	_outPorts+9,w
+  1033  011C  1803               	skipnc
+  1034  011D  2922               	goto	l1314
+  1035  011E  3001               	movlw	1
+  1036  011F  00A2               	movwf	??_main
+  1037  0120  0822               	movf	??_main,w
+  1038  0121  07BD               	addwf	_outPorts+9,f
+  1039  0122                     l1314:	
+  1040                           
+  1041                           ;main.c: 488:             if ( outPorts[10] > mouseY ) outPorts[10]--;
+  1042  0122  083E               	movf	_outPorts+10,w
+  1043  0123  023F               	subwf	_mouseY,w
+  1044  0124  1803               	skipnc
+  1045  0125  2929               	goto	l1318
+  1046  0126  3001               	movlw	1
+  1047  0127  02BE               	subwf	_outPorts+10,f
+  1048  0128  2931               	goto	l1322
+  1049  0129                     l1318:	
+  1050                           ;main.c: 489:             else if ( outPorts[10] < mouseY ) outPorts[10]++;
+  1051                           
+  1052  0129  083F               	movf	_mouseY,w
+  1053  012A  023E               	subwf	_outPorts+10,w
+  1054  012B  1803               	skipnc
+  1055  012C  2931               	goto	l1322
+  1056  012D  3001               	movlw	1
+  1057  012E  00A2               	movwf	??_main
+  1058  012F  0822               	movf	??_main,w
+  1059  0130  07BE               	addwf	_outPorts+10,f
+  1060  0131                     l1322:	
   1061                           
-  1062                           ;main.c: 172:         updatePort(0x0F, localCtrl > 0);
-  1063  0297  1283               	bcf	3,5	;RP0=0, select bank0
-  1064  0298  0821               	movf	updateKey@localCtrl,w
-  1065  0299  1903               	btfsc	3,2
-  1066  029A  2A9D               	goto	u730
-  1067  029B  3001               	movlw	1
-  1068  029C  2A9E               	goto	u740
-  1069  029D                     u730:	
-  1070  029D  3000               	movlw	0
-  1071  029E                     u740:	
-  1072  029E  009E               	movwf	??_updateKey
-  1073  029F  081E               	movf	??_updateKey,w
-  1074  02A0  0096               	movwf	updatePort@set
-  1075  02A1  300F               	movlw	15
-  1076  02A2  22A4               	fcall	_updatePort
-  1077  02A3  0008               	return
-  1078  02A4                     __end_of_updateKey:	
-  1079                           ;main.c: 173:     }
-  1080                           
-  1081                           
-  1082                           	psect	text2
-  1083  02A4                     __ptext2:	
-  1084 ;; *************** function _updatePort *****************
-  1085 ;; Defined at:
-  1086 ;;		line 138 in file "main.c"
-  1087 ;; Parameters:    Size  Location     Type
-  1088 ;;  bit_id          1    wreg     unsigned char 
-  1089 ;;  set             1   10[BANK0 ] unsigned char 
-  1090 ;; Auto vars:     Size  Location     Type
-  1091 ;;  bit_id          1   16[BANK0 ] unsigned char 
-  1092 ;;  a               1   15[BANK0 ] unsigned char 
-  1093 ;;  b               1   14[BANK0 ] unsigned char 
-  1094 ;; Return value:  Size  Location     Type
-  1095 ;;                  1    wreg      void 
-  1096 ;; Registers used:
-  1097 ;;		wreg, fsr0l, fsr0h, status,2, status,0
-  1098 ;; Tracked objects:
-  1099 ;;		On entry : 0/0
-  1100 ;;		On exit  : 0/0
-  1101 ;;		Unchanged: 0/0
-  1102 ;; Data sizes:     COMMON   BANK0
-  1103 ;;      Params:         0       1
-  1104 ;;      Locals:         0       3
-  1105 ;;      Temps:          0       3
-  1106 ;;      Totals:         0       7
-  1107 ;;Total ram usage:        7 bytes
-  1108 ;; Hardware stack levels used:    1
-  1109 ;; Hardware stack levels required when called:    2
-  1110 ;; This function calls:
-  1111 ;;		Nothing
-  1112 ;; This function is called by:
-  1113 ;;		_updateKey
-  1114 ;; This function uses a non-reentrant model
-  1115 ;;
-  1116                           
-  1117                           
-  1118                           ;psect for function _updatePort
-  1119  02A4                     _updatePort:	
-  1120                           
-  1121                           ;incstack = 0
-  1122                           ; Regs used in _updatePort: [wreg-fsr0h+status,2+status,0]
-  1123                           ;updatePort@bit_id stored from wreg
-  1124  02A4  1283               	bcf	3,5	;RP0=0, select bank0
-  1125  02A5  009C               	movwf	updatePort@bit_id
-  1126                           
-  1127                           ;main.c: 138: void updatePort(uint_fast8_t bit_id, uint_fast8_t set);main.c: 139: {;main
-      +                          .c: 140:     uint_fast8_t b = outPorts[bit_id & 7];
-  1128  02A6  081C               	movf	updatePort@bit_id,w
-  1129  02A7  3907               	andlw	7
-  1130  02A8  3E32               	addlw	(low (_outPorts| 0))& (0+255)
-  1131  02A9  0084               	movwf	4
-  1132  02AA  1383               	bcf	3,7	;select IRP bank0
-  1133  02AB  0800               	movf	0,w
-  1134  02AC  0097               	movwf	??_updatePort
-  1135  02AD  0817               	movf	??_updatePort,w
-  1136  02AE  009A               	movwf	updatePort@b
+  1062                           ;main.c: 491:             if ( outPorts[9] == mouseX && outPorts[10] == mouseY ) {
+  1063  0131  083D               	movf	_outPorts+9,w
+  1064  0132  0640               	xorwf	_mouseX,w
+  1065  0133  1D03               	skipz
+  1066  0134  293F               	goto	l1328
+  1067  0135  083E               	movf	_outPorts+10,w
+  1068  0136  063F               	xorwf	_mouseY,w
+  1069  0137  1D03               	skipz
+  1070  0138  293F               	goto	l1328
+  1071                           
+  1072                           ;main.c: 492:                 mouseX -= 128;
+  1073  0139  3080               	movlw	128
+  1074  013A  02C0               	subwf	_mouseX,f
+  1075                           
+  1076                           ;main.c: 493:                 mouseY += 200;
+  1077  013B  30C8               	movlw	200
+  1078  013C  00A2               	movwf	??_main
+  1079  013D  0822               	movf	??_main,w
+  1080  013E  07BF               	addwf	_mouseY,f
+  1081  013F                     l1328:	
+  1082                           ;main.c: 494:             }
+  1083                           
+  1084                           
+  1085                           ;main.c: 495:             sendDataToAltera();
+  1086  013F  2145               	fcall	_sendDataToAltera
+  1087                           
+  1088                           ;main.c: 497:             delayA = 0;
+  1089  0140  1283               	bcf	3,5	;RP0=0, select bank0
+  1090  0141  01A5               	clrf	_delayA
+  1091  0142  01A6               	clrf	_delayA+1
+  1092  0143                     l175:	
+  1093                           ;main.c: 498:         }
+  1094                           
+  1095  0143  0064               	clrwdt	;# 
+  1096                           
+  1097                           ;main.c: 510:     }
+  1098  0144  2853               	goto	l1210
+  1099  0145                     __end_of_main:	
+  1100                           
+  1101                           	psect	text1
+  1102  0366                     __ptext1:	
+  1103 ;; *************** function _updateKey *****************
+  1104 ;; Defined at:
+  1105 ;;		line 178 in file "main.c"
+  1106 ;; Parameters:    Size  Location     Type
+  1107 ;;  key             1    wreg     unsigned char 
+  1108 ;;  set             1   15[BANK0 ] unsigned char 
+  1109 ;; Auto vars:     Size  Location     Type
+  1110 ;;  key             1   20[BANK0 ] unsigned char 
+  1111 ;;  code            1   21[BANK0 ] unsigned char 
+  1112 ;;  localCtrl       1   19[BANK0 ] unsigned char 
+  1113 ;;  localShift      1   17[BANK0 ] unsigned char 
+  1114 ;; Return value:  Size  Location     Type
+  1115 ;;                  1    wreg      void 
+  1116 ;; Registers used:
+  1117 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1118 ;; Tracked objects:
+  1119 ;;		On entry : 0/0
+  1120 ;;		On exit  : 0/0
+  1121 ;;		Unchanged: 0/0
+  1122 ;; Data sizes:     COMMON   BANK0
+  1123 ;;      Params:         0       1
+  1124 ;;      Locals:         0       5
+  1125 ;;      Temps:          0       1
+  1126 ;;      Totals:         0       7
+  1127 ;;Total ram usage:        7 bytes
+  1128 ;; Hardware stack levels used:    1
+  1129 ;; Hardware stack levels required when called:    3
+  1130 ;; This function calls:
+  1131 ;;		_updatePort
+  1132 ;; This function is called by:
+  1133 ;;		_main
+  1134 ;; This function uses a non-reentrant model
+  1135 ;;
+  1136                           
   1137                           
-  1138                           ;main.c: 141:     uint_fast8_t a = (1 << ((bit_id >> 3) & 7));
-  1139  02AF  3001               	movlw	1
-  1140  02B0  0097               	movwf	??_updatePort
-  1141  02B1  081C               	movf	updatePort@bit_id,w
-  1142  02B2  0098               	movwf	??_updatePort+1
-  1143  02B3  3003               	movlw	3
-  1144  02B4                     u585:	
-  1145  02B4  1003               	clrc
-  1146  02B5  0C98               	rrf	??_updatePort+1,f
-  1147  02B6  3EFF               	addlw	-1
-  1148  02B7  1D03               	skipz
-  1149  02B8  2AB4               	goto	u585
-  1150  02B9  0818               	movf	??_updatePort+1,w
-  1151  02BA  3907               	andlw	7
-  1152  02BB  3E01               	addlw	1
-  1153  02BC  2ABF               	goto	u594
-  1154  02BD                     u595:	
-  1155  02BD  1003               	clrc
-  1156  02BE  0D97               	rlf	??_updatePort,f
-  1157  02BF                     u594:	
-  1158  02BF  3EFF               	addlw	-1
-  1159  02C0  1D03               	skipz
-  1160  02C1  2ABD               	goto	u595
-  1161  02C2  0817               	movf	??_updatePort,w
-  1162  02C3  0099               	movwf	??_updatePort+2
-  1163  02C4  0819               	movf	??_updatePort+2,w
-  1164  02C5  009B               	movwf	updatePort@a
-  1165                           
-  1166                           ;main.c: 142:     if ( set ) b |= a;
-  1167  02C6  0816               	movf	updatePort@set,w
-  1168  02C7  1903               	btfsc	3,2
-  1169  02C8  2ACE               	goto	l1027
-  1170  02C9  081B               	movf	updatePort@a,w
-  1171  02CA  0097               	movwf	??_updatePort
-  1172  02CB  0817               	movf	??_updatePort,w
-  1173  02CC  049A               	iorwf	updatePort@b,f
-  1174  02CD  2AD2               	goto	l1029
-  1175  02CE                     l1027:	
-  1176                           ;main.c: 143:     else b &= ~a;
-  1177                           
-  1178  02CE  091B               	comf	updatePort@a,w
-  1179  02CF  0097               	movwf	??_updatePort
-  1180  02D0  0817               	movf	??_updatePort,w
-  1181  02D1  059A               	andwf	updatePort@b,f
-  1182  02D2                     l1029:	
-  1183                           
-  1184                           ;main.c: 144:     outPorts[bit_id & 7] = b;
-  1185  02D2  081A               	movf	updatePort@b,w
-  1186  02D3  0097               	movwf	??_updatePort
-  1187  02D4  081C               	movf	updatePort@bit_id,w
-  1188  02D5  3907               	andlw	7
-  1189  02D6  3E32               	addlw	(low (_outPorts| 0))& (0+255)
-  1190  02D7  0084               	movwf	4
-  1191  02D8  0817               	movf	??_updatePort,w
-  1192  02D9  0080               	movwf	0
-  1193  02DA  0008               	return
-  1194  02DB                     __end_of_updatePort:	
-  1195                           
-  1196                           	psect	text3
-  1197  02DB                     __ptext3:	
-  1198 ;; *************** function _sendDataToAltera *****************
-  1199 ;; Defined at:
-  1200 ;;		line 178 in file "main.c"
-  1201 ;; Parameters:    Size  Location     Type
-  1202 ;;		None
-  1203 ;; Auto vars:     Size  Location     Type
-  1204 ;;		None
-  1205 ;; Return value:  Size  Location     Type
-  1206 ;;                  1    wreg      void 
-  1207 ;; Registers used:
-  1208 ;;		wreg, fsr0l, fsr0h, status,2, status,0
-  1209 ;; Tracked objects:
-  1210 ;;		On entry : 0/0
-  1211 ;;		On exit  : 0/0
-  1212 ;;		Unchanged: 0/0
-  1213 ;; Data sizes:     COMMON   BANK0
-  1214 ;;      Params:         0       0
-  1215 ;;      Locals:         0       0
-  1216 ;;      Temps:          0       1
-  1217 ;;      Totals:         0       1
-  1218 ;;Total ram usage:        1 bytes
-  1219 ;; Hardware stack levels used:    1
-  1220 ;; Hardware stack levels required when called:    2
-  1221 ;; This function calls:
-  1222 ;;		Nothing
-  1223 ;; This function is called by:
-  1224 ;;		_main
-  1225 ;; This function uses a non-reentrant model
-  1226 ;;
-  1227                           
+  1138                           ;psect for function _updateKey
+  1139  0366                     _updateKey:	
+  1140                           
+  1141                           ;incstack = 0
+  1142                           ; Regs used in _updateKey: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1143                           ;updateKey@key stored from wreg
+  1144  0366  1283               	bcf	3,5	;RP0=0, select bank0
+  1145  0367  00A0               	movwf	updateKey@key
+  1146                           
+  1147                           ;main.c: 178: void updateKey(uint8_t key, uint8_t set);main.c: 179: {;main.c: 180:     u
+      +                          int8_t code = 0xFF;
+  1148  0368  30FF               	movlw	255
+  1149  0369  009C               	movwf	??_updateKey
+  1150  036A  081C               	movf	??_updateKey,w
+  1151  036B  00A1               	movwf	updateKey@code
+  1152                           
+  1153                           ;main.c: 181:     uint8_t localShift = (shift && replaced == 0);
+  1154  036C  019E               	clrf	_updateKey$97
+  1155  036D  082C               	movf	_shift,w
+  1156  036E  1903               	btfsc	3,2
+  1157  036F  2B75               	goto	l1074
+  1158  0370  082A               	movf	_replaced,w
+  1159  0371  1D03               	btfss	3,2
+  1160  0372  2B75               	goto	l1074
+  1161  0373  019E               	clrf	_updateKey$97
+  1162  0374  0A9E               	incf	_updateKey$97,f
+  1163  0375                     l1074:	
+  1164  0375  081E               	movf	_updateKey$97,w
+  1165  0376  009C               	movwf	??_updateKey
+  1166  0377  081C               	movf	??_updateKey,w
+  1167  0378  009D               	movwf	updateKey@localShift
+  1168                           
+  1169                           ;main.c: 182:     uint8_t localCtrl = ctrl;
+  1170  0379  082B               	movf	_ctrl,w
+  1171  037A  009C               	movwf	??_updateKey
+  1172  037B  081C               	movf	??_updateKey,w
+  1173  037C  009F               	movwf	updateKey@localCtrl
+  1174                           
+  1175                           ;main.c: 183:     if ( key < 128 ) code = codeToMatrix[key];
+  1176  037D  3080               	movlw	128
+  1177  037E  0220               	subwf	updateKey@key,w
+  1178  037F  1803               	skipnc
+  1179  0380  2B88               	goto	l1078
+  1180  0381  0820               	movf	updateKey@key,w
+  1181  0382  3E01               	addlw	low ((_codeToMatrix-__stringbase)| (0+32768))
+  1182  0383  0084               	movwf	4
+  1183  0384  2200               	fcall	stringdir
+  1184  0385  009C               	movwf	??_updateKey
+  1185  0386  081C               	movf	??_updateKey,w
+  1186  0387  00A1               	movwf	updateKey@code
+  1187  0388                     l1078:	
+  1188                           
+  1189                           ;main.c: 184:     if ( code != 0xFF ) {
+  1190  0388  0A21               	incf	updateKey@code,w
+  1191  0389  1903               	btfsc	3,2
+  1192  038A  2BA2               	goto	l1086
+  1193                           
+  1194                           ;main.c: 185:         updatePort(code, set);
+  1195  038B  081B               	movf	updateKey@set,w
+  1196  038C  009C               	movwf	??_updateKey
+  1197  038D  081C               	movf	??_updateKey,w
+  1198  038E  0095               	movwf	updatePort@set
+  1199  038F  0821               	movf	updateKey@code,w
+  1200  0390  23B3               	fcall	_updatePort
+  1201                           
+  1202                           ;main.c: 186:         localShift |= ((code & 64) > 0);
+  1203  0391  1283               	bcf	3,5	;RP0=0, select bank0
+  1204  0392  1F21               	btfss	updateKey@code,6
+  1205  0393  2B96               	goto	u720
+  1206  0394  3001               	movlw	1
+  1207  0395  2B97               	goto	u730
+  1208  0396                     u720:	
+  1209  0396  3000               	movlw	0
+  1210  0397                     u730:	
+  1211  0397  009C               	movwf	??_updateKey
+  1212  0398  081C               	movf	??_updateKey,w
+  1213  0399  049D               	iorwf	updateKey@localShift,f
+  1214                           
+  1215                           ;main.c: 187:         localCtrl |= ((code & 128) > 0);
+  1216  039A  1FA1               	btfss	updateKey@code,7
+  1217  039B  2B9E               	goto	u740
+  1218  039C  3001               	movlw	1
+  1219  039D  2B9F               	goto	u750
+  1220  039E                     u740:	
+  1221  039E  3000               	movlw	0
+  1222  039F                     u750:	
+  1223  039F  009C               	movwf	??_updateKey
+  1224  03A0  081C               	movf	??_updateKey,w
+  1225  03A1  049F               	iorwf	updateKey@localCtrl,f
+  1226  03A2                     l1086:	
+  1227                           ;main.c: 188:     }
   1228                           
-  1229                           ;psect for function _sendDataToAltera
-  1230  02DB                     _sendDataToAltera:	
-  1231                           
-  1232                           ;main.c: 180:     RA2 = 1;
-  1233                           
-  1234                           ;incstack = 0
-  1235                           ; Regs used in _sendDataToAltera: [wreg-fsr0h+status,2+status,0]
-  1236  02DB  1283               	bcf	3,5	;RP0=0, select bank0
-  1237  02DC  1505               	bsf	5,2	;volatile
-  1238                           
-  1239                           ;main.c: 181:     RA1 = 1;
-  1240  02DD  1485               	bsf	5,1	;volatile
-  1241                           
-  1242                           ;main.c: 182:     RA2 = 0;
-  1243  02DE  1105               	bcf	5,2	;volatile
-  1244                           
-  1245                           ;main.c: 183:     RA2 = 1;
-  1246  02DF  1505               	bsf	5,2	;volatile
-  1247                           
-  1248                           ;main.c: 184:     RA1 = 0;
-  1249  02E0  1085               	bcf	5,1	;volatile
-  1250                           
-  1251                           ;main.c: 185:     for(i=0;i<11;i++) {
-  1252  02E1  01AA               	clrf	_i
-  1253  02E2  300B               	movlw	11
-  1254  02E3  022A               	subwf	_i,w
-  1255  02E4  1803               	btfsc	3,0
-  1256  02E5  2AF6               	goto	l122
-  1257  02E6                     l121:	
-  1258                           
-  1259                           ;main.c: 186:         RA2 = 1;
-  1260  02E6  1505               	bsf	5,2	;volatile
-  1261                           
-  1262                           ;main.c: 187:         PORTB = outPorts[i];
-  1263  02E7  082A               	movf	_i,w
-  1264  02E8  3E32               	addlw	(low (_outPorts| 0))& (0+255)
-  1265  02E9  0084               	movwf	4
-  1266  02EA  1383               	bcf	3,7	;select IRP bank0
-  1267  02EB  0800               	movf	0,w
-  1268  02EC  0086               	movwf	6	;volatile
-  1269                           
-  1270                           ;main.c: 188:         RA2 = 0;
-  1271  02ED  1105               	bcf	5,2	;volatile
-  1272                           
-  1273                           ;main.c: 189:     }
-  1274  02EE  3001               	movlw	1
-  1275  02EF  0096               	movwf	??_sendDataToAltera
-  1276  02F0  0816               	movf	??_sendDataToAltera,w
-  1277  02F1  07AA               	addwf	_i,f
-  1278  02F2  300B               	movlw	11
-  1279  02F3  022A               	subwf	_i,w
-  1280  02F4  1C03               	skipc
-  1281  02F5  2AE6               	goto	l121
-  1282  02F6                     l122:	
-  1283                           
-  1284                           ;main.c: 190:     RA2 = 1;
-  1285  02F6  1505               	bsf	5,2	;volatile
-  1286                           
-  1287                           ;main.c: 191:     PORTB = 0;
-  1288  02F7  0186               	clrf	6	;volatile
-  1289  02F8  0008               	return
-  1290  02F9                     __end_of_sendDataToAltera:	
+  1229                           
+  1230                           ;main.c: 189:     if ( set ) {
+  1231  03A2  081B               	movf	updateKey@set,w
+  1232  03A3  1903               	btfsc	3,2
+  1233  03A4  0008               	return
+  1234                           
+  1235                           ;main.c: 190:         updatePort(0x00, localShift );
+  1236  03A5  081D               	movf	updateKey@localShift,w
+  1237  03A6  009C               	movwf	??_updateKey
+  1238  03A7  081C               	movf	??_updateKey,w
+  1239  03A8  0095               	movwf	updatePort@set
+  1240  03A9  3000               	movlw	0
+  1241  03AA  23B3               	fcall	_updatePort
+  1242                           
+  1243                           ;main.c: 191:         updatePort(0x0F, localCtrl );
+  1244  03AB  1283               	bcf	3,5	;RP0=0, select bank0
+  1245  03AC  081F               	movf	updateKey@localCtrl,w
+  1246  03AD  009C               	movwf	??_updateKey
+  1247  03AE  081C               	movf	??_updateKey,w
+  1248  03AF  0095               	movwf	updatePort@set
+  1249  03B0  300F               	movlw	15
+  1250  03B1  23B3               	fcall	_updatePort
+  1251  03B2  0008               	return
+  1252  03B3                     __end_of_updateKey:	
+  1253                           ;main.c: 192:     }
+  1254                           
+  1255                           
+  1256                           	psect	text2
+  1257  03B3                     __ptext2:	
+  1258 ;; *************** function _updatePort *****************
+  1259 ;; Defined at:
+  1260 ;;		line 169 in file "main.c"
+  1261 ;; Parameters:    Size  Location     Type
+  1262 ;;  bit_id          1    wreg     unsigned char 
+  1263 ;;  set             1    9[BANK0 ] unsigned char 
+  1264 ;; Auto vars:     Size  Location     Type
+  1265 ;;  bit_id          1   14[BANK0 ] unsigned char 
+  1266 ;;  a               1   13[BANK0 ] unsigned char 
+  1267 ;; Return value:  Size  Location     Type
+  1268 ;;                  1    wreg      void 
+  1269 ;; Registers used:
+  1270 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1271 ;; Tracked objects:
+  1272 ;;		On entry : 0/0
+  1273 ;;		On exit  : 0/0
+  1274 ;;		Unchanged: 0/0
+  1275 ;; Data sizes:     COMMON   BANK0
+  1276 ;;      Params:         0       1
+  1277 ;;      Locals:         0       2
+  1278 ;;      Temps:          0       3
+  1279 ;;      Totals:         0       6
+  1280 ;;Total ram usage:        6 bytes
+  1281 ;; Hardware stack levels used:    1
+  1282 ;; Hardware stack levels required when called:    2
+  1283 ;; This function calls:
+  1284 ;;		Nothing
+  1285 ;; This function is called by:
+  1286 ;;		_updateKey
+  1287 ;;		_main
+  1288 ;; This function uses a non-reentrant model
+  1289 ;;
+  1290                           
   1291                           
-  1292                           	psect	text4
-  1293  01B6                     __ptext4:	
-  1294 ;; *************** function _myIsr *****************
-  1295 ;; Defined at:
-  1296 ;;		line 77 in file "main.c"
-  1297 ;; Parameters:    Size  Location     Type
-  1298 ;;		None
-  1299 ;; Auto vars:     Size  Location     Type
-  1300 ;;  ii              2    8[BANK0 ] int 
-  1301 ;; Return value:  Size  Location     Type
-  1302 ;;                  1    wreg      void 
-  1303 ;; Registers used:
-  1304 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath
-  1305 ;; Tracked objects:
-  1306 ;;		On entry : 0/0
-  1307 ;;		On exit  : 0/0
-  1308 ;;		Unchanged: 0/0
-  1309 ;; Data sizes:     COMMON   BANK0
-  1310 ;;      Params:         0       0
-  1311 ;;      Locals:         0       4
-  1312 ;;      Temps:          0       6
-  1313 ;;      Totals:         0      10
-  1314 ;;Total ram usage:       10 bytes
-  1315 ;; Hardware stack levels used:    2
-  1316 ;; This function calls:
-  1317 ;;		Nothing
-  1318 ;; This function is called by:
-  1319 ;;		Interrupt level 1
-  1320 ;; This function uses a non-reentrant model
-  1321 ;;
-  1322                           
-  1323                           
-  1324                           ;psect for function _myIsr
-  1325  01B6                     _myIsr:	
-  1326                           
-  1327                           ;main.c: 79:     if(T0IE && T0IF){
-  1328  01B6  1A8B               	btfsc	11,5	;volatile
-  1329  01B7  1D0B               	btfss	11,2	;volatile
-  1330  01B8  2A3D               	goto	i1l1157
-  1331                           
-  1332                           ;main.c: 81:         T0IF=0;
-  1333  01B9  110B               	bcf	11,2	;volatile
-  1334                           
-  1335                           ;main.c: 82:         TMR0 = 255;
-  1336  01BA  30FF               	movlw	255
-  1337  01BB  0081               	movwf	1	;volatile
-  1338                           
-  1339                           ;main.c: 86:         if ( ps2DataState == 0 ) {
-  1340  01BC  0831               	movf	_ps2DataState,w
-  1341  01BD  1D03               	btfss	3,2
-  1342  01BE  29C7               	goto	i1l1109
-  1343                           
-  1344                           ;main.c: 87:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
-  1345  01BF  1E05               	btfss	5,4	;volatile
-  1346  01C0  1985               	btfsc	5,3	;volatile
-  1347  01C1  2A3D               	goto	i1l1157
-  1348                           
-  1349                           ;main.c: 88:                 ps2BitsCount = 0;
-  1350  01C2  01AF               	clrf	_ps2BitsCount
-  1351                           
-  1352                           ;main.c: 89:                 ps2Bits = 0;
-  1353  01C3  01B0               	clrf	_ps2Bits
-  1354                           
-  1355                           ;main.c: 90:                 ps2DataState = 1;
-  1356  01C4  01B1               	clrf	_ps2DataState
-  1357  01C5  0AB1               	incf	_ps2DataState,f
-  1358                           
-  1359                           ;main.c: 92:         } else if ( ps2DataState == 1 ) {
-  1360                           
-  1361                           ;main.c: 91:             }
-  1362  01C6  2A3D               	goto	i1l1157
-  1363  01C7                     i1l1109:	
-  1364  01C7  0331               	decf	_ps2DataState,w
-  1365  01C8  1D03               	btfss	3,2
-  1366  01C9  2A3D               	goto	i1l1157
-  1367                           
-  1368                           ;main.c: 93:             if ( ps2BitsCount < 8 ) {
-  1369  01CA  082F               	movf	_ps2BitsCount,w
-  1370  01CB  3A80               	xorlw	128
-  1371  01CC  3E78               	addlw	-136
-  1372  01CD  1803               	skipnc
-  1373  01CE  29DF               	goto	i1l1117
-  1374                           
-  1375                           ;main.c: 94:                 if ( PORTAbits.RA3 ) {
-  1376  01CF  1D85               	btfss	5,3	;volatile
-  1377  01D0  29E3               	goto	i1l1119
-  1378                           
-  1379                           ;main.c: 95:                     ps2Bits |= ( 1 << ps2BitsCount );
-  1380  01D1  3001               	movlw	1
-  1381  01D2  008C               	movwf	??_myIsr
-  1382  01D3  0A2F               	incf	_ps2BitsCount,w
-  1383  01D4  29D7               	goto	u85_24
-  1384  01D5                     u85_25:	
-  1385  01D5  1003               	clrc
-  1386  01D6  0D8C               	rlf	??_myIsr,f
-  1387  01D7                     u85_24:	
-  1388  01D7  3EFF               	addlw	-1
-  1389  01D8  1D03               	skipz
-  1390  01D9  29D5               	goto	u85_25
-  1391  01DA  080C               	movf	??_myIsr,w
-  1392  01DB  008D               	movwf	??_myIsr+1
-  1393  01DC  080D               	movf	??_myIsr+1,w
-  1394  01DD  04B0               	iorwf	_ps2Bits,f
+  1292                           ;psect for function _updatePort
+  1293  03B3                     _updatePort:	
+  1294                           
+  1295                           ;incstack = 0
+  1296                           ; Regs used in _updatePort: [wreg-fsr0h+status,2+status,0]
+  1297                           ;updatePort@bit_id stored from wreg
+  1298  03B3  1283               	bcf	3,5	;RP0=0, select bank0
+  1299  03B4  009A               	movwf	updatePort@bit_id
+  1300                           
+  1301                           ;main.c: 169: void updatePort(uint8_t bit_id, uint8_t set);main.c: 170: {;main.c: 171:  
+      +                             uint8_t a = (1 << ((bit_id >> 3) & 7));
+  1302  03B5  3001               	movlw	1
+  1303  03B6  0096               	movwf	??_updatePort
+  1304  03B7  081A               	movf	updatePort@bit_id,w
+  1305  03B8  0097               	movwf	??_updatePort+1
+  1306  03B9  3003               	movlw	3
+  1307  03BA                     u655:	
+  1308  03BA  1003               	clrc
+  1309  03BB  0C97               	rrf	??_updatePort+1,f
+  1310  03BC  3EFF               	addlw	-1
+  1311  03BD  1D03               	skipz
+  1312  03BE  2BBA               	goto	u655
+  1313  03BF  0817               	movf	??_updatePort+1,w
+  1314  03C0  3907               	andlw	7
+  1315  03C1  3E01               	addlw	1
+  1316  03C2  2BC5               	goto	u664
+  1317  03C3                     u665:	
+  1318  03C3  1003               	clrc
+  1319  03C4  0D96               	rlf	??_updatePort,f
+  1320  03C5                     u664:	
+  1321  03C5  3EFF               	addlw	-1
+  1322  03C6  1D03               	skipz
+  1323  03C7  2BC3               	goto	u665
+  1324  03C8  0816               	movf	??_updatePort,w
+  1325  03C9  0098               	movwf	??_updatePort+2
+  1326  03CA  0818               	movf	??_updatePort+2,w
+  1327  03CB  0099               	movwf	updatePort@a
+  1328                           
+  1329                           ;main.c: 172:     if ( set ) outPorts[bit_id & 7] |= a;
+  1330  03CC  0815               	movf	updatePort@set,w
+  1331  03CD  1903               	btfsc	3,2
+  1332  03CE  2BD9               	goto	l1062
+  1333  03CF  0819               	movf	updatePort@a,w
+  1334  03D0  0096               	movwf	??_updatePort
+  1335  03D1  081A               	movf	updatePort@bit_id,w
+  1336  03D2  3907               	andlw	7
+  1337  03D3  3E34               	addlw	(low (_outPorts| 0))& (0+255)
+  1338  03D4  0084               	movwf	4
+  1339  03D5  0816               	movf	??_updatePort,w
+  1340  03D6  1383               	bcf	3,7	;select IRP bank0
+  1341  03D7  0480               	iorwf	0,f
+  1342  03D8  0008               	return
+  1343  03D9                     l1062:	
+  1344                           ;main.c: 173:     else outPorts[bit_id & 7] &= ~a;
+  1345                           
+  1346  03D9  0919               	comf	updatePort@a,w
+  1347  03DA  0096               	movwf	??_updatePort
+  1348  03DB  081A               	movf	updatePort@bit_id,w
+  1349  03DC  3907               	andlw	7
+  1350  03DD  3E34               	addlw	(low (_outPorts| 0))& (0+255)
+  1351  03DE  0084               	movwf	4
+  1352  03DF  0816               	movf	??_updatePort,w
+  1353  03E0  1383               	bcf	3,7	;select IRP bank0
+  1354  03E1  0580               	andwf	0,f
+  1355  03E2  0008               	return
+  1356  03E3                     __end_of_updatePort:	
+  1357                           
+  1358                           	psect	text3
+  1359  0145                     __ptext3:	
+  1360 ;; *************** function _sendDataToAltera *****************
+  1361 ;; Defined at:
+  1362 ;;		line 229 in file "main.c"
+  1363 ;; Parameters:    Size  Location     Type
+  1364 ;;		None
+  1365 ;; Auto vars:     Size  Location     Type
+  1366 ;;  i               1   10[BANK0 ] char 
+  1367 ;; Return value:  Size  Location     Type
+  1368 ;;                  1    wreg      void 
+  1369 ;; Registers used:
+  1370 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1371 ;; Tracked objects:
+  1372 ;;		On entry : 0/0
+  1373 ;;		On exit  : 0/0
+  1374 ;;		Unchanged: 0/0
+  1375 ;; Data sizes:     COMMON   BANK0
+  1376 ;;      Params:         0       0
+  1377 ;;      Locals:         0       1
+  1378 ;;      Temps:          0       1
+  1379 ;;      Totals:         0       2
+  1380 ;;Total ram usage:        2 bytes
+  1381 ;; Hardware stack levels used:    1
+  1382 ;; Hardware stack levels required when called:    3
+  1383 ;; This function calls:
+  1384 ;;		_myDelay
+  1385 ;; This function is called by:
+  1386 ;;		_main
+  1387 ;; This function uses a non-reentrant model
+  1388 ;;
+  1389                           
+  1390                           
+  1391                           ;psect for function _sendDataToAltera
+  1392  0145                     _sendDataToAltera:	
+  1393                           
+  1394                           ;main.c: 232:     RA2 = 1;
   1395                           
-  1396                           ;main.c: 96:                 }
-  1397  01DE  29E3               	goto	i1l1119
-  1398  01DF                     i1l1117:	
-  1399                           ;main.c: 98:             } else if ( ps2BitsCount == 8 ) {
+  1396                           ;incstack = 0
+  1397                           ; Regs used in _sendDataToAltera: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1398  0145  1283               	bcf	3,5	;RP0=0, select bank0
+  1399  0146  1505               	bsf	5,2	;volatile
   1400                           
-  1401                           ;main.c: 97:                 ps2BitsCount++;
-  1402                           
-  1403  01DF  3008               	movlw	8
-  1404  01E0  062F               	xorwf	_ps2BitsCount,w
-  1405  01E1  1D03               	btfss	3,2
-  1406  01E2  29E8               	goto	i1l1121
-  1407  01E3                     i1l1119:	
-  1408                           
-  1409                           ;main.c: 99:                 ps2BitsCount++;
-  1410  01E3  3001               	movlw	1
-  1411  01E4  008C               	movwf	??_myIsr
-  1412  01E5  080C               	movf	??_myIsr,w
-  1413  01E6  07AF               	addwf	_ps2BitsCount,f
-  1414                           
-  1415                           ;main.c: 100:             } else if ( ps2BitsCount == 9 ) {
-  1416  01E7  2A3D               	goto	i1l1157
-  1417  01E8                     i1l1121:	
-  1418  01E8  3009               	movlw	9
-  1419  01E9  062F               	xorwf	_ps2BitsCount,w
-  1420  01EA  1D03               	btfss	3,2
-  1421  01EB  2A3D               	goto	i1l1157
-  1422                           
-  1423                           ;main.c: 101:                 ps2DataCount++;
-  1424  01EC  3001               	movlw	1
-  1425  01ED  008C               	movwf	??_myIsr
-  1426  01EE  080C               	movf	??_myIsr,w
-  1427  01EF  07AD               	addwf	_ps2DataCount,f
-  1428                           
-  1429                           ;main.c: 102:                 if ( ps2NeedEncode ) {
-  1430  01F0  082B               	movf	_ps2NeedEncode,w
-  1431  01F1  1903               	btfsc	3,2
-  1432  01F2  2A15               	goto	i1l1139
+  1401                           ;main.c: 233:     RA1 = 1;
+  1402  0147  1485               	bsf	5,1	;volatile
+  1403                           
+  1404                           ;main.c: 234:     myDelay();
+  1405  0148  23F8               	fcall	_myDelay
+  1406                           
+  1407                           ;main.c: 235:     RA2 = 0;
+  1408  0149  1283               	bcf	3,5	;RP0=0, select bank0
+  1409  014A  1105               	bcf	5,2	;volatile
+  1410                           
+  1411                           ;main.c: 236:     myDelay();
+  1412  014B  23F8               	fcall	_myDelay
+  1413                           
+  1414                           ;main.c: 237:     RA2 = 1;
+  1415  014C  1283               	bcf	3,5	;RP0=0, select bank0
+  1416  014D  1505               	bsf	5,2	;volatile
+  1417                           
+  1418                           ;main.c: 238:     RA1 = 0;
+  1419  014E  1085               	bcf	5,1	;volatile
+  1420                           
+  1421                           ;main.c: 239:     myDelay();
+  1422  014F  23F8               	fcall	_myDelay
+  1423                           
+  1424                           ;main.c: 240:     for(int8_t i=0;i<11;i++) {
+  1425  0150  1283               	bcf	3,5	;RP0=0, select bank0
+  1426  0151  0196               	clrf	sendDataToAltera@i
+  1427  0152  0816               	movf	sendDataToAltera@i,w
+  1428  0153  3A80               	xorlw	128
+  1429  0154  3E75               	addlw	-139
+  1430  0155  1803               	btfsc	3,0
+  1431  0156  296A               	goto	l132
+  1432  0157                     l131:	
   1433                           
-  1434                           ;main.c: 103:                     for (int ii=0; ii < 25; ii+=2) {
-  1435  01F3  0194               	clrf	myIsr@ii
-  1436  01F4  0195               	clrf	myIsr@ii+1
-  1437  01F5                     L3:	
-  1438  01F5  0815               	movf	myIsr@ii+1,w
-  1439  01F6  3A80               	xorlw	128
-  1440  01F7  00CF               	movwf	79
-  1441  01F8  3080               	movlw	128
-  1442  01F9  024F               	subwf	79,w
-  1443  01FA  1D03               	skipz
-  1444  01FB  29FE               	goto	u89_25
-  1445  01FC  3019               	movlw	25
-  1446  01FD  0214               	subwf	myIsr@ii,w
-  1447  01FE                     u89_25:	
-  1448  01FE  1803               	btfsc	3,0
-  1449  01FF  2A29               	goto	i1l1145
+  1434                           ;main.c: 241:         RA2 = 1;
+  1435  0157  1505               	bsf	5,2	;volatile
+  1436                           
+  1437                           ;main.c: 242:         PORTB = ~outPorts[i];
+  1438  0158  0816               	movf	sendDataToAltera@i,w
+  1439  0159  3E34               	addlw	(low (_outPorts| 0))& (0+255)
+  1440  015A  0084               	movwf	4
+  1441  015B  1383               	bcf	3,7	;select IRP bank0
+  1442  015C  0900               	comf	0,w
+  1443  015D  0086               	movwf	6	;volatile
+  1444                           
+  1445                           ;main.c: 243:         RA2 = 0;
+  1446  015E  1105               	bcf	5,2	;volatile
+  1447                           
+  1448                           ;main.c: 244:         myDelay();
+  1449  015F  23F8               	fcall	_myDelay
   1450                           
-  1451                           ;main.c: 104:                         if ( ps2Bits == replaceTwoBytesCodes[ii] ) {
-  1452  0200  1283               	bcf	3,5	;RP0=0, select bank0
-  1453  0201  0814               	movf	myIsr@ii,w
-  1454  0202  3EA5               	addlw	low ((_replaceTwoBytesCodes-__stringbase)| (0+32768))
-  1455  0203  0084               	movwf	4
-  1456  0204  2031               	fcall	stringdir
-  1457  0205  0630               	xorwf	_ps2Bits,w
-  1458  0206  1D03               	skipz
-  1459  0207  2A0E               	goto	i1l1135
-  1460                           
-  1461                           ;main.c: 105:                             ps2Data = replaceTwoBytesCodes[ii+1];
-  1462  0208  0814               	movf	myIsr@ii,w
-  1463  0209  3E01               	addlw	1
-  1464  020A  3EA5               	addlw	low ((_replaceTwoBytesCodes-__stringbase)| (0+32768))
-  1465  020B  0084               	movwf	4
-  1466  020C  2031               	fcall	stringdir
-  1467  020D  2A26               	goto	L1
-  1468  020E                     i1l1135:	
-  1469                           ;main.c: 107:                         }
-  1470                           
-  1471                           ;main.c: 106:                             break;
+  1451                           ;main.c: 245:     }
+  1452  0160  3001               	movlw	1
+  1453  0161  1283               	bcf	3,5	;RP0=0, select bank0
+  1454  0162  0095               	movwf	??_sendDataToAltera
+  1455  0163  0815               	movf	??_sendDataToAltera,w
+  1456  0164  0796               	addwf	sendDataToAltera@i,f
+  1457  0165  0816               	movf	sendDataToAltera@i,w
+  1458  0166  3A80               	xorlw	128
+  1459  0167  3E75               	addlw	-139
+  1460  0168  1C03               	skipc
+  1461  0169  2957               	goto	l131
+  1462  016A                     l132:	
+  1463                           
+  1464                           ;main.c: 246:     RA2 = 1;
+  1465  016A  1505               	bsf	5,2	;volatile
+  1466                           
+  1467                           ;main.c: 247:     PORTB = 0xFF;
+  1468  016B  30FF               	movlw	255
+  1469  016C  0086               	movwf	6	;volatile
+  1470  016D  0008               	return
+  1471  016E                     __end_of_sendDataToAltera:	
   1472                           
-  1473                           
-  1474                           ;main.c: 108:                     }
-  1475  020E  3002               	movlw	2
-  1476  020F  0794               	addwf	myIsr@ii,f
-  1477  0210  1803               	skipnc
-  1478  0211  0A95               	incf	myIsr@ii+1,f
-  1479  0212  3000               	movlw	0
-  1480  0213  0795               	addwf	myIsr@ii+1,f
-  1481  0214  29F5               	goto	L3
-  1482  0215                     i1l1139:	
-  1483                           ;main.c: 109:                 } else {
-  1484                           
-  1485                           
-  1486                           ;main.c: 110:                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits;
-  1487  0215  3083               	movlw	131
-  1488  0216  1283               	bcf	3,5	;RP0=0, select bank0
-  1489  0217  0630               	xorwf	_ps2Bits,w
-  1490  0218  1903               	btfsc	3,2
-  1491  0219  2A21               	goto	i1l1143
-  1492  021A  0830               	movf	_ps2Bits,w
-  1493  021B  008C               	movwf	??_myIsr
-  1494  021C  018D               	clrf	??_myIsr+1
-  1495  021D  080C               	movf	??_myIsr,w
-  1496  021E  0092               	movwf	_myIsr$84
-  1497  021F  080D               	movf	??_myIsr+1,w
-  1498  0220  2A24               	goto	L2
-  1499  0221                     i1l1143:	
-  1500  0221  303F               	movlw	63
-  1501  0222  0092               	movwf	_myIsr$84
-  1502  0223  3000               	movlw	0
-  1503  0224                     L2:	
-  1504  0224  0093               	movwf	_myIsr$84+1
-  1505  0225  0812               	movf	_myIsr$84,w
-  1506  0226                     L1:	
-  1507  0226  008C               	movwf	??_myIsr
-  1508  0227  080C               	movf	??_myIsr,w
-  1509  0228  00AE               	movwf	_ps2Data
-  1510  0229                     i1l1145:	
-  1511                           ;main.c: 111:                 }
-  1512                           
+  1473                           	psect	text4
+  1474  03F8                     __ptext4:	
+  1475 ;; *************** function _myDelay *****************
+  1476 ;; Defined at:
+  1477 ;;		line 197 in file "main.c"
+  1478 ;; Parameters:    Size  Location     Type
+  1479 ;;		None
+  1480 ;; Auto vars:     Size  Location     Type
+  1481 ;;		None
+  1482 ;; Return value:  Size  Location     Type
+  1483 ;;                  1    wreg      void 
+  1484 ;; Registers used:
+  1485 ;;		None
+  1486 ;; Tracked objects:
+  1487 ;;		On entry : 0/0
+  1488 ;;		On exit  : 0/0
+  1489 ;;		Unchanged: 0/0
+  1490 ;; Data sizes:     COMMON   BANK0
+  1491 ;;      Params:         0       0
+  1492 ;;      Locals:         0       0
+  1493 ;;      Temps:          0       0
+  1494 ;;      Totals:         0       0
+  1495 ;;Total ram usage:        0 bytes
+  1496 ;; Hardware stack levels used:    1
+  1497 ;; Hardware stack levels required when called:    2
+  1498 ;; This function calls:
+  1499 ;;		Nothing
+  1500 ;; This function is called by:
+  1501 ;;		_sendDataToAltera
+  1502 ;; This function uses a non-reentrant model
+  1503 ;;
+  1504                           
+  1505                           
+  1506                           ;psect for function _myDelay
+  1507  03F8                     _myDelay:	
+  1508                           
+  1509                           ;incstack = 0
+  1510                           ; Regs used in _myDelay: []
+  1511  03F8  0008               	return
+  1512  03F9                     __end_of_myDelay:	
   1513                           
-  1514                           ;main.c: 112:                 if ( ps2Bits == 0xF0 ) {
-  1515  0229  30F0               	movlw	240
-  1516  022A  1283               	bcf	3,5	;RP0=0, select bank0
-  1517  022B  0630               	xorwf	_ps2Bits,w
-  1518  022C  1D03               	btfss	3,2
-  1519  022D  2A31               	goto	i1l1149
-  1520                           
-  1521                           ;main.c: 113:                     ps2DataState = 0;
-  1522  022E  01B1               	clrf	_ps2DataState
-  1523                           
-  1524                           ;main.c: 114:                     ps2Down = 0;
-  1525  022F  01BF               	clrf	_ps2Down
-  1526                           
-  1527                           ;main.c: 115:                 } else if ( ps2Bits == 0xE0 ) {
-  1528  0230  2A3D               	goto	i1l1157
-  1529  0231                     i1l1149:	
-  1530  0231  30E0               	movlw	224
-  1531  0232  0630               	xorwf	_ps2Bits,w
-  1532  0233  1D03               	btfss	3,2
-  1533  0234  2A39               	goto	i1l1155
-  1534                           
-  1535                           ;main.c: 116:                     ps2DataState = 0;
-  1536  0235  01B1               	clrf	_ps2DataState
-  1537                           
-  1538                           ;main.c: 117:                     ps2NeedEncode = 1;
-  1539  0236  01AB               	clrf	_ps2NeedEncode
-  1540  0237  0AAB               	incf	_ps2NeedEncode,f
-  1541                           
-  1542                           ;main.c: 118:                 } else {
-  1543  0238  2A3D               	goto	i1l1157
-  1544  0239                     i1l1155:	
+  1514                           	psect	text5
+  1515  02DA                     __ptext5:	
+  1516 ;; *************** function _myIsr *****************
+  1517 ;; Defined at:
+  1518 ;;		line 102 in file "main.c"
+  1519 ;; Parameters:    Size  Location     Type
+  1520 ;;		None
+  1521 ;; Auto vars:     Size  Location     Type
+  1522 ;;  i               1    8[BANK0 ] char 
+  1523 ;; Return value:  Size  Location     Type
+  1524 ;;                  1    wreg      void 
+  1525 ;; Registers used:
+  1526 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1527 ;; Tracked objects:
+  1528 ;;		On entry : 0/0
+  1529 ;;		On exit  : 0/0
+  1530 ;;		Unchanged: 0/0
+  1531 ;; Data sizes:     COMMON   BANK0
+  1532 ;;      Params:         0       0
+  1533 ;;      Locals:         0       3
+  1534 ;;      Temps:          0       6
+  1535 ;;      Totals:         0       9
+  1536 ;;Total ram usage:        9 bytes
+  1537 ;; Hardware stack levels used:    2
+  1538 ;; This function calls:
+  1539 ;;		Nothing
+  1540 ;; This function is called by:
+  1541 ;;		Interrupt level 1
+  1542 ;; This function uses a non-reentrant model
+  1543 ;;
+  1544                           
   1545                           
-  1546                           ;main.c: 127:                     ps2DataState = 2;
-  1547  0239  3002               	movlw	2
-  1548  023A  008C               	movwf	??_myIsr
-  1549  023B  080C               	movf	??_myIsr,w
-  1550  023C  00B1               	movwf	_ps2DataState
-  1551  023D                     i1l1157:	
-  1552                           ;main.c: 132:     }
+  1546                           ;psect for function _myIsr
+  1547  02DA                     _myIsr:	
+  1548                           
+  1549                           ;main.c: 104:     if(T0IE && T0IF){
+  1550  02DA  1A8B               	btfsc	11,5	;volatile
+  1551  02DB  1D0B               	btfss	11,2	;volatile
+  1552  02DC  2B5A               	goto	i1l111
   1553                           
-  1554                           ;main.c: 131:         }
-  1555                           
-  1556                           ;main.c: 130:             }
-  1557                           
-  1558                           ;main.c: 128:                 }
-  1559                           
+  1554                           ;main.c: 106:         T0IF=0;
+  1555  02DD  110B               	bcf	11,2	;volatile
+  1556                           
+  1557                           ;main.c: 107:         TMR0 = 255;
+  1558  02DE  30FF               	movlw	255
+  1559  02DF  0081               	movwf	1	;volatile
   1560                           
-  1561                           ;main.c: 133:     GIE = 1;
-  1562  023D  178B               	bsf	11,7	;volatile
-  1563  023E  0811               	movf	??_myIsr+5,w
-  1564  023F  00CF               	movwf	79
-  1565  0240  0810               	movf	??_myIsr+4,w
-  1566  0241  008A               	movwf	10
-  1567  0242  080F               	movf	??_myIsr+3,w
-  1568  0243  0084               	movwf	4
-  1569  0244  0E0E               	swapf	(??_myIsr+2)^0,w
-  1570  0245  0083               	movwf	3
-  1571  0246  0ECE               	swapf	78,f
-  1572  0247  0E4E               	swapf	78,w
-  1573  0248  0009               	retfie
-  1574  0249                     __end_of_myIsr:	
-  1575  004E                     btemp	set	78	;btemp
-  1576  004E                     wtemp0	set	78
-  1577                           
-  1578                           	psect	intentry
-  1579  0004                     __pintentry:	
-  1580                           ;incstack = 0
-  1581                           ; Regs used in _myIsr: [wreg-fsr0h+status,2+status,0+btemp+1+pclath]
-  1582                           
-  1583  0004                     interrupt_function:	
-  1584  004E                     saved_w	set	btemp
-  1585  0004  00CE               	movwf	btemp
-  1586  0005  0E03               	swapf	3,w
-  1587  0006  1283               	bcf	3,5	;RP0=0, select bank0
-  1588  0007  008E               	movwf	??_myIsr+2
-  1589  0008  0804               	movf	4,w
-  1590  0009  008F               	movwf	??_myIsr+3
-  1591  000A  080A               	movf	10,w
-  1592  000B  0090               	movwf	??_myIsr+4
-  1593  000C  084F               	movf	btemp+1,w
-  1594  000D  0091               	movwf	??_myIsr+5
-  1595  000E  29B6               	ljmp	_myIsr
+  1561                           ;main.c: 111:         if ( ps2DataState == 0 ) {
+  1562  02E0  0833               	movf	_ps2DataState,w
+  1563  02E1  1D03               	btfss	3,2
+  1564  02E2  2AEF               	goto	i1l1138
+  1565                           
+  1566                           ;main.c: 112:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
+  1567  02E3  1E05               	btfss	5,4	;volatile
+  1568  02E4  1985               	btfsc	5,3	;volatile
+  1569  02E5  2B5A               	goto	i1l111
+  1570                           
+  1571                           ;main.c: 113:                 ps2BitsCount = 0;
+  1572  02E6  01B1               	clrf	_ps2BitsCount
+  1573                           
+  1574                           ;main.c: 114:                 ps2Bits = 0;
+  1575  02E7  01B2               	clrf	_ps2Bits
+  1576                           
+  1577                           ;main.c: 115:                 ps2DataState = 1;
+  1578  02E8  01B3               	clrf	_ps2DataState
+  1579  02E9  0AB3               	incf	_ps2DataState,f
+  1580                           
+  1581                           ;main.c: 116:                 ps2Device = PORTAbits.RA0;
+  1582  02EA  3000               	movlw	0
+  1583  02EB  1805               	btfsc	5,0	;volatile
+  1584  02EC  3001               	movlw	1
+  1585  02ED  00AF               	movwf	_ps2Device
+  1586                           
+  1587                           ;main.c: 118:         } else if ( ps2DataState == 1 ) {
+  1588                           
+  1589                           ;main.c: 117:             }
+  1590  02EE  2B5A               	goto	i1l111
+  1591  02EF                     i1l1138:	
+  1592  02EF  0333               	decf	_ps2DataState,w
+  1593  02F0  1D03               	btfss	3,2
+  1594  02F1  2B56               	goto	i1l1186
+  1595                           
+  1596                           ;main.c: 119:             if ( ps2BitsCount < 8 ) {
+  1597  02F2  0831               	movf	_ps2BitsCount,w
+  1598  02F3  3A80               	xorlw	128
+  1599  02F4  3E78               	addlw	-136
+  1600  02F5  1803               	skipnc
+  1601  02F6  2B07               	goto	i1l1146
+  1602                           
+  1603                           ;main.c: 120:                 if ( PORTAbits.RA3 ) {
+  1604  02F7  1D85               	btfss	5,3	;volatile
+  1605  02F8  2B0B               	goto	i1l1148
+  1606                           
+  1607                           ;main.c: 121:                     ps2Bits |= ( 1 << ps2BitsCount );
+  1608  02F9  3001               	movlw	1
+  1609  02FA  008C               	movwf	??_myIsr
+  1610  02FB  0A31               	incf	_ps2BitsCount,w
+  1611  02FC  2AFF               	goto	u87_24
+  1612  02FD                     u87_25:	
+  1613  02FD  1003               	clrc
+  1614  02FE  0D8C               	rlf	??_myIsr,f
+  1615  02FF                     u87_24:	
+  1616  02FF  3EFF               	addlw	-1
+  1617  0300  1D03               	skipz
+  1618  0301  2AFD               	goto	u87_25
+  1619  0302  080C               	movf	??_myIsr,w
+  1620  0303  008D               	movwf	??_myIsr+1
+  1621  0304  080D               	movf	??_myIsr+1,w
+  1622  0305  04B2               	iorwf	_ps2Bits,f
+  1623                           
+  1624                           ;main.c: 122:                 }
+  1625  0306  2B0B               	goto	i1l1148
+  1626  0307                     i1l1146:	
+  1627                           ;main.c: 124:             } else if ( ps2BitsCount == 8 ) {
+  1628                           
+  1629                           ;main.c: 123:                 ps2BitsCount++;
+  1630                           
+  1631  0307  3008               	movlw	8
+  1632  0308  0631               	xorwf	_ps2BitsCount,w
+  1633  0309  1D03               	btfss	3,2
+  1634  030A  2B10               	goto	i1l1150
+  1635  030B                     i1l1148:	
+  1636                           
+  1637                           ;main.c: 125:                 ps2BitsCount++;
+  1638  030B  3001               	movlw	1
+  1639  030C  008C               	movwf	??_myIsr
+  1640  030D  080C               	movf	??_myIsr,w
+  1641  030E  07B1               	addwf	_ps2BitsCount,f
+  1642                           
+  1643                           ;main.c: 126:             } else if ( ps2BitsCount == 9 ) {
+  1644  030F  2B5A               	goto	i1l111
+  1645  0310                     i1l1150:	
+  1646  0310  3009               	movlw	9
+  1647  0311  0631               	xorwf	_ps2BitsCount,w
+  1648  0312  1D03               	btfss	3,2
+  1649  0313  2B5A               	goto	i1l111
+  1650                           
+  1651                           ;main.c: 128:                 if ( ps2NeedEncode ) {
+  1652  0314  082D               	movf	_ps2NeedEncode,w
+  1653  0315  1903               	btfsc	3,2
+  1654  0316  2B2F               	goto	i1l1168
+  1655                           
+  1656                           ;main.c: 129:                     for (int8_t i=0; i < 25; i+=2) {
+  1657  0317  0194               	clrf	myIsr@i
+  1658  0318                     L4:	
+  1659  0318  0814               	movf	myIsr@i,w
+  1660  0319  3A80               	xorlw	128
+  1661  031A  3E67               	addlw	-153
+  1662  031B  1803               	btfsc	3,0
+  1663  031C  2B42               	goto	i1l1174
+  1664                           
+  1665                           ;main.c: 130:                         if ( ps2Bits == replaceTwoBytesCodes[i] ) {
+  1666  031D  0814               	movf	myIsr@i,w
+  1667  031E  3EAB               	addlw	low ((_replaceTwoBytesCodes-__stringbase)| (0+32768))
+  1668  031F  0084               	movwf	4
+  1669  0320  2200               	fcall	stringdir
+  1670  0321  0632               	xorwf	_ps2Bits,w
+  1671  0322  1D03               	skipz
+  1672  0323  2B2A               	goto	i1l1164
+  1673                           
+  1674                           ;main.c: 131:                             ps2Data = replaceTwoBytesCodes[i+1];
+  1675  0324  0814               	movf	myIsr@i,w
+  1676  0325  3E01               	addlw	1
+  1677  0326  3EAB               	addlw	low ((_replaceTwoBytesCodes-__stringbase)| (0+32768))
+  1678  0327  0084               	movwf	4
+  1679  0328  2200               	fcall	stringdir
+  1680  0329  2B3F               	goto	L2
+  1681  032A                     i1l1164:	
+  1682                           ;main.c: 133:                         }
+  1683                           
+  1684                           ;main.c: 132:                             break;
+  1685                           
+  1686                           
+  1687                           ;main.c: 134:                     }
+  1688  032A  3002               	movlw	2
+  1689  032B  008C               	movwf	??_myIsr
+  1690  032C  080C               	movf	??_myIsr,w
+  1691  032D  0794               	addwf	myIsr@i,f
+  1692  032E  2B18               	goto	L4
+  1693  032F                     i1l1168:	
+  1694                           ;main.c: 135:                 } else {
+  1695                           
+  1696                           
+  1697                           ;main.c: 136:                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits;
+  1698  032F  3083               	movlw	131
+  1699  0330  0632               	xorwf	_ps2Bits,w
+  1700  0331  1903               	btfsc	3,2
+  1701  0332  2B3A               	goto	i1l1172
+  1702  0333  0832               	movf	_ps2Bits,w
+  1703  0334  008C               	movwf	??_myIsr
+  1704  0335  018D               	clrf	??_myIsr+1
+  1705  0336  080C               	movf	??_myIsr,w
+  1706  0337  0092               	movwf	_myIsr$87
+  1707  0338  080D               	movf	??_myIsr+1,w
+  1708  0339  2B3D               	goto	L3
+  1709  033A                     i1l1172:	
+  1710  033A  303F               	movlw	63
+  1711  033B  0092               	movwf	_myIsr$87
+  1712  033C  3000               	movlw	0
+  1713  033D                     L3:	
+  1714  033D  0093               	movwf	_myIsr$87+1
+  1715  033E  0812               	movf	_myIsr$87,w
+  1716  033F                     L2:	
+  1717  033F  008C               	movwf	??_myIsr
+  1718  0340  080C               	movf	??_myIsr,w
+  1719  0341  00B0               	movwf	_ps2Data
+  1720  0342                     i1l1174:	
+  1721                           ;main.c: 137:                 }
+  1722                           
+  1723                           
+  1724                           ;main.c: 138:                 if ( ps2Bits == 0xF0 ) {
+  1725  0342  30F0               	movlw	240
+  1726  0343  0632               	xorwf	_ps2Bits,w
+  1727  0344  1D03               	btfss	3,2
+  1728  0345  2B49               	goto	i1l1178
+  1729                           
+  1730                           ;main.c: 139:                     ps2DataState = 0;
+  1731  0346  01B3               	clrf	_ps2DataState
+  1732                           
+  1733                           ;main.c: 140:                     ps2Down = 0;
+  1734  0347  01C1               	clrf	_ps2Down
+  1735                           
+  1736                           ;main.c: 141:                 } else if ( ps2Bits == 0xE0 ) {
+  1737  0348  2B5A               	goto	i1l111
+  1738  0349                     i1l1178:	
+  1739  0349  30E0               	movlw	224
+  1740  034A  0632               	xorwf	_ps2Bits,w
+  1741  034B  1D03               	btfss	3,2
+  1742  034C  2B51               	goto	i1l1184
+  1743                           
+  1744                           ;main.c: 142:                     ps2DataState = 0;
+  1745  034D  01B3               	clrf	_ps2DataState
+  1746                           
+  1747                           ;main.c: 143:                     ps2NeedEncode = 1;
+  1748  034E  01AD               	clrf	_ps2NeedEncode
+  1749  034F  0AAD               	incf	_ps2NeedEncode,f
+  1750                           
+  1751                           ;main.c: 152:                 } else {
+  1752  0350  2B5A               	goto	i1l111
+  1753  0351                     i1l1184:	
+  1754                           
+  1755                           ;main.c: 153:                     ps2DataState = 2;
+  1756  0351  3002               	movlw	2
+  1757  0352  008C               	movwf	??_myIsr
+  1758  0353  080C               	movf	??_myIsr,w
+  1759  0354  00B3               	movwf	_ps2DataState
+  1760                           
+  1761                           ;main.c: 157:         } else if ( ps2DataState == 4 ) {
+  1762                           
+  1763                           ;main.c: 156:             }
+  1764                           
+  1765                           ;main.c: 154:                 }
+  1766  0355  2B5A               	goto	i1l111
+  1767  0356                     i1l1186:	
+  1768  0356  3004               	movlw	4
+  1769  0357  0633               	xorwf	_ps2DataState,w
+  1770  0358  1903               	btfsc	3,2
+  1771                           
+  1772                           ;main.c: 159:             ps2DataState = 0;
+  1773  0359  01B3               	clrf	_ps2DataState
+  1774  035A                     i1l111:	
+  1775                           ;main.c: 163:     }
+  1776                           
+  1777                           ;main.c: 161:     } else {
+  1778                           
+  1779                           ;main.c: 160:         }
+  1780                           
+  1781                           
+  1782                           ;main.c: 164:     GIE = 1;
+  1783  035A  178B               	bsf	11,7	;volatile
+  1784  035B  0811               	movf	??_myIsr+5,w
+  1785  035C  00CF               	movwf	79
+  1786  035D  0810               	movf	??_myIsr+4,w
+  1787  035E  008A               	movwf	10
+  1788  035F  080F               	movf	??_myIsr+3,w
+  1789  0360  0084               	movwf	4
+  1790  0361  0E0E               	swapf	(??_myIsr+2)^0,w
+  1791  0362  0083               	movwf	3
+  1792  0363  0ECE               	swapf	78,f
+  1793  0364  0E4E               	swapf	78,w
+  1794  0365  0009               	retfie
+  1795  0366                     __end_of_myIsr:	
+  1796  004E                     btemp	set	78	;btemp
+  1797  004E                     wtemp0	set	78
+  1798                           
+  1799                           	psect	intentry
+  1800  0004                     __pintentry:	
+  1801                           ;incstack = 0
+  1802                           ; Regs used in _myIsr: [wreg-fsr0h+status,2+status,0+pclath]
+  1803                           
+  1804  0004                     interrupt_function:	
+  1805  004E                     saved_w	set	btemp
+  1806  0004  00CE               	movwf	btemp
+  1807  0005  0E03               	swapf	3,w
+  1808  0006  1283               	bcf	3,5	;RP0=0, select bank0
+  1809  0007  008E               	movwf	??_myIsr+2
+  1810  0008  0804               	movf	4,w
+  1811  0009  008F               	movwf	??_myIsr+3
+  1812  000A  080A               	movf	10,w
+  1813  000B  0090               	movwf	??_myIsr+4
+  1814  000C  084F               	movf	btemp+1,w
+  1815  000D  0091               	movwf	??_myIsr+5
+  1816  000E  2ADA               	ljmp	_myIsr
 
 
 Data Sizes:
     Strings     0
-    Constant    190
+    Constant    212
     Data        13
-    BSS         13
+    BSS         15
     Persistent  1
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
     COMMON            0      0       0
-    BANK0            66     25      52
+    BANK0            66     25      54
 
 Pointer List with Targets:
 
@@ -1651,27 +1873,31 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 1     1      0     646
-                                             24 BANK0      1     1      0
+ (0) _main                                                 3     3      0    1502
+                                             22 BANK0      3     3      0
                    _sendDataToAltera
                           _updateKey
- ---------------------------------------------------------------------------------
- (1) _updateKey                                            7     6      1     646
-                                             17 BANK0      7     6      1
                          _updatePort
  ---------------------------------------------------------------------------------
- (2) _updatePort                                           7     6      1     386
-                                             10 BANK0      7     6      1
+ (1) _updateKey                                            7     6      1     839
+                                             15 BANK0      7     6      1
+                         _updatePort
  ---------------------------------------------------------------------------------
- (1) _sendDataToAltera                                     1     1      0       0
-                                             10 BANK0      1     1      0
+ (1) _updatePort                                           6     5      1     437
+                                              9 BANK0      6     5      1
+ ---------------------------------------------------------------------------------
+ (1) _sendDataToAltera                                     2     2      0      68
+                                              9 BANK0      2     2      0
+                            _myDelay
+ ---------------------------------------------------------------------------------
+ (2) _myDelay                                              0     0      0       0
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 2
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (4) _myIsr                                               10    10      0     114
-                                              0 BANK0     10    10      0
+ (4) _myIsr                                                9     9      0     114
+                                              0 BANK0      9     9      0
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 4
  ---------------------------------------------------------------------------------
@@ -1680,8 +1906,10 @@ Call Graph Tables:
 
  _main (ROOT)
    _sendDataToAltera
+     _myDelay
    _updateKey
      _updatePort
+   _updatePort
 
  _myIsr (ROOT)
 
@@ -1689,76 +1917,81 @@ Call Graph Tables:
 Name               Size   Autos  Total    Cost      Usage
 SFR1                 0      0       0       2        0.0%
 BITSFR1              0      0       0       2        0.0%
-BANK0               42     19      34       3       78.8%
+BANK0               42     19      36       3       81.8%
 BITBANK0            42      0       0       5        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR0              0      0       0       1        0.0%
 COMMON               0      0       0       1        0.0%
 BITCOMMON            0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-DATA                 0      0      34       6        0.0%
-ABS                  0      0      34       4        0.0%
+DATA                 0      0      36       6        0.0%
+ABS                  0      0      36       4        0.0%
 NULL                 0      0       0       0        0.0%
 STACK                0      0       0       2        0.0%
 EEDATA              40      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Mon Aug 27 22:41:00 2018
+Symbol Table                                                                                   Thu Sep 13 00:29:51 2018
 
-                            _i 002A                              pc 0002                             fsr 0004  
-                          l121 02E6                            l122 02F6                            l148 01B4  
-                          _GIE 005F                            _RA1 0029                            _RA2 002A  
-                          u730 029D                            u650 0276                            u740 029E  
-                          u660 0277                            u670 027E                            _PSA 040B  
-                          u680 027F                            u585 02B4                            u594 02BF  
-                          u595 02BD                            fsr0 0004                            indf 0000  
-                         l1041 0258                           l1027 02CE                           l1211 0130  
-                         l1203 011F                           l1029 02D2                           l1231 0157  
-                         l1215 0138                           l1223 0147                           l1057 0282  
-                         l1049 0268                           l1233 015B                           l1217 0139  
-                         l1209 012C                           l1067 0290                           l1219 0142  
-                         l1227 014F                           l1069 0291                           l1237 0163  
-                         l1271 019A                           l1263 018B                           l1239 0167  
-                         l1255 0176                           l1281 01B0                           l1275 01A2  
-                         l1267 0193                           l1195 0115                           _T0IE 005D  
-                         _T0IF 005A                           _T0CS 040D                           _T0SE 040C  
-                         _TMR0 0001                           _main 00F5                           _ctrl 0028  
-                         btemp 004E                           start 000F                          ?_main 000C  
- __end_of_replaceTwoBytesCodes 00F5                          _PORTA 0005                          _PORTB 0006  
-         __end_of_codeToMatrix 00B7                          _TRISB 0086                          u85_24 01D7  
-                        u85_25 01D5                          u89_25 01FE                          _delay 0025  
-                        _myIsr 01B6                          _shift 0029               updatePort@bit_id 001C  
-                        pclath 000A                          status 0003                   updateKey@key 0023  
-                 updateKey@set 001D                          wtemp0 004E                __initialization 0010  
-                 __end_of_main 01B6                         ??_main 0024                         ?_myIsr 000C  
-                       i1l1121 01E8                         i1l1117 01DF                         i1l1109 01C7  
-                       i1l1143 0221                         i1l1135 020E                         i1l1119 01E3  
-                       i1l1145 0229                         i1l1155 0239                         i1l1139 0215  
-                       i1l1149 0231                         i1l1157 023D                         _TRISA0 0428  
-                       _TRISA1 0429                         _TRISA2 042A                         _TRISA3 042B  
-                       _TRISA4 042C       __end_of_sendDataToAltera 02F9                         _mouseX 003E  
-                       _mouseY 003D                         saved_w 004E        __end_of__initialization 002F  
-         _replaceTwoBytesCodes 00DB                  updatePort@set 0016                   __pidataBANK0 02F9  
-                __end_of_myIsr 0249            updateKey@localShift 001F                        ??_myIsr 000C  
-                 _ps2DataCount 002D                   _ps2DataState 0031                     __pbssBANK0 0025  
-                 _ps2BitsCount 002F                   _codeToMatrix 0037                     __pmaintext 00F5  
-                   __pintentry 0004             __size_of_updateKey 005B                     __stringtab 0031  
-__end_of_replaceOnShiftKeyDown 00DB                        _ps2Data 002E                        _ps2Bits 0030  
-                      _ps2Down 003F                        __ptext1 0249                        __ptext2 02A4  
-                      __ptext3 02DB                        __ptext4 01B6                        clrloop0 0307  
-         end_of_initialization 002F                        myIsr@ii 0014              ?_sendDataToAltera 000C  
-            __end_of_updateKey 02A4             ??_sendDataToAltera 0016                      _PORTAbits 0005  
-                   _updatePort 02A4            start_initialization 0010                    updatePort@a 001B  
-                  updatePort@b 001A                    __pdataBANK0 0032                      ___latbits 0000  
-                __pcstackBANK0 000C                    ?_updatePort 0016             updateKey@localCtrl 0021  
-                    __pnvBANK0 003F                      __pstrings 0031                  _ps2NeedEncode 002B  
-                  _ps2WaitCode 002C                 __size_of_myIsr 0093              interrupt_function 0004  
-                    clear_ram0 0306            __size_of_updatePort 0037          _replaceOnShiftKeyDown 00B7  
-                    _updateKey 0249                    __stringbase 0036      __size_of_sendDataToAltera 001E  
-                   ?_updateKey 001D             __end_of__stringtab 0037                       _myIsr$84 0012  
-                __size_of_main 00C1                       _replaced 0027                       _outPorts 0032  
-                 ??_updatePort 0017                       intlevel1 0000                      stringcode 0031  
-           __end_of_updatePort 02DB                    ??_updateKey 001E               _sendDataToAltera 02DB  
-                     stringdir 0031                       stringtab 0031                   _updateKey$94 0020  
-                 _updateKey$97 0022  
+                            pc 0002                             fsr 0004                            l131 0157  
+                          l132 016A                            l175 0143                            _GIE 005F  
+                          _RA1 0029                            _RA2 002A                            u720 0396  
+                          u730 0397                            u740 039E                            u750 039F  
+                          u655 03BA                            _PSA 040B                            u664 03C5  
+                          u665 03C3                            fsr0 0004                            indf 0000  
+                         l1210 0053                           l1220 0061                           l1062 03D9  
+                         l1310 011A                           l1302 0105                           l1232 007A  
+                         l1240 0089                           l1074 0375                           l1322 0131  
+                         l1314 0122                           l1250 0098                           l1234 007B  
+                         l1226 006E                           l1260 00B5                           l1236 0084  
+                         l1228 0072                           l1244 0092                           l1086 03A2  
+                         l1078 0388                           l1318 0129                           l1270 00CA  
+                         l1328 013F                           l1264 00BE                           l1274 00D2  
+                         l1258 00B3                           l1282 00DD                           l1276 00D6  
+                         l1268 00C6                           l1294 00F6                           l1286 00E4  
+                         _T0IE 005D                           _T0IF 005A                           _T0CS 040D  
+                         _T0SE 040C                           _TMR0 0001                           _main 0031  
+                         _ctrl 002B                           btemp 004E                           start 000F  
+                        ?_main 000C   __end_of_replaceTwoBytesCodes 02CA                          i1l111 035A  
+                        _PORTA 0005                          _PORTB 0006           __end_of_codeToMatrix 0286  
+                        _TRISB 0086                          u87_24 02FF                          u87_25 02FD  
+                        _delay 0027                __end_of_myDelay 03F9                          _myIsr 02DA  
+                        _shift 002C                          main@i 0024               updatePort@bit_id 001A  
+                        pclath 000A                          status 0003                   updateKey@key 0020  
+                 updateKey@set 001B                          wtemp0 004E                __initialization 0010  
+                 __end_of_main 0145                         ??_main 0022              sendDataToAltera@i 0016  
+                       ?_myIsr 000C                         i1l1150 0310                         i1l1146 0307  
+                       i1l1138 02EF                         i1l1172 033A                         i1l1164 032A  
+                       i1l1148 030B                         i1l1174 0342                         i1l1184 0351  
+                       i1l1168 032F                         i1l1178 0349                         i1l1186 0356  
+                       _TRISA0 0428                         _TRISA1 0429                         _TRISA2 042A  
+                       _TRISA3 042B                         _TRISA4 042C       __end_of_sendDataToAltera 016E  
+        _replaceOnDelayKeyDown 02CA                         _delayA 0025                         _mouseX 0040  
+                       _mouseY 003F                      ??_myDelay 0000                         myIsr@i 0014  
+                       saved_w 004E                  updateKey@code 0021        __end_of__initialization 002F  
+         _replaceTwoBytesCodes 02B0                  updatePort@set 0015                 __pcstackCOMMON 0000  
+                 __pidataBANK0 03E3                  __end_of_myIsr 0366            updateKey@localShift 001D  
+                      ??_myIsr 000C                   _ps2DataState 0033                     __pbssBANK0 0025  
+                 _ps2BitsCount 0031                   _codeToMatrix 0206                     _delayedKey 0029  
+                   __pmaintext 0031                     __pintentry 0004             __size_of_updateKey 004D  
+                   __stringtab 0200  __end_of_replaceOnShiftKeyDown 02B0                        _ps2Data 0030  
+                      _ps2Bits 0032                        _ps2Down 0041                        __ptext1 0366  
+                      __ptext2 03B3                        __ptext3 0145                        __ptext4 03F8  
+                      __ptext5 02DA                        _myDelay 03F8                        clrloop0 03F1  
+         end_of_initialization 002F              ?_sendDataToAltera 000C              __end_of_updateKey 03B3  
+           ??_sendDataToAltera 0015                      _PORTAbits 0005                     _updatePort 03B3  
+          start_initialization 0010                    updatePort@a 0019            __end_of_digitsTable 02DA  
+                  __pdataBANK0 0034                      ___latbits 0000                  __pcstackBANK0 000C  
+                  ?_updatePort 0015             updateKey@localCtrl 001F                      __pnvBANK0 0041  
+                    _ps2Device 002F                      __pstrings 0200                    _digitsTable 02D2  
+                _ps2NeedEncode 002D                       ?_myDelay 000C                    _ps2WaitCode 002E  
+               __size_of_myIsr 008C              interrupt_function 0004                      clear_ram0 03F0  
+          __size_of_updatePort 0030          _replaceOnShiftKeyDown 0286                      _updateKey 0366  
+                  __stringbase 0205                      main@i_112 0023      __size_of_sendDataToAltera 0029  
+                   ?_updateKey 001B             __end_of__stringtab 0206               __size_of_myDelay 0001  
+                     _myIsr$87 0012                  __size_of_main 0114  __end_of_replaceOnDelayKeyDown 02D2  
+                     _replaced 002A                       _outPorts 0034                   ??_updatePort 0016  
+                     intlevel1 0000                      stringcode 0200             __end_of_updatePort 03E3  
+                  ??_updateKey 001C               _sendDataToAltera 0145                       stringdir 0200  
+                     stringtab 0200                   _updateKey$97 001E  

@@ -83,7 +83,7 @@ SDTAKT		 : in std_logic := '0';  -- тактовый генератор для SD карты
 SDDET		 : in std_logic := '0';  -- детектор SD
 SDRO		 : in std_logic := '0';  -- сигнал только чтение
 SDIN		 : in std_logic := '0';  -- 
-SDCS		 : in std_logic := '0';  -- 
+SDCS		 : out std_logic := '1';  -- 
 SDEN		 : out std_logic := '1';  -- питание SD карты (включено, когда 0)
 SDDO		 : out std_logic := '0';  -- 
 SC			 : out std_logic := '0';  -- 
@@ -137,9 +137,10 @@ architecture RTL of zcontroller is
 --                       ВНУТРЕННИЕ СИГНАЛЫ ПЛИС                              --
 --------------------------------------------------------------------------------
 
+signal selector: STD_LOGIC_VECTOR (1 downto 0) := "00";
 signal dataBus : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
 signal iorqgeBus : std_logic := 'Z';
-signal port_read: std_logic := '0';
+--signal port_read: std_logic := '0';
 --signal port_read_sel: std_logic := '0';
 --signal port_write: std_logic := '0';
 
@@ -160,56 +161,41 @@ shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
 shared variable portI : STD_LOGIC_VECTOR (2 downto 0) := "000";
 shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+
+signal row0, row1, row2, row3, row4, row5, row6, row7 : std_logic_vector(4 downto 0);
+
+signal kb_do_bus	: std_logic_vector(4 downto 0);
+
+-- sd card signals
+
+signal cnt		: std_logic_vector(3 downto 0) := "0000";
+signal shift_in		: std_logic_vector(7 downto 0) := "11111111";
+signal shift_out	: std_logic_vector(7 downto 0) := "11111111";
+signal cnt_en		: std_logic := '0';
+signal csn		: std_logic := '1';
+signal enn		: std_logic := '1';	
+
+signal zc_rd		: std_logic := '0';
+signal zc_wr		: std_logic := '0';
+signal zc_do_bus	: std_logic_vector(7 downto 0) := "ZZZZZZZZ";
 --------------------------------------------------------------------------------
 --                            ПРОЦЕССЫ                                        --
 --------------------------------------------------------------------------------
 
 begin
-
-	port_read <= '1' when (IORQ = '0') and (RD = '0') and (M1 = '1') and (DOS = '1')  else '0';  -- and (IORQGE = '0')
-	
-	--mouseData <= "11111" & portI(2 downto 0) when ( A(15 downto 8) = X"FA" ) else
-	--			  portJ(7 downto 0) when ( A(15 downto 8) = X"FB" ) else
-	--			  portK(7 downto 0) when ( A(15 downto 8) = X"FF" ) else
-	--			  "11111111";
-				  
-	--port_read_sel <= '0' when (A(7 downto 0) = X"FE") else 
-	--				 '1' when (A(7 downto 0) = X"DF") else
-	--				 'Z';
-					 
-	
-	--IORQGE <= 'Z' when (port_read = '0' ) or (port_read_sel = 'Z') else '1';
-	
-	--port_write <= '1' when IORQ = '0' and RD = '0' and M1 = '1' and DOS = '1' and IORQGE = '0' else '0'; 
-
--- ПОРТ КЛАВИАТУРЫ #FE (254) "11111110"
---  чтение
---   D0-D4 - отображают состояние определённого полуряда клавиатуры ZX Spectrum. 
---      младший байт всегда равен #FE (254), а в старшем сбрасывается соответствующий бит.
-
---      Возможно одновременное чтение нескольких полурядов при сбросе нескольких бит в старшем байте адреса порта.
---   D6 - отображает состояние магнитофонного входа (EAR).
---   D5, D7 - обычно не используются. 
---  запись
---   D0-D2 - определяют цвет бордюра.
---   D3 - управляет состоянием выхода записи на магнитофон MIC.
---   D4 - управляет внутренним динамиком (бипером).
---   D5-D7 - обычно не используются.
-
--- ПОРТ МЫШКИ
-
-	
-	-- keyboard
-
-	-- receive data from PIC ps2 reader
-	
-	-------------------
-
-	clk_proc : process (STROBE)
+	-- M1 = '0' or
+	selector <= "01" when A(7 downto 0) = X"FE" and IORQ = '0' and RD = '0' and DOS = '1' and RES = '1' else
+			    "10" when A(7 downto 6) = "01" and A(4 downto 0) = "10111" and IORQ = '0' and RD = '0' and DOS = '1' and RES = '1' else
+			    "11" when A(7 downto 0) = X"DF" and IORQ = '0' and RD = '0' and DOS = '1' and RES = '1' else
+				"00";
+				
+	clk_proc : process (STROBE, RESTRIG, PB)
     begin
-        if falling_edge(STROBE) then
-            if RESTRIG = '0' then
-                
+		if RESTRIG = '1' then
+			count := "0000"; 
+		else
+			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
+			
                 if count = 0 then portA := PB(4 downto 0);
                 elsif count = 1 then portB := PB(4 downto 0);
                 elsif count = 2 then portC := PB(4 downto 0);
@@ -218,143 +204,122 @@ begin
                 elsif count = 5 then portF := PB(4 downto 0);
                 elsif count = 6 then portG := PB(4 downto 0);
                 elsif count = 7 then portH := PB(4 downto 0);
-                elsif count = 8 then portI := PB(2 downto 0);
-                elsif count = 9 then portJ := PB(7 downto 0);
-                elsif count = 10 then portK := PB(7 downto 0);
+                --elsif count = 8 then portI := PB(2 downto 0);
+                --elsif count = 9 then portJ := PB(7 downto 0);
+                --elsif count = 10 then portK := PB(7 downto 0);
                 end if;
                 
                 count := count + 1;
-            else
-                count := "0000"; 
             end if;
         end if;
     end process;
     
-    -------------------
-    
-	--count <= "0000" when RESTRIG = '1' else count + X"1" when falling_edge(STROBE);
-		
-	-- keyboard
-	--portA <= PB(4 downto 0) when count = X"0" and falling_edge(STROBE) else portA;
-	--portB <= PB(4 downto 0) when count = X"1" and falling_edge(STROBE) else portB;
-	--portC <= PB(4 downto 0) when count = X"2" and falling_edge(STROBE) else portC;
-	--portD <= PB(4 downto 0) when count = X"3" and falling_edge(STROBE) else portD;
-	--portE <= PB(4 downto 0) when count = X"4" and falling_edge(STROBE) else portE;
-	--portF <= PB(4 downto 0) when count = X"5" and falling_edge(STROBE) else portF;
-	--portG <= PB(4 downto 0) when count = X"6" and falling_edge(STROBE) else portG;
-	--portH <= PB(4 downto 0) when count = X"7" and falling_edge(STROBE) else portH;
-	--portG <= PB(4 downto 0) when STROBE = '0' else portG;
+    -- Output addressed row to ULA
+	row0 <= portA when A(8) = '0' else (others => '1');
+	row1 <= portB when A(9) = '0' else (others => '1');
+	row2 <= portC when A(10) = '0' else (others => '1');
+	row3 <= portD when A(11) = '0' else (others => '1');
+	row4 <= portE when A(12) = '0' else (others => '1');
+	row5 <= portF when A(13) = '0' else (others => '1');
+	row6 <= portG when A(14) = '0' else (others => '1');
+	row7 <= portH when A(15) = '0' else (others => '1');
 	
-	-- mouse
-	--portI <= PB when count = "1000" and falling_edge(STROBE);
-	--portJ <= PB when count = "1001" and falling_edge(STROBE);
-	--portK <= PB when count = "1010" and falling_edge(STROBE);
-	
-	--		#7FFE - Space...B "01111111" 
-	--		#BFFE - Enter...H "10111111"
-	--		#DFFE - P...Y     "11011111"
-	--		#EFFE - 0...6     "11101111"
-	--		#F7FE - 1...5     "11110111"
-	--		#FBFE - Q...T     "11111011"
-	--		#FDFE - A...G     "11111101" 
-	--		#FEFE - CS...V    "11111110" 
-	--		#FADF - buttons and wheel
-	--		#FBDF — X-coord
-	--		#FFDF — Y-coord 
-	
-	
-
-	-- works but bad
-	--D(7 downto 0) <= "ZZZZZZZZ" when (port_read = '0') or (port_read_sel = 'Z') else	
-	--				 mouseData(7 downto 0) when port_read_sel = '1' else
-					 --"11111" & portI when ( A(15 downto 8) = X"FA" ) and (port_read_sel = "10") else	
-					--portJ when ( A(15 downto 8) = X"FB" ) and (port_read_sel = "10")  else
-					--portK when ( A(15 downto 8) = X"FF" ) and (port_read_sel = "10")  else				
-	--				 "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
-	--				 "111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
-	--				 "111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
-	--				 "111" & not portD(4 downto 0) when A(15 downto 8) = X"F7" else
-	--				 "111" & not portE(4 downto 0) when A(15 downto 8) = X"EF" else 
-	--				 "111" & not portF(4 downto 0) when A(15 downto 8) = X"DF" else 
-	--				 "111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
-	--				 "111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
-	--				 "111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-	
-  data_bus : process(port_read)
-  begin
-	if (port_read = '1') and (IORQGE = '0') then
-		if (A(7 downto 0) = X"FE") then
-			
-			if A(15 downto 8) = X"FE" then dataBus(4 downto 0) <= portA(4 downto 0);
-			elsif A(15 downto 8) = X"FD" then dataBus(4 downto 0) <= portB(4 downto 0);
-			elsif A(15 downto 8) = X"FB" then dataBus(4 downto 0) <= portC(4 downto 0);
-			elsif A(15 downto 8) = X"F7" then dataBus(4 downto 0) <= portD(4 downto 0);
-			elsif A(15 downto 8) = X"EF" then dataBus(4 downto 0) <= portE(4 downto 0);
-			elsif A(15 downto 8) = X"DF" then dataBus(4 downto 0) <= portF(4 downto 0);
-			elsif A(15 downto 8) = X"BF" then dataBus(4 downto 0) <= portG(4 downto 0);
-			elsif A(15 downto 8) = X"7F" then dataBus(4 downto 0) <= portH(4 downto 0);
-			else dataBus(4 downto 0) <= (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-			end if;
-			
-			dataBus(7 downto 5) <= "111";
-			
-			iorqgeBus <= '1';
-
-		elsif (A(7 downto 0) = X"DF") then
-			
-			if A(15 downto 8) = X"FA" then dataBus <= "11111" & portI(2 downto 0);
-			elsif A(15 downto 8) = X"FB" then dataBus <= portJ(7 downto 0);
-			elsif A(15 downto 8) = X"FF" then dataBus <= portK(7 downto 0);
-			else dataBus <= "ZZZZZZZZ";
-			end if;		
-			
-			iorqgeBus <= '1';
-		else
-			
-			dataBus <= "ZZZZZZZZ";
-			iorqgeBus <= 'Z';
-			
-		end if;
-	else
-			
-		dataBus <= "ZZZZZZZZ";
-		iorqgeBus <= 'Z';
-				
-	end if;
-  end process data_bus;
-  
-  D(7 downto 0) <= dataBus;
-  IORQGE <= iorqgeBus;
-  
-		--case port_read_sel is
-			--when "01" =>  "11110000";
-					 --if "111" & not portA(4 downto 0) when A(15 downto 8) = X"FE" else 
-					 --"111" & not portB(4 downto 0) when A(15 downto 8) = X"FD" else 
-					 --"111" & not portC(4 downto 0) when A(15 downto 8) = X"FB" else 
-					 --"111" & not portD(4 downto 0) when A(15 downto 8) = X"F7" else
-					 --"111" & not portE(4 downto 0) when A(15 downto 8) = X"EF" else 
-					 ---"111" & not portF(4 downto 0) when A(15 downto 8) = X"DF" else 
-					 --"111" & not portG(4 downto 0) when A(15 downto 8) = X"BF" else 
-					 --"111" & not portH(4 downto 0) when A(15 downto 8) = X"7F" else
-					 --"111" & not (portA(4 downto 0) or portB(4 downto 0) or portC(4 downto 0) or portD(4 downto 0) or portE(4 downto 0) or portF(4 downto 0) or portG(4 downto 0) or portH(4 downto 0));
-			--when "10" => "11111111";
-			--when others =>  "ZZZZZZZZ";
-					 --portI when port_read = '1' and A(15 downto 0) = X"FADF" else 
-					 --portJ when port_read = '1' and A(15 downto 0) = X"FBDF" else
-					 --portK when port_read = '1' and A(15 downto 0) = X"FFDF" else	
-	--end case;
-	
-	-- mouse
-	
-	
-
-	-- nemo ide
-	
-	
+	-- Keyboard
+	kb_do_bus <= row0 and row1 and row2 and row3 and row4 and row5 and row6 and row7;
 	
 	-- sd card
-	--portG <= PB(4 downto 0);
-	SDEN <= not portA(0);
+
+    -- and (M1 = '1')
+	zc_wr 	<= '1' when (IORQ = '0' and WR = '0' and (DOS = '1') and A(7 downto 6) = "01" and A(4 downto 0) = "10111") else '0';
+	zc_rd 	<= '1' when (IORQ = '0' and RD = '0' and (DOS = '1') and A(7 downto 6) = "01" and A(4 downto 0) = "10111") else '0';
+
+	-- write to 77h port
+	process (RES, SDTAKT, A(5), zc_wr, D)
+	begin
+		if RES = '0' then -- if reset
+			csn <= '1'; -- CS to 1
+			enn <= '1'; -- SD card power off
+		elsif SDTAKT'event and SDTAKT = '1' then 
+			if (A(5) = '1' and zc_wr = '1') then -- write data	
+				enn <= D(0);
+				csn <= D(1);
+			end if;
+		end if;
+	end process;
+ 
+	cnt_en <= (not cnt(3)) or cnt(2) or cnt(1) or cnt(0);
+		
+    process (SDTAKT, cnt_en, A(5), zc_rd, zc_wr)
+	begin
+		if (A(5) = '0' and (zc_wr = '1' or zc_rd = '1')) then
+			cnt <= "1110";
+		else 
+			if SDTAKT'event and SDTAKT = '0' then
+				if cnt_en = '1' then
+					cnt <= cnt + 1;
+				end if;
+			end if;
+		end if;
+	end process;
+	
+    process (SDTAKT)
+	begin
+		if SDTAKT'event and SDTAKT = '0' then	
+			if (A(5) = '0' and zc_wr = '1') then
+				shift_out <= D;
+			else
+				if cnt(3) = '0' then
+					shift_out(7 downto 0) <= shift_out(6 downto 0) & '1';
+				end if;
+			end if;
+		end if;
+	end process;
+	
+	process (SDTAKT)
+	begin
+		if SDTAKT'event and SDTAKT = '0' then	 
+			if cnt(3) = '0' then
+				shift_in <= shift_in(6 downto 0) & SDIN;
+			end if;
+		end if;
+	end process;
+ 
+	SC  <= SDTAKT and (not cnt(3));
+	SDDO  <= shift_out(7);
+	SDCS  <= csn;
+	SDEN  <= enn;
+	zc_do_bus <= cnt(3) & "11111" & SDRO & SDDET when A(5) = '1' else shift_in;
+
+	-- All Ports
+	
+	process (selector, kb_do_bus, zc_do_bus, D)
+	begin
+		case selector is
+			when "00" => IORQGE	<= 'Z';
+			when others => IORQGE <= '1';
+		end case;
+		case selector is			
+			when "01" => D <= "111" & kb_do_bus;	-- Read port #xxFE Keyboard
+			when "10" => D <= zc_do_bus;			-- Z-Controller
+			--when X"2" => BUS_D <= ms0_z(3 downto 0) & '1' & not ms0_b(2) & not ms0_b(0) & not ms0_b(1);		-- Mouse0 port key, z			
+			when others => D <= "ZZZZZZZZ";
+		end case;		
+	end process;
+
+
+	--D <= "111" & kb_do_bus when selector = "01" else
+	--	 zc_do_bus when selector = "10" else 
+	--	 "ZZZZZZZZ";
+	--D <= dataBus;	 
+	--IORQGE	<= 'Z' when selector = "00" else '1';	-- or selector = X"1" or selector = X"2"  1=aeiee?oai ii?oa a/a ia oeia Niaeo?oia
+	
+	
+	
+	--IORQGE <= iorqgeBus;
+	
+	-- debug
+	
+	--SDEN <= not keys(0)(0);
 	
 end RTL;
 

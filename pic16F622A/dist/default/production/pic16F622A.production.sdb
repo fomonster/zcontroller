@@ -1,0 +1,150 @@
+[p LITE_MODE AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16C622A ]
+[d frameptr 6 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"169 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+[v _updatePort updatePort `(v  1 e 1 0 ]
+"178
+[v _updateKey updateKey `(v  1 e 1 0 ]
+"197
+[v _myDelay myDelay `(v  1 e 1 0 ]
+"229
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+"251
+[v _sendToPs2Device sendToPs2Device `(v  1 e 1 0 ]
+"335
+[v _main main `(v  1 e 1 0 ]
+"1 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A/ps2tozxtable.h
+[v _digitsTable digitsTable `DC[8]uc  1 e 8 0 ]
+"9
+[v _replaceOnDelayKeyDown replaceOnDelayKeyDown `DC[8]uc  1 e 8 0 ]
+"17
+[v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[42]uc  1 e 42 0 ]
+"63
+[v _codeToMatrix codeToMatrix `DC[128]uc  1 e 128 0 ]
+"59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16c622a.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"166
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+[s S27 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+]
+"180
+[u S33 . 1 `S27 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES33  1 e 1 @5 ]
+"210
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"551
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"802
+[v _RA1 RA1 `VEb  1 e 0 @41 ]
+"805
+[v _RA2 RA2 `VEb  1 e 0 @42 ]
+"868
+[v _TRISA0 TRISA0 `VEb  1 e 0 @1064 ]
+"871
+[v _TRISA1 TRISA1 `VEb  1 e 0 @1065 ]
+"874
+[v _TRISA2 TRISA2 `VEb  1 e 0 @1066 ]
+"877
+[v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
+"880
+[v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
+"30 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+[v _ps2DataState ps2DataState `c  1 s 1 ps2DataState ]
+"34
+[v _ps2BitsCount ps2BitsCount `c  1 s 1 ps2BitsCount ]
+"37
+[v _ps2Data ps2Data `uc  1 s 1 ps2Data ]
+"38
+[v _ps2Device ps2Device `c  1 s 1 ps2Device ]
+"39
+[v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
+"40
+[v _ps2Down ps2Down `c  1 s 1 ps2Down ]
+"41
+[v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
+"44
+[v _shift shift `uc  1 s 1 shift ]
+"45
+[v _ctrl ctrl `uc  1 s 1 ctrl ]
+"46
+[v _replaced replaced `uc  1 s 1 replaced ]
+"48
+[v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
+"52
+[v _outPorts outPorts `[12]uc  1 s 12 outPorts ]
+"69
+[v _delay delay `ui  1 s 2 delay ]
+"70
+[v _delayA delayA `ui  1 s 2 delayA ]
+"335
+[v _main main `(v  1 e 1 0 ]
+{
+"399
+[v main@i i `c  1 a 1 2 ]
+"423
+[v main@i_99 i `c  1 a 1 0 ]
+"408
+[v main@i_98 i `c  1 a 1 1 ]
+"513
+} 0
+"178
+[v _updateKey updateKey `(v  1 e 1 0 ]
+{
+[v updateKey@key key `uc  1 a 1 wreg ]
+"180
+[v updateKey@code code `uc  1 a 1 12 ]
+"182
+[v updateKey@localCtrl localCtrl `uc  1 a 1 10 ]
+"181
+[v updateKey@localShift localShift `uc  1 a 1 8 ]
+"178
+[v updateKey@key key `uc  1 a 1 wreg ]
+[v updateKey@set set `uc  1 p 1 6 ]
+"180
+[v updateKey@key key `uc  1 a 1 11 ]
+"193
+} 0
+"169
+[v _updatePort updatePort `(v  1 e 1 0 ]
+{
+[v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
+"171
+[v updatePort@a a `uc  1 a 1 4 ]
+"169
+[v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
+[v updatePort@set set `uc  1 p 1 0 ]
+"171
+[v updatePort@bit_id bit_id `uc  1 a 1 5 ]
+"174
+} 0
+"251
+[v _sendToPs2Device sendToPs2Device `(v  1 e 1 0 ]
+{
+"266
+[v sendToPs2Device@j j `uc  1 a 1 1 ]
+"296
+} 0
+"229
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+{
+"241
+[v sendDataToAltera@i i `c  1 a 1 3 ]
+"249
+} 0
+"197
+[v _myDelay myDelay `(v  1 e 1 0 ]
+{
+"199
+[v myDelay@j j `uc  1 a 1 1 ]
+"200
+} 0

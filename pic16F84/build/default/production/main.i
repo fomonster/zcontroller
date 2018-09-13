@@ -790,10 +790,23 @@ typedef uint16_t uintptr_t;
 
 
 # 1 "./ps2tozxtable.h" 1
+const uint8_t digitsTable[8] =
+{
+    69, 22, 30, 38, 37, 46, 54, 61
+};
 
 
 
-const uint8_t replaceOnShiftKeyDown[36] =
+
+const uint8_t replaceOnDelayKeyDown[8] =
+{
+    31, 84, 91, 99, 100, 101, 72, 93
+};
+
+
+
+
+const uint8_t replaceOnShiftKeyDown[42] =
 {
     22, 79,
     30, 80,
@@ -812,8 +825,11 @@ const uint8_t replaceOnShiftKeyDown[36] =
     82, 104,
     65, 106,
     73, 109,
-    74, 110
-};
+    74, 110,
+    14, 72,
+    84, 100,
+    91, 101
+ };
 
 const uint8_t replaceTwoBytesCodes[26] =
 {
@@ -869,7 +885,7 @@ const uint8_t codeToMatrix[128] =
 0x1,
 0xA,
 0xB,
-0x44,
+0xD6,
 0xFF,
 0x18,
 0x10,
@@ -910,7 +926,7 @@ const uint8_t codeToMatrix[128] =
 0x4,
 0xC,
 0xFF,
-0xFF,
+0xC1,
 0x97,
 0xA0,
 0xE,
@@ -931,15 +947,15 @@ const uint8_t codeToMatrix[128] =
 0x6,
 0xDD,
 0xA4,
-0xFF,
+0xD1,
 0xA7,
 0x94,
 0x8C,
 0x84,
 0x96,
-0x90,
-0xFF,
-0xFF,
+0xC9,
+0xD9,
+0xE1,
 0x44,
 0x88,
 0x85,
@@ -949,7 +965,7 @@ const uint8_t codeToMatrix[128] =
 0x1C,
 0xA2,
 0x98,
-0xFF,
+0xC0,
 0x4,
 0x97,
 0xB,
@@ -965,25 +981,33 @@ const uint8_t codeToMatrix[128] =
 0xA7,
 0xC,
 0xFF,
-0xFF
+0xFF,
 };
 # 17 "main.c" 2
-# 28 "main.c"
-static int_fast8_t ps2DataState = 0;
+# 30 "main.c"
+static int8_t ps2DataState = 0;
 
 
-uint_fast8_t ps2Bits = 0;
-static int_fast8_t ps2BitsCount = 0;
+static uint8_t ps2Bits = 0;
+static int8_t ps2BitsCount = 0;
 
 
-static uint_fast8_t ps2Data = 0;
-static int_fast8_t ps2DataCount = 0;
-static int_fast8_t ps2WaitCode = 0;
-static int_fast8_t ps2Down = 0;
-static int_fast8_t ps2NeedEncode = 0;
+static uint8_t ps2Data = 0;
+static int8_t ps2Device = 0;
+static int8_t ps2WaitCode = 0;
+static int8_t ps2Down = 0;
+static int8_t ps2NeedEncode = 0;
 
 
-uint_fast8_t outPorts[11] =
+static uint8_t shift = 0;
+static uint8_t ctrl = 0;
+static uint8_t replaced = 0;
+
+static uint8_t delayedKey = 0;
+
+
+
+static uint8_t outPorts[11] =
 {
 
     0x00,
@@ -1000,24 +1024,11 @@ uint_fast8_t outPorts[11] =
     0xDA
 };
 
-
-uint_fast8_t i = 0;
-uint_fast8_t shift = 0;
-
-
-uint_fast8_t ctrl = 0;
-uint_fast8_t replaced = 0;
-
-
-uint_fast8_t mouseX = 220;
-uint_fast8_t mouseY = 110;
-uint_fast16_t delay = 0;
-
-
-
-
-
-
+static uint16_t delay = 0;
+static uint16_t delayA = 0;
+static uint8_t mouseX = 50;
+static uint8_t mouseY = 100;
+# 102 "main.c"
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 {
     if(T0IE && T0IF){
@@ -1032,6 +1043,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                 ps2BitsCount = 0;
                 ps2Bits = 0;
                 ps2DataState = 1;
+                ps2Device = PORTAbits.RA0;
             }
         } else if ( ps2DataState == 1 ) {
             if ( ps2BitsCount < 8 ) {
@@ -1042,11 +1054,11 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
             } else if ( ps2BitsCount == 8 ) {
                 ps2BitsCount++;
             } else if ( ps2BitsCount == 9 ) {
-                ps2DataCount++;
+
                 if ( ps2NeedEncode ) {
-                    for (int ii=0; ii < 25; ii+=2) {
-                        if ( ps2Bits == replaceTwoBytesCodes[ii] ) {
-                            ps2Data = replaceTwoBytesCodes[ii+1];
+                    for (int8_t i=0; i < 25; i+=2) {
+                        if ( ps2Bits == replaceTwoBytesCodes[i] ) {
+                            ps2Data = replaceTwoBytesCodes[i+1];
                             break;
                         }
                     }
@@ -1059,79 +1071,135 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                 } else if ( ps2Bits == 0xE0 ) {
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
+# 152 "main.c"
                 } else {
-# 127 "main.c"
                     ps2DataState = 2;
                 }
 
             }
+        } else if ( ps2DataState == 4 ) {
+
+            ps2DataState = 0;
         }
+    } else {
+
     }
     GIE = 1;
 }
 
 
 
-void updatePort(uint_fast8_t bit_id, uint_fast8_t set)
+void updatePort(uint8_t bit_id, uint8_t set)
 {
-    uint_fast8_t b = outPorts[bit_id & 7];
-    uint_fast8_t a = (1 << ((bit_id >> 3) & 7));
-    if ( set ) b |= a;
-    else b &= ~a;
-    outPorts[bit_id & 7] = b;
+    uint8_t a = (1 << ((bit_id >> 3) & 7));
+    if ( set ) outPorts[bit_id & 7] |= a;
+    else outPorts[bit_id & 7] &= ~a;
 }
 
 
 
-void updateKey(uint_fast8_t key, uint_fast8_t set)
+void updateKey(uint8_t key, uint8_t set)
 {
-    i = 0xFF;
-    uint_fast8_t localShift = (shift && replaced == 0);
-    uint_fast8_t localCtrl = 0;
-    if ( key < 128 ) i = codeToMatrix[key];
-    if ( i != 0xFF ) {
-        updatePort(i, set);
-# 167 "main.c"
-        localShift |= (i & 0b01000000) > 0;
-        localCtrl |= (i & 0b10000000) > 0;
+    uint8_t code = 0xFF;
+    uint8_t localShift = (shift && replaced == 0);
+    uint8_t localCtrl = ctrl;
+    if ( key < 128 ) code = codeToMatrix[key];
+    if ( code != 0xFF ) {
+        updatePort(code, set);
+        localShift |= ((code & 64) > 0);
+        localCtrl |= ((code & 128) > 0);
     }
     if ( set ) {
-        updatePort(0x00, localShift > 0 || ( shift && replaced == 0));
-        updatePort(0x0F, localCtrl > 0);
+        updatePort(0x00, localShift );
+        updatePort(0x0F, localCtrl );
     }
 }
 
 
 
+void myDelay()
+{
+
+}
+# 229 "main.c"
 void sendDataToAltera()
 {
+
     RA2 = 1;
     RA1 = 1;
+    myDelay();
     RA2 = 0;
+    myDelay();
     RA2 = 1;
     RA1 = 0;
-    for(i=0;i<11;i++) {
+    myDelay();
+    for(int8_t i=0;i<11;i++) {
         RA2 = 1;
-        PORTB = outPorts[i];
+        PORTB = ~outPorts[i];
         RA2 = 0;
+        myDelay();
     }
     RA2 = 1;
-    PORTB = 0;
+    PORTB = 0xFF;
 }
-# 231 "main.c"
+
+void sendToPs2Device()
+{
+    TMR0 = 0;
+
+
+
+    TRISA0 = 0;
+    PORTAbits.RA0 = 1;
+
+    TRISA4 = 0;
+    TRISA3 = 0;
+
+
+
+    PORTAbits.RA4 = 0;
+    for(uint8_t j = 0; j < 100; j++) { };
+    PORTAbits.RA3 = 0;
+    PORTAbits.RA4 = 1;
+    TRISA4 = 1;
+    TRISA0 = 1;
+    TMR0 = 255;
+# 292 "main.c"
+    ps2BitsCount = 0;
+    ps2DataState = 4;
+
+}
+# 334 "main.c"
 void main(void)
 {
-    TRISA0 = 1;
     TRISA1 = 0;
     TRISA2 = 0;
-    TRISA3 = 1;
+    TRISA0 = 1;
     TRISA4 = 1;
+    TRISA3 = 1;
 
-    PORTA = 0b00000000;
+    PORTA = 0;
 
-    TRISB = 0b00000000;
-    PORTB = 0b00000000;
-# 262 "main.c"
+    TRISB = 0;
+    PORTB = 0;
+# 365 "main.c"
+    ps2Data = 0;
+
+    ps2WaitCode = 0;
+    ps2Down = 1;
+    ps2NeedEncode = 0;
+    ps2DataState = 0;
+
+    delay = 0;
+    delayedKey = 0;
+    shift = 0;
+    ctrl = 0;
+    replaced = 0;
+
+
+
+
+
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1140,64 +1208,91 @@ void main(void)
     T0IF = 0;
     TMR0 = 255;
 
-    ps2Data = 0;
-    ps2DataCount = 0;
-    ps2WaitCode = 0;
-    ps2Down = 1;
-    ps2NeedEncode = 0;
-    ps2DataState = 0;
-
-
-
-
-
-    shift = 0;
-    ctrl = 0;
-    replaced = 0;
-
     while(1)
     {
+
         if ( ps2DataState == 2 ) {
 
-
-            for(i = 0; i < 35 ;i+=2) {
-                if ( ps2Data == replaceOnShiftKeyDown[i] ) {
-
-
-
-
-
-
-                    if ( (shift && replaced == 0) || replaced == ps2Data) {
-                        if ( ps2Down ) replaced = ps2Data;
-                        else replaced = 0;
-                        ps2Data = replaceOnShiftKeyDown[i+1];
-                    } else {
-                        if ( replaced != 0 ) ps2Data = 0;
+            if ( ps2Device == 0 ) {
+# 407 "main.c"
+                for(int8_t i = 0; i < 41 ;i+=2) {
+                    if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+                        if ( (shift && replaced == 0) || replaced == ps2Data) {
+                            if ( ps2Down ) replaced = ps2Data;
+                            else replaced = 0;
+                            ps2Data = replaceOnShiftKeyDown[i+1];
+                        } else {
+                            if ( replaced != 0 ) ps2Data = 0;
+                        }
+                        break;
                     }
-                    break;
                 }
+
+
+
+                for(int8_t i = 0; i < 8; i++) {
+                    if ( ps2Data == replaceOnDelayKeyDown[i] && ps2Down ) {
+                        if ( delay == 0 ) {
+                            delayedKey = ps2Data;
+                            delay = 3000;
+                            ps2Data = 111;
+                        } else {
+                            ps2Data = 0;
+                        }
+                        break;
+                    }
+                }
+
+
+                if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
+                if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
+                updateKey(ps2Data, ps2Down );
+
+
+                sendDataToAltera();
+
+            } else if ( ps2Device == 1 ) {
+
+
             }
 
 
-            if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
-            if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
-            updateKey(ps2Data, ps2Down );
-
-
             ps2Data = 0;
-            ps2DataCount = 0;
+
             ps2WaitCode = 0;
             ps2Down = 1;
             ps2NeedEncode = 0;
             ps2DataState = 0;
 
 
-            sendDataToAltera();
+
         }
-# 333 "main.c"
-        delay++;
-        if ( delay > 2000 ) {
+
+
+
+        if ( delay != 0 ) {
+
+            delay--;
+            if ( delay == 0 ) {
+
+                updatePort(0x00, 0);
+
+                sendDataToAltera();
+
+            } else if ( delay == 1500 ) {
+
+                updateKey(delayedKey, 1 );
+                delayedKey = 0;
+                sendDataToAltera();
+            }
+        }
+
+
+        delayA++;
+        if ( delayA > 5000 ) {
+
+
+
 
             if ( outPorts[9] > mouseX ) outPorts[9]--;
             else if ( outPorts[9] < mouseX ) outPorts[9]++;
@@ -1210,10 +1305,9 @@ void main(void)
             }
             sendDataToAltera();
 
-            delay = 0;
+            delayA = 0;
         }
-
-
+# 509 "main.c"
         __asm("clrwdt");
     }
 

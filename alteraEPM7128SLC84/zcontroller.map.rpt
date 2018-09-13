@@ -1,5 +1,5 @@
 Analysis & Synthesis report for zcontroller
-Mon Aug 27 13:25:42 2018
+Fri Sep 14 00:39:20 2018
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -14,8 +14,11 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Source assignments for lpm_counter:count_rtl_0
-  9. Parameter Settings for Inferred Entity Instance: lpm_counter:count_rtl_0
- 10. Analysis & Synthesis Messages
+  9. Source assignments for lpm_add_sub:Add1|addcore:adder
+ 10. Source assignments for lpm_add_sub:Add1|addcore:adder|addcore:adder[0]
+ 11. Parameter Settings for Inferred Entity Instance: lpm_counter:count_rtl_0
+ 12. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add1
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -41,12 +44,12 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                               ;
 +-----------------------------+----------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Mon Aug 27 13:25:42 2018        ;
+; Analysis & Synthesis Status ; Successful - Fri Sep 14 00:39:20 2018        ;
 ; Quartus II Version          ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name               ; zcontroller                                  ;
 ; Top-level Entity Name       ; zcontroller                                  ;
 ; Family                      ; MAX7000S                                     ;
-; Total macrocells            ; 115                                          ;
+; Total macrocells            ; 103                                          ;
 ; Total pins                  ; 64                                           ;
 +-----------------------------+----------------------------------------------+
 
@@ -128,24 +131,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+
 ; zcont.vhdl                       ; yes             ; User VHDL File  ; C:/Users/fomonster/Dropbox/ZX/z-controller/zcontroller/alteraEPM7128SLC84/zcont.vhdl ;
 ; lpm_counter.tdf                  ; yes             ; Megafunction    ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_counter.tdf                      ;
+; lpm_add_sub.tdf                  ; yes             ; Megafunction    ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_add_sub.tdf                      ;
+; addcore.tdf                      ; yes             ; Megafunction    ; c:/altera/91sp2/quartus/libraries/megafunctions/addcore.tdf                          ;
+; a_csnbuffer.tdf                  ; yes             ; Megafunction    ; c:/altera/91sp2/quartus/libraries/megafunctions/a_csnbuffer.tdf                      ;
+; altshift.tdf                     ; yes             ; Megafunction    ; c:/altera/91sp2/quartus/libraries/megafunctions/altshift.tdf                         ;
 +----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary            ;
-+----------------------+---------------------------------+
-; Resource             ; Usage                           ;
-+----------------------+---------------------------------+
-; Logic cells          ; 115                             ;
-; Total registers      ; 63                              ;
-; I/O pins             ; 64                              ;
-; Shareable expanders  ; 7                               ;
-; Parallel expanders   ; 5                               ;
-; Maximum fan-out node ; lpm_counter:count_rtl_0|dffs[0] ;
-; Maximum fan-out      ; 63                              ;
-; Total fan-out        ; 1017                            ;
-; Average fan-out      ; 5.47                            ;
-+----------------------+---------------------------------+
++---------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary ;
++----------------------+----------------------+
+; Resource             ; Usage                ;
++----------------------+----------------------+
+; Logic cells          ; 103                  ;
+; Total registers      ; 66                   ;
+; I/O pins             ; 64                   ;
+; Shareable expanders  ; 5                    ;
+; Maximum fan-out node ; STROBE               ;
+; Maximum fan-out      ; 44                   ;
+; Total fan-out        ; 864                  ;
+; Average fan-out      ; 5.02                 ;
++----------------------+----------------------+
 
 
 +--------------------------------------------------------------------------------------------------------+
@@ -153,7 +159,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------+------------+------+--------------------------------------+--------------+
 ; Compilation Hierarchy Node   ; Macrocells ; Pins ; Full Hierarchy Name                  ; Library Name ;
 +------------------------------+------------+------+--------------------------------------+--------------+
-; |zcontroller                 ; 115        ; 64   ; |zcontroller                         ; work         ;
+; |zcontroller                 ; 103        ; 64   ; |zcontroller                         ; work         ;
 ;    |lpm_counter:count_rtl_0| ; 4          ; 0    ; |zcontroller|lpm_counter:count_rtl_0 ; work         ;
 +------------------------------+------------+------+--------------------------------------+--------------+
 
@@ -167,6 +173,24 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -   ;
 ; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -   ;
 +---------------------------+-------+------+-----+
+
+
++-------------------------------------------------------+
+; Source assignments for lpm_add_sub:Add1|addcore:adder ;
++---------------------------+-------+------+------------+
+; Assignment                ; Value ; From ; To         ;
++---------------------------+-------+------+------------+
+; SUPPRESS_DA_RULE_INTERNAL ; A103  ; -    ; -          ;
++---------------------------+-------+------+------------+
+
+
++------------------------------------------------------------------------+
+; Source assignments for lpm_add_sub:Add1|addcore:adder|addcore:adder[0] ;
++---------------------------+-------+------+-----------------------------+
+; Assignment                ; Value ; From ; To                          ;
++---------------------------+-------+------+-----------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; A103  ; -    ; -                           ;
++---------------------------+-------+------+-----------------------------+
 
 
 +--------------------------------------------------------------------------+
@@ -196,13 +220,41 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add1 ;
++------------------------+-------------+----------------------------+
+; Parameter Name         ; Value       ; Type                       ;
++------------------------+-------------+----------------------------+
+; LPM_WIDTH              ; 4           ; Untyped                    ;
+; LPM_REPRESENTATION     ; UNSIGNED    ; Untyped                    ;
+; LPM_DIRECTION          ; ADD         ; Untyped                    ;
+; ONE_INPUT_IS_CONSTANT  ; NO          ; Untyped                    ;
+; LPM_PIPELINE           ; 0           ; Untyped                    ;
+; MAXIMIZE_SPEED         ; 5           ; Untyped                    ;
+; REGISTERED_AT_END      ; 0           ; Untyped                    ;
+; OPTIMIZE_FOR_SPEED     ; 1           ; Untyped                    ;
+; USE_CS_BUFFERS         ; 1           ; Untyped                    ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                    ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH         ;
+; DEVICE_FAMILY          ; MAX7000S    ; Untyped                    ;
+; USE_WYS                ; OFF         ; Untyped                    ;
+; STYLE                  ; FAST        ; Untyped                    ;
+; CBXI_PARAMETER         ; add_sub_3kh ; Untyped                    ;
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE             ;
++------------------------+-------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Mon Aug 27 13:25:41 2018
+    Info: Processing started: Fri Sep 14 00:39:19 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off zcontroller -c zcontroller
 Info: Found 2 design units, including 1 entities, in source file zcont.vhdl
     Info: Found design unit 1: zcontroller-RTL
@@ -213,8 +265,6 @@ Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(73): used explici
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(74): used explicit default value for signal "RDH" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(75): used explicit default value for signal "IOR" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(76): used explicit default value for signal "EBL" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(88): used explicit default value for signal "SDDO" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(89): used explicit default value for signal "SC" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(121): used explicit default value for signal "IO0" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(122): used explicit default value for signal "IO1" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(123): used explicit default value for signal "IO2" because signal was never assigned a value
@@ -223,35 +273,38 @@ Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(125): used explic
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(126): used explicit default value for signal "IO5" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(127): used explicit default value for signal "IO6" because signal was never assigned a value
 Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(128): used explicit default value for signal "IO7" because signal was never assigned a value
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(285): signal "IORQGE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(286): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(288): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(289): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(290): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(291): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(292): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(293): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(294): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(295): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(303): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(305): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(306): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(307): signal "A" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info: Inferred 1 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: "count[0]~0"
+Info: Inferred 1 megafunctions from design logic
+    Info: Inferred adder/subtractor megafunction ("lpm_add_sub") from the following logic: "Add1"
 Info: Elaborated megafunction instantiation "lpm_counter:count_rtl_0"
 Info: Instantiated megafunction "lpm_counter:count_rtl_0" with the following parameter:
     Info: Parameter "LPM_WIDTH" = "4"
     Info: Parameter "LPM_DIRECTION" = "UP"
     Info: Parameter "LPM_TYPE" = "LPM_COUNTER"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1"
+Info: Instantiated megafunction "lpm_add_sub:Add1" with the following parameter:
+    Info: Parameter "LPM_WIDTH" = "4"
+    Info: Parameter "LPM_DIRECTION" = "ADD"
+    Info: Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info: Parameter "ONE_INPUT_IS_CONSTANT" = "NO"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|addcore:adder", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|addcore:adder|a_csnbuffer:oflow_node", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|addcore:adder|a_csnbuffer:result_node", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|addcore:adder|addcore:adder[0]", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|addcore:adder|addcore:adder[0]|a_csnbuffer:oflow_node", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|addcore:adder|addcore:adder[0]|a_csnbuffer:result_node", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|altshift:result_ext_latency_ffs", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Elaborated megafunction instantiation "lpm_add_sub:Add1|altshift:carry_ext_latency_ffs", which is child of megafunction instantiation "lpm_add_sub:Add1"
+Info: Ignored 3 buffer(s)
+    Info: Ignored 3 SOFT buffer(s)
+Info: Registers with preset signals will power-up high
 Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "WRH" is stuck at GND
     Warning (13410): Pin "IOW" is stuck at VCC
     Warning (13410): Pin "RDH" is stuck at VCC
     Warning (13410): Pin "IOR" is stuck at GND
     Warning (13410): Pin "EBL" is stuck at VCC
-    Warning (13410): Pin "SDDO" is stuck at GND
-    Warning (13410): Pin "SC" is stuck at GND
     Warning (13410): Pin "IO0" is stuck at GND
     Warning (13410): Pin "IO1" is stuck at GND
     Warning (13410): Pin "IO2" is stuck at GND
@@ -262,26 +315,23 @@ Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "IO7" is stuck at GND
 Info: Promoted pin-driven signal(s) to global signal
     Info: Promoted clock signal driven by pin "STROBE" to global clock signal
-Warning: Design contains 9 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "WR"
-    Warning (15610): No output dependent on input pin "SDTAKT"
-    Warning (15610): No output dependent on input pin "SDDET"
-    Warning (15610): No output dependent on input pin "SDRO"
-    Warning (15610): No output dependent on input pin "SDIN"
-    Warning (15610): No output dependent on input pin "SDCS"
-    Warning (15610): No output dependent on input pin "RES"
+Warning: Design contains 6 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "M1"
+    Warning (15610): No output dependent on input pin "PB[5]"
+    Warning (15610): No output dependent on input pin "PB[6]"
+    Warning (15610): No output dependent on input pin "PB[7]"
     Warning (15610): No output dependent on input pin "NMI"
     Warning (15610): No output dependent on input pin "IO3D"
-Info: Implemented 186 device resources after synthesis - the final resource count might be different
-    Info: Implemented 39 input pins
-    Info: Implemented 16 output pins
+Info: Implemented 172 device resources after synthesis - the final resource count might be different
+    Info: Implemented 38 input pins
+    Info: Implemented 17 output pins
     Info: Implemented 9 bidirectional pins
-    Info: Implemented 115 macrocells
-    Info: Implemented 7 shareable expanders
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 55 warnings
+    Info: Implemented 103 macrocells
+    Info: Implemented 5 shareable expanders
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 34 warnings
     Info: Peak virtual memory: 263 megabytes
-    Info: Processing ended: Mon Aug 27 13:25:42 2018
+    Info: Processing ended: Fri Sep 14 00:39:20 2018
     Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
 
 

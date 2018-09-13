@@ -94,7 +94,7 @@ A[9]                         : 27        : input  : TTL               :         
 SDDET                        : 28        : input  : TTL               :         :           : Y              
 A[11]                        : 29        : input  : TTL               :         :           : Y              
 WR                           : 30        : input  : TTL               :         :           : Y              
-SDCS                         : 31        : input  : TTL               :         :           : Y              
+SDCS                         : 31        : output : TTL               :         :           : Y              
 GND                          : 32        : gnd    :                   :         :           :                
 PB[3]                        : 33        : input  : TTL               :         :           : Y              
 PB[7]                        : 34        : input  : TTL               :         :           : Y              
