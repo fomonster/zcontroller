@@ -168,7 +168,7 @@ signal kb_do_bus	: std_logic_vector(4 downto 0);
 
 -- sd card signals
 
-signal cnt		: std_logic_vector(3 downto 0) := "0000";
+shared variable cnt		: std_logic_vector(3 downto 0) := "0000";
 signal shift_in		: std_logic_vector(7 downto 0) := "11111111";
 signal shift_out	: std_logic_vector(7 downto 0) := "11111111";
 signal cnt_en		: std_logic := '0';
@@ -183,12 +183,20 @@ signal zc_do_bus	: std_logic_vector(7 downto 0) := "ZZZZZZZZ";
 --------------------------------------------------------------------------------
 
 begin
-	-- M1 = '0' or
+	--------------------------------------------------------------------------------
+	-- селектор чтени€ портов
+	--------------------------------------------------------------------------------
+
 	selector <= "01" when A(7 downto 0) = X"FE" and IORQ = '0' and RD = '0' and DOS = '1' and RES = '1' else
 			    "10" when A(7 downto 6) = "01" and A(4 downto 0) = "10111" and IORQ = '0' and RD = '0' and DOS = '1' and RES = '1' else
 			    "11" when A(7 downto 0) = X"DF" and IORQ = '0' and RD = '0' and DOS = '1' and RES = '1' else
 				"00";
-				
+	
+	--------------------------------------------------------------------------------
+	--  лавиатура
+	--------------------------------------------------------------------------------
+	
+	-- получение данных клавиатуры и мышки от PIC 			
 	clk_proc : process (STROBE, RESTRIG, PB)
     begin
 		if RESTRIG = '1' then
@@ -214,7 +222,7 @@ begin
         end if;
     end process;
     
-    -- Output addressed row to ULA
+    -- клавиатурна€ матица
 	row0 <= portA when A(8) = '0' else (others => '1');
 	row1 <= portB when A(9) = '0' else (others => '1');
 	row2 <= portC when A(10) = '0' else (others => '1');
@@ -224,73 +232,71 @@ begin
 	row6 <= portG when A(14) = '0' else (others => '1');
 	row7 <= portH when A(15) = '0' else (others => '1');
 	
-	-- Keyboard
+	-- объединение колонок клавиатурной матрицы
 	kb_do_bus <= row0 and row1 and row2 and row3 and row4 and row5 and row6 and row7;
-	
-	-- sd card
 
-    -- and (M1 = '1')
-	zc_wr 	<= '1' when (IORQ = '0' and WR = '0' and (DOS = '1') and A(7 downto 6) = "01" and A(4 downto 0) = "10111") else '0';
-	zc_rd 	<= '1' when (IORQ = '0' and RD = '0' and (DOS = '1') and A(7 downto 6) = "01" and A(4 downto 0) = "10111") else '0';
+	--------------------------------------------------------------------------------
+	-- SD  арта
+	--------------------------------------------------------------------------------
 
-	-- write to 77h port
+	-- селектор чтени€ записи в порты 77h, 57h
+	zc_wr 	<= '1' when (IORQ = '0' and WR = '0' and DOS = '1' and A(7 downto 6) = "01" and A(4 downto 0) = "10111") else '0';
+	zc_rd 	<= '1' when (IORQ = '0' and RD = '0' and DOS = '1' and A(7 downto 6) = "01" and A(4 downto 0) = "10111") else '0';
+
+	-- «апись в 77h порт
 	process (RES, SDTAKT, A(5), zc_wr, D)
 	begin
-		if RES = '0' then -- if reset
+		if RES = '0' then -- ѕри нажатии на RESET сбрасываем питание и управл€ющий сигнал 
 			csn <= '1'; -- CS to 1
-			enn <= '1'; -- SD card power off
+			enn <= '1'; -- power off
 		elsif SDTAKT'event and SDTAKT = '1' then 
-			if (A(5) = '1' and zc_wr = '1') then -- write data	
-				enn <= D(0);
-				csn <= D(1);
-			end if;
-		end if;
-	end process;
- 
-	cnt_en <= (not cnt(3)) or cnt(2) or cnt(1) or cnt(0);
-		
-    process (SDTAKT, cnt_en, A(5), zc_rd, zc_wr)
-	begin
-		if (A(5) = '0' and (zc_wr = '1' or zc_rd = '1')) then
-			cnt <= "1110";
-		else 
-			if SDTAKT'event and SDTAKT = '0' then
-				if cnt_en = '1' then
-					cnt <= cnt + 1;
-				end if;
+			if (A(5) = '1' and zc_wr = '1') then -- запись 0, 1-х битов
+				enn <= not D(0); -- sd card power 0-off, 1-on
+				csn <= D(1); -- CS
 			end if;
 		end if;
 	end process;
 	
-    process (SDTAKT)
-	begin
-		if SDTAKT'event and SDTAKT = '0' then	
-			if (A(5) = '0' and zc_wr = '1') then
-				shift_out <= D;
-			else
-				if cnt(3) = '0' then
-					shift_out(7 downto 0) <= shift_out(6 downto 0) & '1';
+	-- Z-Card	
+	-- cnt (11) - 1110, 1111, 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111 1000 (stop)
+	-- cnt_en       1     1     1     1     1     1     1     1     1     1    0
+	-- SC           0     0   ...................SDTAKT.....................   0	
+	process (SDTAKT, cnt_en, A(5), zc_rd, zc_wr)
+	begin	
+		if A(5) = '0' and zc_wr = '1' then 
+			cnt := "1110"; 
+			shift_out <= D;
+		elsif A(5) = '0' and zc_rd = '1' then
+			cnt := "1110"; 			
+		else
+			if SDTAKT'event and SDTAKT = '1' then
+				
+			end if;
+			if SDTAKT'event and SDTAKT = '0' then 				
+				if cnt(3) = '0' then 
+					shift_out(7 downto 0) <= shift_out(6 downto 0) & '1';	
+					shift_in <= shift_in(6 downto 0) & SDIN; 				
+				end if;				
+				if cnt(3) = '0' or cnt(2) = '1' or cnt(1) = '1' or cnt(0) = '1' then -- 1000 stop
+					cnt := cnt + 1;	
 				end if;
 			end if;
 		end if;
 	end process;
-	
-	process (SDTAKT)
-	begin
-		if SDTAKT'event and SDTAKT = '0' then	 
-			if cnt(3) = '0' then
-				shift_in <= shift_in(6 downto 0) & SDIN;
-			end if;
-		end if;
-	end process;
- 
-	SC  <= SDTAKT and (not cnt(3));
-	SDDO  <= shift_out(7);
-	SDCS  <= csn;
-	SDEN  <= enn;
-	zc_do_bus <= cnt(3) & "11111" & SDRO & SDDET when A(5) = '1' else shift_in;
 
-	-- All Ports
+	-- отправл€ем биты в SD 
+	SDDO  <= shift_out(7);
+	-- сигнал CS в SD
+	SDCS  <= csn;
+	-- управление питанием SD
+	SDEN  <= enn;	
+	-- тактовый сигнал SD 
+	SC  <= SDTAKT and (not cnt(3));
+	-- шина данных при чтении SD портов
+	zc_do_bus <= cnt(3) & "11111" & SDRO & SDDET when A(5) = '1' else shift_in;
+	--------------------------------------------------------------------------------
+	-- Ўина данных при чтении из портов
+	--------------------------------------------------------------------------------
 	
 	process (selector, kb_do_bus, zc_do_bus, D)
 	begin

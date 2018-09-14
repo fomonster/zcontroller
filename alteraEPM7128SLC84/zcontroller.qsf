@@ -119,3 +119,8 @@ set_location_assignment PIN_62 -to TCK
 set_location_assignment PIN_60 -to IO3D
 set_global_assignment -name MISC_FILE "C:/Users/fomonster/Dropbox/ZX/z-controller/zcontroller/zcontroller.dpf"
 set_global_assignment -name MISC_FILE "C:/Users/fomonster/Dropbox/ZX/z-controller/zcontroller/alteraEPM7128SLC84/zcontroller.dpf"
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDIN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDCS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SC
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDDET
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDRO

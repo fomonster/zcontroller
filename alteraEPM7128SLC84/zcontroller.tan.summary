@@ -5,9 +5,9 @@ Timing Analyzer Summary
 Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
-Actual Time    : 12.000 ns
+Actual Time    : 13.000 ns
 From           : IORQ
-To             : shift_out[0]
+To             : shift_out[1]
 From Clock     : --
 To Clock       : SDTAKT
 Failed Paths   : 0
@@ -37,8 +37,18 @@ Slack          : N/A
 Required Time  : None
 Actual Time    : 4.000 ns
 From           : D[1]
-To             : shift_out[1]
+To             : csn
 From Clock     : --
+To Clock       : SDTAKT
+Failed Paths   : 0
+
+Type           : Clock Setup: 'SDTAKT'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 22.73 MHz ( period = 44.000 ns )
+From           : cnt[3]
+To             : shift_in[7]
+From Clock     : SDTAKT
 To Clock       : SDTAKT
 Failed Paths   : 0
 
@@ -50,16 +60,6 @@ From           : lpm_counter:count_rtl_0|dffs[3]
 To             : portF[4]
 From Clock     : STROBE
 To Clock       : STROBE
-Failed Paths   : 0
-
-Type           : Clock Setup: 'SDTAKT'
-Slack          : N/A
-Required Time  : None
-Actual Time    : 76.92 MHz ( period = 13.000 ns )
-From           : shift_out[0]
-To             : shift_out[0]
-From Clock     : SDTAKT
-To Clock       : SDTAKT
 Failed Paths   : 0
 
 Type           : Total number of failed paths
