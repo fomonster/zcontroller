@@ -12,7 +12,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 use altera.altera_primitives_components.all;
 
-entity zcontroller is
+entity zcontroller is 
 port
 (
 
@@ -82,11 +82,11 @@ EBL	  : out std_logic := '1';
 SDTAKT		 : in std_logic := '0';  -- тактовый генератор для SD карты
 SDDET		 : in std_logic := '0';  -- детектор SD
 SDRO		 : in std_logic := '0';  -- сигнал только чтение
-SDIN		 : in std_logic := '0';  -- 
-SDCS		 : out std_logic := '1';  -- 
+SDIN		 : in std_logic := '0';  -- данные от SD карты
+SDCS		 : out std_logic := '0';  -- сигнал CS управления SD картой
 SDEN		 : out std_logic := '1';  -- питание SD карты (включено, когда 0)
-SDDO		 : out std_logic := '0';  -- 
-SC			 : out std_logic := '0';  -- 
+SDDO		 : out std_logic := '0';  -- данные к SD карте
+SC			 : out std_logic := '0';  -- тактовые SD карты
 
 --------------------------------------------------------------------------------
 --                     ВЫХОДНЫЕ СИГНАЛЫ ПЛИС К СПЕКТРУМУ
@@ -138,15 +138,10 @@ architecture RTL of zcontroller is
 --------------------------------------------------------------------------------
 
 signal selector: STD_LOGIC_VECTOR (1 downto 0) := "00";
-signal dataBus : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
-signal iorqgeBus : std_logic := 'Z';
---signal port_read: std_logic := '0';
---signal port_read_sel: std_logic := '0';
---signal port_write: std_logic := '0';
+
 
 shared variable count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
 --signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
---signal countA   : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
 
 -- keyboard ports data
 shared variable portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
@@ -236,7 +231,7 @@ begin
 	kb_do_bus <= row0 and row1 and row2 and row3 and row4 and row5 and row6 and row7;
 
 	--------------------------------------------------------------------------------
-	-- SD Карта
+	-- SD Карта ZCard
 	--------------------------------------------------------------------------------
 
 	-- селектор чтения записи в порты 77h, 57h
@@ -248,10 +243,10 @@ begin
 	begin
 		if RES = '0' then -- При нажатии на RESET сбрасываем питание и управляющий сигнал 
 			csn <= '1'; -- CS to 1
-			enn <= '1'; -- power off
-		elsif SDTAKT'event and SDTAKT = '1' then 
+			enn <= '0'; -- power off
+		elsif rising_edge(SDTAKT) then -- SDTAKT'event and SDTAKT = '1'
 			if (A(5) = '1' and zc_wr = '1') then -- запись 0, 1-х битов
-				enn <= not D(0); -- sd card power 0-off, 1-on
+				enn <= D(0); -- sd card power 0-off, 1-on
 				csn <= D(1); -- CS
 			end if;
 		end if;
@@ -261,38 +256,47 @@ begin
 	-- cnt (11) - 1110, 1111, 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111 1000 (stop)
 	-- cnt_en       1     1     1     1     1     1     1     1     1     1    0
 	-- SC           0     0   ...................SDTAKT.....................   0	
-	process (SDTAKT, cnt_en, A(5), zc_rd, zc_wr)
+	process (SDTAKT, cnt_en, A(5), zc_rd, zc_wr, enn)
 	begin	
 		if A(5) = '0' and zc_wr = '1' then 
-			cnt := "1110"; 
+			cnt := "1101"; 
 			shift_out <= D;
 		elsif A(5) = '0' and zc_rd = '1' then
-			cnt := "1110"; 			
+			cnt := "1101";
 		else
-			if SDTAKT'event and SDTAKT = '1' then
-				if cnt(3) = '0' then
-					shift_in <= shift_in(6 downto 0) & SDIN; 
-				end if;
-			end if;
-			if SDTAKT'event and SDTAKT = '0' then 				
+			--if SDTAKT'event and SDTAKT = '1' then
+			--	if cnt(3) = '0'  then
+			--		shift_in <= shift_in(6 downto 0) & SDIN; -- MISO
+			--	end if;
+			--end if;
+			if falling_edge(SDTAKT) then --SDTAKT'event and SDTAKT = '0'
 				if cnt(3) = '0' then 
-					shift_out(7 downto 0) <= shift_out(6 downto 0) & '1';	
+					shift_out <= shift_out(6 downto 0) & '1';	
+					shift_in <= shift_in(6 downto 0) & SDIN; --MISO					
 				end if;				
-				if cnt(3) = '0' or cnt(2) = '1' or cnt(1) = '1' or cnt(0) = '1' then -- 1000 stop
+				if not (cnt = "1000") then -- 1000 stop
 					cnt := cnt + 1;	
 				end if;
 			end if;
+			--SDDO  <= shift_out(7);
+			--SC  <= SDTAKT and (not cnt(3));
 		end if;
 	end process;
 
+	--process (SDTAKT)
+	--begin
+	--	SC  <= SDTAKT and (not cnt(3));
+	--end process;
+	
 	-- отправляем биты в SD 
-	SDDO  <= shift_out(7);
+	SDDO  <= shift_out(7); -- MOSI
 	-- сигнал CS в SD
 	SDCS  <= csn;
 	-- управление питанием SD
-	SDEN  <= enn;	
+	SDEN  <= not enn;	
 	-- тактовый сигнал SD 
-	SC  <= SDTAKT and (not cnt(3));
+	--SC <= transport  (SDTAKT and (not cnt(3))) and enn after 60 ns;--125 ns;
+	SC <= SDTAKT and (not cnt(3));
 	-- шина данных при чтении SD портов
 	zc_do_bus <= cnt(3) & "11111" & SDRO & SDDET when A(5) = '1' else shift_in;
 	--------------------------------------------------------------------------------

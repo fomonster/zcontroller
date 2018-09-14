@@ -45,9 +45,9 @@ Failed Paths   : 0
 Type           : Clock Setup: 'SDTAKT'
 Slack          : N/A
 Required Time  : None
-Actual Time    : 22.73 MHz ( period = 44.000 ns )
+Actual Time    : 45.45 MHz ( period = 22.000 ns )
 From           : cnt[3]
-To             : shift_in[7]
+To             : shift_out[1]
 From Clock     : SDTAKT
 To Clock       : SDTAKT
 Failed Paths   : 0

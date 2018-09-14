@@ -1,5 +1,5 @@
 Classic Timing Analyzer report for zcontroller
-Fri Sep 14 16:31:09 2018
+Sat Sep 15 00:56:52 2018
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -49,7 +49,7 @@ applicable agreement for further details.
 ; Worst-case tco               ; N/A   ; None          ; 26.000 ns                        ; portF[1]                        ; D[1]         ; STROBE     ; --       ; 0            ;
 ; Worst-case tpd               ; N/A   ; None          ; 24.000 ns                        ; A[13]                           ; D[1]         ; --         ; --       ; 0            ;
 ; Worst-case th                ; N/A   ; None          ; 4.000 ns                         ; D[1]                            ; csn          ; --         ; SDTAKT   ; 0            ;
-; Clock Setup: 'SDTAKT'        ; N/A   ; None          ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]                          ; shift_in[7]  ; SDTAKT     ; SDTAKT   ; 0            ;
+; Clock Setup: 'SDTAKT'        ; N/A   ; None          ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]                          ; shift_out[1] ; SDTAKT     ; SDTAKT   ; 0            ;
 ; Clock Setup: 'STROBE'        ; N/A   ; None          ; 76.92 MHz ( period = 13.000 ns ) ; lpm_counter:count_rtl_0|dffs[3] ; portF[4]     ; STROBE     ; STROBE   ; 0            ;
 ; Total number of failed paths ;       ;               ;                                  ;                                 ;              ;            ;          ; 0            ;
 +------------------------------+-------+---------------+----------------------------------+---------------------------------+--------------+------------+----------+--------------+
@@ -115,14 +115,13 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------+----------------------------------+--------------+--------------+------------+----------+-----------------------------+---------------------------+-------------------------+
 ; Slack ; Actual fmax (period)             ; From         ; To           ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
 +-------+----------------------------------+--------------+--------------+------------+----------+-----------------------------+---------------------------+-------------------------+
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[1]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[2]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[3]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[4]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[5]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[6]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 22.73 MHz ( period = 44.000 ns ) ; cnt[3]       ; shift_in[7]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
-; N/A   ; 38.46 MHz ( period = 26.000 ns ) ; cnt[3]       ; shift_in[0]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[1]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[2]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[3]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[4]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[5]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[6]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
+; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_in[7]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
 ; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_out[7] ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
 ; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_out[6] ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
 ; N/A   ; 45.45 MHz ( period = 22.000 ns ) ; cnt[3]       ; shift_out[5] ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 17.000 ns               ;
@@ -134,6 +133,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[1]  ; shift_in[1]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[0]  ; shift_in[1]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[0]  ; shift_in[0]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
+; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[3]       ; shift_in[0]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[3]       ; cnt[3]       ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[2]       ; cnt[3]       ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[1]       ; cnt[3]       ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
@@ -147,7 +147,6 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[2]       ; cnt[0]       ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[1]       ; cnt[0]       ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; cnt[0]       ; cnt[0]       ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
-; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; enn          ; enn          ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[1]  ; shift_in[2]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[2]  ; shift_in[2]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[2]  ; shift_in[3]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
@@ -160,6 +159,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[6]  ; shift_in[6]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[6]  ; shift_in[7]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_in[7]  ; shift_in[7]  ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
+; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; enn          ; enn          ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_out[7] ; shift_out[7] ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_out[6] ; shift_out[7] ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
 ; N/A   ; 76.92 MHz ( period = 13.000 ns ) ; shift_out[6] ; shift_out[6] ; SDTAKT     ; SDTAKT   ; None                        ; None                      ; 8.000 ns                ;
@@ -621,9 +621,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; N/A   ; None         ; 24.000 ns  ; shift_in[0]  ; D[0] ; SDTAKT     ;
 ; N/A   ; None         ; 24.000 ns  ; shift_in[1]  ; D[1] ; SDTAKT     ;
 ; N/A   ; None         ; 24.000 ns  ; cnt[3]       ; SC   ; SDTAKT     ;
-; N/A   ; None         ; 24.000 ns  ; enn          ; SDEN ; SDTAKT     ;
 ; N/A   ; None         ; 24.000 ns  ; csn          ; SDCS ; SDTAKT     ;
 ; N/A   ; None         ; 15.000 ns  ; shift_out[7] ; SDDO ; SDTAKT     ;
+; N/A   ; None         ; 15.000 ns  ; enn          ; SDEN ; SDTAKT     ;
 +-------+--------------+------------+--------------+------+------------+
 
 
@@ -1001,7 +1001,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II Classic Timing Analyzer
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Fri Sep 14 16:31:09 2018
+    Info: Processing started: Sat Sep 15 00:56:52 2018
 Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off zcontroller -c zcontroller
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
@@ -1009,7 +1009,7 @@ Warning: Timing Analysis does not support the analysis of latches as synchronous
 Warning: Found pins functioning as undefined clocks and/or memory enables
     Info: Assuming node "SDTAKT" is an undefined clock
     Info: Assuming node "STROBE" is an undefined clock
-Info: Clock "SDTAKT" has Internal fmax of 22.73 MHz between source register "cnt[3]" and destination register "shift_in[1]" (period= 44.0 ns)
+Info: Clock "SDTAKT" has Internal fmax of 45.45 MHz between source register "cnt[3]" and destination register "shift_in[1]" (period= 22.0 ns)
     Info: + Longest register to register delay is 17.000 ns
         Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC106; Fanout = 9; REG Node = 'cnt[3]'
         Info: 2: + IC(2.000 ns) + CELL(7.000 ns) = 9.000 ns; Loc. = LC58; Fanout = 28; COMB Node = 'shift_out[7]~42'
@@ -1029,17 +1029,16 @@ Info: Clock "SDTAKT" has Internal fmax of 22.73 MHz between source register "cnt
             Info: Total interconnect delay = 1.000 ns ( 10.00 % )
     Info: + Micro clock to output delay of source is 1.000 ns
     Info: + Micro setup delay of destination is 4.000 ns
-    Info: Delay path is controlled by inverted clocks -- if clock duty cycle is 50%, fmax is divided by two
 Info: Clock "STROBE" has Internal fmax of 76.92 MHz between source register "lpm_counter:count_rtl_0|dffs[2]" and destination register "portB[1]" (period= 13.0 ns)
     Info: + Longest register to register delay is 8.000 ns
         Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LC24; Fanout = 42; REG Node = 'lpm_counter:count_rtl_0|dffs[2]'
-        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 8.000 ns; Loc. = LC127; Fanout = 1; REG Node = 'portB[1]'
+        Info: 2: + IC(2.000 ns) + CELL(6.000 ns) = 8.000 ns; Loc. = LC123; Fanout = 1; REG Node = 'portB[1]'
         Info: Total cell delay = 6.000 ns ( 75.00 % )
         Info: Total interconnect delay = 2.000 ns ( 25.00 % )
     Info: - Smallest clock skew is 0.000 ns
         Info: + Shortest clock path from clock "STROBE" to destination register is 3.000 ns
             Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 44; CLK Node = 'STROBE'
-            Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC127; Fanout = 1; REG Node = 'portB[1]'
+            Info: 2: + IC(0.000 ns) + CELL(0.000 ns) = 3.000 ns; Loc. = LC123; Fanout = 1; REG Node = 'portB[1]'
             Info: Total cell delay = 3.000 ns ( 100.00 % )
         Info: - Longest clock path from clock "STROBE" to source register is 3.000 ns
             Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_83; Fanout = 44; CLK Node = 'STROBE'
@@ -1083,19 +1082,19 @@ Info: Longest tpd from source pin "A[9]" to destination pin "D[4]" is 24.000 ns
 Info: th for register "enn" (data pin = "D[0]", clock pin = "SDTAKT") is 4.000 ns
     Info: + Longest clock path from clock "SDTAKT" to destination register is 10.000 ns
         Info: 1: + IC(0.000 ns) + CELL(3.000 ns) = 3.000 ns; Loc. = PIN_2; Fanout = 23; CLK Node = 'SDTAKT'
-        Info: 2: + IC(1.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC62; Fanout = 4; REG Node = 'enn'
+        Info: 2: + IC(1.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC51; Fanout = 4; REG Node = 'enn'
         Info: Total cell delay = 9.000 ns ( 90.00 % )
         Info: Total interconnect delay = 1.000 ns ( 10.00 % )
     Info: + Micro hold delay of destination is 4.000 ns
     Info: - Shortest pin to register delay is 10.000 ns
         Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PIN_79; Fanout = 1; PIN Node = 'D[0]'
         Info: 2: + IC(0.000 ns) + CELL(2.000 ns) = 2.000 ns; Loc. = IO125; Fanout = 4; COMB Node = 'D[0]~0'
-        Info: 3: + IC(2.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC62; Fanout = 4; REG Node = 'enn'
+        Info: 3: + IC(2.000 ns) + CELL(6.000 ns) = 10.000 ns; Loc. = LC51; Fanout = 4; REG Node = 'enn'
         Info: Total cell delay = 8.000 ns ( 80.00 % )
         Info: Total interconnect delay = 2.000 ns ( 20.00 % )
 Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 2 warnings
     Info: Peak virtual memory: 188 megabytes
-    Info: Processing ended: Fri Sep 14 16:31:09 2018
+    Info: Processing ended: Sat Sep 15 00:56:52 2018
     Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:00
 

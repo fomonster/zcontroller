@@ -124,3 +124,9 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDCS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SC
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDDET
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDRO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDDO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDEN
+set_global_assignment -name DEVICE_FILTER_PACKAGE PLCC
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 84
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 15
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
