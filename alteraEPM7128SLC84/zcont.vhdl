@@ -163,10 +163,9 @@ signal kb_do_bus	: std_logic_vector(4 downto 0);
 
 -- sd card signals
 
-shared variable cnt		: std_logic_vector(3 downto 0) := "0000";
+shared variable cnt		: std_logic_vector(3 downto 0) := "1000";
 signal shift_in		: std_logic_vector(7 downto 0) := "11111111";
 signal shift_out	: std_logic_vector(7 downto 0) := "11111111";
-signal cnt_en		: std_logic := '0';
 signal csn		: std_logic := '1';
 signal enn		: std_logic := '1';	
 
@@ -192,25 +191,24 @@ begin
 	--------------------------------------------------------------------------------
 	
 	-- получение данных клавиатуры и мышки от PIC 			
-	clk_proc : process (STROBE, RESTRIG, PB)
+	clk_proc : process (STROBE, RESTRIG)
     begin
 		if RESTRIG = '1' then
 			count := "0000"; 
 		else
 			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
 			
-                if count = 0 then portA := PB(4 downto 0);
-                elsif count = 1 then portB := PB(4 downto 0);
-                elsif count = 2 then portC := PB(4 downto 0);
-                elsif count = 3 then portD := PB(4 downto 0);
-                elsif count = 4 then portE := PB(4 downto 0);
-                elsif count = 5 then portF := PB(4 downto 0);
-                elsif count = 6 then portG := PB(4 downto 0);
-                elsif count = 7 then portH := PB(4 downto 0);
-                --elsif count = 8 then portI := PB(2 downto 0);
-                --elsif count = 9 then portJ := PB(7 downto 0);
-                --elsif count = 10 then portK := PB(7 downto 0);
-                end if;
+				case count is
+					when X"0" => portA := PB(4 downto 0);
+					when X"1" => portB := PB(4 downto 0);
+					when X"2" => portC := PB(4 downto 0);
+					when X"3" => portD := PB(4 downto 0);
+					when X"4" => portE := PB(4 downto 0);
+					when X"5" => portF := PB(4 downto 0);
+					when X"6" => portG := PB(4 downto 0);
+					when X"7" => portH := PB(4 downto 0);
+					when others => null;
+				end case;
                 
                 count := count + 1;
             end if;
@@ -244,7 +242,7 @@ begin
 		if RES = '0' then -- При нажатии на RESET сбрасываем питание и управляющий сигнал 
 			csn <= '1'; -- CS to 1
 			enn <= '0'; -- power off
-		elsif rising_edge(SDTAKT) then -- SDTAKT'event and SDTAKT = '1'
+		elsif SDTAKT'event and SDTAKT = '1'  then --  rising_edge(SDTAKT)SDTAKT'event and SDTAKT = '1'
 			if (A(5) = '1' and zc_wr = '1') then -- запись 0, 1-х битов
 				enn <= D(0); -- sd card power 0-off, 1-on
 				csn <= D(1); -- CS
@@ -256,20 +254,15 @@ begin
 	-- cnt (11) - 1110, 1111, 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111 1000 (stop)
 	-- cnt_en       1     1     1     1     1     1     1     1     1     1    0
 	-- SC           0     0   ...................SDTAKT.....................   0	
-	process (SDTAKT, cnt_en, A(5), zc_rd, zc_wr, enn)
+	process (SDTAKT, A(5), zc_rd, zc_wr)
 	begin	
-		if A(5) = '0' and zc_wr = '1' then 
-			cnt := "1101"; 
-			shift_out <= D;
-		elsif A(5) = '0' and zc_rd = '1' then
+		if A(5) = '0' and ( zc_wr = '1' or zc_rd = '1' ) and cnt(3) = '1' then 
 			cnt := "1101";
+			if ( zc_wr = '1' ) then
+				shift_out <= D;
+			end if;
 		else
-			--if SDTAKT'event and SDTAKT = '1' then
-			--	if cnt(3) = '0'  then
-			--		shift_in <= shift_in(6 downto 0) & SDIN; -- MISO
-			--	end if;
-			--end if;
-			if falling_edge(SDTAKT) then --SDTAKT'event and SDTAKT = '0'
+			if SDTAKT'event and SDTAKT = '0'  then --falling_edge(SDTAKT) SDTAKT'event and SDTAKT = '0'
 				if cnt(3) = '0' then 
 					shift_out <= shift_out(6 downto 0) & '1';	
 					shift_in <= shift_in(6 downto 0) & SDIN; --MISO					
@@ -278,16 +271,9 @@ begin
 					cnt := cnt + 1;	
 				end if;
 			end if;
-			--SDDO  <= shift_out(7);
-			--SC  <= SDTAKT and (not cnt(3));
 		end if;
 	end process;
 
-	--process (SDTAKT)
-	--begin
-	--	SC  <= SDTAKT and (not cnt(3));
-	--end process;
-	
 	-- отправляем биты в SD 
 	SDDO  <= shift_out(7); -- MOSI
 	-- сигнал CS в SD
