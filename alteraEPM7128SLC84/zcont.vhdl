@@ -139,9 +139,7 @@ architecture RTL of zcontroller is
 
 signal selector: STD_LOGIC_VECTOR (2 downto 0) := "000";
 
-
 shared variable count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
---signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
 
 -- keyboard ports data
 shared variable portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
@@ -156,7 +154,7 @@ shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
 shared variable portI : STD_LOGIC_VECTOR (0 downto 0) := "0";
 shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
-
+-- keyboards signals
 signal row0, row1, row2, row3, row4, row5, row6, row7 : std_logic_vector(4 downto 0);
 
 signal kb_do_bus	: std_logic_vector(4 downto 0);
@@ -169,9 +167,11 @@ signal shift_out	: std_logic_vector(7 downto 0) := "11111111";
 signal csn		: std_logic := '1';
 signal enn		: std_logic := '1';	
 
+signal zc_do_bus	: std_logic_vector(7 downto 0) := "ZZZZZZZZ";
+
+-- common signals
 signal read_port		: std_logic := '0';
 signal write_port		: std_logic := '0';
-signal zc_do_bus	: std_logic_vector(7 downto 0) := "ZZZZZZZZ";
 --------------------------------------------------------------------------------
 --                            ПРОЦЕССЫ                                        --
 --------------------------------------------------------------------------------
@@ -180,6 +180,7 @@ begin
 	--------------------------------------------------------------------------------
 	-- селектор чтения портов
 	--------------------------------------------------------------------------------
+	
 	read_port <= '1' when IORQ = '0' and RD = '0' and DOS = '1' and M1 = '1' else '0';
 	write_port <= '1' when IORQ = '0' and WR = '0' and DOS = '1' and M1 = '1' else '0';
 	
@@ -190,13 +191,8 @@ begin
 			    "100" when A(15 downto 0) = X"FADF" and read_port = '1' else -- чтение портов мышки
 			    "101" when A(15 downto 0) = X"FBDF" and read_port = '1' else 
 			    "110" when A(15 downto 0) = X"FFDF" and read_port = '1' else 
-			    --"001" when A(7 downto 0) = X"FE" and IORQ = '0' and RD = '0' and DOS = '1' else
 				"000";
-	
-	-- селектор чтения записи в порты 77h, 57h
-	--zc_wr <= '1' when selector = "010" else '0';
-	--zc_rd <= '1' when selector = "011" else '0';
-	
+
 	--------------------------------------------------------------------------------
 	-- Клавиатура
 	--------------------------------------------------------------------------------
@@ -246,26 +242,11 @@ begin
 	-- SD Карта ZCard
 	--------------------------------------------------------------------------------
 
-	
-	--process (RES)
-	--begin
-	--	if RES = '0' then -- При нажатии на RESET сбрасываем питание и управляющий сигнал 
-	--		SDCS <= '1'; -- CS to 1
-	--		SDEN <= '1'; -- power off
---		elsif SDTAKT'event and SDTAKT = '1'  then --  rising_edge(SDTAKT)SDTAKT'event and SDTAKT = '1'
---			if (A(5) = '1' and zc_wr ) then -- запись 0, 1-х битов
---				enn <= D(0); -- sd card power 0-off, 1-on
---				csn <= D(1); -- CS
---			end if;
-	--	end if;
-	--end process;
-	
 	-- Z-Card	
 	-- cnt (11) - 1110, 1111, 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111 1000 (stop)
-	-- cnt_en       1     1     1     1     1     1     1     1     1     1    0
-	-- SC           0     0   ...................SDTAKT.....................   0	
-	process (SDTAKT, A(5), selector, RES)
-	begin	
+	-- SC           0     0   ...................SDTAKT.....................   0
+	process (SDTAKT, A(5), selector, RES, D)
+	begin
 		if RES = '0' then -- 
 			SDCS <= '1'; -- CS to 1
 			SDEN <= '1'; -- power off
@@ -308,22 +289,18 @@ begin
 	--------------------------------------------------------------------------------
 	-- Мышка
 	--------------------------------------------------------------------------------
-	
-	--mouseData <= "1111111" & portI when A(15 downto 8) = X"FA" else	
-	--			 portJ when A(15 downto 8) = X"FB" else	
-	----			 portK when A(15 downto 8) = X"FF" else
-	--			 "ZZZZZZZZ";
-	
+
 	--------------------------------------------------------------------------------
 	-- Шина данных при чтении из портов
 	--------------------------------------------------------------------------------
 	
 	process (selector, kb_do_bus, zc_do_bus, D)
 	begin
-		case selector is
-			when "000" => IORQGE	<= 'Z';
-			when others => IORQGE <= '1';
-		end case;
+		if selector = "000" then
+			IORQGE	<= 'Z';
+		else
+			IORQGE <= '1';
+		end if;
 		case selector is			
 			when "001" => D <= "111" & kb_do_bus;	-- Read port #xxFE Keyboard
 			when "011" => D <= zc_do_bus;			-- Z-Controller
@@ -334,20 +311,6 @@ begin
 		end case;
 	end process;
 
-
-	--D <= "111" & kb_do_bus when selector = "01" else
-	--	 zc_do_bus when selector = "10" else 
-	--	 "ZZZZZZZZ";
-	--D <= dataBus;	 
-	--IORQGE	<= 'Z' when selector = "00" else '1';	-- or selector = X"1" or selector = X"2"  1=aeiee?oai ii?oa a/a ia oeia Niaeo?oia
-	
-	
-	
-	--IORQGE <= iorqgeBus;
-	
-	-- debug
-	
-	--SDEN <= not keys(0)(0);
 	
 end RTL;
 
