@@ -836,8 +836,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 241:         RA2 = 1;
 [e = _RA2 -> -> 1 `i `b ]
 "242
-[; ;main.c: 242:         PORTB = ~outPorts[i];
-[e = _PORTB -> ~ -> *U + &U _outPorts * -> -> _i `uc `ux -> -> # *U &U _outPorts `ui `ux `i `uc ]
+[; ;main.c: 242:         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
+[e = _PORTB -> ? < -> _i `i -> 8 `i : ~ -> *U + &U _outPorts * -> -> _i `uc `ux -> -> # *U &U _outPorts `ui `ux `i -> *U + &U _outPorts * -> -> _i `uc `ux -> -> # *U &U _outPorts `ui `ux `i `uc ]
 "243
 [; ;main.c: 243:         RA2 = 0;
 [e = _RA2 -> -> 0 `i `b ]

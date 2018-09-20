@@ -239,7 +239,7 @@ void sendDataToAltera()
     myDelay();
     for(int8_t i=0;i<11;i++) {
         RA2 = 1; //STROBE   
-        PORTB = ~outPorts[i];
+        PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
         RA2 = 0; //STROBE        
         myDelay();
     }
