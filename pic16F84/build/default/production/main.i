@@ -790,9 +790,27 @@ typedef uint16_t uintptr_t;
 
 
 # 1 "./ps2tozxtable.h" 1
-const uint8_t digitsTable[8] =
+# 13 "./ps2tozxtable.h"
+const uint8_t kempstonMouseKeys[6] =
 {
-    69, 22, 30, 38, 37, 46, 54, 61
+
+    107,
+    116,
+    117,
+    114,
+    115,
+    4
+};
+
+
+
+
+const uint8_t importantKeys[6] =
+{
+
+    18, 89,
+    20, 19,
+    17, 8
 };
 
 
@@ -831,8 +849,12 @@ const uint8_t replaceOnShiftKeyDown[42] =
     91, 101
  };
 
-const uint8_t replaceTwoBytesCodes[26] =
+
+
+
+const uint8_t replaceTwoBytesCodes[28] =
 {
+    0x11, 8,
     0x14, 19,
     0x70, 23,
     0x6c, 24,
@@ -999,8 +1021,8 @@ static int8_t ps2Down = 0;
 static int8_t ps2NeedEncode = 0;
 
 
-static uint8_t shift = 0;
-static uint8_t ctrl = 0;
+static uint8_t numLock = 0;
+static uint8_t shift_ctrl_alt = 0;
 static uint8_t replaced = 0;
 
 static uint8_t delayedKey = 0;
@@ -1020,14 +1042,14 @@ static uint8_t outPorts[11] =
     0x00,
 
     0x07,
+
     0xF5,
     0xDA
 };
 
 static uint16_t delay = 0;
-static uint16_t delayA = 0;
-static uint8_t mouseX = 50;
-static uint8_t mouseY = 100;
+static uint16_t kempstonMouseEmulatorDelay = 0;
+static uint8_t kempstonMouseEmulatorKeys = 0;
 # 102 "main.c"
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 {
@@ -1056,7 +1078,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
             } else if ( ps2BitsCount == 9 ) {
 
                 if ( ps2NeedEncode ) {
-                    for (int8_t i=0; i < 25; i+=2) {
+                    for (int8_t i=0; i < 27; i+=2) {
                         if ( ps2Bits == replaceTwoBytesCodes[i] ) {
                             ps2Data = replaceTwoBytesCodes[i+1];
                             break;
@@ -1101,8 +1123,8 @@ void updatePort(uint8_t bit_id, uint8_t set)
 void updateKey(uint8_t key, uint8_t set)
 {
     uint8_t code = 0xFF;
-    uint8_t localShift = (shift && replaced == 0);
-    uint8_t localCtrl = ctrl;
+    uint8_t localShift = (((shift_ctrl_alt & 3) > 0) && replaced == 0);
+    uint8_t localCtrl = (shift_ctrl_alt & 12) > 0;
     if ( key < 128 ) code = codeToMatrix[key];
     if ( code != 0xFF ) {
         updatePort(code, set);
@@ -1142,34 +1164,24 @@ void sendDataToAltera()
     RA2 = 1;
     PORTB = 0xFF;
 }
-
-void sendToPs2Device()
+# 300 "main.c"
+void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
 {
-    TMR0 = 0;
-
-
-
-    TRISA0 = 0;
-    PORTAbits.RA0 = 1;
-
-    TRISA4 = 0;
-    TRISA3 = 0;
-
-
-
-    PORTAbits.RA4 = 0;
-    for(uint8_t j = 0; j < 100; j++) { };
-    PORTAbits.RA3 = 0;
-    PORTAbits.RA4 = 1;
-    TRISA4 = 1;
-    TRISA0 = 1;
-    TMR0 = 255;
-# 292 "main.c"
-    ps2BitsCount = 0;
-    ps2DataState = 4;
-
+    for(uint8_t i = 0; i < count;i++) {
+        if ( ps2Data == table[i] ) {
+            if ( ps2Down ) {
+                (*bits) |= (1 << i);
+            } else {
+                (*bits) &= ~(1 << i);
+            }
+            if ( clearIfFound ) {
+                ps2Data = 0;
+            }
+            break;
+        }
+    }
 }
-# 334 "main.c"
+# 350 "main.c"
 void main(void)
 {
     TRISA1 = 0;
@@ -1182,7 +1194,7 @@ void main(void)
 
     TRISB = 0;
     PORTB = 0;
-# 365 "main.c"
+# 381 "main.c"
     ps2Data = 0;
 
     ps2WaitCode = 0;
@@ -1192,8 +1204,7 @@ void main(void)
 
     delay = 0;
     delayedKey = 0;
-    shift = 0;
-    ctrl = 0;
+    shift_ctrl_alt = 0;
     replaced = 0;
 
 
@@ -1214,10 +1225,47 @@ void main(void)
         if ( ps2DataState == 2 ) {
 
             if ( ps2Device == 0 ) {
-# 407 "main.c"
+
+
+
+
+
+                calculateBitsFromTable(&shift_ctrl_alt, importantKeys, 6, 0);
+
+                calculateBitsFromTable(&kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
+
+
+
+
+
+
+
+                if ( ps2Data == 119 && ps2Down ) {
+                    numLock = !numLock;
+                }
+
+
+                if ( (shift_ctrl_alt & 12) > 0 && (shift_ctrl_alt & 48) > 0 && ps2Data == 31 && ps2Down ) {
+                    outPorts[8] &= 253;
+                } else {
+                    outPorts[8] |= 2;
+                }
+
+
+                if ( (shift_ctrl_alt & 12) > 0 && ps2Data == 126 && ps2Down ) {
+                    outPorts[8] &= 251;
+                } else {
+                    outPorts[8] |= 4;
+                }
+
+
+
+
+
+
                 for(int8_t i = 0; i < 41 ;i+=2) {
                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
-                        if ( (shift && replaced == 0) || replaced == ps2Data) {
+                        if ( (((shift_ctrl_alt & 3) > 0) && replaced == 0) || replaced == ps2Data) {
                             if ( ps2Down ) replaced = ps2Data;
                             else replaced = 0;
                             ps2Data = replaceOnShiftKeyDown[i+1];
@@ -1234,7 +1282,7 @@ void main(void)
                     if ( ps2Data == replaceOnDelayKeyDown[i] && ps2Down ) {
                         if ( delay == 0 ) {
                             delayedKey = ps2Data;
-                            delay = 3000;
+                            delay = 2600;
                             ps2Data = 111;
                         } else {
                             ps2Data = 0;
@@ -1244,14 +1292,16 @@ void main(void)
                 }
 
 
-                if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
-                if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
+
+
+
                 updateKey(ps2Data, ps2Down );
 
 
                 sendDataToAltera();
 
             } else if ( ps2Device == 1 ) {
+
 
 
             }
@@ -1266,11 +1316,7 @@ void main(void)
 
 
 
-        }
-
-
-
-        if ( delay != 0 ) {
+        } else if ( delay != 0 ) {
 
             delay--;
             if ( delay == 0 ) {
@@ -1279,35 +1325,34 @@ void main(void)
 
                 sendDataToAltera();
 
-            } else if ( delay == 1500 ) {
+            } else if ( delay == 1300 ) {
 
                 updateKey(delayedKey, 1 );
                 delayedKey = 0;
                 sendDataToAltera();
             }
-        }
+
+        } else {
 
 
-        delayA++;
-        if ( delayA > 5000 ) {
+            kempstonMouseEmulatorDelay++;
+            if ( kempstonMouseEmulatorDelay > 2000 ) {
+                if ( numLock ) {
+                    if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=2;
+                    if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=2;
+                    if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=2;
+                    if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=2;
+                    if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
+                    else outPorts[8] |= 1;
+                }
 
+                sendDataToAltera();
 
-
-
-            if ( outPorts[9] > mouseX ) outPorts[9]--;
-            else if ( outPorts[9] < mouseX ) outPorts[9]++;
-            if ( outPorts[10] > mouseY ) outPorts[10]--;
-            else if ( outPorts[10] < mouseY ) outPorts[10]++;
-
-            if ( outPorts[9] == mouseX && outPorts[10] == mouseY ) {
-                mouseX -= 128;
-                mouseY += 200;
+                kempstonMouseEmulatorDelay = 0;
             }
-            sendDataToAltera();
 
-            delayA = 0;
         }
-# 509 "main.c"
+
         __asm("clrwdt");
     }
 

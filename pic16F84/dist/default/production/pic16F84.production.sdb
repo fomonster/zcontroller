@@ -21,15 +21,21 @@
 [v _myDelay myDelay `(v  1 e 1 0 ]
 "229
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"334
+"300
+[v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
+"350
 [v _main main `(v  1 e 1 0 ]
-"9 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
+"13 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
+[v _kempstonMouseKeys kempstonMouseKeys `DC[6]uc  1 e 6 0 ]
+"27
+[v _importantKeys importantKeys `DC[6]uc  1 e 6 0 ]
+"38
 [v _replaceOnDelayKeyDown replaceOnDelayKeyDown `DC[8]uc  1 e 8 0 ]
-"17
+"46
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[42]uc  1 e 42 0 ]
-"42
-[v _replaceTwoBytesCodes replaceTwoBytesCodes `DC[26]uc  1 e 26 0 ]
-"63
+"74
+[v _replaceTwoBytesCodes replaceTwoBytesCodes `DC[28]uc  1 e 28 0 ]
+"96
 [v _codeToMatrix codeToMatrix `DC[128]uc  1 e 128 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -91,31 +97,29 @@
 "41
 [v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
 "44
-[v _shift shift `uc  1 s 1 shift ]
+[v _numLock numLock `uc  1 s 1 numLock ]
 "45
-[v _ctrl ctrl `uc  1 s 1 ctrl ]
+[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
 "46
 [v _replaced replaced `uc  1 s 1 replaced ]
 "48
 [v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
 "52
 [v _outPorts outPorts `[11]uc  1 s 11 outPorts ]
-"69
-[v _delay delay `ui  1 s 2 delay ]
 "70
-[v _delayA delayA `ui  1 s 2 delayA ]
+[v _delay delay `ui  1 s 2 delay ]
 "71
-[v _mouseX mouseX `uc  1 s 1 mouseX ]
+[v _kempstonMouseEmulatorDelay kempstonMouseEmulatorDelay `ui  1 s 2 kempstonMouseEmulatorDelay ]
 "72
-[v _mouseY mouseY `uc  1 s 1 mouseY ]
-"334
+[v _kempstonMouseEmulatorKeys kempstonMouseEmulatorKeys `uc  1 s 1 kempstonMouseEmulatorKeys ]
+"350
 [v _main main `(v  1 e 1 0 ]
 {
-"422
-[v main@i_113 i `c  1 a 1 23 ]
-"407
-[v main@i i `c  1 a 1 24 ]
-"512
+"464
+[v main@i_118 i `c  1 a 1 25 ]
+"449
+[v main@i i `c  1 a 1 26 ]
+"542
 } 0
 "178
 [v _updateKey updateKey `(v  1 e 1 0 ]
@@ -158,6 +162,21 @@
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
 "200
+} 0
+"300
+[v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
+{
+[v calculateBitsFromTable@bits bits `*.4uc  1 a 1 wreg ]
+"302
+[v calculateBitsFromTable@i i `uc  1 a 1 15 ]
+"300
+[v calculateBitsFromTable@bits bits `*.4uc  1 a 1 wreg ]
+[v calculateBitsFromTable@table table `*.24uc  1 p 1 9 ]
+[v calculateBitsFromTable@count count `uc  1 p 1 10 ]
+[v calculateBitsFromTable@clearIfFound clearIfFound `uc  1 p 1 11 ]
+"302
+[v calculateBitsFromTable@bits bits `*.4uc  1 a 1 14 ]
+"315
 } 0
 "102
 [v _myIsr myIsr `II(v  1 e 1 0 ]

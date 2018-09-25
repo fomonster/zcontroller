@@ -12,7 +12,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 use altera.altera_primitives_components.all;
 
-entity zcontroller is 
+	entity zcontroller is 
 port
 (
 
@@ -98,7 +98,7 @@ D          : inout std_logic_vector(7 downto 0) := "ZZZZZZZZ";
 
 -- другие
 
-RES 	: in std_logic := '1'; -- Сброс. Вход. Активный уровень - низкий. Сигнал /RESET имеет самый высокий приоритет
+RES 	: inout std_logic := 'Z'; -- Сброс. Вход. Активный уровень - низкий. Сигнал /RESET имеет самый высокий приоритет
 								-- и приводит ЦП в начальное состояние:
 								--  - сброс счетчика команд PC=0000H;
 								--  - сброс триггера разрешения прерываний
@@ -108,7 +108,7 @@ RES 	: in std_logic := '1'; -- Сброс. Вход. Активный уровень - низкий. Сигнал /R
 								-- тактовой частоты. В это время адресная шина и шина данных находятся в высокоомном
 								-- состоянии, а все выходы сигналов управления неактивны.
 
-NMI 	: in std_logic := '1';  -- Немаскируемый запрос прерывания
+NMI 	: inout std_logic := 'Z';  -- Немаскируемый запрос прерывания
 								-- Вход, запускаемый отрицательным фронтом. Фронт запуска активизирует
 								-- внутренний триггер NMI. Линия /NMI имеет более высокий приоритет, чем /INT и всегда
 								-- распознается в конце выполнения текущей команды, независимо от состояния триггера
@@ -123,6 +123,7 @@ IO1 : out std_logic := '0';
 IO2 : out std_logic := '0';
 IO3 : out std_logic := '0';
 IO4 : out std_logic := '0';
+
 IO5 : out std_logic := '0';
 IO6 : out std_logic := '0';
 IO7 : out std_logic := '0';
@@ -144,16 +145,16 @@ shared variable count   : STD_LOGIC_VECTOR (3 downto 0) := "0000";
 --signal mouseData : STD_LOGIC_VECTOR (7 downto 0) := "ZZZZZZZZ";
 
 -- keyboard ports data
-shared variable portA : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portB : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portC : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portD : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portE : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portF : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portG : STD_LOGIC_VECTOR (4 downto 0) := "00000";
-shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "00000";
+shared variable portA : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portB : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portC : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portD : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portE : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portF : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portG : STD_LOGIC_VECTOR (4 downto 0) := "11111";
+shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 -- mouse ports data
-shared variable portI : STD_LOGIC_VECTOR (0 downto 0) := "0";
+shared variable portI : STD_LOGIC_VECTOR (2 downto 0) := "111";
 shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 
@@ -172,6 +173,9 @@ signal enn		: std_logic := '1';
 signal read_port		: std_logic := '0';
 signal write_port		: std_logic := '0';
 signal zc_do_bus	: std_logic_vector(7 downto 0) := "ZZZZZZZZ";
+
+
+signal l_ebl : std_logic := '1';
 --------------------------------------------------------------------------------
 --                            ПРОЦЕССЫ                                        --
 --------------------------------------------------------------------------------
@@ -218,7 +222,7 @@ begin
 					when X"5" => portF := PB(4 downto 0);
 					when X"6" => portG := PB(4 downto 0);
 					when X"7" => portH := PB(4 downto 0);
-					when X"8" => portI := PB(0 downto 0); -- KempstonMouse
+					when X"8" => portI := PB(2 downto 0); -- KempstonMouse
 					when X"9" => portJ := PB(7 downto 0);
 					when X"A" => portK := PB(7 downto 0);
 					when others => null;
@@ -246,7 +250,7 @@ begin
 	-- SD Карта ZCard
 	--------------------------------------------------------------------------------
 
-	
+	 
 	--process (RES)
 	--begin
 	--	if RES = '0' then -- При нажатии на RESET сбрасываем питание и управляющий сигнал 
@@ -303,16 +307,54 @@ begin
 	-- NemoIde
 	--------------------------------------------------------------------------------
 	
+	--                                          SMUC  ATM   Nemo  NemoA8    Nemo      SMUC 
+	-- команда (in)/состояние (out)             #FFBE #FEEF #FFF0 #FEF0     11110000  11111111
+	-- регистр головки, устройства, режима LBA  #FEBE #FECF #FFD0 #FED0     11010000  11111110 
+	-- цилиндр (старшая часть)                  #FDBE #FEAF #FFB0 #FEB0     10110000  11111101
+	-- цилиндр (младшая часть)                  #FCBE #FE8F #FF90 #FE90     10010000  11111100
+	-- сектор                                   #FBBE #FE6F #FF70 #FE70     01110000  11111011
+	-- счётчик                                  #FABE #FE4F #FF50 #FE50     01010000  11111010 
+	-- регистр ошибки                           #F9BE #FE2F #FF30 #FE30     00110000  11111001
+	-- данные (старшая часть)                   #D8BE #FF0F #FF11 #FF10     00010001  11011000
+	-- данные (младшая часть)                   #F8BE #FE0F #FF10 #FE10     00010000  11111000
 	
+	-- DD1 from Nemo IDE sheme
+	l_ebl <= '0' when DOS = '1' and A(1) = '0' and A(2) = '0' and M1 = '1' and A(3) = '0' and A(15 downto 8) = "11111111" else '1';
+	EBL <= l_ebl; 
+	-- DD2 from Nemo IDE sheme
+	IOW <= '0' when A(0) = '0' and RD = '1' and WR = '0' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1'; 
+	WRH <= '0' when A(0) = '1' and RD = '1' and WR = '0' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1';
+	IOR <= '0' when A(0) = '0' and RD = '0' and WR = '1' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1';
+	RDH <= '0' when A(0) = '1' and RD = '0' and WR = '1' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1';
+
+	-- для этого нужно доработки платы сделать 
+	-- RESIDE <= RES - соединить на плате
+	--IO0 <= A(5); -- HA0 выпаять АП5 и припаять выводы на дополнительные ноги
+	--IO1 <= A(6); -- HA1
+	--IO2 <= A(7); -- HA2
+	--IO3 <= A(3); -- CS1
+	--IO4 <= not A(4); -- CS0 
 	
 	--------------------------------------------------------------------------------
-	-- Мышка
+	-- SMUC
 	--------------------------------------------------------------------------------
 	
-	--mouseData <= "1111111" & portI when A(15 downto 8) = X"FA" else	
-	--			 portJ when A(15 downto 8) = X"FB" else	
-	----			 portK when A(15 downto 8) = X"FF" else
-	--			 "ZZZZZZZZ";
+	-- IDE
+	
+	--l_ebl <= '0' when DOS = '1' and A(14) = '1' and A(15) = '1' and M1 = '1' and A(12) = '1' and A(7 downto 0) = X"BE" else '1';
+	--EBL <= l_ebl; 	
+	--IOW <= '0' when A(13) = '1' and RD = '1' and WR = '0' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1'; 
+	--WRH <= '0' when A(13) = '0' and RD = '1' and WR = '0' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1';
+	--IOR <= '0' when A(13) = '1' and RD = '0' and WR = '1' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1';
+	--RDH <= '0' when A(13) = '0' and RD = '0' and WR = '1' and l_ebl = '0' and IORQ = '0' and M1 = '1' else '1';
+
+	--IO0 <= A(8); -- HA0
+	--IO1 <= A(9); -- HA1
+	--IO2 <= A(10); -- HA2
+	--IO3 <= A(11); -- CS1
+	--IO4 <= not A(12); -- CS0 
+	
+	-- 
 	
 	--------------------------------------------------------------------------------
 	-- Шина данных при чтении из портов
@@ -327,27 +369,19 @@ begin
 		case selector is			
 			when "001" => D <= "111" & kb_do_bus;	-- Read port #xxFE Keyboard
 			when "011" => D <= zc_do_bus;			-- Z-Controller
-			when "100" => D <= "1111111" & portI; -- Kempston Mouse Button
+			when "100" => D <= "1111111" & portI(0); -- Kempston Mouse Button
 			when "101" => D <= portJ; -- Kempston Mouse X
 			when "110" => D <= portK; -- Kempston Mouse Y
 			when others => D <= "ZZZZZZZZ";
 		end case;
 	end process;
 
-
-	--D <= "111" & kb_do_bus when selector = "01" else
-	--	 zc_do_bus when selector = "10" else 
-	--	 "ZZZZZZZZ";
-	--D <= dataBus;	 
-	--IORQGE	<= 'Z' when selector = "00" else '1';	-- or selector = X"1" or selector = X"2"  1=aeiee?oai ii?oa a/a ia oeia Niaeo?oia
+	RES <= 'Z' when portI(1) = '1' else '0';
+	IO0 <= 'Z'when portI(2) = '1' else '0';
 	
-	
-	
-	--IORQGE <= iorqgeBus;
-	
-	-- debug
-	
-	--SDEN <= not keys(0)(0);
+	--------------------------------------------------------------------------------
+	--                                   The end.
+	--------------------------------------------------------------------------------
 	
 end RTL;
 

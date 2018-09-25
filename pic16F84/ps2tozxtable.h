@@ -1,10 +1,39 @@
-const uint8_t digitsTable[8] = 
+#define IK_SHIFT 3
+#define IK_CTRL 12
+#define IK_ALT 48
+#define IK_LEFT 1
+#define IK_RIGHT 2
+#define IK_UP 4
+#define IK_DOWN 8
+#define IK_FIRE 16
+#define IK_FIRE2 32
+
+
+
+const uint8_t kempstonMouseKeys[6] = 
 {
-    69, 22, 30, 38, 37, 46, 54, 61
+    // For mouse
+    107, // Left
+    116, // Right
+    117, // Up
+    114, // Down
+    115,  // Fire
+    4     // Fire 2
 };
 
 /*
- *  Codes replaced when Shift key down
+ *  Shift + Alt + Ctrl
+ */
+const uint8_t importantKeys[6] = 
+{
+    // For keyboard
+    18, 89, // shift
+    20, 19, // ctrl
+    17, 8   // alt
+};
+
+/*
+ *  Codes replaced by CS + SS on start and repeated after delay 2600 
  */
 const uint8_t replaceOnDelayKeyDown[8] = 
 {
@@ -39,8 +68,12 @@ const uint8_t replaceOnShiftKeyDown[42] =
     91, 101 // ] + Shift = }
  };
 
-const uint8_t replaceTwoBytesCodes[26] = 
+/*
+ *   ps2 codes table (keys with 2 bytes codes replace with 1 byte code)
+ */
+const uint8_t replaceTwoBytesCodes[28] = 
 {
+    0x11, 8,  // Alt (right)
     0x14, 19, // Ctrl (right)
     0x70, 23, // Insert
     0x6c, 24, // Home

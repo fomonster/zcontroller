@@ -88,7 +88,7 @@ A[5]                         : 21        : input  : TTL               :         
 A[10]                        : 22        : input  : TTL               :         :           : Y              
 TMS                          : 23        : input  : TTL               :         :           : Y              
 A[8]                         : 24        : input  : TTL               :         :           : Y              
-NMI                          : 25        : input  : TTL               :         :           : Y              
+NMI                          : 25        : bidir  : TTL               :         :           : Y              
 VCCIO                        : 26        : power  :                   : 5.0V    :           :                
 A[9]                         : 27        : input  : TTL               :         :           : Y              
 SDDET                        : 28        : input  : TTL               :         :           : Y              
@@ -118,7 +118,7 @@ IO0                          : 51        : output : TTL               :         
 IO1                          : 52        : output : TTL               :         :           : Y              
 VCCIO                        : 53        : power  :                   : 5.0V    :           :                
 WRH                          : 54        : output : TTL               :         :           : Y              
-RES                          : 55        : input  : TTL               :         :           : Y              
+RES                          : 55        : bidir  : TTL               :         :           : Y              
 PB[0]                        : 56        : input  : TTL               :         :           : Y              
 IO2                          : 57        : output : TTL               :         :           : Y              
 A[7]                         : 58        : input  : TTL               :         :           : Y              

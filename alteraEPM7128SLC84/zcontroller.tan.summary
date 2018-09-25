@@ -6,10 +6,10 @@ Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
 Actual Time    : 11.000 ns
-From           : PB[0]
-To             : portI[0]
+From           : SDIN
+To             : shift_in[0]
 From Clock     : --
-To Clock       : STROBE
+To Clock       : SDTAKT
 Failed Paths   : 0
 
 Type           : Worst-case tco
@@ -25,9 +25,9 @@ Failed Paths   : 0
 Type           : Worst-case tpd
 Slack          : N/A
 Required Time  : None
-Actual Time    : 39.000 ns
-From           : WR
-To             : D[0]
+Actual Time    : 32.000 ns
+From           : A[6]
+To             : SDCS
 From Clock     : --
 To Clock       : --
 Failed Paths   : 0
@@ -36,10 +36,10 @@ Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
 Actual Time    : -3.000 ns
-From           : PB[0]
-To             : portI[0]
+From           : SDIN
+To             : shift_in[0]
 From Clock     : --
-To Clock       : STROBE
+To Clock       : SDTAKT
 Failed Paths   : 0
 
 Type           : Clock Setup: 'STROBE'
@@ -47,7 +47,7 @@ Slack          : N/A
 Required Time  : None
 Actual Time    : 76.92 MHz ( period = 13.000 ns )
 From           : lpm_counter:count_rtl_0|dffs[3]
-To             : portF[0]
+To             : portE[0]
 From Clock     : STROBE
 To Clock       : STROBE
 Failed Paths   : 0
