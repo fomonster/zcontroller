@@ -11,50 +11,59 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
+$C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
 reset_vec CODE 0 0 0 1 2
-end_init CODE 0 4 4 1 2
+end_init CODE 0 F F 1 2
 $dist/default/production\pic16F622A.production.o
-cinit CODE 0 5 5 1F 2
-text1 CODE 0 1EB 1EB 4B 2
-text2 CODE 0 236 236 2F 2
-text3 CODE 0 290 290 27 2
-text4 CODE 0 265 265 2B 2
-text5 CODE 0 2C3 2C3 A 2
-nvBANK0 BANK0 1 3E 3E 1 1
-maintext CODE 0 24 24 ED 2
-cstackCOMMON COMMON 1 70 70 E 1
-cstackBANK0 BANK0 1 3B 3B 3 1
-bssBANK0 BANK0 1 20 20 F 1
-idataBANK0 CODE 0 2B7 2B7 C 2
-strings STRING 0 111 111 DA 2
-dataBANK0 BANK0 1 2F 2F C 1
-clrtext CODE 0 2CD 2CD 8 2
+cinit CODE 0 10 10 21 2
+text1 CODE 0 36C 36C 54 2
+text2 CODE 0 43D 43D 30 2
+text3 CODE 0 3C0 3C0 40 2
+text4 CODE 0 480 480 1 2
+text5 CODE 0 400 400 3D 2
+text6 CODE 0 2E0 2E0 8C 2
+nvBANK0 BANK0 1 49 49 1 1
+maintext CODE 0 31 31 144 2
+cstackCOMMON COMMON 1 70 70 9 1
+cstackBANK0 BANK0 1 20 20 12 1
+intentry CODE 0 4 4 B 2
+bssBANK0 BANK0 1 32 32 C 1
+idataBANK0 CODE 0 46D 46D B 2
+strings STRING 0 200 200 E0 2
+dataBANK0 BANK0 1 3E 3E B 1
+clrtext CODE 0 478 478 8 2
+bssCOMMON COMMON 1 79 79 4 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 3F-6F 1
+RAM 4A-6F 1
 RAM A0-BF 1
-BANK0 3F-6F 1
+BANK0 4A-6F 1
 BANK1 A0-BF 1
 CONST 1-3 2
-CONST 2D5-7FF 2
+CONST 175-1FF 2
+CONST 481-7FF 2
 ENTRY 1-3 2
-ENTRY 2D5-7FF 2
+ENTRY 175-1FF 2
+ENTRY 481-7FF 2
 IDLOC 2000-2003 2
-STACK 3F-6F 1
+STACK 4A-6F 1
 CODE 1-3 2
-CODE 2D5-7FF 2
+CODE 175-1FF 2
+CODE 481-7FF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
+COMMON 7D-7D 1
 CONFIG 2007-2007 2
 STRCODE 1-3 2
-STRCODE 2D5-7FF 2
+STRCODE 175-1FF 2
+STRCODE 481-7FF 2
 STRING 1-3 2
-STRING 2D5-7FF 2
+STRING 175-1FF 2
+STRING 481-7FF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -69,170 +78,228 @@ STRING 2D5-7FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\pic16F622A.production.o
-5 cinit CODE >464:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-5 cinit CODE >467:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-5 cinit CODE >523:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-6 cinit CODE >524:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-7 cinit CODE >525:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-8 cinit CODE >526:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-9 cinit CODE >527:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-A cinit CODE >528:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-B cinit CODE >529:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-C cinit CODE >530:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-D cinit CODE >531:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-E cinit CODE >532:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-F cinit CODE >533:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-10 cinit CODE >534:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-11 cinit CODE >535:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-12 cinit CODE >536:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-13 cinit CODE >537:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-14 cinit CODE >538:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-15 cinit CODE >539:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-16 cinit CODE >540:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-17 cinit CODE >541:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-18 cinit CODE >542:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-19 cinit CODE >543:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-1A cinit CODE >544:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-1B cinit CODE >545:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-1C cinit CODE >546:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-1D cinit CODE >565:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-1E cinit CODE >566:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-1F cinit CODE >567:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-20 cinit CODE >568:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-21 cinit CODE >569:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-22 cinit CODE >575:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-22 cinit CODE >577:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-23 cinit CODE >578:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2C3 text5 CODE >197:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2C3 text5 CODE >199:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-265 text4 CODE >229:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-265 text4 CODE >232:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-267 text4 CODE >233:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-268 text4 CODE >234:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-269 text4 CODE >235:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-26B text4 CODE >236:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-26C text4 CODE >237:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-26E text4 CODE >238:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-26F text4 CODE >239:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-270 text4 CODE >240:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-272 text4 CODE >241:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-278 text4 CODE >242:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-27A text4 CODE >243:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-280 text4 CODE >244:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-281 text4 CODE >245:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-282 text4 CODE >246:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-28B text4 CODE >247:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-28D text4 CODE >248:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-28F text4 CODE >249:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-290 text3 CODE >251:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-290 text3 CODE >253:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-292 text3 CODE >257:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-294 text3 CODE >258:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-296 text3 CODE >260:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-298 text3 CODE >261:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-299 text3 CODE >265:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-29B text3 CODE >266:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2A8 text3 CODE >267:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2AA text3 CODE >268:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2AB text3 CODE >269:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2AD text3 CODE >270:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2AE text3 CODE >271:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2B1 text3 CODE >293:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2B2 text3 CODE >294:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2B6 text3 CODE >296:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-236 text2 CODE >169:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-237 text2 CODE >171:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-24E text2 CODE >172:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-25B text2 CODE >173:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-1EB text1 CODE >178:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-1EC text1 CODE >180:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-1F0 text1 CODE >181:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-1FE text1 CODE >182:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-202 text1 CODE >183:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-20D text1 CODE >184:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-210 text1 CODE >185:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-216 text1 CODE >186:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-21E text1 CODE >187:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-226 text1 CODE >189:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-229 text1 CODE >190:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-22F text1 CODE >191:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-24 maintext CODE >335:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-24 maintext CODE >337:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-26 maintext CODE >338:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-27 maintext CODE >339:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-28 maintext CODE >340:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-29 maintext CODE >341:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2A maintext CODE >343:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2C maintext CODE >345:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2E maintext CODE >346:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-30 maintext CODE >366:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-31 maintext CODE >368:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-32 maintext CODE >369:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-34 maintext CODE >370:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-35 maintext CODE >371:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-36 maintext CODE >373:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-38 maintext CODE >374:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-39 maintext CODE >375:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-3A maintext CODE >376:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-3B maintext CODE >377:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-3C maintext CODE >394:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-41 maintext CODE >396:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-44 maintext CODE >398:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-48 maintext CODE >399:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-4E maintext CODE >400:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-55 maintext CODE >401:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-5C maintext CODE >403:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-60 maintext CODE >404:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-69 maintext CODE >408:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-6F maintext CODE >409:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-76 maintext CODE >410:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-80 maintext CODE >411:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-88 maintext CODE >412:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-89 maintext CODE >413:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-91 maintext CODE >414:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-92 maintext CODE >415:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-96 maintext CODE >417:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-97 maintext CODE >419:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-A0 maintext CODE >423:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-A6 maintext CODE >424:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-B0 maintext CODE >425:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-B4 maintext CODE >426:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-B8 maintext CODE >427:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-BC maintext CODE >428:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-C0 maintext CODE >429:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-C1 maintext CODE >430:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-C2 maintext CODE >432:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-C3 maintext CODE >434:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-CC maintext CODE >437:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-D8 maintext CODE >438:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-E4 maintext CODE >439:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-EA maintext CODE >442:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-EB maintext CODE >450:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-ED maintext CODE >452:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-EE maintext CODE >453:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-F0 maintext CODE >454:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-F1 maintext CODE >455:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-F2 maintext CODE >481:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-F8 maintext CODE >482:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-FF maintext CODE >484:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-103 maintext CODE >485:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-104 maintext CODE >498:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-107 maintext CODE >500:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-10C maintext CODE >502:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-10D maintext CODE >505:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-10F maintext CODE >508:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-10F maintext CODE >510:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-110 maintext CODE >511:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
-2CD clrtext CODE >552:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2CD clrtext CODE >553:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2CE clrtext CODE >554:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2CE clrtext CODE >555:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2CF clrtext CODE >556:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2D0 clrtext CODE >557:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2D1 clrtext CODE >558:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2D2 clrtext CODE >559:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2D3 clrtext CODE >560:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
-2D4 clrtext CODE >561:C:\Users\FOMONS~1\AppData\Local\Temp\sji0.
+10 cinit CODE >497:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+10 cinit CODE >500:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+10 cinit CODE >562:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+11 cinit CODE >563:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+12 cinit CODE >564:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+13 cinit CODE >565:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+14 cinit CODE >566:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+15 cinit CODE >567:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+16 cinit CODE >568:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+17 cinit CODE >569:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+18 cinit CODE >570:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+19 cinit CODE >571:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+1A cinit CODE >572:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+1B cinit CODE >573:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+1C cinit CODE >574:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+1D cinit CODE >575:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+1E cinit CODE >576:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+1F cinit CODE >577:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+20 cinit CODE >578:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+21 cinit CODE >579:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+22 cinit CODE >580:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+23 cinit CODE >581:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+24 cinit CODE >582:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+25 cinit CODE >583:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+26 cinit CODE >602:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+27 cinit CODE >603:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+28 cinit CODE >604:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+29 cinit CODE >605:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2A cinit CODE >606:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2B cinit CODE >609:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2C cinit CODE >610:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2D cinit CODE >611:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2E cinit CODE >612:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2F cinit CODE >618:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+2F cinit CODE >620:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+30 cinit CODE >621:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+4 intentry CODE >102:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2E0 text6 CODE >102:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2E0 text6 CODE >104:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2E3 text6 CODE >106:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2E4 text6 CODE >107:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2E6 text6 CODE >111:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2E9 text6 CODE >112:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2EC text6 CODE >113:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2ED text6 CODE >114:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2EE text6 CODE >115:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2F0 text6 CODE >116:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2F4 text6 CODE >118:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2F8 text6 CODE >119:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2FD text6 CODE >120:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+2FF text6 CODE >121:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+30C text6 CODE >122:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+30D text6 CODE >124:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+311 text6 CODE >125:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+315 text6 CODE >126:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+31A text6 CODE >128:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+31D text6 CODE >129:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+323 text6 CODE >130:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+32A text6 CODE >131:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+330 text6 CODE >134:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+335 text6 CODE >136:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+348 text6 CODE >138:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+34C text6 CODE >139:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+34D text6 CODE >140:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+34E text6 CODE >141:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+353 text6 CODE >142:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+354 text6 CODE >143:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+356 text6 CODE >152:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+357 text6 CODE >153:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+35B text6 CODE >157:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+35F text6 CODE >159:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+360 text6 CODE >163:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+360 text6 CODE >164:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+361 text6 CODE >165:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+400 text5 CODE >300:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+402 text5 CODE >302:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+403 text5 CODE >314:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+407 text5 CODE >303:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+40E text5 CODE >304:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+411 text5 CODE >305:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+421 text5 CODE >306:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+422 text5 CODE >307:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+433 text5 CODE >309:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+436 text5 CODE >310:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+437 text5 CODE >312:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+438 text5 CODE >314:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+480 text4 CODE >197:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+480 text4 CODE >200:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C0 text3 CODE >229:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C0 text3 CODE >232:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C2 text3 CODE >233:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C3 text3 CODE >234:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C4 text3 CODE >235:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C6 text3 CODE >236:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C7 text3 CODE >237:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3C9 text3 CODE >238:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3CA text3 CODE >239:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3CB text3 CODE >240:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3D2 text3 CODE >241:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3D3 text3 CODE >242:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3F0 text3 CODE >243:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3F1 text3 CODE >244:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3F2 text3 CODE >245:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3FC text3 CODE >246:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3FD text3 CODE >247:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3FF text3 CODE >248:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+43D text2 CODE >169:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+43F text2 CODE >171:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+456 text2 CODE >172:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+463 text2 CODE >173:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+36C text1 CODE >178:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+36E text1 CODE >180:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+372 text1 CODE >181:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+380 text1 CODE >182:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+38A text1 CODE >183:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+395 text1 CODE >184:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+398 text1 CODE >185:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+39E text1 CODE >186:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3A7 text1 CODE >187:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3AF text1 CODE >189:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3B2 text1 CODE >190:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3B8 text1 CODE >191:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+31 maintext CODE >350:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+31 maintext CODE >352:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+33 maintext CODE >353:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+34 maintext CODE >354:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+35 maintext CODE >355:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+36 maintext CODE >356:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+37 maintext CODE >358:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+39 maintext CODE >360:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3B maintext CODE >361:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3D maintext CODE >381:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3E maintext CODE >383:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+3F maintext CODE >384:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+41 maintext CODE >385:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+42 maintext CODE >386:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+43 maintext CODE >388:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+45 maintext CODE >389:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+46 maintext CODE >390:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+47 maintext CODE >391:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+48 maintext CODE >397:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+4A maintext CODE >398:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+4B maintext CODE >399:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+4C maintext CODE >400:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+4D maintext CODE >401:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+4E maintext CODE >402:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+4F maintext CODE >403:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+52 maintext CODE >408:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+56 maintext CODE >410:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+5A maintext CODE >416:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+65 maintext CODE >418:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+74 maintext CODE >426:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+7C maintext CODE >427:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+85 maintext CODE >431:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+94 maintext CODE >432:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+98 maintext CODE >433:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+99 maintext CODE >434:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+9A maintext CODE >438:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+A5 maintext CODE >439:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+A9 maintext CODE >440:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+AA maintext CODE >441:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+AB maintext CODE >449:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+B1 maintext CODE >450:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+B8 maintext CODE >451:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+C3 maintext CODE >452:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+CB maintext CODE >453:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+CC maintext CODE >454:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+D4 maintext CODE >455:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+D5 maintext CODE >456:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+D9 maintext CODE >458:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+DA maintext CODE >460:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+E3 maintext CODE >464:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+E9 maintext CODE >465:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+F3 maintext CODE >466:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+F7 maintext CODE >467:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+FB maintext CODE >468:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+FF maintext CODE >469:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+103 maintext CODE >470:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+104 maintext CODE >471:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+105 maintext CODE >473:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+106 maintext CODE >475:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+10F maintext CODE >481:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+115 maintext CODE >484:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+116 maintext CODE >493:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+118 maintext CODE >495:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+119 maintext CODE >496:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+11B maintext CODE >497:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+11C maintext CODE >498:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+11D maintext CODE >502:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+123 maintext CODE >504:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+129 maintext CODE >505:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+12D maintext CODE >507:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+130 maintext CODE >509:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+131 maintext CODE >511:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+13A maintext CODE >513:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+13E maintext CODE >514:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+140 maintext CODE >515:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+141 maintext CODE >518:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+142 maintext CODE >521:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+149 maintext CODE >522:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+150 maintext CODE >523:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+153 maintext CODE >524:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+157 maintext CODE >525:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+15D maintext CODE >526:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+163 maintext CODE >527:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+167 maintext CODE >528:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+16E maintext CODE >529:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+16F maintext CODE >532:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+170 maintext CODE >534:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+173 maintext CODE >537:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+173 maintext CODE >539:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+174 maintext CODE >540:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F622A\main.c
+478 clrtext CODE >589:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+478 clrtext CODE >590:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+479 clrtext CODE >591:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+479 clrtext CODE >592:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+47A clrtext CODE >593:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+47B clrtext CODE >594:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+47C clrtext CODE >595:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+47D clrtext CODE >596:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+47E clrtext CODE >597:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
+47F clrtext CODE >598:C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -245,179 +312,205 @@ FF maintext CODE >484:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-updateKey@code 7C 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
+updateKey@code 2C 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
 ___latbits 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
 __LdataBANK0 0 0 ABS 0 dataBANK0 -
-__Hspace_0 2D5 0 ABS 0 - -
-__Hspace_1 7E 0 ABS 0 - -
+__Hspace_0 481 0 ABS 0 - -
+__Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __HidataBANK0 0 0 ABS 0 idataBANK0 -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-main@i 3D 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+main@i 31 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
 __Hstrings 0 0 ABS 0 strings -
-_myDelay 586 0 CODE 0 text5 dist/default/production\pic16F622A.production.o
+_myDelay 900 0 CODE 0 text4 dist/default/production\pic16F622A.production.o
+_T0CS 40D 0 ABS 0 - dist/default/production\pic16F622A.production.o
+_T0IE 5D 0 ABS 0 - dist/default/production\pic16F622A.production.o
+_T0IF 5A 0 ABS 0 - dist/default/production\pic16F622A.production.o
+_T0SE 40C 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\pic16F622A.production.o
-___sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-_ctrl 26 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-_main 48 0 CODE 0 maintext dist/default/production\pic16F622A.production.o
+___sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+_main 62 0 CODE 0 maintext dist/default/production\pic16F622A.production.o
+_calculateBitsFromTable 800 0 CODE 0 text5 dist/default/production\pic16F622A.production.o
 btemp 7E 0 ABS 0 - dist/default/production\pic16F622A.production.o
-start 8 0 CODE 0 init C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
+start 1E 0 CODE 0 init C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
 __size_of_main 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
-__end_of_replaceOnDelayKeyDown 3C6 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+__end_of_replaceOnDelayKeyDown 5A8 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+__HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
 __Hpowerup 0 0 CODE 0 powerup -
-__end_of_replaceOnShiftKeyDown 382 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-_replaceOnDelayKeyDown 3B6 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-__size_of_sendToPs2Device 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
+_kempstonMouseEmulatorKeys 3C 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+__end_of_replaceOnShiftKeyDown 560 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+_replaceOnDelayKeyDown 598 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+__LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\pic16F622A.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
-_replaceOnShiftKeyDown 32E 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+_replaceOnShiftKeyDown 50C 0 STRING 0 strings dist/default/production\pic16F622A.production.o
 __Hclrtext 0 0 ABS 0 clrtext -
-__end_of_replaceTwoBytesCodes 3B6 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-sendDataToAltera@i 73 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
+_sendDataToAltera$104 22 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__end_of_replaceTwoBytesCodes 598 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+sendDataToAltera@i 24 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
 __size_of_updatePort 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
-__end_of_updateKey 46C 0 CODE 0 text1 dist/default/production\pic16F622A.production.o
+__end_of_updateKey 780 0 CODE 0 text1 dist/default/production\pic16F622A.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-updateKey@key 7B 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-updateKey@set 76 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-_ps2DataState 2E 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+updateKey@key 2B 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+updateKey@set 26 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+_ps2DataState 7C 0 COMMON 1 bssCOMMON dist/default/production\pic16F622A.production.o
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
 __size_of_updateKey 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
-sendToPs2Device@j 71 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-_updateKey 3D6 0 CODE 0 text1 dist/default/production\pic16F622A.production.o
-start_initialization A 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
-_sendDataToAltera 4CA 0 CODE 0 text4 dist/default/production\pic16F622A.production.o
-clear_ram0 59A 0 CODE 0 clrtext dist/default/production\pic16F622A.production.o
-__pcstackBANK0 3B 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+calculateBitsFromTable@clearIfFound 22 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__size_of_myIsr 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
+_updateKey 6D8 0 CODE 0 text1 dist/default/production\pic16F622A.production.o
+__end_of_kempstonMouseKeys 5C0 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+start_initialization 20 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
+calculateBitsFromTable@i 26 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+_numLock 38 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_sendDataToAltera 780 0 CODE 0 text3 dist/default/production\pic16F622A.production.o
+clear_ram0 8F0 0 CODE 0 clrtext dist/default/production\pic16F622A.production.o
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__end_of_calculateBitsFromTable 87A 0 CODE 0 text5 dist/default/production\pic16F622A.production.o
 _TRISA0 428 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _TRISA1 429 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _TRISA2 42A 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _TRISA3 42B 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _TRISA4 42C 0 ABS 0 - dist/default/production\pic16F622A.production.o
-__end_of_digitsTable 3D6 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
+___int_sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
-__Hcinit 48 0 CODE 0 cinit -
+__Hcinit 62 0 CODE 0 cinit -
 __Hidloc 0 0 IDLOC 0 idloc -
 __Hstack 0 0 STACK 2 stack -
-__stringbase 22C 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-updateKey@localCtrl 7A 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
+__stringbase 40A 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+updateKey@localCtrl 2A 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 0 0 CONFIG 0 config -
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
-__Lcinit A 0 CODE 0 cinit -
+__Lcinit 20 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 0 idloc -
 __Lstack 0 0 STACK 2 stack -
-_updateKey$77 79 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
+_updateKey$97 29 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
 _PORTAbits 5 0 ABS 0 - dist/default/production\pic16F622A.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 8 0 CODE 0 init -
+__Hinit 1E 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 8 0 CODE 0 init -
+__Linit 1E 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Ltext 0 0 ABS 0 text -
-__pnvBANK0 3E 0 BANK0 1 nvBANK0 dist/default/production\pic16F622A.production.o
+__pnvBANK0 49 0 BANK0 1 nvBANK0 dist/default/production\pic16F622A.production.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-_ps2Device 2A 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_ps2Device 3A 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_GIE 5F 0 ABS 0 - dist/default/production\pic16F622A.production.o
+_PSA 40B 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _RA1 29 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _RA2 2A 0 ABS 0 - dist/default/production\pic16F622A.production.o
-__S0 2D5 0 ABS 0 - -
-__S1 7E 0 ABS 0 - -
+__S0 481 0 ABS 0 - -
+__S1 7D 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
+_kempstonMouseKeys 5B4 0 STRING 0 strings dist/default/production\pic16F622A.production.o
 __size_of_myDelay 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
-_delayA 20 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-__end_of_sendDataToAltera 520 0 CODE 0 text4 dist/default/production\pic16F622A.production.o
+saved_w 7E 0 ABS 0 - dist/default/production\pic16F622A.production.o
+__end_of_sendDataToAltera 800 0 CODE 0 text3 dist/default/production\pic16F622A.production.o
 __size_of_sendDataToAltera 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __Lintentry 8 0 CODE 0 intentry -
-__stringtab 222 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-updatePort@set 70 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-__pdataBANK0 2F 0 BANK0 1 dataBANK0 dist/default/production\pic16F622A.production.o
+__stringtab 400 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+updatePort@set 20 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__pdataBANK0 3E 0 BANK0 1 dataBANK0 dist/default/production\pic16F622A.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
-myDelay@j 71 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-__pmaintext 48 0 CODE 0 maintext dist/default/production\pic16F622A.production.o
+calculateBitsFromTable@bits 25 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+_replaceTwoBytesCodes 560 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+__pmaintext 62 0 CODE 0 maintext dist/default/production\pic16F622A.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 0 config -
-main@i_98 3C 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
-main@i_99 3B 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
-stackhi 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-stacklo 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\sji0.o
-__end_of__stringtab 22E 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-__end_of_myDelay 59A 0 CODE 0 text5 dist/default/production\pic16F622A.production.o
+_shift_ctrl_alt 3D 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+calculateBitsFromTable@count 21 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+calculateBitsFromTable@table 20 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+main@i_118 30 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+_importantKeys 5A8 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+stackhi 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+stacklo 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\s8l4.o
+__size_of_calculateBitsFromTable 0 0 ABS 0 - dist/default/production\pic16F622A.production.o
+__end_of__stringtab 40C 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+__end_of_myDelay 902 0 CODE 0 text4 dist/default/production\pic16F622A.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
+__pbssCOMMON 79 0 COMMON 1 bssCOMMON dist/default/production\pic16F622A.production.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__Lend_init 8 0 CODE 0 end_init -
+__Lend_init 1E 0 CODE 0 end_init -
+_kempstonMouseEmulatorDelay 32 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 44 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
-__Hintentry 8 0 CODE 0 intentry -
+end_of_initialization 5E 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
+__Hintentry 1E 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 2 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-_updatePort 46C 0 CODE 0 text2 dist/default/production\pic16F622A.production.o
-__ptext1 3D6 0 CODE 0 text1 dist/default/production\pic16F622A.production.o
-__ptext2 46C 0 CODE 0 text2 dist/default/production\pic16F622A.production.o
-__ptext3 520 0 CODE 0 text3 dist/default/production\pic16F622A.production.o
-__ptext4 4CA 0 CODE 0 text4 dist/default/production\pic16F622A.production.o
-__ptext5 586 0 CODE 0 text5 dist/default/production\pic16F622A.production.o
+_updatePort 87A 0 CODE 0 text2 dist/default/production\pic16F622A.production.o
+__ptext1 6D8 0 CODE 0 text1 dist/default/production\pic16F622A.production.o
+__ptext2 87A 0 CODE 0 text2 dist/default/production\pic16F622A.production.o
+__ptext3 780 0 CODE 0 text3 dist/default/production\pic16F622A.production.o
+__ptext4 900 0 CODE 0 text4 dist/default/production\pic16F622A.production.o
+__ptext5 800 0 CODE 0 text5 dist/default/production\pic16F622A.production.o
+__ptext6 5C0 0 CODE 0 text6 dist/default/production\pic16F622A.production.o
 __Lpowerup 0 0 CODE 0 powerup -
-_codeToMatrix 22E 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+_codeToMatrix 40C 0 STRING 0 strings dist/default/production\pic16F622A.production.o
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_replaced 25 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_replaced 37 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
-updateKey@localShift 78 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-__end_of_sendToPs2Device 56E 0 CODE 0 text3 dist/default/production\pic16F622A.production.o
-__end_of__initialization 44 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
+updateKey@localShift 28 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__end_of__initialization 5E 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
-__pidataBANK0 56E 0 CODE 0 idataBANK0 dist/default/production\pic16F622A.production.o
+_myIsr$87 76 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
+__pidataBANK0 8DA 0 CODE 0 idataBANK0 dist/default/production\pic16F622A.production.o
 __Lclrtext 0 0 ABS 0 clrtext -
-_ps2WaitCode 29 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-_outPorts 2F 0 BANK0 1 dataBANK0 dist/default/production\pic16F622A.production.o
-_ps2BitsCount 2C 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_ps2WaitCode 39 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_outPorts 3E 0 BANK0 1 dataBANK0 dist/default/production\pic16F622A.production.o
+_ps2BitsCount 7A 0 COMMON 1 bssCOMMON dist/default/production\pic16F622A.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-__end_of_updatePort 4CA 0 CODE 0 text2 dist/default/production\pic16F622A.production.o
-__Hend_init A 0 CODE 0 end_init -
-_ps2Data 2B 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-_ps2Down 3E 0 BANK0 1 nvBANK0 dist/default/production\pic16F622A.production.o
-__end_of_main 222 0 CODE 0 maintext dist/default/production\pic16F622A.production.o
-_delayedKey 24 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+__end_of_updatePort 8DA 0 CODE 0 text2 dist/default/production\pic16F622A.production.o
+__Hend_init 20 0 CODE 0 end_init -
+_ps2Bits 7B 0 COMMON 1 bssCOMMON dist/default/production\pic16F622A.production.o
+_ps2Data 3B 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_ps2Down 49 0 BANK0 1 nvBANK0 dist/default/production\pic16F622A.production.o
+__end_of_main 2EA 0 CODE 0 maintext dist/default/production\pic16F622A.production.o
+myIsr@i 78 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
+_delayedKey 36 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\pic16F622A.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\pic16F622A.production.o
+__end_of_myIsr 6D8 0 CODE 0 text6 dist/default/production\pic16F622A.production.o
 _TRISB 86 0 ABS 0 - dist/default/production\pic16F622A.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_delay 22 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-_ps2NeedEncode 28 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-_shift 27 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+interrupt_function 8 0 CODE 0 intentry dist/default/production\pic16F622A.production.o
+_delay 34 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+_ps2NeedEncode 79 0 COMMON 1 bssCOMMON dist/default/production\pic16F622A.production.o
+_myIsr 5C0 0 CODE 0 text6 dist/default/production\pic16F622A.production.o
+__pintentry 8 0 CODE 0 intentry dist/default/production\pic16F622A.production.o
+__end_of_importantKeys 5B4 0 STRING 0 strings dist/default/production\pic16F622A.production.o
 __HdataBANK0 0 0 ABS 0 dataBANK0 -
-_sendToPs2Device 520 0 CODE 0 text3 dist/default/production\pic16F622A.production.o
-updatePort@bit_id 75 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-__initialization A 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
-__end_of_codeToMatrix 32E 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-__pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
-updatePort@a 74 0 COMMON 1 cstackCOMMON dist/default/production\pic16F622A.production.o
-__pstrings 222 0 STRING 0 strings dist/default/production\pic16F622A.production.o
-_digitsTable 3C6 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+updatePort@bit_id 25 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__initialization 20 0 CODE 0 cinit dist/default/production\pic16F622A.production.o
+__end_of_codeToMatrix 50C 0 STRING 0 strings dist/default/production\pic16F622A.production.o
+__pbssBANK0 32 0 BANK0 1 bssBANK0 dist/default/production\pic16F622A.production.o
+updatePort@a 24 0 BANK0 1 cstackBANK0 dist/default/production\pic16F622A.production.o
+__pstrings 400 0 STRING 0 strings dist/default/production\pic16F622A.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -443,9 +536,9 @@ _digitsTable 3C6 0 STRING 0 strings dist/default/production\pic16F622A.productio
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text1 0 1EB 3D6 EA 2
-cstackCOMMON 1 70 70 E 1
-intentry 0 4 8 10D 2
+text6 0 2E0 5C0 1A1 2
+cstackCOMMON 1 70 70 D 1
+cstackBANK0 1 20 20 2A 1
+intentry 0 4 8 171 2
 reset_vec 0 0 0 1 2
-bssBANK0 1 20 20 1F 1
-strings 0 111 222 DA 2
+strings 0 200 400 E0 2

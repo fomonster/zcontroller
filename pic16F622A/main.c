@@ -41,15 +41,15 @@ static int8_t ps2Down = false;
 static int8_t ps2NeedEncode = 0;
 
 // temp
-static uint8_t shift = false; // when shift key pressed
-static uint8_t ctrl = false; // when ctrl key pressed
+static uint8_t numLock = false;
+static uint8_t shift_ctrl_alt = 0; // when shift , ctrl , alt keys pressed
 static uint8_t replaced = 0; // != 0 when key replacement with shift down
 
 static uint8_t delayedKey = 0; // dalayed key code
 
 
 // Array of ports data sended to Altera
-static uint8_t outPorts[12] = 
+static uint8_t outPorts[11] = 
 {
     // keyboard
     0x00, // 0 - #FEFE - CS...V    "11111110"
@@ -61,15 +61,15 @@ static uint8_t outPorts[12] =
     0x00, // 6 - #BFFE - Enter...H "10111111"   
     0x00, // 7 - #7FFE - Space...B "01111111"
     // mouse
-    0x07, // #FADF - D0 left btn, D1 right btn, D2 middle btn, D3 nan, D4-D7 wheel 
+    0x07, // #FADF - D0 left btn, D1 reset, D2 nmi
+          // D0 left btn, D1 right btn, D2 middle btn, D3 reset, D4-D7 wheel 
     0xF5, // #FBDF - mouse X  245
     0xDA  // #FFDF - mouse Y  218
 };
 
 static uint16_t delay = 0; // delay for auto dalayed key press
-static uint16_t delayA = 0; // delay for auto dalayed key press
-//static uint8_t mouseX = 50;
-//static uint8_t mouseY = 100;
+static uint16_t kempstonMouseEmulatorDelay = 0; // delay for auto dalayed key press
+static uint8_t kempstonMouseEmulatorKeys = 0;
 
 
 /*******************************************************************************
@@ -98,7 +98,7 @@ void ps2WriteMode()
 // PORTAbits.RA4 - clock
 // PORTAbits.RA3 - data
 // PORTAbits.RA0 - source (0 - keyboard, 1 - mouse)
-/*
+
 void __interrupt(high_priority) myIsr(void)
 {
     if(T0IE && T0IF){
@@ -126,7 +126,7 @@ void __interrupt(high_priority) myIsr(void)
             } else if ( ps2BitsCount == 9 ) { // 10 stop bit
                 //ps2DataCount++;
                 if ( ps2NeedEncode ) {
-                    for (int8_t i=0; i < 25; i+=2) {
+                    for (int8_t i=0; i < 27; i+=2) {
                         if ( ps2Bits == replaceTwoBytesCodes[i] ) {
                             ps2Data = replaceTwoBytesCodes[i+1];
                             break;
@@ -141,14 +141,14 @@ void __interrupt(high_priority) myIsr(void)
                 } else if ( ps2Bits == 0xE0 ) {
                     ps2DataState = PS2DATA_WAIT;
                     ps2NeedEncode = 1;
-                } else if ( ps2WaitCode == ps2Bits ) {
+                /*} else if ( ps2WaitCode == ps2Bits ) {
                     ps2DataState = PS2DATA_RECEIVED;
                 } else if ( ps2DataCount >= 2 && ps2Bits == 0x12 ) { // Prt Scr
                    ps2DataState = PS2DATA_WAIT;
                    ps2WaitCode = 0x7C;
                 } else if ( ps2DataCount <= 2 && ps2Bits == 0xE1 ) { // Pause Break
                     ps2DataState = PS2DATA_WAIT;
-                    ps2WaitCode = 0x77;
+                    ps2WaitCode = 0x77;*/
                 } else {                        
                     ps2DataState = PS2DATA_RECEIVED;
                 }
@@ -162,7 +162,7 @@ void __interrupt(high_priority) myIsr(void)
         
     }
     GIE = 1;
-}*/
+}
 /*******************************************************************************
    PortsData
 *******************************************************************************/
@@ -178,8 +178,8 @@ void updatePort(uint8_t bit_id, uint8_t set)
 void updateKey(uint8_t key, uint8_t set) // true when down
 {   
     uint8_t code = 0xFF;
-    uint8_t localShift = (shift && replaced == 0); // All replaced keys is when shift pressed  
-    uint8_t localCtrl = ctrl;
+    uint8_t localShift = (((shift_ctrl_alt & IK_SHIFT) > 0) && replaced == 0); // All replaced keys is when shift pressed  
+    uint8_t localCtrl = (shift_ctrl_alt & IK_CTRL) > 0;
     if ( key < 128 ) code = codeToMatrix[key];
     if ( code != 0xFF ) {
         updatePort(code, set);
@@ -196,7 +196,7 @@ void updateKey(uint8_t key, uint8_t set) // true when down
 *******************************************************************************/
 void myDelay()
 {
-    for(uint8_t j = 0; j < 5; j++) { };
+   // for(uint8_t j = 0; j < 5; j++) { };
 }
 
 
@@ -237,17 +237,16 @@ void sendDataToAltera()
     RA2 = 1; //STROBE
     RA1 = 0; // RESTRIG 
     myDelay();
-    outPorts[8] = 0;
-    for(int8_t i=0;i<12;i++) {
+    for(int8_t i=0;i<11;i++) {
         RA2 = 1; //STROBE   
-        PORTB = outPorts[i];
+        PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
         RA2 = 0; //STROBE        
         myDelay();
     }
     RA2 = 1; //STROBE
     PORTB = 0xFF;
 }
-
+/*
 void sendToPs2Device()
 {   
     TMR0 = 0; // disable interrupt
@@ -293,11 +292,27 @@ void sendToPs2Device()
     ps2BitsCount = 0;
     ps2DataState = PS2DATA_SENDING; //_WAIT_READY
 
-}
+}*/
 /*******************************************************************************
  Send data to ps2 keyboard
 *******************************************************************************/
 
+void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
+{
+    for(uint8_t i = 0; i < count;i++) {
+        if ( ps2Data == table[i] ) {
+            if ( ps2Down ) {
+                (*bits) |= (1 << i);
+            } else {
+                (*bits) &= ~(1 << i);
+            }
+            if ( clearIfFound ) {
+                ps2Data = 0;
+            }
+            break;
+        }
+    }
+}
 /*
 void sendToKeyboard(uint8_t d)
 {
@@ -372,21 +387,20 @@ void main(void)
 
     delay = 0;
     delayedKey = 0;
-    shift = false;
-    ctrl = false;
+    shift_ctrl_alt = 0;
     replaced = 0;
     
     ///for(i =0; i < 8; i++) outPorts[i] = 0;
     
     //sendDataToAltera();
     
-   /* T0CS = 1;
+    T0CS = 1;
     T0SE = 1;
     GIE = 1;
     T0IE = 1;
     PSA = 1;   
     T0IF = 0;
-    TMR0 = 255;*/
+    TMR0 = 255;
     
     while(1)
     {
@@ -395,19 +409,46 @@ void main(void)
                     
             if ( ps2Device == 0 ) { // keyboard
                 
-                if ( ps2Data == 5 ) { // f1
-                    for(int8_t i = 0; i < 8; i++) {
-                        if ( outPorts[i] != 0 ) {
-                            ps2Data = digitsTable[i];
-                        }
-                        outPorts[i] = 0;
-                    }
+                /****************************************************
+                 * 
+                 ****************************************************/
+                
+                calculateBitsFromTable(&shift_ctrl_alt, importantKeys, 6, false);
+                
+                calculateBitsFromTable(&kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
+                
+                
+                
+                /****************************************************
+                 *  Stuff
+                 ****************************************************/
+                // kempston mouse emulation (num pad arrows)
+                if ( ps2Data == 119 && ps2Down ) {
+                    numLock = !numLock; 
                 }
-
+                
+                // ctrl + alt + delete => RES
+                if ( (shift_ctrl_alt & IK_CTRL) > 0 && (shift_ctrl_alt & IK_ALT) > 0 && ps2Data == 31 && ps2Down  ) {                
+                    outPorts[8] &= 253;
+                } else {
+                    outPorts[8] |= 2;
+                }
+                
+                // ctrl + scroll lock => NMI
+                if ( (shift_ctrl_alt & IK_CTRL) > 0 && ps2Data == 126 && ps2Down ) {  
+                    outPorts[8] &= 251;                    
+                } else {
+                    outPorts[8] |= 4;  
+                }
+                
+                /****************************************************
+                 *  Main logic
+                 ****************************************************/
+                
                 // replace data if shift down for some keys in replaceOnShiftKeyDown table            
                 for(int8_t i = 0; i < 41 ;i+=2) {
                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
-                        if ( (shift && replaced == 0) || replaced == ps2Data) {
+                        if ( (((shift_ctrl_alt & IK_SHIFT) > 0) && replaced == 0) || replaced == ps2Data) {
                             if ( ps2Down ) replaced = ps2Data;
                             else replaced = 0;
                             ps2Data = replaceOnShiftKeyDown[i+1];
@@ -424,7 +465,7 @@ void main(void)
                     if ( ps2Data == replaceOnDelayKeyDown[i] && ps2Down ) { 
                         if ( delay == 0 ) {
                             delayedKey = ps2Data;
-                            delay = 3000;
+                            delay = 2600;
                             ps2Data = 111; // CS + SS key
                         } else {
                             ps2Data = 0;
@@ -432,16 +473,18 @@ void main(void)
                         break;
                     }
                 }
-
-                // process data            
-                if ( ps2Data == 18 || ps2Data == 89) shift = ps2Down;
-                if ( ps2Data == 20 || ps2Data == 19) ctrl = ps2Down;
+ 
+                /****************************************************
+                 * 
+                 ****************************************************/
+                
                 updateKey(ps2Data, ps2Down ); // ps2Down when key is down, else is up
 
-                // send data
+                // send data to altera registers
                 sendDataToAltera();
                 
             } else if ( ps2Device == 1 ) { // mouse
+                
                 
                 
             }
@@ -456,11 +499,7 @@ void main(void)
             
             
                 
-        }
-        
-        
-        //
-        /*if ( delay != 0 ) {
+        } else if ( delay != 0 ) {
             
             delay--;
             if ( delay == 0 ) {
@@ -469,42 +508,32 @@ void main(void)
                 //updatePort(0x0F, false); // or symbol shift 
                 sendDataToAltera();
                 
-            } else if ( delay == 1500 ) {
+            } else if ( delay == 1300 ) {
                     
                 updateKey(delayedKey, true );
                 delayedKey = 0;    
                 sendDataToAltera();
             }
-        }*/
+            
+        } else {
         
-        // random mouse movement        
-        delayA++;
-        if ( delayA > 20000  ) { //&& ps2DataState != PS2DATA_SENDING
-            
-            ps2Data = 252;
-            sendToPs2Device();
-            
-            /*if ( outPorts[10] > mouseX ) outPorts[10]--;
-            else if ( outPorts[10] < mouseX ) outPorts[10]++;
-            if ( outPorts[11] > mouseY ) outPorts[11]--;
-            else if ( outPorts[11] < mouseY ) outPorts[11]++;
+            // random mouse movement        
+            kempstonMouseEmulatorDelay++;
+            if ( kempstonMouseEmulatorDelay > 2000  ) { 
+                if ( numLock ) {
+                    if ( (kempstonMouseEmulatorKeys & IK_LEFT) > 0 ) outPorts[9]-=2;
+                    if ( (kempstonMouseEmulatorKeys & IK_RIGHT) > 0 ) outPorts[9]+=2;
+                    if ( (kempstonMouseEmulatorKeys & IK_UP) > 0 ) outPorts[10]+=2;
+                    if ( (kempstonMouseEmulatorKeys & IK_DOWN) > 0 ) outPorts[10]-=2;
+                    if ( (kempstonMouseEmulatorKeys & IK_FIRE) > 0 ) outPorts[8] &= 254;
+                    else outPorts[8] |= 1;  
+                }
                 
-            if (  outPorts[10] ==  mouseX && outPorts[11] ==  mouseY ) {
-                mouseX -= 128;
-                mouseY += 200;
+                sendDataToAltera();
+
+                kempstonMouseEmulatorDelay = 0;
             }
-            sendDataToAltera();
-             */
-            delayA = 0;
-        }
-        if ( delayA == 150 ) {
             
-            PORTAbits.RA3 = 1; // Release the Data line
-          
-            
-            TRISA3 = 1; // Set-up PS2 pin 2 ( DATA ) for input PS/2     
-            
-            //TRISA0 = 1; // Set-up PS2 pin 17 ( Select Device ) for input
         }
         
         CLRWDT();       

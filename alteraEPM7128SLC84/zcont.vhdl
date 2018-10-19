@@ -211,7 +211,7 @@ begin
 		if RESTRIG = '1' then
 			count := "0000"; 
 		else
-			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
+			if STROBE'event and STROBE = '1' then --falling_edge STROBE'event and STROBE = '0'	
 			
 				case count is
 					when X"0" => portA := PB(4 downto 0); -- Keyboard
@@ -227,9 +227,9 @@ begin
 					when X"A" => portK := PB(7 downto 0);
 					when others => null;
 				end case;
+                count := count + 1;	
                 
-                count := count + 1;
-            end if;
+            end if;                        
         end if;
     end process;
     
@@ -307,16 +307,16 @@ begin
 	-- NemoIde
 	--------------------------------------------------------------------------------
 	
-	--                                          SMUC  ATM   Nemo  NemoA8    Nemo      SMUC 
-	-- команда (in)/состояние (out)             #FFBE #FEEF #FFF0 #FEF0     11110000  11111111
+	--                                          SMUC  ATM   Nemo  NemoA8    Nemo      SMUC(#FFBA D7 = 0) 
+	-- команда (in)/состояние (out)             #FFBE #FEEF #FFF0 #FEF0     11110000  11111111 IDE
 	-- регистр головки, устройства, режима LBA  #FEBE #FECF #FFD0 #FED0     11010000  11111110 
 	-- цилиндр (старшая часть)                  #FDBE #FEAF #FFB0 #FEB0     10110000  11111101
 	-- цилиндр (младшая часть)                  #FCBE #FE8F #FF90 #FE90     10010000  11111100
 	-- сектор                                   #FBBE #FE6F #FF70 #FE70     01110000  11111011
 	-- счётчик                                  #FABE #FE4F #FF50 #FE50     01010000  11111010 
 	-- регистр ошибки                           #F9BE #FE2F #FF30 #FE30     00110000  11111001
-	-- данные (старшая часть)                   #D8BE #FF0F #FF11 #FF10     00010001  11011000
-	-- данные (младшая часть)                   #F8BE #FE0F #FF10 #FE10     00010000  11111000
+	-- данные (старшая часть)                   #D8BE #FF0F #FF11 #FF10     00010001  11011000 IDE-HI
+	-- данные (младшая часть)                   #F8BE #FE0F #FF10 #FE10     00010000  11111000 
 	
 	-- DD1 from Nemo IDE sheme
 	l_ebl <= '0' when DOS = '1' and A(1) = '0' and A(2) = '0' and M1 = '1' and A(3) = '0' and A(15 downto 8) = "11111111" else '1';
@@ -338,6 +338,13 @@ begin
 	--------------------------------------------------------------------------------
 	-- SMUC
 	--------------------------------------------------------------------------------
+	
+	-- #5FBA версия SMUC  (Номер версии и ревизии задается битами D7, D6, D5 и D3(четность) не может быть равным 7
+	-- #5FBE подверсия SMUC ( #57 => 1.2 )	
+	
+	-- #7FBA - Порт виртуальных дисководов D7 0/1(virt/real) A , D6 0/1 (virt/real), D3 0/1 (hdd/absent)
+	-- #DFBA - Порт часов реального времени  Выборка необходимого порта осуществляется битом D7 порта #FFBA
+	-- #FFBA - Системный порт SMUC NVRAM, PIC, ISA D0 RESET, D4 SDA i2c out, D5, WP i2c 1 запрет записи, D6 OUT > SCL i2c , IN < SDA i2c in, D7 shadow registers
 	
 	-- IDE
 	
@@ -376,12 +383,14 @@ begin
 		end case;
 	end process;
 
-	RES <= 'Z' when portI(1) = '1' else '0';
-	IO0 <= 'Z'when portI(2) = '1' else '0';
+	RES <= 'Z' when portI(1) = '1' else '0';	
+	IO0 <= 'Z' when portI(2) = '1' else '0';
 	
 	--------------------------------------------------------------------------------
 	--                                   The end.
 	--------------------------------------------------------------------------------
+	
+	--SDEN <= portA(0);
 	
 end RTL;
 
