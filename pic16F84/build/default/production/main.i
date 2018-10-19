@@ -1148,6 +1148,7 @@ void sendDataToAltera()
 {
 
     RA2 = 1;
+
     RA1 = 1;
     myDelay();
     RA2 = 0;
@@ -1158,13 +1159,15 @@ void sendDataToAltera()
     for(int8_t i=0;i<11;i++) {
         RA2 = 1;
         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
+
         RA2 = 0;
         myDelay();
     }
     RA2 = 1;
+
     PORTB = 0xFF;
 }
-# 300 "main.c"
+# 303 "main.c"
 void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
 {
     for(uint8_t i = 0; i < count;i++) {
@@ -1181,7 +1184,7 @@ void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8
         }
     }
 }
-# 350 "main.c"
+# 353 "main.c"
 void main(void)
 {
     TRISA1 = 0;
@@ -1194,7 +1197,7 @@ void main(void)
 
     TRISB = 0;
     PORTB = 0;
-# 381 "main.c"
+# 384 "main.c"
     ps2Data = 0;
 
     ps2WaitCode = 0;
@@ -1208,9 +1211,6 @@ void main(void)
     replaced = 0;
 
 
-
-
-
     T0CS = 1;
     T0SE = 1;
     GIE = 1;
@@ -1218,6 +1218,8 @@ void main(void)
     PSA = 1;
     T0IF = 0;
     TMR0 = 255;
+
+    sendDataToAltera();
 
     while(1)
     {

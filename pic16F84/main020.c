@@ -228,9 +228,8 @@ void myDelay()
 //---------------------------------------------
 void sendDataToAltera()
 {    
-       // 
+    // 
     RA2 = 1; //STROBE    
-
     RA1 = 1; // RESTRIG 
     myDelay();
     RA2 = 0; //STROBE
@@ -241,12 +240,10 @@ void sendDataToAltera()
     for(int8_t i=0;i<11;i++) {
         RA2 = 1; //STROBE   
         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
-
         RA2 = 0; //STROBE        
         myDelay();
     }
     RA2 = 1; //STROBE
-
     PORTB = 0xFF;
 }
 /*
@@ -393,6 +390,9 @@ void main(void)
     shift_ctrl_alt = 0;
     replaced = 0;
     
+    ///for(i =0; i < 8; i++) outPorts[i] = 0;
+    
+    //sendDataToAltera();
     
     T0CS = 1;
     T0SE = 1;
@@ -401,8 +401,6 @@ void main(void)
     PSA = 1;   
     T0IF = 0;
     TMR0 = 255;
-    
-    sendDataToAltera();
     
     while(1)
     {
