@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\pic16F628A.production.sym \
   --cmf=dist/default/production\pic16F628A.production.cmf -z -Q16F628A \
-  -oC:\Users\FOMONS~1\AppData\Local\Temp\sc84.2 \
+  -oC:\Users\FOMONS~1\AppData\Local\Temp\sj6s.2 \
   -Mdist/default/production/pic16F628A.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=0A0h-0efh -pstack=STACK -ACODE=00h-07FFh \
   -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 -ACONST=00h-0FFhx8 \
@@ -17,7 +17,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-07Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sc84.o \
+  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sj6s.o \
   dist/default/production\pic16F628A.production.o 
 
 Object code version is 3.11
@@ -27,26 +27,26 @@ Machine type is 16F628A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\FOMONS~1\AppData\Local\Temp\sc84.o
+C:\Users\FOMONS~1\AppData\Local\Temp\sj6s.o
                 end_init                             10       10        1        8       0
                 reset_vec                             0        0        1        0       0
 dist/default/production\pic16F628A.production.o
-                cinit                                11       11       21        8       0
+                cinit                                11       11       25        8       0
                 intentry                              4        4        C        8       0
                 text6                               2E0      2E0       8C      5C0       0
                 text5                               40C      40C       3E      5C0       0
-                text4                               48E      48E        1      5C0       0
+                text4                               486      486        1      5C0       0
                 text3                               3C3      3C3       49      5C0       0
                 text2                               44A      44A       31      5C0       0
                 text1                               36C      36C       57      5C0       0
-                maintext                             32       32      181        8       0
+                maintext                             36       36      18A        8       0
                 cstackBANK0                          20       20       12       20       1
                 cstackCOMMON                         70       70        9       70       1
-                clrtext                             486      486        8      5C0       0
-                dataBANK0                            3E       3E        B       20       1
-                bssBANK0                             32       32        C       20       1
-                bssCOMMON                            79       79        4       70       1
-                nvBANK0                              49       49        1       20       1
+                dataBANK0                            32       32        B       20       1
+                bssBANK0                             3D       3D        A       20       1
+                bssCOMMON                            79       79        3       70       1
+                nvBANK0                              47       47        3       20       1
+                nvCOMMON                             7C       7C        1       70       1
                 strings                             200      200       E0      400       0
                 idataBANK0                          47B      47B        B      5C0       0
 
@@ -55,17 +55,16 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   CODE           
                 end_init                             10       10        1         0
-                cinit                                11       11       21         0
+                cinit                                11       11       25         0
                 intentry                              4        4        C         0
                 reset_vec                             0        0        1         0
                 text6                               2E0      2E0       8C         0
                 text5                               40C      40C       3E         0
-                text4                               48E      48E        1         0
+                text4                               486      486        1         0
                 text3                               3C3      3C3       49         0
                 text2                               44A      44A       31         0
                 text1                               36C      36C       57         0
-                maintext                             32       32      181         0
-                clrtext                             486      486        8         0
+                maintext                             36       36      18A         0
                 idataBANK0                          47B      47B        B         0
 
         CLASS   STRCODE        
@@ -79,13 +78,14 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   COMMON         
                 cstackCOMMON                         70       70        9         1
-                bssCOMMON                            79       79        4         1
+                bssCOMMON                            79       79        3         1
+                nvCOMMON                             7C       7C        1         1
 
         CLASS   BANK0          
                 cstackBANK0                          20       20       12         1
-                dataBANK0                            3E       3E        B         1
-                bssBANK0                             32       32        C         1
-                nvBANK0                              49       49        1         1
+                dataBANK0                            32       32        B         1
+                bssBANK0                             3D       3D        A         1
+                nvBANK0                              47       47        3         1
 
         CLASS   BANK1          
 
@@ -117,11 +117,11 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000001  000001         0       0  CODE        2
-                intentry                       000004  0001AF  0001B3         8       0  CODE        2
+                intentry                       000004  0001BC  0001C0         8       0  CODE        2
                 cstackBANK0                    000020  00002A  00004A        20       1  BANK0       1
                 cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
                 strings                        000200  0000E0  0002E0       400       0  STRING      2
-                text6                          0002E0  0001AF  00048F       5C0       0  CODE        2
+                text6                          0002E0  0001A7  000487       5C0       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -131,17 +131,17 @@ UNUSED ADDRESS RANGES
         BANK1            0A0-0EF            50           1
         BANK2            120-14F            30           1
         CODE             001-003             3           2
-                         1B3-1FF            4D
-                         48F-7FF           371
+                         1C0-1FF            40
+                         487-7FF           379
         COMMON           07D-07D             1           1
         CONFIG           2007-2007             1           2
         CONST            001-003             3           2
-                         1B3-1FF            4D
-                         48F-7FF           100
+                         1C0-1FF            40
+                         487-7FF           100
         EEDATA           2100-217F            80           2
         ENTRY            001-003             3           2
-                         1B3-1FF            4D
-                         48F-7FF           100
+                         1C0-1FF            40
+                         487-7FF           100
         IDLOC            2000-2003             4           2
         RAM              04A-06F            26           1
                          0A0-0EF            50
@@ -152,11 +152,11 @@ UNUSED ADDRESS RANGES
         SFR3             180-1EF            70           1
         STACK            0A0-0EF            50           1
         STRCODE          001-003             3           2
-                         1B3-1FF            4D
-                         48F-7FF           371
+                         1C0-1FF            40
+                         487-7FF           379
         STRING           001-003             3           2
-                         1B3-1FF            4D
-                         48F-7FF           100
+                         1C0-1FF            40
+                         487-7FF           100
 
                                   Symbol Table
 
@@ -221,7 +221,7 @@ __Hbank2                            bank2        000
 __Hbank3                            bank3        000
 __HbssBANK0                         bssBANK0     000
 __HbssCOMMON                        bssCOMMON    000
-__Hcinit                            cinit        032
+__Hcinit                            cinit        036
 __Hclrtext                          clrtext      000
 __Hcode                             code         000
 __Hcommon                           common       000
@@ -238,6 +238,7 @@ __Hinit                             init         010
 __Hintentry                         intentry     010
 __Hmaintext                         maintext     000
 __HnvBANK0                          nvBANK0      000
+__HnvCOMMON                         nvCOMMON     000
 __Hpowerup                          powerup      000
 __Hram                              ram          000
 __Hreset_vec                        reset_vec    001
@@ -245,7 +246,7 @@ __Hsfr0                             sfr0         000
 __Hsfr1                             sfr1         000
 __Hsfr2                             sfr2         000
 __Hsfr3                             sfr3         000
-__Hspace_0                          (abs)        48F
+__Hspace_0                          (abs)        487
 __Hspace_1                          (abs)        07D
 __Hspace_2                          (abs)        000
 __Hspace_3                          (abs)        000
@@ -276,6 +277,7 @@ __Linit                             init         010
 __Lintentry                         intentry     004
 __Lmaintext                         maintext     000
 __LnvBANK0                          nvBANK0      000
+__LnvCOMMON                         nvCOMMON     000
 __Lpowerup                          powerup      000
 __Lram                              ram          000
 __Lreset_vec                        reset_vec    000
@@ -290,21 +292,21 @@ __Lspace_3                          (abs)        000
 __Lstack                            stack        000
 __Lstrings                          strings      000
 __Ltext                             text         000
-__S0                                (abs)        48F
+__S0                                (abs)        487
 __S1                                (abs)        07D
 __S2                                (abs)        000
 __S3                                (abs)        000
 ___int_sp                           stack        000
 ___latbits                          (abs)        000
 ___sp                               stack        000
-__end_of__initialization            cinit        030
+__end_of__initialization            cinit        034
 __end_of__stringtab                 strings      206
 __end_of_calculateBitsFromTable     text5        44A
 __end_of_codeToMatrix               strings      286
 __end_of_importantKeys              strings      2DA
 __end_of_kempstonMouseKeys          strings      2E0
-__end_of_main                       maintext     1B3
-__end_of_myDelay                    text4        48F
+__end_of_main                       maintext     1C0
+__end_of_myDelay                    text4        487
 __end_of_myIsr                      text6        36C
 __end_of_replaceOnDelayKeyDown      strings      2D4
 __end_of_replaceOnShiftKeyDown      strings      2B0
@@ -313,20 +315,21 @@ __end_of_sendDataToAltera           text3        40C
 __end_of_updateKey                  text1        3C3
 __end_of_updatePort                 text2        47B
 __initialization                    cinit        011
-__pbssBANK0                         bssBANK0     032
+__pbssBANK0                         bssBANK0     03D
 __pbssCOMMON                        bssCOMMON    079
 __pcstackBANK0                      cstackBANK0  020
 __pcstackCOMMON                     cstackCOMMON 070
-__pdataBANK0                        dataBANK0    03E
+__pdataBANK0                        dataBANK0    032
 __pidataBANK0                       idataBANK0   47B
 __pintentry                         intentry     004
-__pmaintext                         maintext     032
-__pnvBANK0                          nvBANK0      049
+__pmaintext                         maintext     036
+__pnvBANK0                          nvBANK0      047
+__pnvCOMMON                         nvCOMMON     07C
 __pstrings                          strings      200
 __ptext1                            text1        36C
 __ptext2                            text2        44A
 __ptext3                            text3        3C3
-__ptext4                            text4        48E
+__ptext4                            text4        486
 __ptext5                            text5        40C
 __ptext6                            text6        2E0
 __size_of_calculateBitsFromTable    (abs)        000
@@ -340,34 +343,34 @@ __stringbase                        strings      205
 __stringtab                         strings      200
 _calculateBitsFromTable             text5        40C
 _codeToMatrix                       strings      206
-_delay                              bssBANK0     034
-_delayedKey                         bssBANK0     036
+_delay                              bssBANK0     03F
+_delayedKey                         bssBANK0     041
 _importantKeys                      strings      2D4
-_kempstonMouseEmulatorDelay         bssBANK0     032
-_kempstonMouseEmulatorKeys          bssBANK0     03C
+_kempstonMouseEmulatorDelay         bssBANK0     03D
+_kempstonMouseEmulatorKeys          bssBANK0     045
 _kempstonMouseKeys                  strings      2DA
-_main                               maintext     032
-_myDelay                            text4        48E
+_main                               maintext     036
+_myDelay                            text4        486
 _myIsr                              text6        2E0
 _myIsr$133                          cstackCOMMON 076
 _nRBPU                              (abs)        40F
-_numLock                            bssBANK0     038
-_outPorts                           dataBANK0    03E
+_numLock                            bssBANK0     043
+_outPorts                           dataBANK0    032
 _ps2Bits                            bssCOMMON    07B
 _ps2BitsCount                       bssCOMMON    07A
-_ps2Data                            bssBANK0     03B
-_ps2DataState                       bssCOMMON    07C
-_ps2Device                          bssBANK0     03A
-_ps2Down                            nvBANK0      049
+_ps2Data                            nvBANK0      049
+_ps2DataState                       nvCOMMON     07C
+_ps2Device                          nvBANK0      048
+_ps2Down                            nvBANK0      047
 _ps2NeedEncode                      bssCOMMON    079
-_ps2WaitCode                        bssBANK0     039
+_ps2WaitCode                        bssBANK0     044
 _replaceOnDelayKeyDown              strings      2CC
 _replaceOnShiftKeyDown              strings      286
 _replaceTwoBytesCodes               strings      2B0
-_replaced                           bssBANK0     037
+_replaced                           bssBANK0     042
 _sendDataToAltera                   text3        3C3
 _sendDataToAltera$150               cstackBANK0  022
-_shift_ctrl_alt                     bssBANK0     03D
+_shift_ctrl_alt                     bssBANK0     046
 _updateKey                          text1        36C
 _updateKey$143                      cstackBANK0  029
 _updatePort                         text2        44A
@@ -377,8 +380,7 @@ calculateBitsFromTable@clearIfFound cstackBANK0  022
 calculateBitsFromTable@count        cstackBANK0  021
 calculateBitsFromTable@i            cstackBANK0  026
 calculateBitsFromTable@table        cstackBANK0  020
-clear_ram0                          clrtext      486
-end_of_initialization               cinit        030
+end_of_initialization               cinit        034
 interrupt_function                  intentry     004
 intlevel0                           functab      000
 intlevel1                           functab      000
@@ -411,7 +413,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 361 in file "main.c"
+		line 360 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -444,7 +446,7 @@ Total ram usage:        5 bytes
 
  *************** function _updateKey *****************
  Defined at:
-		line 190 in file "main.c"
+		line 189 in file "main.c"
  Parameters:    Size  Location     Type
   key             1    wreg     unsigned char 
   set             1    6[BANK0 ] unsigned char 
@@ -478,7 +480,7 @@ Total ram usage:        7 bytes
 
  *************** function _updatePort *****************
  Defined at:
-		line 181 in file "main.c"
+		line 180 in file "main.c"
  Parameters:    Size  Location     Type
   bit_id          1    wreg     unsigned char 
   set             1    0[BANK0 ] unsigned char 
@@ -511,7 +513,7 @@ Total ram usage:        6 bytes
 
  *************** function _sendDataToAltera *****************
  Defined at:
-		line 241 in file "main.c"
+		line 240 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -541,7 +543,7 @@ Total ram usage:        5 bytes
 
  *************** function _myDelay *****************
  Defined at:
-		line 209 in file "main.c"
+		line 208 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -571,7 +573,7 @@ Total ram usage:        0 bytes
 
  *************** function _calculateBitsFromTable *****************
  Defined at:
-		line 311 in file "main.c"
+		line 310 in file "main.c"
  Parameters:    Size  Location     Type
   bits            1    wreg     PTR unsigned char 
 		 -> kempstonMouseEmulatorKeys(1), shift_ctrl_alt(1), 
@@ -608,7 +610,7 @@ Total ram usage:        7 bytes
 
  *************** function _myIsr *****************
  Defined at:
-		line 114 in file "main.c"
+		line 113 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -645,20 +647,20 @@ shared
 		_codeToMatrix  		STRING         	0206	0000	129
 		_importantKeys 		STRING         	02D4	0000	7
 		_replaceTwoBytesCodes		STRING         	02B0	0000	29
-		__initialization		CODE           	0011	0000	32
+		__initialization		CODE           	0011	0000	36
 		_replaceOnShiftKeyDown		STRING         	0286	0000	43
 		_replaceOnDelayKeyDown		STRING         	02CC	0000	9
 
-shared estimated size: 263
+shared estimated size: 267
 
 main.c
 		_updatePort    		CODE           	044A	0000	50
-		_main          		CODE           	0032	0000	386
+		_main          		CODE           	0036	0000	395
 		_calculateBitsFromTable		CODE           	040C	0000	63
 		_myIsr         		CODE           	02E0	0000	141
-		_myDelay       		CODE           	048E	0000	2
+		_myDelay       		CODE           	0486	0000	2
 		_updateKey     		CODE           	036C	0000	88
 		_sendDataToAltera		CODE           	03C3	0000	74
 
-main.c estimated size: 804
+main.c estimated size: 813
 

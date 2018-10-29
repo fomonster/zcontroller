@@ -228,26 +228,22 @@ void myDelay()
 //---------------------------------------------
 void sendDataToAltera()
 {    
-       // 
-    RA2 = 1; //STROBE    
-
-    RA1 = 1; // RESTRIG 
+    RA1 = 0; // RESTRIG
+    RA2 = 1; // STROBE
     myDelay();
-    RA2 = 0; //STROBE
+    RA1 = 1; // RESTRIG
     myDelay();
-    RA2 = 1; //STROBE
-    RA1 = 0; // RESTRIG 
+    RA1 = 0; // RESTRIG    
     myDelay();
     for(int8_t i=0;i<11;i++) {
-        RA2 = 1; //STROBE   
         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
-
-        RA2 = 0; //STROBE        
+        myDelay();
+        RA2 = 0; //STROBE
+        myDelay();
+        RA2 = 1; //STROBE   
         myDelay();
     }
-    RA2 = 1; //STROBE
-
-    PORTB = 0xFF;
+    PORTB = 0xFF; 
 }
 /*
 void sendToPs2Device()

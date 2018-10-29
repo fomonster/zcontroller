@@ -211,7 +211,7 @@ begin
 		if RESTRIG = '1' then
 			count := "0000"; 
 		else
-			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
+			if STROBE'event and STROBE = '1' then --falling_edge STROBE'event and STROBE = '0'	
 			
 				case count is
 					when X"0" => portA := PB(4 downto 0); -- Keyboard

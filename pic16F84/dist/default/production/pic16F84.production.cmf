@@ -11,26 +11,26 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+$C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 reset_vec CODE 0 0 0 1 2
 end_init CODE 0 F F 1 2
 $dist/default/production\pic16F84.production.o
 cinit CODE 0 10 10 1D 2
 text1 CODE 0 36C 36C 54 2
-text2 CODE 0 1AE 1AE 30 2
-text3 CODE 0 3C0 3C0 40 2
-text4 CODE 0 1F1 1F1 1 2
-text5 CODE 0 171 171 3D 2
+text2 CODE 0 1B3 1B3 30 2
+text3 CODE 0 171 171 42 2
+text4 CODE 0 3FD 3FD 1 2
+text5 CODE 0 3C0 3C0 3D 2
 text6 CODE 0 2E0 2E0 8C 2
 nvBANK0 BANK0 1 42 42 1 1
 maintext CODE 0 2D 2D 144 2
 cstackBANK0 BANK0 1 C C 1B 1
 intentry CODE 0 4 4 B 2
 bssBANK0 BANK0 1 27 27 10 1
-idataBANK0 CODE 0 1DE 1DE B 2
+idataBANK0 CODE 0 1E3 1E3 B 2
 strings STRING 0 200 200 E0 2
 dataBANK0 BANK0 1 37 37 B 1
-clrtext CODE 0 1E9 1E9 8 2
+clrtext CODE 0 1EE 1EE 8 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -40,21 +40,26 @@ clrtext CODE 0 1E9 1E9 8 2
 RAM 43-4D 1
 BANK0 43-4D 1
 CONST 1-3 2
-CONST 1F2-1FF 2
+CONST 1F6-1FF 2
+CONST 3FE-3FF 2
 ENTRY 1-3 2
-ENTRY 1F2-1FF 2
+ENTRY 1F6-1FF 2
+ENTRY 3FE-3FF 2
 IDLOC 2000-2003 2
 STACK 43-4D 1
 CODE 1-3 2
-CODE 1F2-1FF 2
+CODE 1F6-1FF 2
+CODE 3FE-3FF 2
 SFR0 0-B 1
 SFR1 80-CD 1
 CONFIG 2007-2007 2
 EEDATA 2100-213F 2
 STRCODE 1-3 2
-STRCODE 1F2-1FF 2
+STRCODE 1F6-1FF 2
+STRCODE 3FE-3FF 2
 STRING 1-3 2
-STRING 1F2-1FF 2
+STRING 1F6-1FF 2
+STRING 3FE-3FF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -69,38 +74,38 @@ STRING 1F2-1FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\pic16F84.production.o
-10 cinit CODE >527:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-10 cinit CODE >530:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-10 cinit CODE >589:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-11 cinit CODE >590:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-12 cinit CODE >591:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-13 cinit CODE >592:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-14 cinit CODE >593:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-15 cinit CODE >594:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-16 cinit CODE >595:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-17 cinit CODE >596:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-18 cinit CODE >597:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-19 cinit CODE >598:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1A cinit CODE >599:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1B cinit CODE >600:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1C cinit CODE >601:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1D cinit CODE >602:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1E cinit CODE >603:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1F cinit CODE >604:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-20 cinit CODE >605:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-21 cinit CODE >606:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-22 cinit CODE >607:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-23 cinit CODE >608:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-24 cinit CODE >609:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-25 cinit CODE >610:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-26 cinit CODE >629:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-27 cinit CODE >630:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-28 cinit CODE >631:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-29 cinit CODE >632:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-2A cinit CODE >633:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-2B cinit CODE >639:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-2B cinit CODE >641:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-2C cinit CODE >642:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
+10 cinit CODE >527:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+10 cinit CODE >530:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+10 cinit CODE >589:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+11 cinit CODE >590:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+12 cinit CODE >591:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+13 cinit CODE >592:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+14 cinit CODE >593:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+15 cinit CODE >594:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+16 cinit CODE >595:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+17 cinit CODE >596:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+18 cinit CODE >597:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+19 cinit CODE >598:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1A cinit CODE >599:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1B cinit CODE >600:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1C cinit CODE >601:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1D cinit CODE >602:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1E cinit CODE >603:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F cinit CODE >604:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+20 cinit CODE >605:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+21 cinit CODE >606:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+22 cinit CODE >607:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+23 cinit CODE >608:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+24 cinit CODE >609:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+25 cinit CODE >610:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+26 cinit CODE >629:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+27 cinit CODE >630:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+28 cinit CODE >631:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+29 cinit CODE >632:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+2A cinit CODE >633:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+2B cinit CODE >639:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+2B cinit CODE >641:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+2C cinit CODE >642:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
 4 intentry CODE >102:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 2E0 text6 CODE >102:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 2E0 text6 CODE >104:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
@@ -139,42 +144,42 @@ $dist/default/production\pic16F84.production.o
 360 text6 CODE >163:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 360 text6 CODE >164:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 361 text6 CODE >165:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-171 text5 CODE >303:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-173 text5 CODE >305:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-174 text5 CODE >317:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-178 text5 CODE >306:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-17F text5 CODE >307:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-182 text5 CODE >308:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-192 text5 CODE >309:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-193 text5 CODE >310:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1A4 text5 CODE >312:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1A7 text5 CODE >313:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1A8 text5 CODE >315:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1A9 text5 CODE >317:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1F1 text4 CODE >197:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1F1 text4 CODE >200:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C0 text3 CODE >229:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C0 text3 CODE >232:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C2 text3 CODE >234:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C3 text3 CODE >235:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C4 text3 CODE >236:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C6 text3 CODE >237:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C7 text3 CODE >238:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3C9 text3 CODE >239:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3CA text3 CODE >240:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3CB text3 CODE >241:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3D2 text3 CODE >242:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3D3 text3 CODE >243:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3F0 text3 CODE >245:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3F1 text3 CODE >246:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3F2 text3 CODE >247:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3FC text3 CODE >248:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3FD text3 CODE >250:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3FF text3 CODE >251:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1AE text2 CODE >169:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1B0 text2 CODE >171:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1C7 text2 CODE >172:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1D4 text2 CODE >173:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3C0 text5 CODE >299:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3C2 text5 CODE >301:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3C3 text5 CODE >313:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3C7 text5 CODE >302:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3CE text5 CODE >303:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3D1 text5 CODE >304:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3E1 text5 CODE >305:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3E2 text5 CODE >306:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3F3 text5 CODE >308:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3F6 text5 CODE >309:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3F7 text5 CODE >311:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3F8 text5 CODE >313:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3FD text4 CODE >197:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3FD text4 CODE >200:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+171 text3 CODE >229:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+171 text3 CODE >231:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+173 text3 CODE >232:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+174 text3 CODE >233:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+175 text3 CODE >234:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+177 text3 CODE >235:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+178 text3 CODE >236:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+17A text3 CODE >237:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+17B text3 CODE >238:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+182 text3 CODE >239:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+19F text3 CODE >240:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1A0 text3 CODE >241:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1A2 text3 CODE >242:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1A3 text3 CODE >243:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1A5 text3 CODE >244:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1A6 text3 CODE >245:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1B0 text3 CODE >246:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1B2 text3 CODE >247:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1B3 text2 CODE >169:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1B5 text2 CODE >171:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1CC text2 CODE >172:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1D9 text2 CODE >173:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 36C text1 CODE >178:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 36E text1 CODE >180:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 372 text1 CODE >181:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
@@ -187,107 +192,107 @@ $dist/default/production\pic16F84.production.o
 3AF text1 CODE >189:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 3B2 text1 CODE >190:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 3B8 text1 CODE >191:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-2D maintext CODE >353:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-2D maintext CODE >355:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-2F maintext CODE >356:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-30 maintext CODE >357:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-31 maintext CODE >358:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-32 maintext CODE >359:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-33 maintext CODE >361:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-35 maintext CODE >363:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-37 maintext CODE >364:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-39 maintext CODE >384:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3A maintext CODE >386:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3B maintext CODE >387:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3D maintext CODE >388:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3E maintext CODE >389:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-3F maintext CODE >391:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-41 maintext CODE >392:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-42 maintext CODE >393:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-43 maintext CODE >394:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-44 maintext CODE >397:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-46 maintext CODE >398:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-47 maintext CODE >399:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-48 maintext CODE >400:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-49 maintext CODE >401:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-4A maintext CODE >402:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-4B maintext CODE >403:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-4E maintext CODE >405:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-4F maintext CODE >410:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-54 maintext CODE >412:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-57 maintext CODE >418:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-62 maintext CODE >420:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-71 maintext CODE >428:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-79 maintext CODE >429:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-82 maintext CODE >433:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-91 maintext CODE >434:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-95 maintext CODE >435:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-96 maintext CODE >436:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-97 maintext CODE >440:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-A2 maintext CODE >441:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-A6 maintext CODE >442:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-A7 maintext CODE >443:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-A8 maintext CODE >451:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-AE maintext CODE >452:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-B5 maintext CODE >453:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-C0 maintext CODE >454:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-C8 maintext CODE >455:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-C9 maintext CODE >456:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-D1 maintext CODE >457:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-D2 maintext CODE >458:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-D6 maintext CODE >460:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-D7 maintext CODE >462:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-E0 maintext CODE >466:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-E6 maintext CODE >467:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-F0 maintext CODE >468:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-F4 maintext CODE >469:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-F8 maintext CODE >470:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-FC maintext CODE >471:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-100 maintext CODE >472:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-101 maintext CODE >473:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-102 maintext CODE >475:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-103 maintext CODE >477:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-10C maintext CODE >483:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-112 maintext CODE >486:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-113 maintext CODE >495:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-115 maintext CODE >497:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-116 maintext CODE >498:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-118 maintext CODE >499:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-119 maintext CODE >500:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-11A maintext CODE >504:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-11F maintext CODE >506:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-125 maintext CODE >507:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-129 maintext CODE >509:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-12C maintext CODE >511:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-12D maintext CODE >513:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-136 maintext CODE >515:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-13A maintext CODE >516:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-13C maintext CODE >517:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-13D maintext CODE >520:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-13E maintext CODE >523:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-145 maintext CODE >524:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-14C maintext CODE >525:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-14F maintext CODE >526:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-153 maintext CODE >527:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-159 maintext CODE >528:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-15F maintext CODE >529:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-163 maintext CODE >530:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-16A maintext CODE >531:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-16B maintext CODE >534:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-16C maintext CODE >536:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-16F maintext CODE >539:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-16F maintext CODE >541:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-170 maintext CODE >542:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
-1E9 clrtext CODE >616:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1E9 clrtext CODE >617:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1EA clrtext CODE >618:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1EA clrtext CODE >619:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1EB clrtext CODE >620:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1EC clrtext CODE >621:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1ED clrtext CODE >622:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1EE clrtext CODE >623:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1EF clrtext CODE >624:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
-1F0 clrtext CODE >625:C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.
+2D maintext CODE >349:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+2D maintext CODE >351:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+2F maintext CODE >352:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+30 maintext CODE >353:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+31 maintext CODE >354:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+32 maintext CODE >355:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+33 maintext CODE >357:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+35 maintext CODE >359:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+37 maintext CODE >360:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+39 maintext CODE >380:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3A maintext CODE >382:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3B maintext CODE >383:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3D maintext CODE >384:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3E maintext CODE >385:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+3F maintext CODE >387:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+41 maintext CODE >388:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+42 maintext CODE >389:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+43 maintext CODE >390:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+44 maintext CODE >393:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+46 maintext CODE >394:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+47 maintext CODE >395:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+48 maintext CODE >396:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+49 maintext CODE >397:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+4A maintext CODE >398:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+4B maintext CODE >399:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+4E maintext CODE >401:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+4F maintext CODE >406:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+54 maintext CODE >408:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+57 maintext CODE >414:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+62 maintext CODE >416:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+71 maintext CODE >424:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+79 maintext CODE >425:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+82 maintext CODE >429:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+91 maintext CODE >430:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+95 maintext CODE >431:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+96 maintext CODE >432:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+97 maintext CODE >436:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+A2 maintext CODE >437:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+A6 maintext CODE >438:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+A7 maintext CODE >439:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+A8 maintext CODE >447:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+AE maintext CODE >448:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+B5 maintext CODE >449:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+C0 maintext CODE >450:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+C8 maintext CODE >451:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+C9 maintext CODE >452:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+D1 maintext CODE >453:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+D2 maintext CODE >454:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+D6 maintext CODE >456:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+D7 maintext CODE >458:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+E0 maintext CODE >462:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+E6 maintext CODE >463:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+F0 maintext CODE >464:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+F4 maintext CODE >465:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+F8 maintext CODE >466:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+FC maintext CODE >467:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+100 maintext CODE >468:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+101 maintext CODE >469:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+102 maintext CODE >471:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+103 maintext CODE >473:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+10C maintext CODE >479:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+112 maintext CODE >482:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+113 maintext CODE >491:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+115 maintext CODE >493:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+116 maintext CODE >494:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+118 maintext CODE >495:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+119 maintext CODE >496:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+11A maintext CODE >500:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+11F maintext CODE >502:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+125 maintext CODE >503:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+129 maintext CODE >505:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+12C maintext CODE >507:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+12D maintext CODE >509:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+136 maintext CODE >511:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+13A maintext CODE >512:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+13C maintext CODE >513:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+13D maintext CODE >516:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+13E maintext CODE >519:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+145 maintext CODE >520:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+14C maintext CODE >521:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+14F maintext CODE >522:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+153 maintext CODE >523:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+159 maintext CODE >524:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+15F maintext CODE >525:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+163 maintext CODE >526:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+16A maintext CODE >527:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+16B maintext CODE >530:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+16C maintext CODE >532:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+16F maintext CODE >535:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+16F maintext CODE >537:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+170 maintext CODE >538:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+1EE clrtext CODE >616:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1EE clrtext CODE >617:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1EF clrtext CODE >618:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1EF clrtext CODE >619:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F0 clrtext CODE >620:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F1 clrtext CODE >621:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F2 clrtext CODE >622:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F3 clrtext CODE >623:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F4 clrtext CODE >624:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
+1F5 clrtext CODE >625:C:\Users\FOMONS~1\AppData\Local\Temp\seo4.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -303,7 +308,7 @@ FC maintext CODE >471:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic
 updateKey@code 21 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
 ___latbits 0 0 ABS 0 - dist/default/production\pic16F84.production.o
 __LdataBANK0 0 0 ABS 0 dataBANK0 -
-__Hspace_0 400 0 ABS 0 - -
+__Hspace_0 3FE 0 ABS 0 - -
 __Hspace_1 43 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
@@ -311,17 +316,17 @@ __HidataBANK0 0 0 ABS 0 idataBANK0 -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 main@i 26 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
 __Hstrings 0 0 ABS 0 strings -
-_myDelay 3E2 0 CODE 0 text4 dist/default/production\pic16F84.production.o
+_myDelay 7FA 0 CODE 0 text4 dist/default/production\pic16F84.production.o
 _T0CS 40D 0 ABS 0 - dist/default/production\pic16F84.production.o
 _T0IE 5D 0 ABS 0 - dist/default/production\pic16F84.production.o
 _T0IF 5A 0 ABS 0 - dist/default/production\pic16F84.production.o
 _T0SE 40C 0 ABS 0 - dist/default/production\pic16F84.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\pic16F84.production.o
-___sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+___sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 _main 5A 0 CODE 0 maintext dist/default/production\pic16F84.production.o
-_calculateBitsFromTable 2E2 0 CODE 0 text5 dist/default/production\pic16F84.production.o
+_calculateBitsFromTable 780 0 CODE 0 text5 dist/default/production\pic16F84.production.o
 btemp 4E 0 ABS 0 - dist/default/production\pic16F84.production.o
-start 1E 0 CODE 0 init C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+start 1E 0 CODE 0 init C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 __size_of_main 0 0 ABS 0 - dist/default/production\pic16F84.production.o
 __end_of_replaceOnDelayKeyDown 5A8 0 STRING 0 strings dist/default/production\pic16F84.production.o
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
@@ -329,12 +334,12 @@ __Hpowerup 0 0 CODE 0 powerup -
 _kempstonMouseEmulatorKeys 35 0 BANK0 1 bssBANK0 dist/default/production\pic16F84.production.o
 __end_of_replaceOnShiftKeyDown 560 0 STRING 0 strings dist/default/production\pic16F84.production.o
 _replaceOnDelayKeyDown 598 0 STRING 0 strings dist/default/production\pic16F84.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 wtemp0 4E 0 ABS 0 - dist/default/production\pic16F84.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 _replaceOnShiftKeyDown 50C 0 STRING 0 strings dist/default/production\pic16F84.production.o
@@ -357,16 +362,16 @@ __end_of_kempstonMouseKeys 5C0 0 STRING 0 strings dist/default/production\pic16F
 start_initialization 20 0 CODE 0 cinit dist/default/production\pic16F84.production.o
 calculateBitsFromTable@i 1B 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
 _numLock 2D 0 BANK0 1 bssBANK0 dist/default/production\pic16F84.production.o
-_sendDataToAltera 780 0 CODE 0 text3 dist/default/production\pic16F84.production.o
-clear_ram0 3D2 0 CODE 0 clrtext dist/default/production\pic16F84.production.o
+_sendDataToAltera 2E2 0 CODE 0 text3 dist/default/production\pic16F84.production.o
+clear_ram0 3DC 0 CODE 0 clrtext dist/default/production\pic16F84.production.o
 __pcstackBANK0 C 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
-__end_of_calculateBitsFromTable 35C 0 CODE 0 text5 dist/default/production\pic16F84.production.o
+__end_of_calculateBitsFromTable 7FA 0 CODE 0 text5 dist/default/production\pic16F84.production.o
 _TRISA0 428 0 ABS 0 - dist/default/production\pic16F84.production.o
 _TRISA1 429 0 ABS 0 - dist/default/production\pic16F84.production.o
 _TRISA2 42A 0 ABS 0 - dist/default/production\pic16F84.production.o
 _TRISA3 42B 0 ABS 0 - dist/default/production\pic16F84.production.o
 _TRISA4 42C 0 ABS 0 - dist/default/production\pic16F84.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+___int_sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 BANK1 1 bank1 -
 __Hcinit 5A 0 CODE 0 cinit -
@@ -404,19 +409,19 @@ _GIE 5F 0 ABS 0 - dist/default/production\pic16F84.production.o
 _PSA 40B 0 ABS 0 - dist/default/production\pic16F84.production.o
 _RA1 29 0 ABS 0 - dist/default/production\pic16F84.production.o
 _RA2 2A 0 ABS 0 - dist/default/production\pic16F84.production.o
-__S0 400 0 ABS 0 - -
+__S0 3FE 0 ABS 0 - -
 __S1 43 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 _kempstonMouseKeys 5B4 0 STRING 0 strings dist/default/production\pic16F84.production.o
 __size_of_myDelay 0 0 ABS 0 - dist/default/production\pic16F84.production.o
 saved_w 4E 0 ABS 0 - dist/default/production\pic16F84.production.o
-__end_of_sendDataToAltera 800 0 CODE 0 text3 dist/default/production\pic16F84.production.o
+__end_of_sendDataToAltera 366 0 CODE 0 text3 dist/default/production\pic16F84.production.o
 __size_of_sendDataToAltera 0 0 ABS 0 - dist/default/production\pic16F84.production.o
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __Lintentry 8 0 CODE 0 intentry -
 __stringtab 400 0 STRING 0 strings dist/default/production\pic16F84.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 updatePort@set 15 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
 __pdataBANK0 37 0 BANK0 1 dataBANK0 dist/default/production\pic16F84.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
@@ -430,11 +435,11 @@ calculateBitsFromTable@count 16 0 BANK0 1 cstackBANK0 dist/default/production\pi
 calculateBitsFromTable@table 15 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
 main@i_119 25 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
 _importantKeys 5A8 0 STRING 0 strings dist/default/production\pic16F84.production.o
-stackhi 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
-stacklo 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\s8h4.o
+stackhi 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
+stacklo 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\seo4.o
 __size_of_calculateBitsFromTable 0 0 ABS 0 - dist/default/production\pic16F84.production.o
 __end_of__stringtab 40C 0 STRING 0 strings dist/default/production\pic16F84.production.o
-__end_of_myDelay 3E4 0 CODE 0 text4 dist/default/production\pic16F84.production.o
+__end_of_myDelay 7FC 0 CODE 0 text4 dist/default/production\pic16F84.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
@@ -448,12 +453,12 @@ __Hintentry 1E 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 2 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-_updatePort 35C 0 CODE 0 text2 dist/default/production\pic16F84.production.o
+_updatePort 366 0 CODE 0 text2 dist/default/production\pic16F84.production.o
 __ptext1 6D8 0 CODE 0 text1 dist/default/production\pic16F84.production.o
-__ptext2 35C 0 CODE 0 text2 dist/default/production\pic16F84.production.o
-__ptext3 780 0 CODE 0 text3 dist/default/production\pic16F84.production.o
-__ptext4 3E2 0 CODE 0 text4 dist/default/production\pic16F84.production.o
-__ptext5 2E2 0 CODE 0 text5 dist/default/production\pic16F84.production.o
+__ptext2 366 0 CODE 0 text2 dist/default/production\pic16F84.production.o
+__ptext3 2E2 0 CODE 0 text3 dist/default/production\pic16F84.production.o
+__ptext4 7FA 0 CODE 0 text4 dist/default/production\pic16F84.production.o
+__ptext5 780 0 CODE 0 text5 dist/default/production\pic16F84.production.o
 __ptext6 5C0 0 CODE 0 text6 dist/default/production\pic16F84.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 _codeToMatrix 40C 0 STRING 0 strings dist/default/production\pic16F84.production.o
@@ -464,13 +469,13 @@ updateKey@localShift 1D 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.p
 __end_of__initialization 56 0 CODE 0 cinit dist/default/production\pic16F84.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 _myIsr$87 12 0 BANK0 1 cstackBANK0 dist/default/production\pic16F84.production.o
-__pidataBANK0 3BC 0 CODE 0 idataBANK0 dist/default/production\pic16F84.production.o
+__pidataBANK0 3C6 0 CODE 0 idataBANK0 dist/default/production\pic16F84.production.o
 __Lclrtext 0 0 ABS 0 clrtext -
 _ps2WaitCode 2F 0 BANK0 1 bssBANK0 dist/default/production\pic16F84.production.o
 _outPorts 37 0 BANK0 1 dataBANK0 dist/default/production\pic16F84.production.o
 _ps2BitsCount 32 0 BANK0 1 bssBANK0 dist/default/production\pic16F84.production.o
 __pcstackCOMMON 0 0 COMMON 1 cstackCOMMON dist/default/production\pic16F84.production.o
-__end_of_updatePort 3BC 0 CODE 0 text2 dist/default/production\pic16F84.production.o
+__end_of_updatePort 3C6 0 CODE 0 text2 dist/default/production\pic16F84.production.o
 __Hend_init 20 0 CODE 0 end_init -
 _ps2Bits 33 0 BANK0 1 bssBANK0 dist/default/production\pic16F84.production.o
 _ps2Data 31 0 BANK0 1 bssBANK0 dist/default/production\pic16F84.production.o
@@ -522,8 +527,8 @@ __pstrings 400 0 STRING 0 strings dist/default/production\pic16F84.production.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text6 0 2E0 5C0 120 2
+text6 0 2E0 5C0 11E 2
 cstackBANK0 1 C C 37 1
-intentry 0 4 8 1EE 2
+intentry 0 4 8 1F2 2
 reset_vec 0 0 0 1 2
 strings 0 200 400 E0 2

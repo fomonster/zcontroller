@@ -227,7 +227,7 @@ begin
 					when X"A" => portK := PB(7 downto 0);
 					when others => null;
 				end case;
-                count := count + 1;	
+                count := count + 1;		
                 
             end if;                        
         end if;

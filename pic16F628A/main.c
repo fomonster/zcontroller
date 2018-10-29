@@ -15,7 +15,6 @@
 
 #include <pic16f628a.h>
 #include "ps2tozxtable.h"
-#include <pic.h>
 
 //__CONFIG(FOSC1 & FOSC0);
 // FOSC2, FOSC1, FOSC0 <= 011
@@ -64,10 +63,10 @@ static uint8_t delayedKey = 0; // dalayed key code
 static uint8_t outPorts[11] = 
 {
     // keyboard
-    0x00, // 0 - #FEFE - CS...V    "11111110"
-    0x00, // 1 - #FDFE - A...G     "11111101"  
-    0x00, // 2 - #FBFE - Q...T     "11111011"  
-    0x00, // 3 - #F7FE - 1...5     "11110111"  
+    0x00, // 0 - #FEFE - CS,Z,X,C,V    "11111110"
+    0x00, // 1 - #FDFE - A,S,D,F,G     "11111101"  
+    0x00, // 2 - #FBFE - Q,W,E,R,T     "11111011"  
+    0x00, // 3 - #F7FE - 1,2,3,4,5     "11110111"  
     0x00, // 4 - #EFFE - 0...6     "11101111"
     0x00, // 5 - #DFFE - P...Y     "11011111"  
     0x00, // 6 - #BFFE - Enter...H "10111111"   
@@ -405,7 +404,7 @@ void main(void)
     TMR1L = 0;
     TMR1H = 0;
     TMR2 = 0;
-    T1CON = 0;
+    T1CON = 6;
     CCPR1L = 0;
     CCPR1H = 0;
     CCP1CON = 0;
@@ -431,7 +430,7 @@ void main(void)
             
     // PORT
     TRISB = 0; // Port B all as output
-    PORTB = 0; // Setup port B
+    PORTB = 0xFF; // Setup port B
     
     // 
     ps2Data = 0;
@@ -448,6 +447,11 @@ void main(void)
     
     while(1)
     {
+        
+        ps2DataState = PS2DATA_RECEIVED;
+        ps2Device = 0;
+        ps2Data = 69;
+                
         // Key code is received and changed with replaceTwoBytesCodes table.
         if ( ps2DataState == PS2DATA_RECEIVED ) {
                     
