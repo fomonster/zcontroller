@@ -5,6 +5,19 @@
  * ZX Spectrum PS/2 keyboard reader for pic16f84a powered by Z-Controller
  */
 
+/*******************************************************************************
+ * Config:       
+ *   0x3F2F
+ * 
+ *   FOSC0 <= 1 
+ *   FOSC1 <= 1 
+ *   WDTEN <= 0 (disable) - watchdog timer. ???????? ?????? ????? ??????? ? ???, ??? ?? ????????????? ??????????????? ????? ?? ???????? ?? ?????.
+ *   /PWRTE <= 1 (disable) - power up timer - ??? ????????? ?? ????? ?????????? ?? ?? ??? ???, ???? ??????? ?? ?????????? ?? ??????? ??????.
+ *   
+ * 
+ * 
+ ******************************************************************************/
+
 #include <xc.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -196,7 +209,7 @@ void updateKey(uint8_t key, uint8_t set) // true when down
 *******************************************************************************/
 void myDelay()
 {
-   // for(uint8_t j = 0; j < 5; j++) { };
+    for(uint8_t j = 0; j < 5; j++) { };
 }
 
 
@@ -226,21 +239,25 @@ void myDelay()
 //	release the data line.
 //	The 11th pulse is an ACK from the device.
 //---------------------------------------------
+//  R 01000000
+//  S 11110111
+//  D XXXSXXXS 
 void sendDataToAltera()
 {    
-    RA1 = 0; // RESTRIG
     RA2 = 1; // STROBE
+    RA1 = 0; // RESTRIG
     myDelay();
     RA1 = 1; // RESTRIG
     myDelay();
     RA1 = 0; // RESTRIG    
     myDelay();
     for(int8_t i=0;i<11;i++) {
+        RA2 = 1; //STROBE   
         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
         myDelay();
-        RA2 = 0; //STROBE
+        RA2 = 0; //STROBE 
         myDelay();
-        RA2 = 1; //STROBE   
+        RA2 = 1; //STROBE --  
         myDelay();
     }
     PORTB = 0xFF; 
@@ -348,6 +365,13 @@ void sendToKeyboardLED(uint8_t id, uint8_t state)
 *******************************************************************************/
 void main(void)
 {    
+    /*for(int8_t i=0;i<8;i++) {
+        outPorts[i] = 0;
+    };
+    outPorts[8] = 7;
+    outPorts[9] = 0xF5; 
+    outPorts[10] = 0xDA;*/
+
     TRISA1 = 0; // pin 18 output RESTRIG to ALTERA
     TRISA2 = 0; // pin 1 output STROBE to ALTERA
     TRISA0 = 1; // pin 17 input select ps/2 device (0-keyboard, 1-mouse)
@@ -405,7 +429,7 @@ void main(void)
         // Key code is received and changed with replaceTwoBytesCodes table.
         if ( ps2DataState == PS2DATA_RECEIVED ) {
                     
-            if ( ps2Device == 0 ) { // keyboard
+            //if ( ps2Device == 0 ) { // keyboard
                 
                 /****************************************************
                  * 
@@ -414,9 +438,7 @@ void main(void)
                 calculateBitsFromTable(&shift_ctrl_alt, importantKeys, 6, false);
                 
                 calculateBitsFromTable(&kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
-                
-                
-                
+
                 /****************************************************
                  *  Stuff
                  ****************************************************/
@@ -481,11 +503,11 @@ void main(void)
                 // send data to altera registers
                 sendDataToAltera();
                 
-            } else if ( ps2Device == 1 ) { // mouse
+            //} else if ( ps2Device == 1 ) { // mouse
                 
                 
                 
-            }
+            //}
             
             // wait new data
             ps2Data = 0;

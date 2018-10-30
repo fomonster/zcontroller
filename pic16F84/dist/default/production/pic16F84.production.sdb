@@ -11,19 +11,19 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"102 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"115 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"169
+"182
 [v _updatePort updatePort `(v  1 e 1 0 ]
-"178
+"191
 [v _updateKey updateKey `(v  1 e 1 0 ]
-"197
+"210
 [v _myDelay myDelay `(v  1 e 1 0 ]
-"229
+"245
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"299
+"316
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
-"349
+"366
 [v _main main `(v  1 e 1 0 ]
 "13 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84/ps2tozxtable.h
 [v _kempstonMouseKeys kempstonMouseKeys `DC[6]uc  1 e 6 0 ]
@@ -33,9 +33,9 @@
 [v _replaceOnDelayKeyDown replaceOnDelayKeyDown `DC[8]uc  1 e 8 0 ]
 "46
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[42]uc  1 e 42 0 ]
-"74
+"78
 [v _replaceTwoBytesCodes replaceTwoBytesCodes `DC[28]uc  1 e 28 0 ]
-"96
+"100
 [v _codeToMatrix codeToMatrix `DC[128]uc  1 e 128 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -80,108 +80,110 @@
 [v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
 "740
 [v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
-"30 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
+"43 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F84\main.c
 [v _ps2DataState ps2DataState `c  1 s 1 ps2DataState ]
-"33
-[v _ps2Bits ps2Bits `uc  1 s 1 ps2Bits ]
-"34
-[v _ps2BitsCount ps2BitsCount `c  1 s 1 ps2BitsCount ]
-"37
-[v _ps2Data ps2Data `uc  1 s 1 ps2Data ]
-"38
-[v _ps2Device ps2Device `c  1 s 1 ps2Device ]
-"39
-[v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
-"40
-[v _ps2Down ps2Down `c  1 s 1 ps2Down ]
-"41
-[v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
-"44
-[v _numLock numLock `uc  1 s 1 numLock ]
-"45
-[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
 "46
-[v _replaced replaced `uc  1 s 1 replaced ]
-"48
-[v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
+[v _ps2Bits ps2Bits `uc  1 s 1 ps2Bits ]
+"47
+[v _ps2BitsCount ps2BitsCount `c  1 s 1 ps2BitsCount ]
+"50
+[v _ps2Data ps2Data `uc  1 s 1 ps2Data ]
+"51
+[v _ps2Device ps2Device `c  1 s 1 ps2Device ]
 "52
+[v _ps2WaitCode ps2WaitCode `c  1 s 1 ps2WaitCode ]
+"53
+[v _ps2Down ps2Down `c  1 s 1 ps2Down ]
+"54
+[v _ps2NeedEncode ps2NeedEncode `c  1 s 1 ps2NeedEncode ]
+"57
+[v _numLock numLock `uc  1 s 1 numLock ]
+"58
+[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
+"59
+[v _replaced replaced `uc  1 s 1 replaced ]
+"61
+[v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
+"65
 [v _outPorts outPorts `[11]uc  1 s 11 outPorts ]
-"70
+"83
 [v _delay delay `ui  1 s 2 delay ]
-"71
+"84
 [v _kempstonMouseEmulatorDelay kempstonMouseEmulatorDelay `ui  1 s 2 kempstonMouseEmulatorDelay ]
-"72
+"85
 [v _kempstonMouseEmulatorKeys kempstonMouseEmulatorKeys `uc  1 s 1 kempstonMouseEmulatorKeys ]
-"349
+"366
 [v _main main `(v  1 e 1 0 ]
 {
-"462
-[v main@i_119 i `c  1 a 1 25 ]
-"447
+"484
+[v main@i_120 i `c  1 a 1 25 ]
+"469
 [v main@i i `c  1 a 1 26 ]
-"540
+"562
 } 0
-"178
+"191
 [v _updateKey updateKey `(v  1 e 1 0 ]
 {
 [v updateKey@key key `uc  1 a 1 wreg ]
-"180
+"193
 [v updateKey@code code `uc  1 a 1 21 ]
-"182
+"195
 [v updateKey@localCtrl localCtrl `uc  1 a 1 19 ]
-"181
+"194
 [v updateKey@localShift localShift `uc  1 a 1 17 ]
-"178
+"191
 [v updateKey@key key `uc  1 a 1 wreg ]
 [v updateKey@set set `uc  1 p 1 15 ]
-"180
-[v updateKey@key key `uc  1 a 1 20 ]
 "193
+[v updateKey@key key `uc  1 a 1 20 ]
+"206
 } 0
-"169
+"182
 [v _updatePort updatePort `(v  1 e 1 0 ]
 {
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
-"171
+"184
 [v updatePort@a a `uc  1 a 1 13 ]
-"169
+"182
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
 [v updatePort@set set `uc  1 p 1 9 ]
-"171
+"184
 [v updatePort@bit_id bit_id `uc  1 a 1 14 ]
-"174
+"187
 } 0
-"229
+"245
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"238
-[v sendDataToAltera@i i `c  1 a 1 13 ]
-"247
+"254
+[v sendDataToAltera@i i `c  1 a 1 15 ]
+"264
 } 0
-"197
+"210
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
-"200
+"212
+[v myDelay@j j `uc  1 a 1 10 ]
+"213
 } 0
-"299
+"316
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
 {
 [v calculateBitsFromTable@bits bits `*.4uc  1 a 1 wreg ]
-"301
+"318
 [v calculateBitsFromTable@i i `uc  1 a 1 15 ]
-"299
+"316
 [v calculateBitsFromTable@bits bits `*.4uc  1 a 1 wreg ]
 [v calculateBitsFromTable@table table `*.24uc  1 p 1 9 ]
 [v calculateBitsFromTable@count count `uc  1 p 1 10 ]
 [v calculateBitsFromTable@clearIfFound clearIfFound `uc  1 p 1 11 ]
-"301
+"318
 [v calculateBitsFromTable@bits bits `*.4uc  1 a 1 14 ]
-"314
+"331
 } 0
-"102
+"115
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"129
+"142
 [v myIsr@i i `c  1 a 1 8 ]
-"165
+"178
 } 0

@@ -1566,7 +1566,7 @@ static uint8_t outPorts[11] =
 static uint16_t delay = 0;
 static uint16_t kempstonMouseEmulatorDelay = 0;
 static uint8_t kempstonMouseEmulatorKeys = 0;
-# 113 "main.c"
+# 114 "main.c"
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 {
     if(T0IE && T0IF){
@@ -1609,7 +1609,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                 } else if ( ps2Bits == 0xE0 ) {
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
-# 163 "main.c"
+# 164 "main.c"
                 } else {
                     ps2DataState = 2;
                 }
@@ -1622,7 +1622,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
     } else {
 
     }
-    GIE = 1;
+
 }
 
 
@@ -1659,17 +1659,18 @@ void myDelay()
 {
 
 }
-# 240 "main.c"
- void sendDataToAltera()
+# 241 "main.c"
+void sendDataToAltera()
 {
-    RA1 = 0;
     RA2 = 1;
+    RA1 = 0;
     myDelay();
     RA1 = 1;
     myDelay();
     RA1 = 0;
     myDelay();
     for(int8_t i=0;i<11;i++) {
+        RA2 = 1;
         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
         myDelay();
         RA2 = 0;
@@ -1679,7 +1680,7 @@ void myDelay()
     }
     PORTB = 0xFF;
 }
-# 310 "main.c"
+# 312 "main.c"
 void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
 {
     for(uint8_t i = 0; i < count;i++) {
@@ -1696,9 +1697,17 @@ void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8
         }
     }
 }
-# 360 "main.c"
+# 362 "main.c"
 void main(void)
 {
+    for(int8_t i=0;i<8;i++) {
+        outPorts[i] = 0;
+    }
+    outPorts[8] = 0x07;
+    outPorts[9] = 0xF5;
+    outPorts[10] = 0xDA;
+    sendDataToAltera();
+
 
 
 
@@ -1758,15 +1767,15 @@ void main(void)
 
 
     PORTA = 0;
-    TRISA = 255;
+
     TRISA0 = 1;
     TRISA1 = 0;
     TRISA2 = 0;
     TRISA3 = 1;
     TRISA4 = 1;
-
-
-
+    TRISA5 = 1;
+    TRISA6 = 1;
+    TRISA7 = 1;
 
 
     TRISB = 0;
@@ -1788,14 +1797,14 @@ void main(void)
     while(1)
     {
 
-        ps2DataState = 2;
-        ps2Device = 0;
-        ps2Data = 69;
+
+
+
 
 
         if ( ps2DataState == 2 ) {
 
-            if ( ps2Device == 0 ) {
+
 
 
 
@@ -1804,8 +1813,6 @@ void main(void)
                 calculateBitsFromTable(&shift_ctrl_alt, importantKeys, 6, 0);
 
                 calculateBitsFromTable(&kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
-
-
 
 
 
@@ -1870,22 +1877,13 @@ void main(void)
 
 
                 sendDataToAltera();
-
-            } else if ( ps2Device == 1 ) {
-
-
-
-            }
-
-
+# 549 "main.c"
             ps2Data = 0;
 
             ps2WaitCode = 0;
             ps2Down = 1;
             ps2NeedEncode = 0;
             ps2DataState = 0;
-
-
 
         } else if ( delay != 0 ) {
 
@@ -1924,7 +1922,6 @@ void main(void)
             }
 
         }
-
         __asm("clrwdt");
     }
 

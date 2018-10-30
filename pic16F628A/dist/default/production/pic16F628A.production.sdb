@@ -11,19 +11,19 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"113 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+"114 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"180
+"181
 [v _updatePort updatePort `(v  1 e 1 0 ]
-"189
+"190
 [v _updateKey updateKey `(v  1 e 1 0 ]
-"208
+"209
 [v _myDelay myDelay `(v  1 e 1 0 ]
-"240
+"241
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"310
+"312
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
-"360
+"362
 [v _main main `(v  1 e 1 0 ]
 "13 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A/ps2tozxtable.h
 [v _kempstonMouseKeys kempstonMouseKeys `DC[6]uc  1 e 6 0 ]
@@ -73,8 +73,6 @@
 [v _RCSTA RCSTA `VEuc  1 e 1 @24 ]
 "767
 [v _CMCON CMCON `VEuc  1 e 1 @31 ]
-"907
-[v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "969
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1144
@@ -151,6 +149,12 @@
 [v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
 "1620
 [v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
+"1623
+[v _TRISA5 TRISA5 `VEb  1 e 0 @1069 ]
+"1626
+[v _TRISA6 TRISA6 `VEb  1 e 0 @1070 ]
+"1629
+[v _TRISA7 TRISA7 `VEb  1 e 0 @1071 ]
 "1668
 [v _TXIE TXIE `VEb  1 e 0 @1124 ]
 "1671
@@ -189,76 +193,78 @@
 [v _kempstonMouseEmulatorDelay kempstonMouseEmulatorDelay `ui  1 s 2 kempstonMouseEmulatorDelay ]
 "83
 [v _kempstonMouseEmulatorKeys kempstonMouseEmulatorKeys `uc  1 s 1 kempstonMouseEmulatorKeys ]
-"360
+"362
 [v _main main `(v  1 e 1 0 ]
 {
-"512
-[v main@i_164 i `c  1 a 1 16 ]
-"497
-[v main@i i `c  1 a 1 17 ]
-"591
+"520
+[v main@i_168 i `c  1 a 1 17 ]
+"505
+[v main@i_167 i `c  1 a 1 18 ]
+"364
+[v main@i i `c  1 a 1 16 ]
+"596
 } 0
-"189
+"190
 [v _updateKey updateKey `(v  1 e 1 0 ]
 {
 [v updateKey@key key `uc  1 a 1 wreg ]
-"191
-[v updateKey@code code `uc  1 a 1 12 ]
-"193
-[v updateKey@localCtrl localCtrl `uc  1 a 1 10 ]
 "192
+[v updateKey@code code `uc  1 a 1 12 ]
+"194
+[v updateKey@localCtrl localCtrl `uc  1 a 1 10 ]
+"193
 [v updateKey@localShift localShift `uc  1 a 1 8 ]
-"189
+"190
 [v updateKey@key key `uc  1 a 1 wreg ]
 [v updateKey@set set `uc  1 p 1 6 ]
-"191
+"192
 [v updateKey@key key `uc  1 a 1 11 ]
-"204
+"205
 } 0
-"180
+"181
 [v _updatePort updatePort `(v  1 e 1 0 ]
 {
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
-"182
+"183
 [v updatePort@a a `uc  1 a 1 4 ]
-"180
+"181
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
 [v updatePort@set set `uc  1 p 1 0 ]
-"182
+"183
 [v updatePort@bit_id bit_id `uc  1 a 1 5 ]
-"185
+"186
 } 0
-"240
+"241
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"249
+"250
 [v sendDataToAltera@i i `c  1 a 1 4 ]
-"258
+"260
 } 0
-"208
+"209
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
-"211
+"212
 } 0
-"310
+"312
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
 {
 [v calculateBitsFromTable@bits bits `*.4uc  1 a 1 wreg ]
-"312
+"314
 [v calculateBitsFromTable@i i `uc  1 a 1 6 ]
-"310
+"312
 [v calculateBitsFromTable@bits bits `*.4uc  1 a 1 wreg ]
 [v calculateBitsFromTable@table table `*.24uc  1 p 1 0 ]
 [v calculateBitsFromTable@count count `uc  1 p 1 1 ]
 [v calculateBitsFromTable@clearIfFound clearIfFound `uc  1 p 1 2 ]
-"312
+"314
 [v calculateBitsFromTable@bits bits `*.4uc  1 a 1 5 ]
-"325
+"327
 } 0
-"113
+"114
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"140
+"141
 [v myIsr@i i `c  1 a 1 8 ]
-"176
+"177
 } 0

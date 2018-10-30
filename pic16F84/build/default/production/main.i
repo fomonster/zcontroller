@@ -7,13 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-
-
-
-
-
-
-
+# 21 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -487,7 +481,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 2 3
-# 8 "main.c" 2
+# 21 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -586,7 +580,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 9 "main.c" 2
+# 22 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -671,7 +665,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 10 "main.c" 2
+# 23 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
@@ -780,10 +774,10 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 11 "main.c" 2
+# 24 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdbool.h" 1 3
-# 12 "main.c" 2
+# 25 "main.c" 2
 
 
 
@@ -831,21 +825,25 @@ const uint8_t replaceOnShiftKeyDown[42] =
     38, 81,
     37, 83,
     46, 86,
+
     54, 87,
     61, 92,
     62, 94,
     70, 95,
     69, 96,
+
     78, 97,
     85, 98,
     93, 99,
     76, 103,
     82, 104,
+
     65, 106,
     73, 109,
     74, 110,
     14, 72,
     84, 100,
+
     91, 101
  };
 
@@ -1005,8 +1003,8 @@ const uint8_t codeToMatrix[128] =
 0xFF,
 0xFF,
 };
-# 17 "main.c" 2
-# 30 "main.c"
+# 30 "main.c" 2
+# 43 "main.c"
 static int8_t ps2DataState = 0;
 
 
@@ -1050,7 +1048,7 @@ static uint8_t outPorts[11] =
 static uint16_t delay = 0;
 static uint16_t kempstonMouseEmulatorDelay = 0;
 static uint8_t kempstonMouseEmulatorKeys = 0;
-# 102 "main.c"
+# 115 "main.c"
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 {
     if(T0IE && T0IF){
@@ -1093,7 +1091,7 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
                 } else if ( ps2Bits == 0xE0 ) {
                     ps2DataState = 0;
                     ps2NeedEncode = 1;
-# 152 "main.c"
+# 165 "main.c"
                 } else {
                     ps2DataState = 2;
                 }
@@ -1141,19 +1139,20 @@ void updateKey(uint8_t key, uint8_t set)
 
 void myDelay()
 {
-
+    for(uint8_t j = 0; j < 5; j++) { };
 }
-# 229 "main.c"
+# 245 "main.c"
 void sendDataToAltera()
 {
-    RA1 = 0;
     RA2 = 1;
+    RA1 = 0;
     myDelay();
     RA1 = 1;
     myDelay();
     RA1 = 0;
     myDelay();
     for(int8_t i=0;i<11;i++) {
+        RA2 = 1;
         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
         myDelay();
         RA2 = 0;
@@ -1163,7 +1162,7 @@ void sendDataToAltera()
     }
     PORTB = 0xFF;
 }
-# 299 "main.c"
+# 316 "main.c"
 void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
 {
     for(uint8_t i = 0; i < count;i++) {
@@ -1180,9 +1179,16 @@ void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8
         }
     }
 }
-# 349 "main.c"
+# 366 "main.c"
 void main(void)
 {
+
+
+
+
+
+
+
     TRISA1 = 0;
     TRISA2 = 0;
     TRISA0 = 1;
@@ -1193,7 +1199,7 @@ void main(void)
 
     TRISB = 0;
     PORTB = 0;
-# 380 "main.c"
+# 404 "main.c"
     ps2Data = 0;
 
     ps2WaitCode = 0;
@@ -1222,7 +1228,7 @@ void main(void)
 
         if ( ps2DataState == 2 ) {
 
-            if ( ps2Device == 0 ) {
+
 
 
 
@@ -1231,8 +1237,6 @@ void main(void)
                 calculateBitsFromTable(&shift_ctrl_alt, importantKeys, 6, 0);
 
                 calculateBitsFromTable(&kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
-
-
 
 
 
@@ -1297,14 +1301,7 @@ void main(void)
 
 
                 sendDataToAltera();
-
-            } else if ( ps2Device == 1 ) {
-
-
-
-            }
-
-
+# 513 "main.c"
             ps2Data = 0;
 
             ps2WaitCode = 0;

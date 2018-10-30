@@ -193,14 +193,9 @@ begin
 			    "011" when A(7 downto 6) = "01" and A(4 downto 0) = "10111" and read_port = '1' else -- чтение портов ZCard			    
 			    "100" when A(15 downto 0) = X"FADF" and read_port = '1' else -- чтение портов мышки
 			    "101" when A(15 downto 0) = X"FBDF" and read_port = '1' else 
-			    "110" when A(15 downto 0) = X"FFDF" and read_port = '1' else 
-			    --"001" when A(7 downto 0) = X"FE" and IORQ = '0' and RD = '0' and DOS = '1' else
+			    "110" when A(15 downto 0) = X"FFDF" and read_port = '1' else 			    
 				"000";
-	
-	-- селектор чтения записи в порты 77h, 57h
-	--zc_wr <= '1' when selector = "010" else '0';
-	--zc_rd <= '1' when selector = "011" else '0';
-	
+
 	--------------------------------------------------------------------------------
 	-- Клавиатура
 	--------------------------------------------------------------------------------
@@ -211,7 +206,7 @@ begin
 		if RESTRIG = '1' then
 			count := "0000"; 
 		else
-			if STROBE'event and STROBE = '1' then --falling_edge STROBE'event and STROBE = '0'	
+			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
 			
 				case count is
 					when X"0" => portA := PB(4 downto 0); -- Keyboard
@@ -390,7 +385,7 @@ begin
 	--                                   The end.
 	--------------------------------------------------------------------------------
 	
-	--SDEN <= portA(0);
+	--SDEN <= portA(1);
 	
 end RTL;
 

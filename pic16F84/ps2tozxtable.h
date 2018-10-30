@@ -50,21 +50,25 @@ const uint8_t replaceOnShiftKeyDown[42] =
     38, 81, // 3 + Shift = #
     37, 83, // 4 + Shift = $
     46, 86, // 5 + Shift = %
+    
     54, 87, // 6 + Shift = ^
     61, 92, // 7 + Shift = &
     62, 94, // 8 + Shift = *
     70, 95, // 9 + Shift = (
     69, 96, // 0 + Shift = )
+    
     78, 97, // - + Shift = _
     85, 98, // = + Shift = +
     93, 99, // \ + Shift = |
     76, 103, // ; + Shift = :
     82, 104, // ' + Shift = "
+    
     65, 106, // , + Shift = <
     73, 109, // . + Shift = >
     74, 110, // / + Shift = ? 
     14, 72, // ` + Shift = ~
     84, 100, // [ + Shift = {
+    
     91, 101 // ] + Shift = }
  };
 
