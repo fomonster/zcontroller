@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\pic16F628A.production.sym \
   --cmf=dist/default/production\pic16F628A.production.cmf -z -Q16F628A \
-  -oC:\Users\FOMONS~1\AppData\Local\Temp\s25g.2 \
+  -oC:\Users\FOMONS~1\AppData\Local\Temp\sfn0.2 \
   -Mdist/default/production/pic16F628A.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=0A0h-0efh -pstack=STACK -ACODE=00h-07FFh \
   -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 -ACONST=00h-0FFhx8 \
@@ -17,7 +17,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-07Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\s25g.o \
+  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sfn0.o \
   dist/default/production\pic16F628A.production.o 
 
 Object code version is 3.11
@@ -27,7 +27,7 @@ Machine type is 16F628A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\FOMONS~1\AppData\Local\Temp\s25g.o
+C:\Users\FOMONS~1\AppData\Local\Temp\sfn0.o
                 end_init                             10       10        1        8       0
                 reset_vec                             0        0        1        0       0
 dist/default/production\pic16F628A.production.o
