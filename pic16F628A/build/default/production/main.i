@@ -7,13 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-
-
-
-
-
-
-
+# 21 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1003,7 +997,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 2 3
-# 8 "main.c" 2
+# 21 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -1102,7 +1096,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 9 "main.c" 2
+# 22 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -1187,7 +1181,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 10 "main.c" 2
+# 23 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdint.h" 3
@@ -1296,10 +1290,11 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 11 "main.c" 2
+# 24 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\c90\\stdbool.h" 1 3
-# 12 "main.c" 2
+# 25 "main.c" 2
+
 
 
 
@@ -1521,30 +1516,37 @@ const uint8_t codeToMatrix[128] =
 0xFF,
 0xFF,
 };
-# 17 "main.c" 2
-# 34 "main.c"
-static int8_t ps2DataState = 0;
+# 31 "main.c" 2
+# 77 "main.c"
+static uint8_t ps2DataState = 0;
+
+
+
+
+static uint8_t ps2DeviceAMode = 0;
+static uint8_t ps2DeviceBMode = 0;
 
 
 static uint8_t ps2Bits = 0;
-static int8_t ps2BitsCount = 0;
+static uint8_t ps2Parity = 0;
+static uint8_t ps2BitsCount = 0;
+static uint8_t ps2Device = 0;
 
 
+static uint8_t ps2DownA = 1;
+static uint8_t ps2DownB = 1;
+static uint8_t ps2NeedEncodeA = 0;
+static uint8_t ps2NeedEncodeB = 0;
 
 
-static uint8_t numLock = 0;
-static uint8_t shift_ctrl_alt = 0;
-static uint8_t replaced = 0;
-
-static uint8_t delayedKey = 0;
+static uint8_t inDataAPos = 0;
+static uint8_t readDataAPos = 0;
+static uint8_t inDataA[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 
-static uint8_t inDataPos = 0;
-static uint8_t readDataPos = 0;
-static uint8_t inData[8] =
-{
-    0, 0, 0, 0, 0, 0, 0, 0
-};
+static uint8_t inDataBPos = 0;
+static uint8_t readDataBPos = 0;
+static uint8_t inDataB[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 
 static uint8_t outPorts[11] =
@@ -1568,14 +1570,25 @@ static uint8_t outPorts[11] =
 static uint16_t delay = 0;
 static uint16_t kempstonMouseEmulatorDelay = 0;
 static uint8_t kempstonMouseEmulatorKeys = 0;
-# 105 "main.c"
-static uint8_t ps2DataA = 0;
-static uint8_t ps2DataCount = 0;
-static uint8_t ps2Device = 0;
-static uint8_t ps2WaitCode = 0;
-static uint8_t ps2DownA = 0;
-static uint8_t ps2NeedEncode = 0;
 
+
+
+static uint8_t numLock = 0;
+static uint8_t shift_ctrl_alt = 0;
+static uint8_t replaced = 0;
+
+static uint8_t delayedKey = 0;
+
+
+
+
+
+void delay_ms(unsigned int ui_value)
+{
+ while (ui_value-- > 0) {
+  _delay((unsigned long)((1)*(8000000/4000.0)));
+ }
+}
 
 
 
@@ -1584,70 +1597,100 @@ static uint8_t ps2NeedEncode = 0;
 void __attribute__((picinterrupt("high_priority"))) myIsr(void)
 {
     if(T0IE && T0IF){
+        if ( ps2DataState == 2 ) {
 
-        T0IF=0;
-        TMR0 = 255;
+            if ( ps2BitsCount < 8 ) {
+                RA3 = ps2Bits & 1;
+                ps2Parity ^= ps2Bits & 1;
+                ps2Bits >>= 1;
+            } else if (ps2BitsCount == 8 ) {
 
-
-
-        if ( ps2DataState == 0 ) {
-            if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
-                ps2BitsCount = 0;
-                ps2Bits = 0;
-                ps2DataState = 1;
-                ps2Device = PORTAbits.RA0;
+                RA3 = ps2Parity;
+            } else {
+                RA3 = 1;
+                ps2DataState = 0;
             }
+            ps2BitsCount++;
+
         } else if ( ps2DataState == 1 ) {
             if ( ps2BitsCount < 8 ) {
-                if ( PORTAbits.RA3 ) {
-                    ps2Bits |= ( 1 << ps2BitsCount );
-                }
+                ps2Bits >>= 1;
+                if ( RA3 ) ps2Bits |= 128;
                 ps2BitsCount++;
             } else if ( ps2BitsCount == 8 ) {
                 ps2BitsCount++;
             } else if ( ps2BitsCount == 9 ) {
-                ps2DataCount++;
-                if ( ps2NeedEncode ) {
-                    for (int8_t i=0; i < 27; i+=2) {
-                        if ( ps2Bits == replaceTwoBytesCodes[i] ) {
-                            ps2DataA = replaceTwoBytesCodes[i+1];
-                            break;
-                        }
-                    }
+
+
+                if ( ps2Device == 0 ) {
+                    inDataA[inDataAPos] = ps2Bits;
+                    inDataAPos = (inDataAPos+1) & 7;
                 } else {
-                    ps2DataA = ( ps2Bits == 131 ) ? 63 : ps2Bits;
-                }
-                if ( ps2Bits == 0xF0 ) {
-                    ps2DataState = 0;
-                    ps2DownA = 128;
-                } else if ( ps2Bits == 0xE0 ) {
-                    ps2DataState = 0;
-                    ps2NeedEncode = 1;
-# 167 "main.c"
-                } else {
-
-
-                    inData[inDataPos] = (ps2DataA | ps2DownA);
-                    inDataPos = (inDataPos+1) & 7;
-
-
-                    ps2DataA = 0;
-                    ps2DataCount = 0;
-                    ps2WaitCode = 0;
-                    ps2DownA = 0;
-                    ps2NeedEncode = 0;
-                    ps2DataState = 0;
+                    inDataB[inDataBPos] = ps2Bits;
+                    inDataBPos = (inDataBPos+1) & 7;
                 }
 
+                ps2DataState = 0;
             }
-        } else if ( ps2DataState == 4 ) {
-
-            ps2DataState = 0;
+        } else if ( ps2DataState == 0 ) {
+            if ( !RA4 && !RA3 ) {
+                ps2BitsCount = 0;
+                ps2Bits = 0;
+                ps2DataState = 1;
+                ps2Device = RA0;
+            }
         }
+        T0IF=0;
+        TMR0 = 255;
     } else {
 
     }
 }
+
+
+
+
+
+void send(uint8_t device, uint8_t byte)
+{
+
+    T0IE = 0;
+
+    RA3 = 1;
+    TRISA = 0b11100000;
+    RA0 = device;
+    RA3 = 1;
+    RA4 = 0;
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
+    RA3 = 0;
+    RA4 = 1;
+    TRISA = 0b11110000;
+    _delay((unsigned long)((20)*(8000000/4000000.0)));
+
+
+    ps2DataState = 2;
+    ps2Bits = byte;
+    ps2Parity = 1;
+    ps2BitsCount = 0;
+    TMR0 = 255;
+    T0IF = 0;
+    T0IE = 1;
+
+
+    for(uint8_t i = 0; i < 10;i++ ) {
+        for(uint8_t j = 0; j < 10;j++ ) {
+            _delay((unsigned long)((10)*(8000000/4000000.0)));
+            if ( ps2DataState == 0 ) break;
+        }
+        if ( ps2DataState == 0 ) break;
+    }
+
+    RA3 = 1;
+    _delay((unsigned long)((50)*(8000000/4000000.0)));
+    TRISA = 0b11111001;
+}
+
+
 
 
 
@@ -1659,6 +1702,23 @@ void updatePort(uint8_t bit_id, uint8_t set)
     else outPorts[bit_id & 7] &= ~a;
 }
 
+
+void calculateBitsFromTable(uint8_t* keyCode, uint8_t* keyDown, uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
+{
+    for(uint8_t i = 0; i < count;i++) {
+        if ( (*keyCode) == table[i] ) {
+            if ( (*keyDown) ) {
+                (*bits) |= (1 << i);
+            } else {
+                (*bits) &= ~(1 << i);
+            }
+            if ( clearIfFound ) {
+                (*keyCode) = 0;
+            }
+            break;
+        }
+    }
+}
 
 
 void updateKey(uint8_t key, uint8_t down)
@@ -1679,12 +1739,11 @@ void updateKey(uint8_t key, uint8_t down)
 }
 
 
-
 void myDelay()
 {
-
 }
-# 255 "main.c"
+
+
 void sendDataToAltera()
 {
     RA2 = 1;
@@ -1705,32 +1764,96 @@ void sendDataToAltera()
     }
     PORTB = 0xFF;
 }
-# 326 "main.c"
-void calculateBitsFromTable(uint8_t* keyCode, uint8_t* keyDown, uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
+
+void processKeyCode(uint8_t keyCode, uint8_t keyDown)
 {
-    for(uint8_t i = 0; i < count;i++) {
-        if ( (*keyCode) == table[i] ) {
-            if ( (*keyDown) ) {
-                (*bits) |= (1 << i);
+
+
+
+    calculateBitsFromTable(&keyCode, &keyDown, &shift_ctrl_alt, importantKeys, 6, 0);
+
+    calculateBitsFromTable(&keyCode, &keyDown, &kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
+
+
+
+
+
+    if ( keyCode == 119 && keyDown ) {
+        numLock = !numLock;
+    }
+
+
+    if ( (shift_ctrl_alt & 12) > 0 && (shift_ctrl_alt & 48) > 0 && keyCode == 31 && keyDown ) {
+        outPorts[8] &= 253;
+    } else {
+        outPorts[8] |= 2;
+    }
+
+
+    if ( (shift_ctrl_alt & 12) > 0 && keyCode == 126 && keyDown ) {
+        outPorts[8] &= 251;
+    } else {
+        outPorts[8] |= 4;
+    }
+
+
+
+
+
+    for(int8_t i = 0; i < 41 ;i+=2) {
+        if ( keyCode == replaceOnShiftKeyDown[i] ) {
+            if ( (((shift_ctrl_alt & 3) > 0) && replaced == 0) || replaced == keyCode) {
+                if ( keyDown ) replaced = keyCode;
+                else replaced = 0;
+                keyCode = replaceOnShiftKeyDown[i+1];
             } else {
-                (*bits) &= ~(1 << i);
-            }
-            if ( clearIfFound ) {
-                (*keyCode) = 0;
+                if ( replaced != 0 ) keyCode = 0;
             }
             break;
         }
     }
+
+
+
+    for(int8_t i = 0; i < 8; i++) {
+        if ( keyCode == replaceOnDelayKeyDown[i] && keyDown ) {
+            if ( delay == 0 ) {
+                delayedKey = keyCode;
+                delay = 2600;
+                keyCode = 111;
+            } else {
+                keyCode = 0;
+            }
+            break;
+        }
+    }
+
+
+
+    updateKey(keyCode, keyDown );
+
 }
-# 376 "main.c"
+
+
+
+
 void main(void)
 {
 
-    ps2DataA = 0;
-    ps2DataCount = 0;
-    ps2WaitCode = 0;
-    ps2DownA = 0;
-    ps2NeedEncode = 0;
+
+
+
+    ps2DownA = 1;
+    ps2NeedEncodeA = 0;
+    ps2DownB = 1;
+    ps2NeedEncodeB = 0;
+
+    readDataAPos = 0;
+    inDataAPos = 0;
+    readDataBPos = 0;
+    inDataBPos = 0;
+    ps2DeviceAMode = 0;
+    ps2DeviceBMode = 0;
     ps2DataState = 0;
 
 
@@ -1773,7 +1896,7 @@ void main(void)
     TMR1IE = 0;
 
 
-    nRBPU = 0;
+    nRBPU = 1;
     INTEDG = 0;
     T0CS = 1;
     T0SE = 1;
@@ -1800,16 +1923,8 @@ void main(void)
 
 
 
+    TRISA = 0b11111001;
     PORTA = 0;
-
-    TRISA0 = 1;
-    TRISA1 = 0;
-    TRISA2 = 0;
-    TRISA3 = 1;
-    TRISA4 = 1;
-    TRISA5 = 1;
-    TRISA6 = 1;
-    TRISA7 = 1;
 
 
     TRISB = 0;
@@ -1820,127 +1935,78 @@ void main(void)
     delayedKey = 0;
     shift_ctrl_alt = 0;
     replaced = 0;
-# 482 "main.c"
+# 547 "main.c"
     while(1)
     {
         uint8_t needSave = 0;
+        uint8_t code;
 
 
-        if ( readDataPos != inDataPos ) {
+        if ( readDataAPos != inDataAPos && ps2DeviceAMode == 0 ) {
 
-            uint8_t keyCode = (inData[readDataPos] & 127);
-            uint8_t keyDown = (inData[readDataPos] & 128) == 0;
-            readDataPos = (readDataPos + 1) & 7;
+            code = inDataA[readDataAPos];
+            readDataAPos = (readDataAPos + 1) & 7;
 
-
-
-
-
-
-
-                calculateBitsFromTable(&keyCode, &keyDown, &shift_ctrl_alt, importantKeys, 6, 0);
-
-                calculateBitsFromTable(&keyCode, &keyDown, &kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
-
-
-
-
-
-
-                if ( keyCode == 119 && keyDown ) {
-                    numLock = !numLock;
-                }
-
-
-                if ( (shift_ctrl_alt & 12) > 0 && (shift_ctrl_alt & 48) > 0 && keyCode == 31 && keyDown ) {
-                    outPorts[8] &= 253;
-                } else {
-                    outPorts[8] |= 2;
-                }
-
-
-                if ( (shift_ctrl_alt & 12) > 0 && keyCode == 126 && keyDown ) {
-                    outPorts[8] &= 251;
-                } else {
-                    outPorts[8] |= 4;
-                }
-
-
-
-
-
-
-                for(int8_t i = 0; i < 41 ;i+=2) {
-                    if ( keyCode == replaceOnShiftKeyDown[i] ) {
-                        if ( (((shift_ctrl_alt & 3) > 0) && replaced == 0) || replaced == keyCode) {
-                            if ( keyDown ) replaced = keyCode;
-                            else replaced = 0;
-                            keyCode = replaceOnShiftKeyDown[i+1];
-                        } else {
-                            if ( replaced != 0 ) keyCode = 0;
-                        }
+            if ( ps2NeedEncodeA ) {
+                for (int8_t i=0; i < 27; i+=2) {
+                    if ( code == replaceTwoBytesCodes[i] ) {
+                        code = replaceTwoBytesCodes[i+1];
                         break;
                     }
                 }
+            } else {
+                code = ( code == 131 ) ? 63 : code;
+            }
+            if ( code == 0xF0 ) {
+                ps2DownA = 0;
+            } else if ( code == 0xE0 ) {
+                ps2NeedEncodeA = 1;
+            } else {
+                processKeyCode(code, ps2DownA);
+                needSave = 1;
+                ps2DownA = 1;
+                ps2NeedEncodeA = 0;
+            }
 
+        } else if ( readDataBPos != inDataBPos && ps2DeviceBMode == 0 ) {
 
-
-                for(int8_t i = 0; i < 8; i++) {
-                    if ( keyCode == replaceOnDelayKeyDown[i] && keyDown ) {
-                        if ( delay == 0 ) {
-                            delayedKey = keyCode;
-                            delay = 2600;
-                            keyCode = 111;
-                        } else {
-                            keyCode = 0;
-                        }
+            code = inDataB[readDataBPos];
+            readDataBPos = (readDataBPos + 1) & 7;
+            if ( ps2NeedEncodeB ) {
+                for (int8_t i=0; i < 27; i+=2) {
+                    if ( code == replaceTwoBytesCodes[i] ) {
+                        code = replaceTwoBytesCodes[i+1];
                         break;
                     }
                 }
-
-
-
-
-
-                updateKey(keyCode, keyDown );
-
-
-                needSave = 1;
-# 576 "main.c"
-        } else if ( delay != 0 ) {
-
-            delay--;
-            if ( delay == 0 ) {
-
-                updatePort(0x00, 0);
-
-                needSave = 1;
-
-            } else if ( delay == 1300 ) {
-
-                updateKey(delayedKey, 1 );
-                delayedKey = 0;
-                needSave = 1;
+            } else {
+                code = ( code == 131 ) ? 63 : code;
             }
-
-        } else {
-
-
-            kempstonMouseEmulatorDelay++;
-            if ( kempstonMouseEmulatorDelay > 2000 ) {
-
-                if ( numLock ) {
-                    if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=2;
-                    if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=2;
-                    if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=2;
-                    if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=2;
-                    if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
-                    else outPorts[8] |= 1;
-                }
-                kempstonMouseEmulatorDelay = 0;
+            if ( code == 0xF0 ) {
+                ps2DownB = 0;
+            } else if ( code == 0xE0 ) {
+               ps2NeedEncodeB = 1;
+            } else {
+                processKeyCode(code, ps2DownB);
                 needSave = 1;
+                ps2DownB = 1;
+                ps2NeedEncodeB = 0;
             }
+        }
+# 636 "main.c"
+        kempstonMouseEmulatorDelay++;
+        if ( kempstonMouseEmulatorDelay > 2000 ) {
 
+            if ( numLock ) {
+                if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=2;
+                if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=2;
+                if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=2;
+                if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=2;
+                if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
+                else outPorts[8] |= 1;
+            }
+            kempstonMouseEmulatorDelay = 0;
+            needSave = 1;
         }
 
         if ( needSave) {

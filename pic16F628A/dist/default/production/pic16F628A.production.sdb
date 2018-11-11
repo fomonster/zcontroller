@@ -11,19 +11,21 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"117 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+"153 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"195
+"254
 [v _updatePort updatePort `(v  1 e 1 0 ]
-"204
-[v _updateKey updateKey `(v  1 e 1 0 ]
-"223
-[v _myDelay myDelay `(v  1 e 1 0 ]
-"255
-[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"326
+"262
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
-"376
+"280
+[v _updateKey updateKey `(v  1 e 1 0 ]
+"298
+[v _myDelay myDelay `(v  1 e 1 0 ]
+"303
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+"324
+[v _processKeyCode processKeyCode `(v  1 e 1 0 ]
+"396
 [v _main main `(v  1 e 1 0 ]
 "13 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A/ps2tozxtable.h
 [v _kempstonMouseKeys kempstonMouseKeys `DC[6]uc  1 e 6 0 ]
@@ -41,18 +43,6 @@
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S25 . 1 `uc 1 RA0 1 0 :1:0 
-`uc 1 RA1 1 0 :1:1 
-`uc 1 RA2 1 0 :1:2 
-`uc 1 RA3 1 0 :1:3 
-`uc 1 RA4 1 0 :1:4 
-`uc 1 RA5 1 0 :1:5 
-`uc 1 RA6 1 0 :1:6 
-`uc 1 RA7 1 0 :1:7 
-]
-"183
-[u S34 . 1 `S25 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES34  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 "452
@@ -73,6 +63,8 @@
 [v _RCSTA RCSTA `VEuc  1 e 1 @24 ]
 "767
 [v _CMCON CMCON `VEuc  1 e 1 @31 ]
+"907
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "969
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1144
@@ -109,10 +101,16 @@
 [v _PS2 PS2 `VEb  1 e 0 @1034 ]
 "1455
 [v _PSA PSA `VEb  1 e 0 @1035 ]
+"1458
+[v _RA0 RA0 `VEb  1 e 0 @40 ]
 "1461
 [v _RA1 RA1 `VEb  1 e 0 @41 ]
 "1464
 [v _RA2 RA2 `VEb  1 e 0 @42 ]
+"1467
+[v _RA3 RA3 `VEb  1 e 0 @43 ]
+"1470
+[v _RA4 RA4 `VEb  1 e 0 @44 ]
 "1506
 [v _RBIE RBIE `VEb  1 e 0 @91 ]
 "1509
@@ -139,148 +137,153 @@
 [v _TMR2IE TMR2IE `VEb  1 e 0 @1121 ]
 "1590
 [v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
-"1608
-[v _TRISA0 TRISA0 `VEb  1 e 0 @1064 ]
-"1611
-[v _TRISA1 TRISA1 `VEb  1 e 0 @1065 ]
-"1614
-[v _TRISA2 TRISA2 `VEb  1 e 0 @1066 ]
-"1617
-[v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
-"1620
-[v _TRISA4 TRISA4 `VEb  1 e 0 @1068 ]
-"1623
-[v _TRISA5 TRISA5 `VEb  1 e 0 @1069 ]
-"1626
-[v _TRISA6 TRISA6 `VEb  1 e 0 @1070 ]
-"1629
-[v _TRISA7 TRISA7 `VEb  1 e 0 @1071 ]
 "1668
 [v _TXIE TXIE `VEb  1 e 0 @1124 ]
 "1671
 [v _TXIF TXIF `VEb  1 e 0 @100 ]
 "1722
 [v _nRBPU nRBPU `VEb  1 e 0 @1039 ]
-"34 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-[v _ps2DataState ps2DataState `c  1 s 1 ps2DataState ]
-"37
+"77 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+[v _ps2DataState ps2DataState `uc  1 s 1 ps2DataState ]
+"82
+[v _ps2DeviceAMode ps2DeviceAMode `uc  1 s 1 ps2DeviceAMode ]
+"83
+[v _ps2DeviceBMode ps2DeviceBMode `uc  1 s 1 ps2DeviceBMode ]
+"86
 [v _ps2Bits ps2Bits `uc  1 s 1 ps2Bits ]
-"38
-[v _ps2BitsCount ps2BitsCount `c  1 s 1 ps2BitsCount ]
-"43
-[v _numLock numLock `uc  1 s 1 numLock ]
-"44
-[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
-"45
-[v _replaced replaced `uc  1 s 1 replaced ]
-"47
-[v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
-"50
-[v _inDataPos inDataPos `uc  1 s 1 inDataPos ]
-"51
-[v _readDataPos readDataPos `uc  1 s 1 readDataPos ]
-"52
-[v _inData inData `[8]uc  1 s 8 inData ]
-"58
-[v _outPorts outPorts `[11]uc  1 s 11 outPorts ]
-"76
-[v _delay delay `ui  1 s 2 delay ]
-"77
-[v _kempstonMouseEmulatorDelay kempstonMouseEmulatorDelay `ui  1 s 2 kempstonMouseEmulatorDelay ]
-"78
-[v _kempstonMouseEmulatorKeys kempstonMouseEmulatorKeys `uc  1 s 1 kempstonMouseEmulatorKeys ]
-"105
-[v _ps2DataA ps2DataA `uc  1 s 1 ps2DataA ]
-"106
-[v _ps2DataCount ps2DataCount `uc  1 s 1 ps2DataCount ]
-"107
+"87
+[v _ps2Parity ps2Parity `uc  1 s 1 ps2Parity ]
+"88
+[v _ps2BitsCount ps2BitsCount `uc  1 s 1 ps2BitsCount ]
+"89
 [v _ps2Device ps2Device `uc  1 s 1 ps2Device ]
-"108
-[v _ps2WaitCode ps2WaitCode `uc  1 s 1 ps2WaitCode ]
-"109
+"92
 [v _ps2DownA ps2DownA `uc  1 s 1 ps2DownA ]
-"110
-[v _ps2NeedEncode ps2NeedEncode `uc  1 s 1 ps2NeedEncode ]
-"376
+"93
+[v _ps2DownB ps2DownB `uc  1 s 1 ps2DownB ]
+"94
+[v _ps2NeedEncodeA ps2NeedEncodeA `uc  1 s 1 ps2NeedEncodeA ]
+"95
+[v _ps2NeedEncodeB ps2NeedEncodeB `uc  1 s 1 ps2NeedEncodeB ]
+"98
+[v _inDataAPos inDataAPos `uc  1 s 1 inDataAPos ]
+"99
+[v _readDataAPos readDataAPos `uc  1 s 1 readDataAPos ]
+"100
+[v _inDataA inDataA `[8]uc  1 s 8 inDataA ]
+"103
+[v _inDataBPos inDataBPos `uc  1 s 1 inDataBPos ]
+"104
+[v _readDataBPos readDataBPos `uc  1 s 1 readDataBPos ]
+"105
+[v _inDataB inDataB `[8]uc  1 s 8 inDataB ]
+"108
+[v _outPorts outPorts `[11]uc  1 s 11 outPorts ]
+"126
+[v _delay delay `ui  1 s 2 delay ]
+"127
+[v _kempstonMouseEmulatorDelay kempstonMouseEmulatorDelay `ui  1 s 2 kempstonMouseEmulatorDelay ]
+"128
+[v _kempstonMouseEmulatorKeys kempstonMouseEmulatorKeys `uc  1 s 1 kempstonMouseEmulatorKeys ]
+"132
+[v _numLock numLock `uc  1 s 1 numLock ]
+"133
+[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
+"134
+[v _replaced replaced `uc  1 s 1 replaced ]
+"136
+[v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
+"396
 [v _main main `(v  1 e 1 0 ]
 {
-"546
-[v main@i_177 i `c  1 a 1 20 ]
-"531
-[v main@i_176 i `c  1 a 1 21 ]
-"489
-[v main@keyCode keyCode `uc  1 a 1 23 ]
-"490
-[v main@keyDown keyDown `uc  1 a 1 22 ]
-"484
-[v main@needSave needSave `uc  1 a 1 18 ]
-"387
-[v main@i i `c  1 a 1 19 ]
-"619
+"584
+[v main@i_167 i `c  1 a 1 29 ]
+"559
+[v main@i_164 i `c  1 a 1 28 ]
+"550
+[v main@code code `uc  1 a 1 30 ]
+"549
+[v main@needSave needSave `uc  1 a 1 26 ]
+"416
+[v main@i i `c  1 a 1 27 ]
+"658
 } 0
-"204
+"303
+[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
+{
+"312
+[v sendDataToAltera@i i `c  1 a 1 2 ]
+"322
+} 0
+"298
+[v _myDelay myDelay `(v  1 e 1 0 ]
+{
+"300
+} 0
+"324
+[v _processKeyCode processKeyCode `(v  1 e 1 0 ]
+{
+[v processKeyCode@keyCode keyCode `uc  1 a 1 wreg ]
+"374
+[v processKeyCode@i_153 i `c  1 a 1 17 ]
+"359
+[v processKeyCode@i i `c  1 a 1 18 ]
+"324
+[v processKeyCode@keyCode keyCode `uc  1 a 1 wreg ]
+[v processKeyCode@keyDown keyDown `uc  1 p 1 11 ]
+"329
+[v processKeyCode@keyCode keyCode `uc  1 a 1 19 ]
+"391
+} 0
+"280
 [v _updateKey updateKey `(v  1 e 1 0 ]
 {
 [v updateKey@key key `uc  1 a 1 wreg ]
-"206
-[v updateKey@code code `uc  1 a 1 12 ]
-"208
-[v updateKey@localCtrl localCtrl `uc  1 a 1 11 ]
-"207
-[v updateKey@localShift localShift `uc  1 a 1 9 ]
-"204
+"282
+[v updateKey@code code `uc  1 a 1 10 ]
+"284
+[v updateKey@localCtrl localCtrl `uc  1 a 1 9 ]
+"283
+[v updateKey@localShift localShift `uc  1 a 1 7 ]
+"280
 [v updateKey@key key `uc  1 a 1 wreg ]
-[v updateKey@down down `uc  1 p 1 6 ]
-"206
-[v updateKey@key key `uc  1 a 1 8 ]
-"219
+[v updateKey@down down `uc  1 p 1 5 ]
+"282
+[v updateKey@key key `uc  1 a 1 6 ]
+"295
 } 0
-"195
+"254
 [v _updatePort updatePort `(v  1 e 1 0 ]
 {
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
-"197
-[v updatePort@a a `uc  1 a 1 4 ]
-"195
+"256
+[v updatePort@a a `uc  1 a 1 3 ]
+"254
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
-[v updatePort@set set `uc  1 p 1 0 ]
-"197
-[v updatePort@bit_id bit_id `uc  1 a 1 5 ]
-"200
+[v updatePort@set set `uc  1 p 1 4 ]
+"256
+[v updatePort@bit_id bit_id `uc  1 a 1 4 ]
+"259
 } 0
-"255
-[v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-{
-"264
-[v sendDataToAltera@i i `c  1 a 1 4 ]
-"274
-} 0
-"223
-[v _myDelay myDelay `(v  1 e 1 0 ]
-{
-"226
-} 0
-"326
+"262
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
 {
 [v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 wreg ]
-"328
-[v calculateBitsFromTable@i i `uc  1 a 1 8 ]
-"326
+"264
+[v calculateBitsFromTable@i i `uc  1 a 1 6 ]
+"262
 [v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 wreg ]
 [v calculateBitsFromTable@keyDown keyDown `*.4uc  1 p 1 0 ]
 [v calculateBitsFromTable@bits bits `*.4uc  1 p 1 1 ]
 [v calculateBitsFromTable@table table `*.24uc  1 p 1 2 ]
 [v calculateBitsFromTable@count count `uc  1 p 1 3 ]
 [v calculateBitsFromTable@clearIfFound clearIfFound `uc  1 p 1 4 ]
-"328
-[v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 7 ]
-"341
+"264
+[v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 5 ]
+"277
 } 0
-"117
+"153
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-"144
-[v myIsr@i i `c  1 a 1 8 ]
-"190
+"204
 } 0
