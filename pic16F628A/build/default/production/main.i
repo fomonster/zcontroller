@@ -1519,34 +1519,28 @@ const uint8_t codeToMatrix[128] =
 # 31 "main.c" 2
 # 77 "main.c"
 static uint8_t ps2DataState = 0;
-
-
-
-
-static uint8_t ps2DeviceAMode = 0;
-static uint8_t ps2DeviceBMode = 0;
-
-
+# 87 "main.c"
 static uint8_t ps2Bits = 0;
 static uint8_t ps2Parity = 0;
 static uint8_t ps2BitsCount = 0;
 static uint8_t ps2Device = 0;
 
 
-static uint8_t ps2DownA = 1;
-static uint8_t ps2DownB = 1;
-static uint8_t ps2NeedEncodeA = 0;
-static uint8_t ps2NeedEncodeB = 0;
+struct PS2DeviceData
+{
+    uint8_t deviceMode;
+    uint8_t state;
+    uint8_t ps2Down;
+    uint8_t ps2NeedEncode;
 
+    uint8_t inDataPos;
+    uint8_t readDataPos;
+    uint8_t inData[8];
 
-static uint8_t inDataAPos = 0;
-static uint8_t readDataAPos = 0;
-static uint8_t inDataA[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+    uint16_t delay;
+};
 
-
-static uint8_t inDataBPos = 0;
-static uint8_t readDataBPos = 0;
-static uint8_t inDataB[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+static struct PS2DeviceData devices[2];
 
 
 static uint8_t outPorts[11] =
@@ -1573,6 +1567,7 @@ static uint8_t kempstonMouseEmulatorKeys = 0;
 
 
 
+static uint8_t needSave = 0;
 static uint8_t numLock = 0;
 static uint8_t shift_ctrl_alt = 0;
 static uint8_t replaced = 0;
@@ -1622,13 +1617,10 @@ void __attribute__((picinterrupt("high_priority"))) myIsr(void)
             } else if ( ps2BitsCount == 9 ) {
 
 
-                if ( ps2Device == 0 ) {
-                    inDataA[inDataAPos] = ps2Bits;
-                    inDataAPos = (inDataAPos+1) & 7;
-                } else {
-                    inDataB[inDataBPos] = ps2Bits;
-                    inDataBPos = (inDataBPos+1) & 7;
-                }
+                struct PS2DeviceData* device = &devices[ps2Device];
+
+                device->inData[device->inDataPos] = ps2Bits;
+                device->inDataPos = (device->inDataPos+1) & 7;
 
                 ps2DataState = 0;
             }
@@ -1767,6 +1759,7 @@ void sendDataToAltera()
 
 void processKeyCode(uint8_t keyCode, uint8_t keyDown)
 {
+    if ( keyCode > 127 ) return;
 
 
 
@@ -1837,24 +1830,71 @@ void processKeyCode(uint8_t keyCode, uint8_t keyDown)
 
 
 
-void main(void)
+void deviceDataInit(struct PS2DeviceData* device)
+{
+    device->ps2Down = 1;
+    device->ps2NeedEncode = 0;
+    device->readDataPos = 0;
+    device->inDataPos = 0;
+    device->deviceMode = 3;
+    device->state = 0;
+    device->delay = 0;
+}
+
+uint8_t deviceDataRead(struct PS2DeviceData* device)
+{
+    uint8_t code = device->inData[device->readDataPos];
+    device->readDataPos = (device->readDataPos + 1) & 7;
+    return code;
+}
+
+void deviceDataUpdate(struct PS2DeviceData* device)
 {
 
 
 
+    uint8_t code;
+# 452 "main.c"
+             if ( device->deviceMode == 3 ) {
 
-    ps2DownA = 1;
-    ps2NeedEncodeA = 0;
-    ps2DownB = 1;
-    ps2NeedEncodeB = 0;
+        if ( device->readDataPos != device->inDataPos ) {
 
-    readDataAPos = 0;
-    inDataAPos = 0;
-    readDataBPos = 0;
-    inDataBPos = 0;
-    ps2DeviceAMode = 0;
-    ps2DeviceBMode = 0;
-    ps2DataState = 0;
+            code = deviceDataRead(device);
+
+            if ( device->ps2NeedEncode ) {
+                for (int8_t i=0; i < 27; i+=2) {
+                    if ( code == replaceTwoBytesCodes[i] ) {
+                        code = replaceTwoBytesCodes[i+1];
+                        break;
+                    }
+                }
+            } else {
+                code = ( code == 131 ) ? 63 : code;
+            }
+            if ( code == 0xF0 ) {
+                device->ps2Down = 0;
+            } else if ( code == 0xE0 ) {
+                device->ps2NeedEncode = 1;
+            } else {
+                processKeyCode(code, device->ps2Down);
+                needSave = 1;
+                device->ps2Down = 1;
+                device->ps2NeedEncode = 0;
+            }
+
+        }
+    }
+# 499 "main.c"
+}
+
+
+
+
+void main(void)
+{
+
+    deviceDataInit(0);
+    deviceDataInit(1);
 
 
     for(int8_t i=0;i<8;i++) {
@@ -1935,65 +1975,14 @@ void main(void)
     delayedKey = 0;
     shift_ctrl_alt = 0;
     replaced = 0;
-# 547 "main.c"
+# 602 "main.c"
     while(1)
     {
-        uint8_t needSave = 0;
-        uint8_t code;
+        needSave = 0;
 
+        deviceDataUpdate(&devices[0]);
+        deviceDataUpdate(&devices[1]);
 
-        if ( readDataAPos != inDataAPos && ps2DeviceAMode == 0 ) {
-
-            code = inDataA[readDataAPos];
-            readDataAPos = (readDataAPos + 1) & 7;
-
-            if ( ps2NeedEncodeA ) {
-                for (int8_t i=0; i < 27; i+=2) {
-                    if ( code == replaceTwoBytesCodes[i] ) {
-                        code = replaceTwoBytesCodes[i+1];
-                        break;
-                    }
-                }
-            } else {
-                code = ( code == 131 ) ? 63 : code;
-            }
-            if ( code == 0xF0 ) {
-                ps2DownA = 0;
-            } else if ( code == 0xE0 ) {
-                ps2NeedEncodeA = 1;
-            } else {
-                processKeyCode(code, ps2DownA);
-                needSave = 1;
-                ps2DownA = 1;
-                ps2NeedEncodeA = 0;
-            }
-
-        } else if ( readDataBPos != inDataBPos && ps2DeviceBMode == 0 ) {
-
-            code = inDataB[readDataBPos];
-            readDataBPos = (readDataBPos + 1) & 7;
-            if ( ps2NeedEncodeB ) {
-                for (int8_t i=0; i < 27; i+=2) {
-                    if ( code == replaceTwoBytesCodes[i] ) {
-                        code = replaceTwoBytesCodes[i+1];
-                        break;
-                    }
-                }
-            } else {
-                code = ( code == 131 ) ? 63 : code;
-            }
-            if ( code == 0xF0 ) {
-                ps2DownB = 0;
-            } else if ( code == 0xE0 ) {
-               ps2NeedEncodeB = 1;
-            } else {
-                processKeyCode(code, ps2DownB);
-                needSave = 1;
-                ps2DownB = 1;
-                ps2NeedEncodeB = 0;
-            }
-        }
-# 636 "main.c"
         kempstonMouseEmulatorDelay++;
         if ( kempstonMouseEmulatorDelay > 2000 ) {
 
