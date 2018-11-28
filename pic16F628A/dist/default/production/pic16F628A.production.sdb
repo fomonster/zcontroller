@@ -5,45 +5,56 @@
 [d frameptr 6 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+[v i1___bmul __bmul `(uc  1 e 1 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"156 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+"154 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
-"254
+"215
+[v _send send `(v  1 e 1 0 ]
+"260
 [v _updatePort updatePort `(v  1 e 1 0 ]
-"262
+"268
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
-"280
+"286
 [v _updateKey updateKey `(v  1 e 1 0 ]
-"298
+"304
 [v _myDelay myDelay `(v  1 e 1 0 ]
-"303
+"309
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
-"324
+"330
 [v _processKeyCode processKeyCode `(v  1 e 1 0 ]
-"397
+"407
 [v _deviceDataInit deviceDataInit `(v  1 e 1 0 ]
-"408
-[v _deviceDataRead deviceDataRead `(uc  1 e 1 0 ]
-"415
-[v _deviceDataUpdate deviceDataUpdate `(v  1 e 1 0 ]
-"504
+"417
+[v _deviceDataUpdateKeyboard deviceDataUpdateKeyboard `(v  1 e 1 0 ]
+"446
+[v _deviceDataUpdateMouse deviceDataUpdateMouse `(v  1 e 1 0 ]
+"486
 [v _main main `(v  1 e 1 0 ]
-"13 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A/ps2tozxtable.h
+"14 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A/ps2tozxtable.h
+[v _deviceLogicMouseIndex deviceLogicMouseIndex `DCuc  1 e 1 0 ]
+"15
+[v _deviceLogicMax deviceLogicMax `DCuc  1 e 1 0 ]
+"16
+[v _deviceLogic deviceLogic `DC[9]uc  1 e 9 0 ]
+"34
 [v _kempstonMouseKeys kempstonMouseKeys `DC[6]uc  1 e 6 0 ]
-"27
+"48
 [v _importantKeys importantKeys `DC[6]uc  1 e 6 0 ]
-"38
+"59
 [v _replaceOnDelayKeyDown replaceOnDelayKeyDown `DC[8]uc  1 e 8 0 ]
-"46
+"67
 [v _replaceOnShiftKeyDown replaceOnShiftKeyDown `DC[42]uc  1 e 42 0 ]
-"74
+"95
 [v _replaceTwoBytesCodes replaceTwoBytesCodes `DC[28]uc  1 e 28 0 ]
-"96
+"117
 [v _codeToMatrix codeToMatrix `DC[128]uc  1 e 128 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f628a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -149,160 +160,231 @@
 [v _TXIF TXIF `VEb  1 e 0 @100 ]
 "1722
 [v _nRBPU nRBPU `VEb  1 e 0 @1039 ]
-"77 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+"78 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 [v _ps2DataState ps2DataState `uc  1 s 1 ps2DataState ]
-"87
+"86
 [v _ps2Bits ps2Bits `uc  1 s 1 ps2Bits ]
-"88
+"87
 [v _ps2Parity ps2Parity `uc  1 s 1 ps2Parity ]
-"89
+"88
 [v _ps2BitsCount ps2BitsCount `uc  1 s 1 ps2BitsCount ]
-"90
+"89
 [v _ps2Device ps2Device `uc  1 s 1 ps2Device ]
-[s S22 PS2DeviceData 16 `uc 1 deviceMode 1 0 `uc 1 state 1 1 `uc 1 ps2Down 1 2 `uc 1 ps2NeedEncode 1 3 `uc 1 inDataPos 1 4 `uc 1 readDataPos 1 5 `[8]uc 1 inData 8 6 `ui 1 delay 2 14 ]
+"90
+[v _ps2DeviceMain ps2DeviceMain `uc  1 s 1 ps2DeviceMain ]
+"104
+[v _deviceLogicDelay deviceLogicDelay `ui  1 s 2 deviceLogicDelay ]
+"105
+[v _deviceLogicIndex deviceLogicIndex `uc  1 s 1 deviceLogicIndex ]
+"106
+[v _deviceLogicCommand deviceLogicCommand `uc  1 s 1 deviceLogicCommand ]
 "107
-[v _devices devices `[2]S22  1 s 32 devices ]
+[v _deviceLogicState deviceLogicState `uc  1 s 1 deviceLogicState ]
+"108
+[v _deviceLogicDevice deviceLogicDevice `uc  1 s 1 deviceLogicDevice ]
+[s S22 PS2DeviceData 13 `uc 1 deviceMode 1 0 `uc 1 ps2Down 1 1 `uc 1 ps2NeedEncode 1 2 `uc 1 inDataPos 1 3 `uc 1 readDataPos 1 4 `[8]uc 1 inData 8 5 ]
 "110
+[v _devices devices `[2]S22  1 s 26 devices ]
+"113
 [v _outPorts outPorts `[11]uc  1 s 11 outPorts ]
-"128
+"131
 [v _delay delay `ui  1 s 2 delay ]
-"129
+"132
 [v _kempstonMouseEmulatorDelay kempstonMouseEmulatorDelay `ui  1 s 2 kempstonMouseEmulatorDelay ]
-"130
+"133
 [v _kempstonMouseEmulatorKeys kempstonMouseEmulatorKeys `uc  1 s 1 kempstonMouseEmulatorKeys ]
 "134
-[v _needSave needSave `uc  1 s 1 needSave ]
+[v _kempstonMouseCounterA kempstonMouseCounterA `ui  1 s 2 kempstonMouseCounterA ]
 "135
-[v _numLock numLock `uc  1 s 1 numLock ]
+[v _kempstonMouseCounterB kempstonMouseCounterB `uc  1 s 1 kempstonMouseCounterB ]
 "136
-[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
-"137
-[v _replaced replaced `uc  1 s 1 replaced ]
+[v _kempstonMouseCounterC kempstonMouseCounterC `uc  1 s 1 kempstonMouseCounterC ]
 "139
+[v _needSave needSave `uc  1 s 1 needSave ]
+"140
+[v _numLock numLock `uc  1 s 1 numLock ]
+"141
+[v _shift_ctrl_alt shift_ctrl_alt `uc  1 s 1 shift_ctrl_alt ]
+"142
+[v _replaced replaced `uc  1 s 1 replaced ]
+"144
 [v _delayedKey delayedKey `uc  1 s 1 delayedKey ]
-"504
+"486
 [v _main main `(v  1 e 1 0 ]
 {
-"511
-[v main@i i `c  1 a 1 30 ]
-"631
+"628
+[v main@j j `uc  1 a 1 32 ]
+"588
+[v main@device device `*.4S22  1 a 1 35 ]
+"587
+[v main@i_208 i `uc  1 a 1 34 ]
+"493
+[v main@i i `c  1 a 1 31 ]
+"581
+[v main@code code `uc  1 a 1 33 ]
+"714
 } 0
-"303
+"309
 [v _sendDataToAltera sendDataToAltera `(v  1 e 1 0 ]
 {
-"312
+"318
 [v sendDataToAltera@i i `c  1 a 1 4 ]
-"322
+"328
 } 0
-"298
+"304
 [v _myDelay myDelay `(v  1 e 1 0 ]
 {
-"300
+"306
 } 0
-"415
-[v _deviceDataUpdate deviceDataUpdate `(v  1 e 1 0 ]
+"215
+[v _send send `(v  1 e 1 0 ]
 {
-[s S22 PS2DeviceData 16 `uc 1 deviceMode 1 0 `uc 1 state 1 1 `uc 1 ps2Down 1 2 `uc 1 ps2NeedEncode 1 3 `uc 1 inDataPos 1 4 `uc 1 readDataPos 1 5 `[8]uc 1 inData 8 6 `ui 1 delay 2 14 ]
-[v deviceDataUpdate@device device `*.4S22  1 a 1 wreg ]
-"459
-[v deviceDataUpdate@i i `c  1 a 1 26 ]
-"420
-[v deviceDataUpdate@code code `uc  1 a 1 27 ]
-"415
-[v deviceDataUpdate@device device `*.4S22  1 a 1 wreg ]
-"452
-"415
-[v deviceDataUpdate@device device `*.4S22  1 a 1 28 ]
-"499
+[v send@device device `uc  1 a 1 wreg ]
+"245
+[v send@j j `uc  1 a 1 4 ]
+"244
+[v send@i i `uc  1 a 1 3 ]
+"215
+[v send@device device `uc  1 a 1 wreg ]
+[v send@byte byte `uc  1 p 1 0 ]
+"218
+[v send@device device `uc  1 a 1 2 ]
+"253
 } 0
-"324
+"446
+[v _deviceDataUpdateMouse deviceDataUpdateMouse `(v  1 e 1 0 ]
+{
+[s S22 PS2DeviceData 13 `uc 1 deviceMode 1 0 `uc 1 ps2Down 1 1 `uc 1 ps2NeedEncode 1 2 `uc 1 inDataPos 1 3 `uc 1 readDataPos 1 4 `[8]uc 1 inData 8 5 ]
+[v deviceDataUpdateMouse@device device `*.4S22  1 a 1 wreg ]
+"479
+[v deviceDataUpdateMouse@j j `uc  1 a 1 3 ]
+"463
+[v deviceDataUpdateMouse@code code `uc  1 a 1 2 ]
+"446
+[v deviceDataUpdateMouse@device device `*.4S22  1 a 1 wreg ]
+"448
+"446
+[v deviceDataUpdateMouse@device device `*.4S22  1 a 1 4 ]
+"481
+} 0
+"417
+[v _deviceDataUpdateKeyboard deviceDataUpdateKeyboard `(v  1 e 1 0 ]
+{
+[s S22 PS2DeviceData 13 `uc 1 deviceMode 1 0 `uc 1 ps2Down 1 1 `uc 1 ps2NeedEncode 1 2 `uc 1 inDataPos 1 3 `uc 1 readDataPos 1 4 `[8]uc 1 inData 8 5 ]
+[v deviceDataUpdateKeyboard@device device `*.4S22  1 a 1 wreg ]
+"424
+[v deviceDataUpdateKeyboard@i i `c  1 a 1 26 ]
+"420
+[v deviceDataUpdateKeyboard@code code `uc  1 a 1 27 ]
+"417
+[v deviceDataUpdateKeyboard@device device `*.4S22  1 a 1 wreg ]
+"419
+"417
+[v deviceDataUpdateKeyboard@device device `*.4S22  1 a 1 28 ]
+"444
+} 0
+"330
 [v _processKeyCode processKeyCode `(v  1 e 1 0 ]
 {
 [v processKeyCode@keyCode keyCode `uc  1 a 1 wreg ]
-"375
-[v processKeyCode@i_161 i `c  1 a 1 19 ]
-"360
+"381
+[v processKeyCode@i_167 i `c  1 a 1 19 ]
+"366
 [v processKeyCode@i i `c  1 a 1 20 ]
-"324
+"330
 [v processKeyCode@keyCode keyCode `uc  1 a 1 wreg ]
 [v processKeyCode@keyDown keyDown `uc  1 p 1 13 ]
-"326
+"332
 [v processKeyCode@keyCode keyCode `uc  1 a 1 21 ]
-"392
+"402
 } 0
-"280
+"286
 [v _updateKey updateKey `(v  1 e 1 0 ]
 {
 [v updateKey@key key `uc  1 a 1 wreg ]
-"282
+"288
 [v updateKey@code code `uc  1 a 1 12 ]
-"284
-[v updateKey@localCtrl localCtrl `uc  1 a 1 11 ]
-"283
-[v updateKey@localShift localShift `uc  1 a 1 9 ]
-"280
+"290
+[v updateKey@localCtrl localCtrl `uc  1 a 1 10 ]
+"289
+[v updateKey@localShift localShift `uc  1 a 1 8 ]
+"286
 [v updateKey@key key `uc  1 a 1 wreg ]
 [v updateKey@down down `uc  1 p 1 6 ]
-"282
-[v updateKey@key key `uc  1 a 1 8 ]
-"295
+"288
+[v updateKey@key key `uc  1 a 1 11 ]
+"301
 } 0
-"254
+"260
 [v _updatePort updatePort `(v  1 e 1 0 ]
 {
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
-"256
+"262
 [v updatePort@a a `uc  1 a 1 4 ]
-"254
+"260
 [v updatePort@bit_id bit_id `uc  1 a 1 wreg ]
 [v updatePort@set set `uc  1 p 1 0 ]
-"256
-[v updatePort@bit_id bit_id `uc  1 a 1 5 ]
-"259
-} 0
 "262
+[v updatePort@bit_id bit_id `uc  1 a 1 5 ]
+"265
+} 0
+"268
 [v _calculateBitsFromTable calculateBitsFromTable `(v  1 e 1 0 ]
 {
 [v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 wreg ]
-"264
+"270
 [v calculateBitsFromTable@i i `uc  1 a 1 8 ]
-"262
+"268
 [v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 wreg ]
 [v calculateBitsFromTable@keyDown keyDown `*.4uc  1 p 1 0 ]
 [v calculateBitsFromTable@bits bits `*.4uc  1 p 1 1 ]
 [v calculateBitsFromTable@table table `*.24uc  1 p 1 2 ]
 [v calculateBitsFromTable@count count `uc  1 p 1 3 ]
 [v calculateBitsFromTable@clearIfFound clearIfFound `uc  1 p 1 4 ]
-"264
+"270
 [v calculateBitsFromTable@keyCode keyCode `*.4uc  1 a 1 7 ]
-"277
+"283
 } 0
-"408
-[v _deviceDataRead deviceDataRead `(uc  1 e 1 0 ]
-{
-[s S22 PS2DeviceData 16 `uc 1 deviceMode 1 0 `uc 1 state 1 1 `uc 1 ps2Down 1 2 `uc 1 ps2NeedEncode 1 3 `uc 1 inDataPos 1 4 `uc 1 readDataPos 1 5 `[8]uc 1 inData 8 6 `ui 1 delay 2 14 ]
-[v deviceDataRead@device device `*.4S22  1 a 1 wreg ]
-"410
-[v deviceDataRead@code code `uc  1 a 1 2 ]
-"408
-[v deviceDataRead@device device `*.4S22  1 a 1 wreg ]
-"410
-"408
-[v deviceDataRead@device device `*.4S22  1 a 1 3 ]
-"413
-} 0
-"397
+"407
 [v _deviceDataInit deviceDataInit `(v  1 e 1 0 ]
 {
-[s S22 PS2DeviceData 16 `uc 1 deviceMode 1 0 `uc 1 state 1 1 `uc 1 ps2Down 1 2 `uc 1 ps2NeedEncode 1 3 `uc 1 inDataPos 1 4 `uc 1 readDataPos 1 5 `[8]uc 1 inData 8 6 `ui 1 delay 2 14 ]
-[v deviceDataInit@device device `*.39S22  1 p 2 0 ]
-"406
+[s S22 PS2DeviceData 13 `uc 1 deviceMode 1 0 `uc 1 ps2Down 1 1 `uc 1 ps2NeedEncode 1 2 `uc 1 inDataPos 1 3 `uc 1 readDataPos 1 4 `[8]uc 1 inData 8 5 ]
+[v deviceDataInit@device device `*.4S22  1 a 1 wreg ]
+[v deviceDataInit@device device `*.4S22  1 a 1 wreg ]
+"409
+"407
+[v deviceDataInit@device device `*.4S22  1 a 1 0 ]
+"414
 } 0
-"156
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v ___bmul@product product `uc  1 a 1 2 ]
+"4
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+"6
+[v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
+"51
+} 0
+"154 C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 [v _myIsr myIsr `II(v  1 e 1 0 ]
 {
-[s S22 PS2DeviceData 16 `uc 1 deviceMode 1 0 `uc 1 state 1 1 `uc 1 ps2Down 1 2 `uc 1 ps2NeedEncode 1 3 `uc 1 inDataPos 1 4 `uc 1 readDataPos 1 5 `[8]uc 1 inData 8 6 `ui 1 delay 2 14 ]
-"184
-[v myIsr@device device `*.4S22  1 a 1 5 ]
-"204
+[s S22 PS2DeviceData 13 `uc 1 deviceMode 1 0 `uc 1 ps2Down 1 1 `uc 1 ps2NeedEncode 1 2 `uc 1 inDataPos 1 3 `uc 1 readDataPos 1 4 `[8]uc 1 inData 8 5 ]
+"185
+[v myIsr@device device `*.4S22  1 a 1 9 ]
+"209
+} 0
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+[v i1___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v i1___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v i1___bmul@product __bmul `uc  1 a 1 3 ]
+[v i1___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v i1___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+"6
+[v i1___bmul@multiplier multiplier `uc  1 a 1 2 ]
+"51
 } 0

@@ -8,8 +8,29 @@
 #define IK_FIRE 16
 #define IK_FIRE2 32
 
+// ff - reset
+// f2 - read device type
+// f4 - set streaming mode
+const uint8_t deviceLogicMouseIndex = 3;
+const uint8_t deviceLogicMax = 9;
+const uint8_t deviceLogic[9] =
+{   
+    0xf2, //  
+// keyboard:
+    0xff,  
+    0xaa, // stop
+// mouse:
+    0xf4, // streaming
+    0xe8, // resolution
+    0xf3, // 
+    60,   // 
+    0x00, // 0
+    0xaa, // stop
+};
 
-
+/*
+ *  Keys Used to emulate kempston mouse
+ */
 const uint8_t kempstonMouseKeys[6] = 
 {
     // For mouse

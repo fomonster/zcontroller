@@ -62,6 +62,7 @@
 //    TRISA6 = 1;
 //    TRISA7 = 1;
 #define TRISA_RECEIVE 0b11111001
+#define TRISA_RECEIVE_A 0b11111000
 #define TRISA_SEND 0b11110000
 #define TRISA_SEND_BEGIN 0b11100000
 
@@ -77,32 +78,34 @@
 static uint8_t ps2DataState = PS2DATA_WAIT;
 
 #define DEVICE_MODE_UNKNOWN 0
-#define DEVICE_MODE_DETERMINE 1
-#define DEVICE_MODE_KEYBOARD_INIT 2
-#define DEVICE_MODE_KEYBOARD 3
-#define DEVICE_MODE_MOUSE_INIT 4
-#define DEVICE_MODE_MOUSE 5
+#define DEVICE_MODE_KEYBOARD 1
+#define DEVICE_MODE_MOUSE 2
+#define DEVICE_MODE_LOGIC 3
 
 // data mast zero for every received byte
 static uint8_t ps2Bits = 0;
 static uint8_t ps2Parity = 0;
 static uint8_t ps2BitsCount = 0;
 static uint8_t ps2Device = 0; // 0 - deviceA, 1 - deviceB 
+static uint8_t ps2DeviceMain = 3; 
 
 // 
 struct PS2DeviceData 
 {
     uint8_t deviceMode;
-    uint8_t state;
     uint8_t ps2Down;
     uint8_t ps2NeedEncode;
 
     uint8_t inDataPos; 
     uint8_t readDataPos;  
     uint8_t inData[8];
-
-    uint16_t delay; 
 };
+
+static uint16_t deviceLogicDelay = 0;
+static uint8_t deviceLogicIndex = 0;
+static uint8_t deviceLogicCommand = 0;
+static uint8_t deviceLogicState = 0;
+static uint8_t deviceLogicDevice = 0;
 
 static struct PS2DeviceData devices[2];
 
@@ -128,7 +131,9 @@ static uint8_t outPorts[11] =
 static uint16_t delay = 0; // delay for auto dalayed key press
 static uint16_t kempstonMouseEmulatorDelay = 0; // delay for auto dalayed key press
 static uint8_t kempstonMouseEmulatorKeys = 0;
-
+static uint16_t kempstonMouseCounterA = 0;
+static uint8_t kempstonMouseCounterB = 0;
+static uint8_t kempstonMouseCounterC = 0;
 
 // temp
 static uint8_t needSave = false;
@@ -141,13 +146,6 @@ static uint8_t delayedKey = 0; // dalayed key code
 /*******************************************************************************
  Tools
 *******************************************************************************/
-
-void delay_ms(unsigned int ui_value)
-{
-	while (ui_value-- > 0) {
-		__delay_ms(1);		// macro from HI-TECH compiler which will generate 1ms delay base on value of _XTAL_FREQ in system.h
-	}	
-}
 
 /*******************************************************************************
     PS2 device to host receiver and particulary host to device transmitter code
@@ -162,38 +160,45 @@ void __interrupt(high_priority) myIsr(void)
                 DATA = ps2Bits & 1;
                 ps2Parity ^= ps2Bits & 1;
                 ps2Bits >>= 1;
-            } else if (ps2BitsCount == 8 ) {
-                
+            } else if (ps2BitsCount == 8 ) {                
                 DATA = ps2Parity;
             } else {
-                DATA = 1;
+                TRISA = TRISA_RECEIVE;
                 ps2DataState = PS2DATA_WAIT;
             } 
             ps2BitsCount++;
 
         } else if ( ps2DataState == PS2DATA_RECEIVING ) {
-            if ( ps2BitsCount < 8 ) { // 1,2,3,4,5,6,7,8 - data bits
-                ps2Bits >>= 1;
-                if ( DATA ) ps2Bits |= 128;                                  
-                ps2BitsCount++;         
-            } else if ( ps2BitsCount == 8 ) { // 9 parity bit
-                ps2BitsCount++;       
-            } else if ( ps2BitsCount == 9 ) { // 10 stop bit
+            
+            //if ( DEVICE != ps2Device ) {
                 
-                // save data to arrays
-                struct PS2DeviceData* device = &devices[ps2Device];
-                
-                device->inData[device->inDataPos] = ps2Bits;
-                device->inDataPos = (device->inDataPos+1) & 7;
-                
-                ps2DataState = PS2DATA_WAIT;
-            } 
+            //} else {
+                if ( ps2BitsCount < 8 ) { // 1,2,3,4,5,6,7,8 - data bits
+                    ps2Bits >>= 1;
+                    if ( DATA ) ps2Bits |= 128;                                  
+                    ps2BitsCount++;         
+                } else if ( ps2BitsCount == 8 ) { // 9 parity bit
+                    ps2BitsCount++;       
+                } else if ( ps2BitsCount == 9 ) { // 10 stop bit
+
+                    // save data to arrays
+                    struct PS2DeviceData* device = &devices[ps2Device];
+
+                    device->inData[device->inDataPos] = ps2Bits;
+                    device->inDataPos = (device->inDataPos+1) & 7;
+
+                    ps2DataState = PS2DATA_WAIT;
+                    TRISA = TRISA_RECEIVE;
+                }
+            //}
         } else if ( ps2DataState == PS2DATA_WAIT ) {
             if ( !CLOCK && !DATA ) { // 0 start bit - PORTAbits.RA4 (clk) is low and PORTAbits.RA3 (data) is low
                 ps2BitsCount = 0;
                 ps2Bits = 0;
                 ps2DataState = PS2DATA_RECEIVING;
                 ps2Device = DEVICE;
+                TRISA = TRISA_RECEIVE_A;//;
+                DEVICE = ps2Device;
             }            
         }        
         T0IF=0;
@@ -211,27 +216,30 @@ void send(uint8_t device, uint8_t byte)
 {       
     // disable interrupts
     T0IE = 0;
+    
+    // Enable interrupts and send mode    
+    ps2Bits = byte;
+    
+    ps2Parity = 1;
+    ps2BitsCount = 0;
+    ps2DataState = PS2DATA_SENDING;
+    
+    
+    
     // init sending
     DATA = 1;
     TRISA = TRISA_SEND_BEGIN; 
     DEVICE = device;
-    DATA = 1; 
+    DATA = 1;
     CLOCK = 0; // Bring the Clock line low for at least 100 microseconds:
-    __delay_us(100);    
+    __delay_us(100);
     DATA = 0; // Bring the Data line low:
-    CLOCK = 1;
+    //CLOCK = 1;
     TRISA = TRISA_SEND; // CLK is input
-    __delay_us(20);
-    
-    // Enable interrupts and send mode
-    ps2DataState = PS2DATA_SENDING;
-    ps2Bits = byte;
-    ps2Parity = 1;
-    ps2BitsCount = 0;
     TMR0 = 255;
     T0IF = 0;
     T0IE = 1;
-    
+
     //  Wait for the keyboard to respond (wait for the device to bring the Clock line low)
     for(uint8_t i = 0; i < 10;i++ ) {
         for(uint8_t j = 0; j < 10;j++ ) {
@@ -240,10 +248,8 @@ void send(uint8_t device, uint8_t byte)
         }
         if ( ps2DataState == PS2DATA_WAIT ) break;
     }    
-    //
-    DATA = 1;
-    __delay_us(50);
-    TRISA = TRISA_RECEIVE;
+    //    
+    __delay_us(10);    
 }
 
 /*******************************************************************************
@@ -282,7 +288,7 @@ void updateKey(uint8_t key, uint8_t down) // true when down
     uint8_t code = 0xFF;
     uint8_t localShift = (((shift_ctrl_alt & IK_SHIFT) > 0) && replaced == 0); // All replaced keys is when shift pressed  
     uint8_t localCtrl = (shift_ctrl_alt & IK_CTRL) > 0;
-    code = codeToMatrix[key];
+    if ( key < 128 ) code = codeToMatrix[key];
     if ( code != 0xFF ) {
         updatePort(code, down);
         localShift |= ((code & 64) > 0);
@@ -373,15 +379,19 @@ void processKeyCode(uint8_t keyCode, uint8_t keyDown)
     // Delayed keys ( Del, [, ], {, }, ~ )
     // Those symbols intered by sequence : CS and SS both on ... delay ... key code on ... delay ... CS or SS off.
     for(int8_t i = 0; i < 8; i++) {
-        if ( keyCode == replaceOnDelayKeyDown[i] && keyDown ) { 
-            if ( delay == 0 ) {
-                delayedKey = keyCode;
-                delay = 2600;
-                keyCode = 111; // CS + SS key
+        if ( keyCode == replaceOnDelayKeyDown[i] ) {
+            if ( keyDown ) {
+                if ( delay == 0 ) {
+                    delayedKey = keyCode;
+                    delay = 400; //2600;
+                    keyCode = 111; // CS + SS key
+                } else {
+                    keyCode = 0;
+                }                    
+                break;
             } else {
-                keyCode = 0;
-            }                    
-            break;
+                //updateKey(keyCode, false );
+            }
         }
     }
 
@@ -395,107 +405,79 @@ void processKeyCode(uint8_t keyCode, uint8_t keyDown)
 *******************************************************************************/
 
 void deviceDataInit(struct PS2DeviceData* device)
-{
+{   
     device->ps2Down = true;
     device->ps2NeedEncode = 0;
     device->readDataPos = 0;
     device->inDataPos = 0;
-    device->deviceMode = DEVICE_MODE_KEYBOARD;    
-    device->state = 0;
-    device->delay = 0;
+    device->deviceMode = DEVICE_MODE_UNKNOWN;    
 }
 
-uint8_t deviceDataRead(struct PS2DeviceData* device)
+
+void deviceDataUpdateKeyboard(struct PS2DeviceData* device)
 {
+    if ( device->readDataPos == device->inDataPos  ) return;
     uint8_t code = device->inData[device->readDataPos];
-    device->readDataPos = (device->readDataPos + 1) & 7;    
-    return code;
+    device->readDataPos = (device->readDataPos + 1) & 7;
+
+    if ( device->ps2NeedEncode ) {
+        for (int8_t i=0; i < 27; i+=2) {
+            if ( code == replaceTwoBytesCodes[i] ) {
+                code = replaceTwoBytesCodes[i+1];
+                break;
+            }
+        }                   
+    } else {                    
+        code = ( code == 131 ) ? 63 : code; // F7 feature
+    }
+    if ( code == 0xF0 ) {
+        device->ps2Down = false;
+    } else if ( code == 0xE0 ) {
+        device->ps2NeedEncode = 1;
+    } else {
+        processKeyCode(code, device->ps2Down);
+        needSave = true;
+        device->ps2Down = true;
+        device->ps2NeedEncode = 0;
+    }
+
 }
 
-void deviceDataUpdate(struct PS2DeviceData* device)
-{
-    //struct PS2DeviceData* device = &devices[deviceId];
-    //device->delay++;
+void deviceDataUpdateMouse(struct PS2DeviceData* device)
+{    
+    if ( device->inDataPos == kempstonMouseCounterB ) {        
+        kempstonMouseCounterA++;
+        return;
+    }
+    kempstonMouseCounterB = device->inDataPos;
     
-    uint8_t code;
+    if ( kempstonMouseCounterA > 10 ) {
+        device->readDataPos = ( device->inDataPos - 1 ) & 7;
+        kempstonMouseCounterC = 0;
+    }
+    kempstonMouseCounterA = 0;
+    
+    kempstonMouseCounterC++;
+    if ( kempstonMouseCounterC < 3 ) return;
+    
+    uint8_t code = device->inData[device->readDataPos];
+    device->readDataPos = (device->readDataPos + 1) & 7;
+        
+    if ( (code & 1) > 0 ) {
+        outPorts[8] &= 254;
+    } else {
+        outPorts[8] |= 1;
+    }
+
+    outPorts[9] += device->inData[device->readDataPos];
+    device->readDataPos = (device->readDataPos + 1) & 7;
+    
+    outPorts[10] += device->inData[device->readDataPos];
+    device->readDataPos = (device->readDataPos + 1) & 7;
  
-    /*if ( device->deviceMode == DEVICE_MODE_UNKNOWN ) {
-        
-        if ( device->state == 0 ) {
-            if ( device->delay > 20000 ) {
-                device->delay = 0;
-                send(deviceId, 0xF2); // Read Device Type Command
-                device->state = 1;
-            }
-        } else if ( device->state == 1 ) { 
-            if ( device->delay > 10000 ) {
-                device->delay = 0;
-                if ( device->readDataPos != device->inDataPos  ) { 
-                    code = deviceDataRead(device);
-                    if ( code == 0x00 || code == 0x03 ) {
-                        device->state = 0;
-                        device->deviceMode = DEVICE_MODE_MOUSE_INIT;
-                    } else if ( code == 0x83 ) {
-                        device->state = 0;
-                        device->deviceMode = DEVICE_MODE_KEYBOARD_INIT;
-                    }                    
-                } else {
-                    device->state = 0;
-                }
-            }
-        } 
-        
-    } else if ( device->deviceMode == DEVICE_MODE_KEYBOARD_INIT ) {
-        
-        device->deviceMode = DEVICE_MODE_KEYBOARD;
-                
-    } else*/ if ( device->deviceMode == DEVICE_MODE_KEYBOARD ) {
-        
-        if ( device->readDataPos != device->inDataPos  ) { 
-         
-            code = deviceDataRead(device);
-
-            if ( device->ps2NeedEncode ) {
-                for (int8_t i=0; i < 27; i+=2) {
-                    if ( code == replaceTwoBytesCodes[i] ) {
-                        code = replaceTwoBytesCodes[i+1];
-                        break;
-                    }
-                }                   
-            } else {                    
-                code = ( code == 131 ) ? 63 : code; // F7 feature
-            }
-            if ( code == 0xF0 ) {
-                device->ps2Down = false;
-            } else if ( code == 0xE0 ) {
-                device->ps2NeedEncode = 1;
-            } else {
-                processKeyCode(code, device->ps2Down);
-                needSave = true;
-                device->ps2Down = true;
-                device->ps2NeedEncode = 0;
-            }
-
-        }
-    }/* else if ( device->deviceMode == DEVICE_MODE_MOUSE_INIT ) {    
-        
-        if ( device->state == 0 ) {
-            send(deviceId, 0xF4); // Read Device Type Command
-            device->state = 1;
-        } else if ( device->state == 1 ) {
-            if ( device->delay > 10000 ) {
-                device->delay = 0;
-                device->state = 0;
-                device->deviceMode = DEVICE_MODE_MOUSE;
-            }
-        }
-        
-    } else if ( device->deviceMode == DEVICE_MODE_MOUSE ) {    
-        
-    }*/
-
-    
-    
+    kempstonMouseCounterC -= 3;
+    for(uint8_t j = 0; j < 8; j++) outPorts[j] = 0;
+    needSave = true;
 }
 
 /*******************************************************************************
@@ -504,8 +486,8 @@ void deviceDataUpdate(struct PS2DeviceData* device)
 void main(void)
 {    
     // receiver init
-    deviceDataInit(0);
-    deviceDataInit(1);
+    deviceDataInit(&devices[0]);
+    deviceDataInit(&devices[1]);
     
     // 
     for(int8_t i=0;i<8;i++) {
@@ -586,37 +568,138 @@ void main(void)
     delayedKey = 0;
     shift_ctrl_alt = 0;
     replaced = 0;
+
+    deviceLogicDelay = 0;
+    deviceLogicIndex = 0;
+    deviceLogicState = 0;    
+    deviceLogicDevice = 3;
     
-    /*delay_ms(1000);
+    kempstonMouseCounterA = 0;
+    kempstonMouseCounterB = 0;
+    kempstonMouseCounterC = 0;
     
-    while(1)
-    {
-        
-        send(0, 0xFF);
-        
-		
-        delay_ms(2000);
-    }*/
-    
+    uint8_t code;
     
     while(1)
     {        
         needSave = false;
         
-        deviceDataUpdate(&devices[0]);
-        deviceDataUpdate(&devices[1]);
+        for(uint8_t i = 0; i < 2; i++) {
+            struct PS2DeviceData* device = &devices[i];
+            
+            if ( device->readDataPos != device->inDataPos && device->inData[device->readDataPos] == 0xaa ) {
+                device->deviceMode = DEVICE_MODE_LOGIC;
+            }
+            
+            if ( device->deviceMode == DEVICE_MODE_KEYBOARD ) {
+                deviceDataUpdateKeyboard(device);
+            } else if ( device->deviceMode == DEVICE_MODE_MOUSE ) {
+                deviceDataUpdateMouse(device);
+            } else if ( device->deviceMode == DEVICE_MODE_LOGIC && (deviceLogicDevice == 3 || deviceLogicDevice == i) ) {
+                
+                deviceLogicDelay++;
+                if ( deviceLogicDelay > 333 ) {
+
+                    // read code from device
+                    if ( device->readDataPos != device->inDataPos ) {
+                        code = device->inData[device->readDataPos];
+                        device->readDataPos = (device->readDataPos + 1) & 7;
+                    } else code = 0xff;
+                    
+                    
+                    if ( deviceLogicState == 0 ) { // assign device to logic
+
+                        if ( deviceLogicDevice == 3 ) {
+                            deviceLogicDevice = i;
+                            deviceLogicIndex = 0;
+                            deviceLogicState = 1; 
+                        }
+
+                    } else if ( deviceLogicState == 1 ) { // send and wait command
+                            
+                        deviceLogicCommand = deviceLogic[deviceLogicIndex];
+                        if (deviceLogicCommand == 0xaa ) { // stop
+                            if ( deviceLogicIndex == deviceLogicMax - 1 ) {
+                                device->deviceMode = DEVICE_MODE_MOUSE;
+                                kempstonMouseCounterA = 255;
+                            } else {
+                                ps2DeviceMain = i;
+                                device->deviceMode = DEVICE_MODE_KEYBOARD;
+                                for(uint8_t j = 0; j < 8; j++) outPorts[j] = 0;
+                            }
+                            deviceLogicState = 0;
+                            deviceLogicDevice = 3;
+                            break;
+                        }
+                        send(deviceLogicDevice, deviceLogicCommand);
+                        deviceLogicState = 2;
+                                
+                    } else if ( deviceLogicState == 2 ) { // read answer
+ 
+                        if ( code == 0xfe || code == 0xfc ) { // If error resend
+                            deviceLogicState = 1; // resend message
+                        } else /*if ( code == 0xfa )*/ { // all ok go to next
+                            deviceLogicState = 3;
+                        }
+                        
+                    } else if ( deviceLogicState == 3 ) { //
+
+                        
+                        // 
+                        if ( deviceLogicCommand == 0xf2 ) { // 
+                            if ( code == 0x83 ) {
+                                // keyboard
+                            } else if ( code == 0x00 || code == 0x03 ) {
+                                // mouse
+                                deviceLogicIndex = deviceLogicMouseIndex - 1; // hardcode!!!
+                            }
+                        } else if ( deviceLogicCommand == 0xff ) { // 
+                            if ( code != 0xaa ) {
+                                break;
+                            }
+                        }
+                        
+                        deviceLogicIndex++;
+                        deviceLogicState = 1;
+                    }
+                    
+                    deviceLogicDelay = 0;
+                }
+                
+                break;                
+            } else {
+                device->readDataPos = device->inDataPos;
+            }
+        }
+
+        if ( delay != 0 ) {
+            
+            delay--;
+            if ( delay == 0 ) {
+
+                updatePort(0x00, false); // caps shift reset
+                //updatePort(0x0F, false); // or symbol shift 
+                needSave = true;
+            } else if ( delay == 200 /*1500*/ ) {
+                    
+                updateKey(delayedKey, true );
+                delayedKey = 0;    
+                needSave = true;
+            }
+            
+        }
         
         kempstonMouseEmulatorDelay++;
         if ( kempstonMouseEmulatorDelay > 2000  ) { 
 
-            if ( numLock ) {
+            /*if ( numLock ) {
                 if ( (kempstonMouseEmulatorKeys & IK_LEFT) > 0 ) outPorts[9]-=2;
                 if ( (kempstonMouseEmulatorKeys & IK_RIGHT) > 0 ) outPorts[9]+=2;
                 if ( (kempstonMouseEmulatorKeys & IK_UP) > 0 ) outPorts[10]+=2;
                 if ( (kempstonMouseEmulatorKeys & IK_DOWN) > 0 ) outPorts[10]-=2;
                 if ( (kempstonMouseEmulatorKeys & IK_FIRE) > 0 ) outPorts[8] &= 254;
                 else outPorts[8] |= 1;  
-            }
+            }*/
             kempstonMouseEmulatorDelay = 0;                
             needSave = true;
         }
