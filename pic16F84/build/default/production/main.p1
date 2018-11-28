@@ -1,0 +1,1369 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[t ~ __interrupt . k ]
+[t T1 __interrupt high_priority ]
+"713 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 713: extern volatile __bit T0IE __attribute__((address(0x5D)));
+[v _T0IE `Vb ~T0 @X0 0 e@93 ]
+"716
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 716: extern volatile __bit T0IF __attribute__((address(0x5A)));
+[v _T0IF `Vb ~T0 @X0 0 e@90 ]
+"59
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 59: extern volatile unsigned char TMR0 __attribute__((address(0x001)));
+[v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
+"172
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 172:     struct {
+[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S6 . RA0 RA1 RA2 RA3 RA4 ]
+"171
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 171: typedef union {
+[u S5 `S6 1 ]
+[n S5 . . ]
+"180
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 180: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
+[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
+"629
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 629: extern volatile __bit GIE __attribute__((address(0x5F)));
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"662
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 662: extern volatile __bit RA2 __attribute__((address(0x2A)));
+[v _RA2 `Vb ~T0 @X0 0 e@42 ]
+"659
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 659: extern volatile __bit RA1 __attribute__((address(0x29)));
+[v _RA1 `Vb ~T0 @X0 0 e@41 ]
+"210
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 210: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+[p mainexit ]
+"731
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 731: extern volatile __bit TRISA1 __attribute__((address(0x429)));
+[v _TRISA1 `Vb ~T0 @X0 0 e@1065 ]
+"734
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 734: extern volatile __bit TRISA2 __attribute__((address(0x42A)));
+[v _TRISA2 `Vb ~T0 @X0 0 e@1066 ]
+"728
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 728: extern volatile __bit TRISA0 __attribute__((address(0x428)));
+[v _TRISA0 `Vb ~T0 @X0 0 e@1064 ]
+"740
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 740: extern volatile __bit TRISA4 __attribute__((address(0x42C)));
+[v _TRISA4 `Vb ~T0 @X0 0 e@1068 ]
+"737
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 737: extern volatile __bit TRISA3 __attribute__((address(0x42B)));
+[v _TRISA3 `Vb ~T0 @X0 0 e@1067 ]
+"166
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
+[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"498
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 498: extern volatile unsigned char TRISB __attribute__((address(0x086)));
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"710
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 710: extern volatile __bit T0CS __attribute__((address(0x40D)));
+[v _T0CS `Vb ~T0 @X0 0 e@1037 ]
+"719
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 719: extern volatile __bit T0SE __attribute__((address(0x40C)));
+[v _T0SE `Vb ~T0 @X0 0 e@1036 ]
+"653
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 653: extern volatile __bit PSA __attribute__((address(0x40B)));
+[v _PSA `Vb ~T0 @X0 0 e@1035 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 54: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"61
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 61: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"68
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 68: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"75
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 75: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"161
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 161: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"168
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 168: __asm("PORTA equ 05h");
+[; <" PORTA equ 05h ;# ">
+"212
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 212: __asm("PORTB equ 06h");
+[; <" PORTB equ 06h ;# ">
+"274
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 274: __asm("EEDATA equ 08h");
+[; <" EEDATA equ 08h ;# ">
+"281
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 281: __asm("EEADR equ 09h");
+[; <" EEADR equ 09h ;# ">
+"288
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 288: __asm("PCLATH equ 0Ah");
+[; <" PCLATH equ 0Ah ;# ">
+"308
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 308: __asm("INTCON equ 0Bh");
+[; <" INTCON equ 0Bh ;# ">
+"386
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 386: __asm("OPTION_REG equ 081h");
+[; <" OPTION_REG equ 081h ;# ">
+"456
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 456: __asm("TRISA equ 085h");
+[; <" TRISA equ 085h ;# ">
+"500
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 500: __asm("TRISB equ 086h");
+[; <" TRISB equ 086h ;# ">
+"562
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 562: __asm("EECON1 equ 088h");
+[; <" EECON1 equ 088h ;# ">
+"606
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 606: __asm("EECON2 equ 089h");
+[; <" EECON2 equ 089h ;# ">
+"13 ./ps2tozxtable.h
+[; ;./ps2tozxtable.h: 13: const uint8_t kempstonMouseKeys[6] =
+[v _kempstonMouseKeys `Cuc ~T0 @X0 -> 6 `i e ]
+[i _kempstonMouseKeys
+:U ..
+-> -> 107 `i `uc
+-> -> 116 `i `uc
+-> -> 117 `i `uc
+-> -> 114 `i `uc
+-> -> 115 `i `uc
+-> -> 4 `i `uc
+..
+]
+"27
+[; ;./ps2tozxtable.h: 27: const uint8_t importantKeys[6] =
+[v _importantKeys `Cuc ~T0 @X0 -> 6 `i e ]
+[i _importantKeys
+:U ..
+-> -> 18 `i `uc
+-> -> 89 `i `uc
+-> -> 20 `i `uc
+-> -> 19 `i `uc
+-> -> 17 `i `uc
+-> -> 8 `i `uc
+..
+]
+"38
+[; ;./ps2tozxtable.h: 38: const uint8_t replaceOnDelayKeyDown[8] =
+[v _replaceOnDelayKeyDown `Cuc ~T0 @X0 -> 8 `i e ]
+[i _replaceOnDelayKeyDown
+:U ..
+-> -> 31 `i `uc
+-> -> 84 `i `uc
+-> -> 91 `i `uc
+-> -> 99 `i `uc
+-> -> 100 `i `uc
+-> -> 101 `i `uc
+-> -> 72 `i `uc
+-> -> 93 `i `uc
+..
+]
+"46
+[; ;./ps2tozxtable.h: 46: const uint8_t replaceOnShiftKeyDown[42] =
+[v _replaceOnShiftKeyDown `Cuc ~T0 @X0 -> 42 `i e ]
+[i _replaceOnShiftKeyDown
+:U ..
+-> -> 22 `i `uc
+-> -> 79 `i `uc
+-> -> 30 `i `uc
+-> -> 80 `i `uc
+-> -> 38 `i `uc
+-> -> 81 `i `uc
+-> -> 37 `i `uc
+-> -> 83 `i `uc
+-> -> 46 `i `uc
+-> -> 86 `i `uc
+-> -> 54 `i `uc
+-> -> 87 `i `uc
+-> -> 61 `i `uc
+-> -> 92 `i `uc
+-> -> 62 `i `uc
+-> -> 94 `i `uc
+-> -> 70 `i `uc
+-> -> 95 `i `uc
+-> -> 69 `i `uc
+-> -> 96 `i `uc
+-> -> 78 `i `uc
+-> -> 97 `i `uc
+-> -> 85 `i `uc
+-> -> 98 `i `uc
+-> -> 93 `i `uc
+-> -> 99 `i `uc
+-> -> 76 `i `uc
+-> -> 103 `i `uc
+-> -> 82 `i `uc
+-> -> 104 `i `uc
+-> -> 65 `i `uc
+-> -> 106 `i `uc
+-> -> 73 `i `uc
+-> -> 109 `i `uc
+-> -> 74 `i `uc
+-> -> 110 `i `uc
+-> -> 14 `i `uc
+-> -> 72 `i `uc
+-> -> 84 `i `uc
+-> -> 100 `i `uc
+-> -> 91 `i `uc
+-> -> 101 `i `uc
+..
+]
+"78
+[; ;./ps2tozxtable.h: 78: const uint8_t replaceTwoBytesCodes[28] =
+[v _replaceTwoBytesCodes `Cuc ~T0 @X0 -> 28 `i e ]
+[i _replaceTwoBytesCodes
+:U ..
+-> -> 17 `i `uc
+-> -> 8 `i `uc
+-> -> 20 `i `uc
+-> -> 19 `i `uc
+-> -> 112 `i `uc
+-> -> 23 `i `uc
+-> -> 108 `i `uc
+-> -> 24 `i `uc
+-> -> 125 `i `uc
+-> -> 25 `i `uc
+-> -> 113 `i `uc
+-> -> 31 `i `uc
+-> -> 105 `i `uc
+-> -> 32 `i `uc
+-> -> 122 `i `uc
+-> -> 39 `i `uc
+-> -> 117 `i `uc
+-> -> 40 `i `uc
+-> -> 107 `i `uc
+-> -> 47 `i `uc
+-> -> 114 `i `uc
+-> -> 48 `i `uc
+-> -> 116 `i `uc
+-> -> 55 `i `uc
+-> -> 74 `i `uc
+-> -> 56 `i `uc
+-> -> 90 `i `uc
+-> -> 57 `i `uc
+..
+]
+"100
+[; ;./ps2tozxtable.h: 100: const uint8_t codeToMatrix[128] =
+[v _codeToMatrix `Cuc ~T0 @X0 -> 128 `i e ]
+[i _codeToMatrix
+:U ..
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 156 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 2 `i `uc
+-> -> 3 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 8 `i `uc
+-> -> 9 `i `uc
+-> -> 1 `i `uc
+-> -> 10 `i `uc
+-> -> 11 `i `uc
+-> -> 214 `i `uc
+-> -> 255 `i `uc
+-> -> 24 `i `uc
+-> -> 16 `i `uc
+-> -> 17 `i `uc
+-> -> 18 `i `uc
+-> -> 27 `i `uc
+-> -> 19 `i `uc
+-> -> 255 `i `uc
+-> -> 92 `i `uc
+-> -> 7 `i `uc
+-> -> 32 `i `uc
+-> -> 25 `i `uc
+-> -> 34 `i `uc
+-> -> 26 `i `uc
+-> -> 35 `i `uc
+-> -> 99 `i `uc
+-> -> 100 `i `uc
+-> -> 31 `i `uc
+-> -> 39 `i `uc
+-> -> 38 `i `uc
+-> -> 33 `i `uc
+-> -> 37 `i `uc
+-> -> 36 `i `uc
+-> -> 84 `i `uc
+-> -> 160 `i `uc
+-> -> 6 `i `uc
+-> -> 23 `i `uc
+-> -> 30 `i `uc
+-> -> 29 `i `uc
+-> -> 28 `i `uc
+-> -> 20 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 159 `i `uc
+-> -> 22 `i `uc
+-> -> 21 `i `uc
+-> -> 13 `i `uc
+-> -> 4 `i `uc
+-> -> 12 `i `uc
+-> -> 255 `i `uc
+-> -> 193 `i `uc
+-> -> 151 `i `uc
+-> -> 160 `i `uc
+-> -> 14 `i `uc
+-> -> 141 `i `uc
+-> -> 5 `i `uc
+-> -> 158 `i `uc
+-> -> 131 `i `uc
+-> -> 139 `i `uc
+-> -> 147 `i `uc
+-> -> 156 `i `uc
+-> -> 155 `i `uc
+-> -> 229 `i `uc
+-> -> 142 `i `uc
+-> -> 163 `i `uc
+-> -> 166 `i `uc
+-> -> 75 `i `uc
+-> -> 255 `i `uc
+-> -> 6 `i `uc
+-> -> 221 `i `uc
+-> -> 164 `i `uc
+-> -> 209 `i `uc
+-> -> 167 `i `uc
+-> -> 148 `i `uc
+-> -> 140 `i `uc
+-> -> 132 `i `uc
+-> -> 150 `i `uc
+-> -> 201 `i `uc
+-> -> 217 `i `uc
+-> -> 225 `i `uc
+-> -> 68 `i `uc
+-> -> 136 `i `uc
+-> -> 133 `i `uc
+-> -> 3 `i `uc
+-> -> 154 `i `uc
+-> -> 27 `i `uc
+-> -> 28 `i `uc
+-> -> 162 `i `uc
+-> -> 152 `i `uc
+-> -> 192 `i `uc
+-> -> 4 `i `uc
+-> -> 151 `i `uc
+-> -> 11 `i `uc
+-> -> 35 `i `uc
+-> -> 36 `i `uc
+-> -> 20 `i `uc
+-> -> 67 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 150 `i `uc
+-> -> 19 `i `uc
+-> -> 158 `i `uc
+-> -> 167 `i `uc
+-> -> 12 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+..
+]
+"43 main.c
+[; ;main.c: 43: static int8_t ps2DataState = 0;
+[v _ps2DataState `c ~T0 @X0 1 s ]
+[i _ps2DataState
+-> -> 0 `i `c
+]
+"46
+[; ;main.c: 46: static uint8_t ps2Bits = 0;
+[v _ps2Bits `uc ~T0 @X0 1 s ]
+[i _ps2Bits
+-> -> 0 `i `uc
+]
+"47
+[; ;main.c: 47: static int8_t ps2BitsCount = 0;
+[v _ps2BitsCount `c ~T0 @X0 1 s ]
+[i _ps2BitsCount
+-> -> 0 `i `c
+]
+"50
+[; ;main.c: 50: static uint8_t ps2Data = 0;
+[v _ps2Data `uc ~T0 @X0 1 s ]
+[i _ps2Data
+-> -> 0 `i `uc
+]
+"51
+[; ;main.c: 51: static int8_t ps2Device = 0;
+[v _ps2Device `c ~T0 @X0 1 s ]
+[i _ps2Device
+-> -> 0 `i `c
+]
+"52
+[; ;main.c: 52: static int8_t ps2WaitCode = 0;
+[v _ps2WaitCode `c ~T0 @X0 1 s ]
+[i _ps2WaitCode
+-> -> 0 `i `c
+]
+"53
+[; ;main.c: 53: static int8_t ps2Down = 0;
+[v _ps2Down `c ~T0 @X0 1 s ]
+[i _ps2Down
+-> -> 0 `i `c
+]
+"54
+[; ;main.c: 54: static int8_t ps2NeedEncode = 0;
+[v _ps2NeedEncode `c ~T0 @X0 1 s ]
+[i _ps2NeedEncode
+-> -> 0 `i `c
+]
+"57
+[; ;main.c: 57: static uint8_t numLock = 0;
+[v _numLock `uc ~T0 @X0 1 s ]
+[i _numLock
+-> -> 0 `i `uc
+]
+"58
+[; ;main.c: 58: static uint8_t shift_ctrl_alt = 0;
+[v _shift_ctrl_alt `uc ~T0 @X0 1 s ]
+[i _shift_ctrl_alt
+-> -> 0 `i `uc
+]
+"59
+[; ;main.c: 59: static uint8_t replaced = 0;
+[v _replaced `uc ~T0 @X0 1 s ]
+[i _replaced
+-> -> 0 `i `uc
+]
+"61
+[; ;main.c: 61: static uint8_t delayedKey = 0;
+[v _delayedKey `uc ~T0 @X0 1 s ]
+[i _delayedKey
+-> -> 0 `i `uc
+]
+"65
+[; ;main.c: 65: static uint8_t outPorts[11] =
+[v _outPorts `uc ~T0 @X0 -> 11 `i s ]
+[i _outPorts
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 7 `i `uc
+-> -> 245 `i `uc
+-> -> 218 `i `uc
+..
+]
+"83
+[; ;main.c: 83: static uint16_t delay = 0;
+[v _delay `ui ~T0 @X0 1 s ]
+[i _delay
+-> -> 0 `i `ui
+]
+"84
+[; ;main.c: 84: static uint16_t kempstonMouseEmulatorDelay = 0;
+[v _kempstonMouseEmulatorDelay `ui ~T0 @X0 1 s ]
+[i _kempstonMouseEmulatorDelay
+-> -> 0 `i `ui
+]
+"85
+[; ;main.c: 85: static uint8_t kempstonMouseEmulatorKeys = 0;
+[v _kempstonMouseEmulatorKeys `uc ~T0 @X0 1 s ]
+[i _kempstonMouseEmulatorKeys
+-> -> 0 `i `uc
+]
+[v $root$_myIsr `(v ~T0 @X0 0 e ]
+"115
+[; ;main.c: 115: void __attribute__((picinterrupt("high_priority"))) myIsr(void)
+[v _myIsr `(v ~T1 @X0 1 ef ]
+"116
+[; ;main.c: 116: {
+{
+[e :U _myIsr ]
+[f ]
+"117
+[; ;main.c: 117:     if(T0IE && T0IF){
+[e $ ! && _T0IE _T0IF 29  ]
+{
+"119
+[; ;main.c: 119:         T0IF=0;
+[e = _T0IF -> -> 0 `i `b ]
+"120
+[; ;main.c: 120:         TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
+"124
+[; ;main.c: 124:         if ( ps2DataState == 0 ) {
+[e $ ! == -> _ps2DataState `i -> 0 `i 30  ]
+{
+"125
+[; ;main.c: 125:             if ( !PORTAbits.RA4 && !PORTAbits.RA3 ) {
+[e $ ! && ! != -> . . _PORTAbits 0 4 `i -> 0 `i ! != -> . . _PORTAbits 0 3 `i -> 0 `i 31  ]
+{
+"126
+[; ;main.c: 126:                 ps2BitsCount = 0;
+[e = _ps2BitsCount -> -> 0 `i `c ]
+"127
+[; ;main.c: 127:                 ps2Bits = 0;
+[e = _ps2Bits -> -> 0 `i `uc ]
+"128
+[; ;main.c: 128:                 ps2DataState = 1;
+[e = _ps2DataState -> -> 1 `i `c ]
+"129
+[; ;main.c: 129:                 ps2Device = PORTAbits.RA0;
+[e = _ps2Device -> . . _PORTAbits 0 0 `c ]
+"130
+[; ;main.c: 130:             }
+}
+[e :U 31 ]
+"131
+[; ;main.c: 131:         } else if ( ps2DataState == 1 ) {
+}
+[e $U 32  ]
+[e :U 30 ]
+[e $ ! == -> _ps2DataState `i -> 1 `i 33  ]
+{
+"132
+[; ;main.c: 132:             if ( ps2BitsCount < 8 ) {
+[e $ ! < -> _ps2BitsCount `i -> 8 `i 34  ]
+{
+"133
+[; ;main.c: 133:                 if ( PORTAbits.RA3 ) {
+[e $ ! != -> . . _PORTAbits 0 3 `i -> 0 `i 35  ]
+{
+"134
+[; ;main.c: 134:                     ps2Bits |= ( 1 << ps2BitsCount );
+[e =| _ps2Bits -> << -> 1 `i -> _ps2BitsCount `i `uc ]
+"135
+[; ;main.c: 135:                 }
+}
+[e :U 35 ]
+"136
+[; ;main.c: 136:                 ps2BitsCount++;
+[e ++ _ps2BitsCount -> -> 1 `i `c ]
+"137
+[; ;main.c: 137:             } else if ( ps2BitsCount == 8 ) {
+}
+[e $U 36  ]
+[e :U 34 ]
+[e $ ! == -> _ps2BitsCount `i -> 8 `i 37  ]
+{
+"138
+[; ;main.c: 138:                 ps2BitsCount++;
+[e ++ _ps2BitsCount -> -> 1 `i `c ]
+"139
+[; ;main.c: 139:             } else if ( ps2BitsCount == 9 ) {
+}
+[e $U 38  ]
+[e :U 37 ]
+[e $ ! == -> _ps2BitsCount `i -> 9 `i 39  ]
+{
+"141
+[; ;main.c: 141:                 if ( ps2NeedEncode ) {
+[e $ ! != -> _ps2NeedEncode `i -> 0 `i 40  ]
+{
+"142
+[; ;main.c: 142:                     for (int8_t i=0; i < 27; i+=2) {
+{
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `c ]
+[e $ < -> _i `i -> 27 `i 41  ]
+[e $U 42  ]
+[e :U 41 ]
+{
+"143
+[; ;main.c: 143:                         if ( ps2Bits == replaceTwoBytesCodes[i] ) {
+[e $ ! == -> _ps2Bits `i -> *U + &U _replaceTwoBytesCodes * -> -> _i `uc `ux -> -> # *U &U _replaceTwoBytesCodes `ui `ux `i 44  ]
+{
+"144
+[; ;main.c: 144:                             ps2Data = replaceTwoBytesCodes[i+1];
+[e = _ps2Data *U + &U _replaceTwoBytesCodes * -> -> + -> _i `i -> 1 `i `ui `ux -> -> # *U &U _replaceTwoBytesCodes `ui `ux ]
+"145
+[; ;main.c: 145:                             break;
+[e $U 42  ]
+"146
+[; ;main.c: 146:                         }
+}
+[e :U 44 ]
+"147
+[; ;main.c: 147:                     }
+}
+[e =+ _i -> -> 2 `i `c ]
+[e $ < -> _i `i -> 27 `i 41  ]
+[e :U 42 ]
+}
+"148
+[; ;main.c: 148:                 } else {
+}
+[e $U 45  ]
+[e :U 40 ]
+{
+"149
+[; ;main.c: 149:                     ps2Data = ( ps2Bits == 131 ) ? 63 : ps2Bits;
+[e = _ps2Data -> ? == -> _ps2Bits `i -> 131 `i : -> 63 `i -> _ps2Bits `i `uc ]
+"150
+[; ;main.c: 150:                 }
+}
+[e :U 45 ]
+"151
+[; ;main.c: 151:                 if ( ps2Bits == 0xF0 ) {
+[e $ ! == -> _ps2Bits `i -> 240 `i 46  ]
+{
+"152
+[; ;main.c: 152:                     ps2DataState = 0;
+[e = _ps2DataState -> -> 0 `i `c ]
+"153
+[; ;main.c: 153:                     ps2Down = 0;
+[e = _ps2Down -> -> 0 `i `c ]
+"154
+[; ;main.c: 154:                 } else if ( ps2Bits == 0xE0 ) {
+}
+[e $U 47  ]
+[e :U 46 ]
+[e $ ! == -> _ps2Bits `i -> 224 `i 48  ]
+{
+"155
+[; ;main.c: 155:                     ps2DataState = 0;
+[e = _ps2DataState -> -> 0 `i `c ]
+"156
+[; ;main.c: 156:                     ps2NeedEncode = 1;
+[e = _ps2NeedEncode -> -> 1 `i `c ]
+"165
+[; ;main.c: 165:                 } else {
+}
+[e $U 49  ]
+[e :U 48 ]
+{
+"166
+[; ;main.c: 166:                     ps2DataState = 2;
+[e = _ps2DataState -> -> 2 `i `c ]
+"167
+[; ;main.c: 167:                 }
+}
+[e :U 49 ]
+[e :U 47 ]
+"169
+[; ;main.c: 169:             }
+}
+[e :U 39 ]
+[e :U 38 ]
+[e :U 36 ]
+"170
+[; ;main.c: 170:         } else if ( ps2DataState == 4 ) {
+}
+[e $U 50  ]
+[e :U 33 ]
+[e $ ! == -> _ps2DataState `i -> 4 `i 51  ]
+{
+"172
+[; ;main.c: 172:             ps2DataState = 0;
+[e = _ps2DataState -> -> 0 `i `c ]
+"173
+[; ;main.c: 173:         }
+}
+[e :U 51 ]
+[e :U 50 ]
+[e :U 32 ]
+"174
+[; ;main.c: 174:     } else {
+}
+[e $U 52  ]
+[e :U 29 ]
+{
+"176
+[; ;main.c: 176:     }
+}
+[e :U 52 ]
+"177
+[; ;main.c: 177:     GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
+"178
+[; ;main.c: 178: }
+[e :UE 28 ]
+}
+"182
+[; ;main.c: 182: void updatePort(uint8_t bit_id, uint8_t set)
+[v _updatePort `(v ~T0 @X0 1 ef2`uc`uc ]
+"183
+[; ;main.c: 183: {
+{
+[e :U _updatePort ]
+"182
+[; ;main.c: 182: void updatePort(uint8_t bit_id, uint8_t set)
+[v _bit_id `uc ~T0 @X0 1 r1 ]
+[v _set `uc ~T0 @X0 1 r2 ]
+"183
+[; ;main.c: 183: {
+[f ]
+"184
+[; ;main.c: 184:     uint8_t a = (1 << ((bit_id >> 3) & 7));
+[v _a `uc ~T0 @X0 1 a ]
+[e = _a -> << -> 1 `i & >> -> _bit_id `i -> 3 `i -> 7 `i `uc ]
+"185
+[; ;main.c: 185:     if ( set ) outPorts[bit_id & 7] |= a;
+[e $ ! != -> _set `i -> 0 `i 54  ]
+[e =| *U + &U _outPorts * -> -> & -> _bit_id `i -> 7 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> _a `uc ]
+[e $U 55  ]
+"186
+[; ;main.c: 186:     else outPorts[bit_id & 7] &= ~a;
+[e :U 54 ]
+[e =& *U + &U _outPorts * -> -> & -> _bit_id `i -> 7 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> ~ -> _a `i `uc ]
+[e :U 55 ]
+"187
+[; ;main.c: 187: }
+[e :UE 53 ]
+}
+"191
+[; ;main.c: 191: void updateKey(uint8_t key, uint8_t set)
+[v _updateKey `(v ~T0 @X0 1 ef2`uc`uc ]
+"192
+[; ;main.c: 192: {
+{
+[e :U _updateKey ]
+"191
+[; ;main.c: 191: void updateKey(uint8_t key, uint8_t set)
+[v _key `uc ~T0 @X0 1 r1 ]
+[v _set `uc ~T0 @X0 1 r2 ]
+"192
+[; ;main.c: 192: {
+[f ]
+"193
+[; ;main.c: 193:     uint8_t code = 0xFF;
+[v _code `uc ~T0 @X0 1 a ]
+[e = _code -> -> 255 `i `uc ]
+"194
+[; ;main.c: 194:     uint8_t localShift = (((shift_ctrl_alt & 3) > 0) && replaced == 0);
+[v _localShift `uc ~T0 @X0 1 a ]
+[e = _localShift -> -> && > & -> _shift_ctrl_alt `i -> 3 `i -> 0 `i == -> _replaced `i -> 0 `i `i `uc ]
+"195
+[; ;main.c: 195:     uint8_t localCtrl = (shift_ctrl_alt & 12) > 0;
+[v _localCtrl `uc ~T0 @X0 1 a ]
+[e = _localCtrl -> -> > & -> _shift_ctrl_alt `i -> 12 `i -> 0 `i `i `uc ]
+"196
+[; ;main.c: 196:     if ( key < 128 ) code = codeToMatrix[key];
+[e $ ! < -> _key `i -> 128 `i 57  ]
+[e = _code *U + &U _codeToMatrix * -> _key `ux -> -> # *U &U _codeToMatrix `ui `ux ]
+[e :U 57 ]
+"197
+[; ;main.c: 197:     if ( code != 0xFF ) {
+[e $ ! != -> _code `i -> 255 `i 58  ]
+{
+"198
+[; ;main.c: 198:         updatePort(code, set);
+[e ( _updatePort (2 , _code _set ]
+"199
+[; ;main.c: 199:         localShift |= ((code & 64) > 0);
+[e =| _localShift -> -> > & -> _code `i -> 64 `i -> 0 `i `i `uc ]
+"200
+[; ;main.c: 200:         localCtrl |= ((code & 128) > 0);
+[e =| _localCtrl -> -> > & -> _code `i -> 128 `i -> 0 `i `i `uc ]
+"201
+[; ;main.c: 201:     }
+}
+[e :U 58 ]
+"202
+[; ;main.c: 202:     if ( set ) {
+[e $ ! != -> _set `i -> 0 `i 59  ]
+{
+"203
+[; ;main.c: 203:         updatePort(0x00, localShift );
+[e ( _updatePort (2 , -> -> 0 `i `uc _localShift ]
+"204
+[; ;main.c: 204:         updatePort(0x0F, localCtrl );
+[e ( _updatePort (2 , -> -> 15 `i `uc _localCtrl ]
+"205
+[; ;main.c: 205:     }
+}
+[e :U 59 ]
+"206
+[; ;main.c: 206: }
+[e :UE 56 ]
+}
+"210
+[; ;main.c: 210: void myDelay()
+[v _myDelay `(v ~T0 @X0 1 ef ]
+"211
+[; ;main.c: 211: {
+{
+[e :U _myDelay ]
+[f ]
+"212
+[; ;main.c: 212:     for(uint8_t j = 0; j < 5; j++) { };
+{
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 5 `i 61  ]
+[e $U 62  ]
+[e :U 61 ]
+{
+}
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 5 `i 61  ]
+[e :U 62 ]
+}
+"213
+[; ;main.c: 213: }
+[e :UE 60 ]
+}
+"245
+[; ;main.c: 245: void sendDataToAltera()
+[v _sendDataToAltera `(v ~T0 @X0 1 ef ]
+"246
+[; ;main.c: 246: {
+{
+[e :U _sendDataToAltera ]
+[f ]
+"247
+[; ;main.c: 247:     RA2 = 1;
+[e = _RA2 -> -> 1 `i `b ]
+"248
+[; ;main.c: 248:     RA1 = 0;
+[e = _RA1 -> -> 0 `i `b ]
+"249
+[; ;main.c: 249:     myDelay();
+[e ( _myDelay ..  ]
+"250
+[; ;main.c: 250:     RA1 = 1;
+[e = _RA1 -> -> 1 `i `b ]
+"251
+[; ;main.c: 251:     myDelay();
+[e ( _myDelay ..  ]
+"252
+[; ;main.c: 252:     RA1 = 0;
+[e = _RA1 -> -> 0 `i `b ]
+"253
+[; ;main.c: 253:     myDelay();
+[e ( _myDelay ..  ]
+"254
+[; ;main.c: 254:     for(int8_t i=0;i<11;i++) {
+{
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `c ]
+[e $ < -> _i `i -> 11 `i 65  ]
+[e $U 66  ]
+[e :U 65 ]
+{
+"255
+[; ;main.c: 255:         RA2 = 1;
+[e = _RA2 -> -> 1 `i `b ]
+"256
+[; ;main.c: 256:         PORTB = i < 8 ? ~outPorts[i] : outPorts[i];
+[e = _PORTB -> ? < -> _i `i -> 8 `i : ~ -> *U + &U _outPorts * -> -> _i `uc `ux -> -> # *U &U _outPorts `ui `ux `i -> *U + &U _outPorts * -> -> _i `uc `ux -> -> # *U &U _outPorts `ui `ux `i `uc ]
+"257
+[; ;main.c: 257:         myDelay();
+[e ( _myDelay ..  ]
+"258
+[; ;main.c: 258:         RA2 = 0;
+[e = _RA2 -> -> 0 `i `b ]
+"259
+[; ;main.c: 259:         myDelay();
+[e ( _myDelay ..  ]
+"260
+[; ;main.c: 260:         RA2 = 1;
+[e = _RA2 -> -> 1 `i `b ]
+"261
+[; ;main.c: 261:         myDelay();
+[e ( _myDelay ..  ]
+"262
+[; ;main.c: 262:     }
+}
+[e ++ _i -> -> 1 `i `c ]
+[e $ < -> _i `i -> 11 `i 65  ]
+[e :U 66 ]
+}
+"263
+[; ;main.c: 263:     PORTB = 0xFF;
+[e = _PORTB -> -> 255 `i `uc ]
+"264
+[; ;main.c: 264: }
+[e :UE 64 ]
+}
+"316
+[; ;main.c: 316: void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
+[v _calculateBitsFromTable `(v ~T0 @X0 1 ef4`*uc`*uc`uc`uc ]
+"317
+[; ;main.c: 317: {
+{
+[e :U _calculateBitsFromTable ]
+"316
+[; ;main.c: 316: void calculateBitsFromTable(uint8_t* bits, uint8_t table[], uint8_t count, uint8_t clearIfFound)
+[v _bits `*uc ~T0 @X0 1 r1 ]
+[v _table `*uc ~T0 @X0 1 r2 ]
+[v _count `uc ~T0 @X0 1 r3 ]
+[v _clearIfFound `uc ~T0 @X0 1 r4 ]
+"317
+[; ;main.c: 317: {
+[f ]
+"318
+[; ;main.c: 318:     for(uint8_t i = 0; i < count;i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 72  ]
+[e :U 69 ]
+{
+"319
+[; ;main.c: 319:         if ( ps2Data == table[i] ) {
+[e $ ! == -> _ps2Data `i -> *U + _table * -> _i `ux -> -> # *U _table `ui `ux `i 73  ]
+{
+"320
+[; ;main.c: 320:             if ( ps2Down ) {
+[e $ ! != -> _ps2Down `i -> 0 `i 74  ]
+{
+"321
+[; ;main.c: 321:                 (*bits) |= (1 << i);
+[e =| *U _bits -> << -> 1 `i -> _i `i `uc ]
+"322
+[; ;main.c: 322:             } else {
+}
+[e $U 75  ]
+[e :U 74 ]
+{
+"323
+[; ;main.c: 323:                 (*bits) &= ~(1 << i);
+[e =& *U _bits -> ~ << -> 1 `i -> _i `i `uc ]
+"324
+[; ;main.c: 324:             }
+}
+[e :U 75 ]
+"325
+[; ;main.c: 325:             if ( clearIfFound ) {
+[e $ ! != -> _clearIfFound `i -> 0 `i 76  ]
+{
+"326
+[; ;main.c: 326:                 ps2Data = 0;
+[e = _ps2Data -> -> 0 `i `uc ]
+"327
+[; ;main.c: 327:             }
+}
+[e :U 76 ]
+"328
+[; ;main.c: 328:             break;
+[e $U 70  ]
+"329
+[; ;main.c: 329:         }
+}
+[e :U 73 ]
+"330
+[; ;main.c: 330:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 72 ]
+[e $ < -> _i `i -> _count `i 69  ]
+[e :U 70 ]
+}
+"331
+[; ;main.c: 331: }
+[e :UE 68 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"366
+[; ;main.c: 366: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"367
+[; ;main.c: 367: {
+{
+[e :U _main ]
+[f ]
+"375
+[; ;main.c: 375:     TRISA1 = 0;
+[e = _TRISA1 -> -> 0 `i `b ]
+"376
+[; ;main.c: 376:     TRISA2 = 0;
+[e = _TRISA2 -> -> 0 `i `b ]
+"377
+[; ;main.c: 377:     TRISA0 = 1;
+[e = _TRISA0 -> -> 1 `i `b ]
+"378
+[; ;main.c: 378:     TRISA4 = 1;
+[e = _TRISA4 -> -> 1 `i `b ]
+"379
+[; ;main.c: 379:     TRISA3 = 1;
+[e = _TRISA3 -> -> 1 `i `b ]
+"381
+[; ;main.c: 381:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"383
+[; ;main.c: 383:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
+"384
+[; ;main.c: 384:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"404
+[; ;main.c: 404:     ps2Data = 0;
+[e = _ps2Data -> -> 0 `i `uc ]
+"406
+[; ;main.c: 406:     ps2WaitCode = 0;
+[e = _ps2WaitCode -> -> 0 `i `c ]
+"407
+[; ;main.c: 407:     ps2Down = 1;
+[e = _ps2Down -> -> 1 `i `c ]
+"408
+[; ;main.c: 408:     ps2NeedEncode = 0;
+[e = _ps2NeedEncode -> -> 0 `i `c ]
+"409
+[; ;main.c: 409:     ps2DataState = 0;
+[e = _ps2DataState -> -> 0 `i `c ]
+"411
+[; ;main.c: 411:     delay = 0;
+[e = _delay -> -> 0 `i `ui ]
+"412
+[; ;main.c: 412:     delayedKey = 0;
+[e = _delayedKey -> -> 0 `i `uc ]
+"413
+[; ;main.c: 413:     shift_ctrl_alt = 0;
+[e = _shift_ctrl_alt -> -> 0 `i `uc ]
+"414
+[; ;main.c: 414:     replaced = 0;
+[e = _replaced -> -> 0 `i `uc ]
+"417
+[; ;main.c: 417:     T0CS = 1;
+[e = _T0CS -> -> 1 `i `b ]
+"418
+[; ;main.c: 418:     T0SE = 1;
+[e = _T0SE -> -> 1 `i `b ]
+"419
+[; ;main.c: 419:     GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
+"420
+[; ;main.c: 420:     T0IE = 1;
+[e = _T0IE -> -> 1 `i `b ]
+"421
+[; ;main.c: 421:     PSA = 1;
+[e = _PSA -> -> 1 `i `b ]
+"422
+[; ;main.c: 422:     T0IF = 0;
+[e = _T0IF -> -> 0 `i `b ]
+"423
+[; ;main.c: 423:     TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
+"425
+[; ;main.c: 425:     sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"427
+[; ;main.c: 427:     while(1)
+[e :U 79 ]
+"428
+[; ;main.c: 428:     {
+{
+"430
+[; ;main.c: 430:         if ( ps2DataState == 2 ) {
+[e $ ! == -> _ps2DataState `i -> 2 `i 81  ]
+{
+"438
+[; ;main.c: 438:                 calculateBitsFromTable(&shift_ctrl_alt, importantKeys, 6, 0);
+[e ( _calculateBitsFromTable (4 , , , &U _shift_ctrl_alt -> &U _importantKeys `*uc -> -> 6 `i `uc -> -> 0 `i `uc ]
+"440
+[; ;main.c: 440:                 calculateBitsFromTable(&kempstonMouseEmulatorKeys, kempstonMouseKeys, 6, numLock);
+[e ( _calculateBitsFromTable (4 , , , &U _kempstonMouseEmulatorKeys -> &U _kempstonMouseKeys `*uc -> -> 6 `i `uc _numLock ]
+"446
+[; ;main.c: 446:                 if ( ps2Data == 119 && ps2Down ) {
+[e $ ! && == -> _ps2Data `i -> 119 `i != -> _ps2Down `i -> 0 `i 82  ]
+{
+"447
+[; ;main.c: 447:                     numLock = !numLock;
+[e = _numLock -> -> ! != -> _numLock `i -> 0 `i `i `uc ]
+"448
+[; ;main.c: 448:                 }
+}
+[e :U 82 ]
+"451
+[; ;main.c: 451:                 if ( (shift_ctrl_alt & 12) > 0 && (shift_ctrl_alt & 48) > 0 && ps2Data == 31 && ps2Down ) {
+[e $ ! && && && > & -> _shift_ctrl_alt `i -> 12 `i -> 0 `i > & -> _shift_ctrl_alt `i -> 48 `i -> 0 `i == -> _ps2Data `i -> 31 `i != -> _ps2Down `i -> 0 `i 83  ]
+{
+"452
+[; ;main.c: 452:                     outPorts[8] &= 253;
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 253 `i `uc ]
+"453
+[; ;main.c: 453:                 } else {
+}
+[e $U 84  ]
+[e :U 83 ]
+{
+"454
+[; ;main.c: 454:                     outPorts[8] |= 2;
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
+"455
+[; ;main.c: 455:                 }
+}
+[e :U 84 ]
+"458
+[; ;main.c: 458:                 if ( (shift_ctrl_alt & 12) > 0 && ps2Data == 126 && ps2Down ) {
+[e $ ! && && > & -> _shift_ctrl_alt `i -> 12 `i -> 0 `i == -> _ps2Data `i -> 126 `i != -> _ps2Down `i -> 0 `i 85  ]
+{
+"459
+[; ;main.c: 459:                     outPorts[8] &= 251;
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 251 `i `uc ]
+"460
+[; ;main.c: 460:                 } else {
+}
+[e $U 86  ]
+[e :U 85 ]
+{
+"461
+[; ;main.c: 461:                     outPorts[8] |= 4;
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 4 `i `uc ]
+"462
+[; ;main.c: 462:                 }
+}
+[e :U 86 ]
+"469
+[; ;main.c: 469:                 for(int8_t i = 0; i < 41 ;i+=2) {
+{
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `c ]
+[e $ < -> _i `i -> 41 `i 87  ]
+[e $U 88  ]
+[e :U 87 ]
+{
+"470
+[; ;main.c: 470:                     if ( ps2Data == replaceOnShiftKeyDown[i] ) {
+[e $ ! == -> _ps2Data `i -> *U + &U _replaceOnShiftKeyDown * -> -> _i `uc `ux -> -> # *U &U _replaceOnShiftKeyDown `ui `ux `i 90  ]
+{
+"471
+[; ;main.c: 471:                         if ( (((shift_ctrl_alt & 3) > 0) && replaced == 0) || replaced == ps2Data) {
+[e $ ! || && > & -> _shift_ctrl_alt `i -> 3 `i -> 0 `i == -> _replaced `i -> 0 `i == -> _replaced `i -> _ps2Data `i 91  ]
+{
+"472
+[; ;main.c: 472:                             if ( ps2Down ) replaced = ps2Data;
+[e $ ! != -> _ps2Down `i -> 0 `i 92  ]
+[e = _replaced _ps2Data ]
+[e $U 93  ]
+"473
+[; ;main.c: 473:                             else replaced = 0;
+[e :U 92 ]
+[e = _replaced -> -> 0 `i `uc ]
+[e :U 93 ]
+"474
+[; ;main.c: 474:                             ps2Data = replaceOnShiftKeyDown[i+1];
+[e = _ps2Data *U + &U _replaceOnShiftKeyDown * -> -> + -> _i `i -> 1 `i `ui `ux -> -> # *U &U _replaceOnShiftKeyDown `ui `ux ]
+"475
+[; ;main.c: 475:                         } else {
+}
+[e $U 94  ]
+[e :U 91 ]
+{
+"476
+[; ;main.c: 476:                             if ( replaced != 0 ) ps2Data = 0;
+[e $ ! != -> _replaced `i -> 0 `i 95  ]
+[e = _ps2Data -> -> 0 `i `uc ]
+[e :U 95 ]
+"477
+[; ;main.c: 477:                         }
+}
+[e :U 94 ]
+"478
+[; ;main.c: 478:                         break;
+[e $U 88  ]
+"479
+[; ;main.c: 479:                     }
+}
+[e :U 90 ]
+"480
+[; ;main.c: 480:                 }
+}
+[e =+ _i -> -> 2 `i `c ]
+[e $ < -> _i `i -> 41 `i 87  ]
+[e :U 88 ]
+}
+"484
+[; ;main.c: 484:                 for(int8_t i = 0; i < 8; i++) {
+{
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `c ]
+[e $ < -> _i `i -> 8 `i 96  ]
+[e $U 97  ]
+[e :U 96 ]
+{
+"485
+[; ;main.c: 485:                     if ( ps2Data == replaceOnDelayKeyDown[i] && ps2Down ) {
+[e $ ! && == -> _ps2Data `i -> *U + &U _replaceOnDelayKeyDown * -> -> _i `uc `ux -> -> # *U &U _replaceOnDelayKeyDown `ui `ux `i != -> _ps2Down `i -> 0 `i 99  ]
+{
+"486
+[; ;main.c: 486:                         if ( delay == 0 ) {
+[e $ ! == _delay -> -> 0 `i `ui 100  ]
+{
+"487
+[; ;main.c: 487:                             delayedKey = ps2Data;
+[e = _delayedKey _ps2Data ]
+"488
+[; ;main.c: 488:                             delay = 2600;
+[e = _delay -> -> 2600 `i `ui ]
+"489
+[; ;main.c: 489:                             ps2Data = 111;
+[e = _ps2Data -> -> 111 `i `uc ]
+"490
+[; ;main.c: 490:                         } else {
+}
+[e $U 101  ]
+[e :U 100 ]
+{
+"491
+[; ;main.c: 491:                             ps2Data = 0;
+[e = _ps2Data -> -> 0 `i `uc ]
+"492
+[; ;main.c: 492:                         }
+}
+[e :U 101 ]
+"493
+[; ;main.c: 493:                         break;
+[e $U 97  ]
+"494
+[; ;main.c: 494:                     }
+}
+[e :U 99 ]
+"495
+[; ;main.c: 495:                 }
+}
+[e ++ _i -> -> 1 `i `c ]
+[e $ < -> _i `i -> 8 `i 96  ]
+[e :U 97 ]
+}
+"501
+[; ;main.c: 501:                 updateKey(ps2Data, ps2Down );
+[e ( _updateKey (2 , _ps2Data -> _ps2Down `uc ]
+"504
+[; ;main.c: 504:                 sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"513
+[; ;main.c: 513:             ps2Data = 0;
+[e = _ps2Data -> -> 0 `i `uc ]
+"515
+[; ;main.c: 515:             ps2WaitCode = 0;
+[e = _ps2WaitCode -> -> 0 `i `c ]
+"516
+[; ;main.c: 516:             ps2Down = 1;
+[e = _ps2Down -> -> 1 `i `c ]
+"517
+[; ;main.c: 517:             ps2NeedEncode = 0;
+[e = _ps2NeedEncode -> -> 0 `i `c ]
+"518
+[; ;main.c: 518:             ps2DataState = 0;
+[e = _ps2DataState -> -> 0 `i `c ]
+"522
+[; ;main.c: 522:         } else if ( delay != 0 ) {
+}
+[e $U 102  ]
+[e :U 81 ]
+[e $ ! != _delay -> -> 0 `i `ui 103  ]
+{
+"524
+[; ;main.c: 524:             delay--;
+[e -- _delay -> -> 1 `i `ui ]
+"525
+[; ;main.c: 525:             if ( delay == 0 ) {
+[e $ ! == _delay -> -> 0 `i `ui 104  ]
+{
+"527
+[; ;main.c: 527:                 updatePort(0x00, 0);
+[e ( _updatePort (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+"529
+[; ;main.c: 529:                 sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"531
+[; ;main.c: 531:             } else if ( delay == 1300 ) {
+}
+[e $U 105  ]
+[e :U 104 ]
+[e $ ! == _delay -> -> 1300 `i `ui 106  ]
+{
+"533
+[; ;main.c: 533:                 updateKey(delayedKey, 1 );
+[e ( _updateKey (2 , _delayedKey -> -> 1 `i `uc ]
+"534
+[; ;main.c: 534:                 delayedKey = 0;
+[e = _delayedKey -> -> 0 `i `uc ]
+"535
+[; ;main.c: 535:                 sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"536
+[; ;main.c: 536:             }
+}
+[e :U 106 ]
+[e :U 105 ]
+"538
+[; ;main.c: 538:         } else {
+}
+[e $U 107  ]
+[e :U 103 ]
+{
+"541
+[; ;main.c: 541:             kempstonMouseEmulatorDelay++;
+[e ++ _kempstonMouseEmulatorDelay -> -> 1 `i `ui ]
+"542
+[; ;main.c: 542:             if ( kempstonMouseEmulatorDelay > 2000 ) {
+[e $ ! > _kempstonMouseEmulatorDelay -> -> 2000 `i `ui 108  ]
+{
+"543
+[; ;main.c: 543:                 if ( numLock ) {
+[e $ ! != -> _numLock `i -> 0 `i 109  ]
+{
+"544
+[; ;main.c: 544:                     if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=2;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 1 `i -> 0 `i 110  ]
+[e =- *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
+[e :U 110 ]
+"545
+[; ;main.c: 545:                     if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=2;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 2 `i -> 0 `i 111  ]
+[e =+ *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
+[e :U 111 ]
+"546
+[; ;main.c: 546:                     if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=2;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 4 `i -> 0 `i 112  ]
+[e =+ *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
+[e :U 112 ]
+"547
+[; ;main.c: 547:                     if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=2;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 8 `i -> 0 `i 113  ]
+[e =- *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
+[e :U 113 ]
+"548
+[; ;main.c: 548:                     if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 16 `i -> 0 `i 114  ]
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 254 `i `uc ]
+[e $U 115  ]
+"549
+[; ;main.c: 549:                     else outPorts[8] |= 1;
+[e :U 114 ]
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
+[e :U 115 ]
+"550
+[; ;main.c: 550:                 }
+}
+[e :U 109 ]
+"552
+[; ;main.c: 552:                 sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"554
+[; ;main.c: 554:                 kempstonMouseEmulatorDelay = 0;
+[e = _kempstonMouseEmulatorDelay -> -> 0 `i `ui ]
+"555
+[; ;main.c: 555:             }
+}
+[e :U 108 ]
+"557
+[; ;main.c: 557:         }
+}
+[e :U 107 ]
+[e :U 102 ]
+"559
+[; ;main.c: 559:         __asm("clrwdt");
+[; <" clrwdt ;# ">
+"560
+[; ;main.c: 560:     }
+}
+[e :U 78 ]
+[e $U 79  ]
+[e :U 80 ]
+"562
+[; ;main.c: 562: }
+[e :UE 77 ]
+}
