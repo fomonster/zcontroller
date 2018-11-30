@@ -154,7 +154,7 @@ shared variable portF : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 shared variable portG : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 -- mouse ports data
-shared variable portI : STD_LOGIC_VECTOR (2 downto 0) := "111";
+shared variable portI : STD_LOGIC_VECTOR (3 downto 0) := "1111";
 shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 
@@ -217,7 +217,7 @@ begin
 					when X"5" => portF := PB(4 downto 0);
 					when X"6" => portG := PB(4 downto 0);
 					when X"7" => portH := PB(4 downto 0);
-					when X"8" => portI := PB(2 downto 0); -- KempstonMouse
+					when X"8" => portI := PB(3 downto 0); -- KempstonMouse
 					when X"9" => portJ := PB(7 downto 0);
 					when X"A" => portK := PB(7 downto 0);
 					when others => null;
@@ -371,15 +371,15 @@ begin
 		case selector is			
 			when "001" => D <= "111" & kb_do_bus;	-- Read port #xxFE Keyboard
 			when "011" => D <= zc_do_bus;			-- Z-Controller
-			when "100" => D <= "1111111" & portI(0); -- Kempston Mouse Button
+			when "100" => D <= "111111" & portI(1 downto 0); -- Kempston Mouse Button
 			when "101" => D <= portJ; -- Kempston Mouse X
 			when "110" => D <= portK; -- Kempston Mouse Y
 			when others => D <= "ZZZZZZZZ";
 		end case;
 	end process;
 
-	RES <= 'Z' when portI(1) = '1' else '0';	
-	IO0 <= 'Z' when portI(2) = '1' else '0';
+	RES <= 'Z' when portI(2) = '1' else '0';	
+	IO0 <= 'Z' when portI(3) = '1' else '0';
 	
 	--------------------------------------------------------------------------------
 	--                                   The end.

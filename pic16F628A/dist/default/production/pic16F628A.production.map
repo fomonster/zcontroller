@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\pic16F628A.production.sym \
   --cmf=dist/default/production\pic16F628A.production.cmf -z -Q16F628A \
-  -oC:\Users\FOMONS~1\AppData\Local\Temp\spl8.2 \
+  -oC:\Users\FOMONS~1\AppData\Local\Temp\sc0.2 \
   -Mdist/default/production/pic16F628A.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=0BAh-0efh -pstack=STACK -ACODE=00h-07FFh \
   -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 -ACONST=00h-0FFhx8 \
@@ -17,7 +17,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-07Fh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\spl8.o \
+  -DENTRY=2 -k C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o \
   dist/default/production\pic16F628A.production.o 
 
 Object code version is 3.11
@@ -27,35 +27,35 @@ Machine type is 16F628A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\FOMONS~1\AppData\Local\Temp\spl8.o
+C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
                 end_init                              C        C        1        8       0
                 reset_vec                             0        0        1        0       0
 dist/default/production\pic16F628A.production.o
                 cinit                                 D        D       27        8       0
                 intentry                              4        4        8        8       0
-                text13                              25F      25F       11        8       0
-                text12                              4C0      4C0       A3      7D6       0
-                text11                              7EB      7EB       13      7D6       0
-                text10                              7D3      7D3       18      7D6       0
-                text9                               78E      78E       45      7D6       0
-                text8                               22E      22E       31        8       0
-                text7                               6ED      6ED       57      7D6       0
+                text13                              292      292       11        8       0
+                text12                              568      568       A3      7D6       0
+                text11                              27F      27F       13        8       0
+                text10                              7DB      7DB       18      7D6       0
+                text9                               796      796       45      7D6       0
+                text8                               24E      24E       31        8       0
+                text7                               6F5      6F5       57      7D6       0
                 text6                               3EB      3EB       D5      7D6       0
-                text5                               603      603       85      7D6       0
-                text4                               563      563       A0      7D6       0
-                text3                               688      688       65      7D6       0
-                text2                               7FE      7FE        1      7D6       0
-                text1                               744      744       4A      7D6       0
-                maintext                             34       34      1FA        8       0
+                text5                               60B      60B       85      7D6       0
+                text4                               4C0      4C0       A8      7D6       0
+                text3                               690      690       65      7D6       0
+                text2                               7FF      7FF        1      7D6       0
+                text1                               74C      74C       4A      7D6       0
+                maintext                             34       34      21A        8       0
                 cstackBANK0                          20       20       24       20       1
                 cstackCOMMON                         70       70        A       70       1
-                clrtext                             27C      27C        8        8       0
+                clrtext                             2A3      2A3        8        8       0
                 bssBANK1                             A0       A0       1A       A0       1
                 dataBANK0                            59       59        C       20       1
                 bssBANK0                             44       44       15       20       1
                 bssCOMMON                            7A       7A        4       70       1
                 strings                             300      300       EB      600       0
-                idataBANK0                          270      270        C        8       0
+                idataBANK0                          7F3      7F3        C      7D6       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -65,22 +65,22 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                 D        D       27         0
                 intentry                              4        4        8         0
                 reset_vec                             0        0        1         0
-                text13                              25F      25F       11         0
-                text12                              4C0      4C0       A3         0
-                text11                              7EB      7EB       13         0
-                text10                              7D3      7D3       18         0
-                text9                               78E      78E       45         0
-                text8                               22E      22E       31         0
-                text7                               6ED      6ED       57         0
+                text13                              292      292       11         0
+                text12                              568      568       A3         0
+                text11                              27F      27F       13         0
+                text10                              7DB      7DB       18         0
+                text9                               796      796       45         0
+                text8                               24E      24E       31         0
+                text7                               6F5      6F5       57         0
                 text6                               3EB      3EB       D5         0
-                text5                               603      603       85         0
-                text4                               563      563       A0         0
-                text3                               688      688       65         0
-                text2                               7FE      7FE        1         0
-                text1                               744      744       4A         0
-                maintext                             34       34      1FA         0
-                clrtext                             27C      27C        8         0
-                idataBANK0                          270      270        C         0
+                text5                               60B      60B       85         0
+                text4                               4C0      4C0       A8         0
+                text3                               690      690       65         0
+                text2                               7FF      7FF        1         0
+                text1                               74C      74C       4A         0
+                maintext                             34       34      21A         0
+                clrtext                             2A3      2A3        8         0
+                idataBANK0                          7F3      7F3        C         0
 
         CLASS   STRCODE        
 
@@ -131,366 +131,361 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000001  000001         0       0  CODE        2
-                intentry                       000004  000280  000284         8       0  CODE        2
+                intentry                       000004  0002A7  0002AB         8       0  CODE        2
                 cstackBANK0                    000020  000045  000065        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
                 bssBANK1                       0000A0  00001A  0000BA        A0       1  BANK1       1
                 strings                        000300  0000EB  0003EB       600       0  STRING      2
-                text6                          0003EB  000414  0007FF       7D6       0  CODE        2
+                text6                          0003EB  000415  000800       7D6       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            065-06F             B           1
-        BANK1            0BA-0EF            36           1
-        BANK2            120-14F            30           1
-        CODE             001-003             3           2
-                         284-2FF            7C
-                         7FF-7FF             1
-        CONFIG           2007-2007             1           2
-        CONST            001-003             3           2
-                         284-2FF            7C
-                         7FF-7FF             1
-        EEDATA           2100-217F            80           2
-        ENTRY            001-003             3           2
-                         284-2FF            7C
-                         7FF-7FF             1
-        IDLOC            2000-2003             4           2
-        RAM              065-06F             B           1
-                         0BA-0EF            36
-                         120-14F            30
-        SFR0             000-01F            20           1
-        SFR1             080-09F            20           1
-        SFR2             100-11F            20           1
-        SFR3             180-1EF            70           1
-        STACK            0BA-0EF            36           1
-        STRCODE          001-003             3           2
-                         284-2FF            7C
-                         7FF-7FF             1
-        STRING           001-003             3           2
-                         284-2FF            7C
-                         7FF-7FF             1
+        BANK0            0065-006F              B           1
+        BANK1            00BA-00EF             36           1
+        BANK2            0120-014F             30           1
+        CODE             0001-0003              3           2
+                         02AB-02FF             55
+        CONFIG           2007-2007              1           2
+        CONST            0001-0003              3           2
+                         02AB-02FF             55
+        EEDATA           2100-217F             80           2
+        ENTRY            0001-0003              3           2
+                         02AB-02FF             55
+        IDLOC            2000-2003              4           2
+        RAM              0065-006F              B           1
+                         00BA-00EF             36
+                         0120-014F             30
+        SFR0             0000-001F             20           1
+        SFR1             0080-009F             20           1
+        SFR2             0100-011F             20           1
+        SFR3             0180-01EF             70           1
+        STACK            00BA-00EF             36           1
+        STRCODE          0001-0003              3           2
+                         02AB-02FF             55
+        STRING           0001-0003              3           2
+                         02AB-02FF             55
 
                                   Symbol Table
 
-_CCP1CON                            (abs)        017
-_CCP1IE                             (abs)        462
-_CCP1IF                             (abs)        062
-_CCPR1H                             (abs)        016
-_CCPR1L                             (abs)        015
-_CMCON                              (abs)        01F
-_CMIE                               (abs)        466
-_CMIF                               (abs)        066
-_EEIE                               (abs)        467
-_EEIF                               (abs)        067
-_GIE                                (abs)        05F
-_INTE                               (abs)        05C
-_INTEDG                             (abs)        40E
-_INTF                               (abs)        059
-_PEIE                               (abs)        05E
-_PORTA                              (abs)        005
-_PORTB                              (abs)        006
-_PS0                                (abs)        408
-_PS1                                (abs)        409
-_PS2                                (abs)        40A
-_PSA                                (abs)        40B
-_RA0                                (abs)        028
-_RA1                                (abs)        029
-_RA2                                (abs)        02A
-_RA3                                (abs)        02B
-_RA4                                (abs)        02C
-_RBIE                               (abs)        05B
-_RBIF                               (abs)        058
-_RCIE                               (abs)        465
-_RCIF                               (abs)        065
-_RCSTA                              (abs)        018
-_SPEN                               (abs)        0C7
-_T0CS                               (abs)        40D
-_T0IE                               (abs)        05D
-_T0IF                               (abs)        05A
-_T0SE                               (abs)        40C
-_T1CON                              (abs)        010
-_TMR0                               (abs)        001
-_TMR1H                              (abs)        00F
-_TMR1IE                             (abs)        460
-_TMR1IF                             (abs)        060
-_TMR1L                              (abs)        00E
-_TMR2                               (abs)        011
-_TMR2IE                             (abs)        461
-_TMR2IF                             (abs)        061
-_TRISA                              (abs)        085
-_TRISB                              (abs)        086
-_TXIE                               (abs)        464
-_TXIF                               (abs)        064
-_TXSTA                              (abs)        098
-_VRCON                              (abs)        09F
-__Habs1                             abs1         000
-__Hbank0                            bank0        000
-__Hbank1                            bank1        000
-__Hbank2                            bank2        000
-__Hbank3                            bank3        000
-__HbssBANK0                         bssBANK0     000
-__HbssBANK1                         bssBANK1     000
-__HbssCOMMON                        bssCOMMON    000
-__Hcinit                            cinit        034
-__Hclrtext                          clrtext      000
-__Hcode                             code         000
-__Hcommon                           common       000
-__Hconfig                           config       000
-__HcstackBANK0                      cstackBANK0  000
-__HcstackCOMMON                     cstackCOMMON 000
-__HdataBANK0                        dataBANK0    000
-__Heeprom_data                      eeprom_data  000
-__Hend_init                         end_init     00D
-__Hfunctab                          functab      000
-__HidataBANK0                       idataBANK0   000
-__Hidloc                            idloc        000
-__Hinit                             init         00C
-__Hintentry                         intentry     00C
-__Hmaintext                         maintext     000
-__Hpowerup                          powerup      000
-__Hram                              ram          000
-__Hreset_vec                        reset_vec    001
-__Hsfr0                             sfr0         000
-__Hsfr1                             sfr1         000
-__Hsfr2                             sfr2         000
-__Hsfr3                             sfr3         000
-__Hspace_0                          (abs)        7FF
-__Hspace_1                          (abs)        0BA
-__Hspace_2                          (abs)        000
-__Hspace_3                          (abs)        000
-__Hstack                            stack        000
-__Hstrings                          strings      000
-__Htext                             text         000
-__Labs1                             abs1         000
-__Lbank0                            bank0        000
-__Lbank1                            bank1        000
-__Lbank2                            bank2        000
-__Lbank3                            bank3        000
-__LbssBANK0                         bssBANK0     000
-__LbssBANK1                         bssBANK1     000
-__LbssCOMMON                        bssCOMMON    000
-__Lcinit                            cinit        00D
-__Lclrtext                          clrtext      000
-__Lcode                             code         000
-__Lcommon                           common       000
-__Lconfig                           config       000
-__LcstackBANK0                      cstackBANK0  000
-__LcstackCOMMON                     cstackCOMMON 000
-__LdataBANK0                        dataBANK0    000
-__Leeprom_data                      eeprom_data  000
-__Lend_init                         end_init     00C
-__Lfunctab                          functab      000
-__LidataBANK0                       idataBANK0   000
-__Lidloc                            idloc        000
-__Linit                             init         00C
-__Lintentry                         intentry     004
-__Lmaintext                         maintext     000
-__Lpowerup                          powerup      000
-__Lram                              ram          000
-__Lreset_vec                        reset_vec    000
-__Lsfr0                             sfr0         000
-__Lsfr1                             sfr1         000
-__Lsfr2                             sfr2         000
-__Lsfr3                             sfr3         000
-__Lspace_0                          (abs)        000
-__Lspace_1                          (abs)        000
-__Lspace_2                          (abs)        000
-__Lspace_3                          (abs)        000
-__Lstack                            stack        000
-__Lstrings                          strings      000
-__Ltext                             text         000
-__S0                                (abs)        7FF
-__S1                                (abs)        0BA
-__S2                                (abs)        000
-__S3                                (abs)        000
-___bmul                             text11       7EB
-___bmul@multiplicand                cstackBANK0  020
-___bmul@multiplier                  cstackBANK0  023
-___bmul@product                     cstackBANK0  022
-___int_sp                           stack        000
-___latbits                          (abs)        000
-___sp                               stack        000
-__end_of___bmul                     text11       7FE
-__end_of__initialization            cinit        032
-__end_of__stringtab                 strings      306
-__end_of_calculateBitsFromTable     text9        7D3
-__end_of_codeToMatrix               strings      386
-__end_of_deviceDataInit             text10       7EB
-__end_of_deviceDataUpdateKeyboard   text5        688
-__end_of_deviceDataUpdateMouse      text4        603
-__end_of_deviceLogic                strings      3D5
-__end_of_deviceLogicMax             strings      3DE
-__end_of_deviceLogicMouseIndex      strings      3DF
-__end_of_importantKeys              strings      3E5
-__end_of_kempstonMouseKeys          strings      3EB
-__end_of_main                       maintext     22E
-__end_of_myDelay                    text2        7FF
-__end_of_myIsr                      text12       563
-__end_of_processKeyCode             text6        4C0
-__end_of_replaceOnDelayKeyDown      strings      3DD
-__end_of_replaceOnShiftKeyDown      strings      3B0
-__end_of_replaceTwoBytesCodes       strings      3CC
-__end_of_send                       text3        6ED
-__end_of_sendDataToAltera           text1        78E
-__end_of_updateKey                  text7        744
-__end_of_updatePort                 text8        25F
-__end_ofi1___bmul                   text13       270
-__initialization                    cinit        00D
-__pbssBANK0                         bssBANK0     044
-__pbssBANK1                         bssBANK1     0A0
-__pbssCOMMON                        bssCOMMON    07A
-__pcstackBANK0                      cstackBANK0  020
-__pcstackCOMMON                     cstackCOMMON 070
-__pdataBANK0                        dataBANK0    059
-__pidataBANK0                       idataBANK0   270
-__pintentry                         intentry     004
-__pmaintext                         maintext     034
-__pstrings                          strings      300
-__ptext1                            text1        744
-__ptext10                           text10       7D3
-__ptext11                           text11       7EB
-__ptext12                           text12       4C0
-__ptext13                           text13       25F
-__ptext2                            text2        7FE
-__ptext3                            text3        688
-__ptext4                            text4        563
-__ptext5                            text5        603
-__ptext6                            text6        3EB
-__ptext7                            text7        6ED
-__ptext8                            text8        22E
-__ptext9                            text9        78E
-__size_of___bmul                    (abs)        000
-__size_of_calculateBitsFromTable    (abs)        000
-__size_of_deviceDataInit            (abs)        000
-__size_of_deviceDataUpdateKeyboard  (abs)        000
-__size_of_deviceDataUpdateMouse     (abs)        000
-__size_of_main                      (abs)        000
-__size_of_myDelay                   (abs)        000
-__size_of_myIsr                     (abs)        000
-__size_of_processKeyCode            (abs)        000
-__size_of_send                      (abs)        000
-__size_of_sendDataToAltera          (abs)        000
-__size_of_updateKey                 (abs)        000
-__size_of_updatePort                (abs)        000
-__size_ofi1___bmul                  (abs)        000
-__stringbase                        strings      305
-__stringtab                         strings      300
-_calculateBitsFromTable             text9        78E
-_codeToMatrix                       strings      306
-_delay                              bssBANK0     048
-_delayedKey                         bssBANK0     04C
-_deviceDataInit                     text10       7D3
-_deviceDataUpdateKeyboard           text5        603
-_deviceDataUpdateKeyboard$187       cstackBANK0  038
-_deviceDataUpdateMouse              text4        563
-_deviceLogic                        strings      3CC
-_deviceLogicCommand                 bssBANK0     054
-_deviceLogicDelay                   bssBANK0     04A
-_deviceLogicDevice                  bssBANK0     052
-_deviceLogicIndex                   bssBANK0     055
-_deviceLogicMax                     strings      3DD
-_deviceLogicMouseIndex              strings      3DE
-_deviceLogicState                   bssBANK0     053
-_devices                            bssBANK1     0A0
-_importantKeys                      strings      3DF
-_kempstonMouseCounterA              bssBANK0     044
-_kempstonMouseCounterB              bssBANK0     051
-_kempstonMouseCounterC              bssBANK0     050
-_kempstonMouseEmulatorDelay         bssBANK0     046
-_kempstonMouseEmulatorKeys          bssBANK0     058
-_kempstonMouseKeys                  strings      3E5
-_main                               maintext     034
-_myDelay                            text2        7FE
-_myIsr                              text12       4C0
-_nRBPU                              (abs)        40F
-_needSave                           bssBANK0     04F
-_numLock                            bssBANK0     04E
-_outPorts                           dataBANK0    059
-_processKeyCode                     text6        3EB
-_ps2Bits                            bssCOMMON    07C
-_ps2BitsCount                       bssCOMMON    07B
-_ps2DataState                       bssCOMMON    07D
-_ps2Device                          bssCOMMON    07A
-_ps2DeviceMain                      dataBANK0    064
-_ps2Parity                          bssBANK0     056
-_replaceOnDelayKeyDown              strings      3D5
-_replaceOnShiftKeyDown              strings      386
-_replaceTwoBytesCodes               strings      3B0
-_replaced                           bssBANK0     04D
-_send                               text3        688
-_sendDataToAltera                   text1        744
-_sendDataToAltera$161               cstackBANK0  022
-_shift_ctrl_alt                     bssBANK0     057
-_updateKey                          text7        6ED
-_updateKey$154                      cstackBANK0  029
-_updatePort                         text8        22E
-btemp                               (abs)        07E
-calculateBitsFromTable@bits         cstackBANK0  021
-calculateBitsFromTable@clearIfFound cstackBANK0  024
-calculateBitsFromTable@count        cstackBANK0  023
-calculateBitsFromTable@i            cstackBANK0  028
-calculateBitsFromTable@keyCode      cstackBANK0  027
-calculateBitsFromTable@keyDown      cstackBANK0  020
-calculateBitsFromTable@table        cstackBANK0  022
-clear_ram0                          clrtext      27C
-deviceDataInit@device               cstackBANK0  020
-deviceDataUpdateKeyboard@code       cstackBANK0  03B
-deviceDataUpdateKeyboard@device     cstackBANK0  03C
-deviceDataUpdateKeyboard@i          cstackBANK0  03A
-deviceDataUpdateMouse@code          cstackBANK0  022
-deviceDataUpdateMouse@device        cstackBANK0  024
-deviceDataUpdateMouse@j             cstackBANK0  023
-end_of_initialization               cinit        032
-i1___bmul                           text13       25F
-i1___bmul@multiplicand              cstackCOMMON 070
-i1___bmul@multiplier                cstackCOMMON 072
-i1___bmul@product                   cstackCOMMON 073
-interrupt_function                  intentry     004
-intlevel0                           functab      000
-intlevel1                           functab      000
-intlevel2                           functab      000
-intlevel3                           functab      000
-intlevel4                           functab      000
-intlevel5                           functab      000
-main@code                           cstackBANK0  041
-main@device                         cstackBANK0  043
-main@i                              cstackBANK0  03F
-main@i_208                          cstackBANK0  042
-main@j                              cstackBANK0  040
-myIsr@device                        cstackCOMMON 079
-processKeyCode@i                    cstackBANK0  034
-processKeyCode@i_167                cstackBANK0  033
-processKeyCode@keyCode              cstackBANK0  035
-processKeyCode@keyDown              cstackBANK0  02D
-reset_vec                           reset_vec    000
-saved_w                             (abs)        07E
-send@byte                           cstackBANK0  020
-send@device                         cstackBANK0  022
-send@i                              cstackBANK0  023
-send@j                              cstackBANK0  024
-sendDataToAltera@i                  cstackBANK0  024
-stackhi                             (abs)        000
-stacklo                             (abs)        000
-start                               init         00C
-start_initialization                cinit        00D
-updateKey@code                      cstackBANK0  02C
-updateKey@down                      cstackBANK0  026
-updateKey@key                       cstackBANK0  02B
-updateKey@localCtrl                 cstackBANK0  02A
-updateKey@localShift                cstackBANK0  028
-updatePort@a                        cstackBANK0  024
-updatePort@bit_id                   cstackBANK0  025
-updatePort@set                      cstackBANK0  020
-wtemp0                              (abs)        07E
+_CCP1CON                            (abs)        0017
+_CCP1IE                             (abs)        0462
+_CCP1IF                             (abs)        0062
+_CCPR1H                             (abs)        0016
+_CCPR1L                             (abs)        0015
+_CMCON                              (abs)        001F
+_CMIE                               (abs)        0466
+_CMIF                               (abs)        0066
+_EEIE                               (abs)        0467
+_EEIF                               (abs)        0067
+_GIE                                (abs)        005F
+_INTE                               (abs)        005C
+_INTEDG                             (abs)        040E
+_INTF                               (abs)        0059
+_PEIE                               (abs)        005E
+_PORTA                              (abs)        0005
+_PORTB                              (abs)        0006
+_PS0                                (abs)        0408
+_PS1                                (abs)        0409
+_PS2                                (abs)        040A
+_PSA                                (abs)        040B
+_RA0                                (abs)        0028
+_RA1                                (abs)        0029
+_RA2                                (abs)        002A
+_RA3                                (abs)        002B
+_RA4                                (abs)        002C
+_RBIE                               (abs)        005B
+_RBIF                               (abs)        0058
+_RCIE                               (abs)        0465
+_RCIF                               (abs)        0065
+_RCSTA                              (abs)        0018
+_SPEN                               (abs)        00C7
+_T0CS                               (abs)        040D
+_T0IE                               (abs)        005D
+_T0IF                               (abs)        005A
+_T0SE                               (abs)        040C
+_T1CON                              (abs)        0010
+_TMR0                               (abs)        0001
+_TMR1H                              (abs)        000F
+_TMR1IE                             (abs)        0460
+_TMR1IF                             (abs)        0060
+_TMR1L                              (abs)        000E
+_TMR2                               (abs)        0011
+_TMR2IE                             (abs)        0461
+_TMR2IF                             (abs)        0061
+_TRISA                              (abs)        0085
+_TRISB                              (abs)        0086
+_TXIE                               (abs)        0464
+_TXIF                               (abs)        0064
+_TXSTA                              (abs)        0098
+_VRCON                              (abs)        009F
+__Habs1                             abs1         0000
+__Hbank0                            bank0        0000
+__Hbank1                            bank1        0000
+__Hbank2                            bank2        0000
+__Hbank3                            bank3        0000
+__HbssBANK0                         bssBANK0     0000
+__HbssBANK1                         bssBANK1     0000
+__HbssCOMMON                        bssCOMMON    0000
+__Hcinit                            cinit        0034
+__Hclrtext                          clrtext      0000
+__Hcode                             code         0000
+__Hcommon                           common       0000
+__Hconfig                           config       0000
+__HcstackBANK0                      cstackBANK0  0000
+__HcstackCOMMON                     cstackCOMMON 0000
+__HdataBANK0                        dataBANK0    0000
+__Heeprom_data                      eeprom_data  0000
+__Hend_init                         end_init     000D
+__Hfunctab                          functab      0000
+__HidataBANK0                       idataBANK0   0000
+__Hidloc                            idloc        0000
+__Hinit                             init         000C
+__Hintentry                         intentry     000C
+__Hmaintext                         maintext     0000
+__Hpowerup                          powerup      0000
+__Hram                              ram          0000
+__Hreset_vec                        reset_vec    0001
+__Hsfr0                             sfr0         0000
+__Hsfr1                             sfr1         0000
+__Hsfr2                             sfr2         0000
+__Hsfr3                             sfr3         0000
+__Hspace_0                          (abs)        0800
+__Hspace_1                          (abs)        00BA
+__Hspace_2                          (abs)        0000
+__Hspace_3                          (abs)        0000
+__Hstack                            stack        0000
+__Hstrings                          strings      0000
+__Htext                             text         0000
+__Labs1                             abs1         0000
+__Lbank0                            bank0        0000
+__Lbank1                            bank1        0000
+__Lbank2                            bank2        0000
+__Lbank3                            bank3        0000
+__LbssBANK0                         bssBANK0     0000
+__LbssBANK1                         bssBANK1     0000
+__LbssCOMMON                        bssCOMMON    0000
+__Lcinit                            cinit        000D
+__Lclrtext                          clrtext      0000
+__Lcode                             code         0000
+__Lcommon                           common       0000
+__Lconfig                           config       0000
+__LcstackBANK0                      cstackBANK0  0000
+__LcstackCOMMON                     cstackCOMMON 0000
+__LdataBANK0                        dataBANK0    0000
+__Leeprom_data                      eeprom_data  0000
+__Lend_init                         end_init     000C
+__Lfunctab                          functab      0000
+__LidataBANK0                       idataBANK0   0000
+__Lidloc                            idloc        0000
+__Linit                             init         000C
+__Lintentry                         intentry     0004
+__Lmaintext                         maintext     0000
+__Lpowerup                          powerup      0000
+__Lram                              ram          0000
+__Lreset_vec                        reset_vec    0000
+__Lsfr0                             sfr0         0000
+__Lsfr1                             sfr1         0000
+__Lsfr2                             sfr2         0000
+__Lsfr3                             sfr3         0000
+__Lspace_0                          (abs)        0000
+__Lspace_1                          (abs)        0000
+__Lspace_2                          (abs)        0000
+__Lspace_3                          (abs)        0000
+__Lstack                            stack        0000
+__Lstrings                          strings      0000
+__Ltext                             text         0000
+__S0                                (abs)        0800
+__S1                                (abs)        00BA
+__S2                                (abs)        0000
+__S3                                (abs)        0000
+___bmul                             text11       027F
+___bmul@multiplicand                cstackBANK0  0020
+___bmul@multiplier                  cstackBANK0  0023
+___bmul@product                     cstackBANK0  0022
+___int_sp                           stack        0000
+___latbits                          (abs)        0000
+___sp                               stack        0000
+__end_of___bmul                     text11       0292
+__end_of__initialization            cinit        0032
+__end_of__stringtab                 strings      0306
+__end_of_calculateBitsFromTable     text9        07DB
+__end_of_codeToMatrix               strings      0386
+__end_of_deviceDataInit             text10       07F3
+__end_of_deviceDataUpdateKeyboard   text5        0690
+__end_of_deviceDataUpdateMouse      text4        0568
+__end_of_deviceLogic                strings      03D5
+__end_of_deviceLogicMax             strings      03DE
+__end_of_deviceLogicMouseIndex      strings      03DF
+__end_of_importantKeys              strings      03E5
+__end_of_kempstonMouseKeys          strings      03EB
+__end_of_main                       maintext     024E
+__end_of_myDelay                    text2        0800
+__end_of_myIsr                      text12       060B
+__end_of_processKeyCode             text6        04C0
+__end_of_replaceOnDelayKeyDown      strings      03DD
+__end_of_replaceOnShiftKeyDown      strings      03B0
+__end_of_replaceTwoBytesCodes       strings      03CC
+__end_of_send                       text3        06F5
+__end_of_sendDataToAltera           text1        0796
+__end_of_updateKey                  text7        074C
+__end_of_updatePort                 text8        027F
+__end_ofi1___bmul                   text13       02A3
+__initialization                    cinit        000D
+__pbssBANK0                         bssBANK0     0044
+__pbssBANK1                         bssBANK1     00A0
+__pbssCOMMON                        bssCOMMON    007A
+__pcstackBANK0                      cstackBANK0  0020
+__pcstackCOMMON                     cstackCOMMON 0070
+__pdataBANK0                        dataBANK0    0059
+__pidataBANK0                       idataBANK0   07F3
+__pintentry                         intentry     0004
+__pmaintext                         maintext     0034
+__pstrings                          strings      0300
+__ptext1                            text1        074C
+__ptext10                           text10       07DB
+__ptext11                           text11       027F
+__ptext12                           text12       0568
+__ptext13                           text13       0292
+__ptext2                            text2        07FF
+__ptext3                            text3        0690
+__ptext4                            text4        04C0
+__ptext5                            text5        060B
+__ptext6                            text6        03EB
+__ptext7                            text7        06F5
+__ptext8                            text8        024E
+__ptext9                            text9        0796
+__size_of___bmul                    (abs)        0000
+__size_of_calculateBitsFromTable    (abs)        0000
+__size_of_deviceDataInit            (abs)        0000
+__size_of_deviceDataUpdateKeyboard  (abs)        0000
+__size_of_deviceDataUpdateMouse     (abs)        0000
+__size_of_main                      (abs)        0000
+__size_of_myDelay                   (abs)        0000
+__size_of_myIsr                     (abs)        0000
+__size_of_processKeyCode            (abs)        0000
+__size_of_send                      (abs)        0000
+__size_of_sendDataToAltera          (abs)        0000
+__size_of_updateKey                 (abs)        0000
+__size_of_updatePort                (abs)        0000
+__size_ofi1___bmul                  (abs)        0000
+__stringbase                        strings      0305
+__stringtab                         strings      0300
+_calculateBitsFromTable             text9        0796
+_codeToMatrix                       strings      0306
+_delay                              bssBANK0     0048
+_delayedKey                         bssBANK0     004C
+_deviceDataInit                     text10       07DB
+_deviceDataUpdateKeyboard           text5        060B
+_deviceDataUpdateKeyboard$187       cstackBANK0  0038
+_deviceDataUpdateMouse              text4        04C0
+_deviceLogic                        strings      03CC
+_deviceLogicCommand                 bssBANK0     0054
+_deviceLogicDelay                   bssBANK0     004A
+_deviceLogicDevice                  bssBANK0     0052
+_deviceLogicIndex                   bssBANK0     0055
+_deviceLogicMax                     strings      03DD
+_deviceLogicMouseIndex              strings      03DE
+_deviceLogicState                   bssBANK0     0053
+_devices                            bssBANK1     00A0
+_importantKeys                      strings      03DF
+_kempstonMouseCounterA              bssBANK0     0044
+_kempstonMouseCounterB              bssBANK0     0051
+_kempstonMouseCounterC              bssBANK0     0050
+_kempstonMouseEmulatorDelay         bssBANK0     0046
+_kempstonMouseEmulatorKeys          bssBANK0     0058
+_kempstonMouseKeys                  strings      03E5
+_main                               maintext     0034
+_myDelay                            text2        07FF
+_myIsr                              text12       0568
+_nRBPU                              (abs)        040F
+_needSave                           bssBANK0     004F
+_numLock                            bssBANK0     004E
+_outPorts                           dataBANK0    0059
+_processKeyCode                     text6        03EB
+_ps2Bits                            bssCOMMON    007C
+_ps2BitsCount                       bssCOMMON    007B
+_ps2DataState                       bssCOMMON    007D
+_ps2Device                          bssCOMMON    007A
+_ps2DeviceMain                      dataBANK0    0064
+_ps2Parity                          bssBANK0     0056
+_replaceOnDelayKeyDown              strings      03D5
+_replaceOnShiftKeyDown              strings      0386
+_replaceTwoBytesCodes               strings      03B0
+_replaced                           bssBANK0     004D
+_send                               text3        0690
+_sendDataToAltera                   text1        074C
+_sendDataToAltera$161               cstackBANK0  0022
+_shift_ctrl_alt                     bssBANK0     0057
+_updateKey                          text7        06F5
+_updateKey$154                      cstackBANK0  0029
+_updatePort                         text8        024E
+btemp                               (abs)        007E
+calculateBitsFromTable@bits         cstackBANK0  0021
+calculateBitsFromTable@clearIfFound cstackBANK0  0024
+calculateBitsFromTable@count        cstackBANK0  0023
+calculateBitsFromTable@i            cstackBANK0  0028
+calculateBitsFromTable@keyCode      cstackBANK0  0027
+calculateBitsFromTable@keyDown      cstackBANK0  0020
+calculateBitsFromTable@table        cstackBANK0  0022
+clear_ram0                          clrtext      02A3
+deviceDataInit@device               cstackBANK0  0020
+deviceDataUpdateKeyboard@code       cstackBANK0  003B
+deviceDataUpdateKeyboard@device     cstackBANK0  003C
+deviceDataUpdateKeyboard@i          cstackBANK0  003A
+deviceDataUpdateMouse@code          cstackBANK0  0022
+deviceDataUpdateMouse@device        cstackBANK0  0024
+deviceDataUpdateMouse@j             cstackBANK0  0023
+end_of_initialization               cinit        0032
+i1___bmul                           text13       0292
+i1___bmul@multiplicand              cstackCOMMON 0070
+i1___bmul@multiplier                cstackCOMMON 0072
+i1___bmul@product                   cstackCOMMON 0073
+interrupt_function                  intentry     0004
+intlevel0                           functab      0000
+intlevel1                           functab      0000
+intlevel2                           functab      0000
+intlevel3                           functab      0000
+intlevel4                           functab      0000
+intlevel5                           functab      0000
+main@code                           cstackBANK0  0041
+main@device                         cstackBANK0  0043
+main@i                              cstackBANK0  003F
+main@i_208                          cstackBANK0  0042
+main@j                              cstackBANK0  0040
+myIsr@device                        cstackCOMMON 0079
+processKeyCode@i                    cstackBANK0  0034
+processKeyCode@i_167                cstackBANK0  0033
+processKeyCode@keyCode              cstackBANK0  0035
+processKeyCode@keyDown              cstackBANK0  002D
+reset_vec                           reset_vec    0000
+saved_w                             (abs)        007E
+send@byte                           cstackBANK0  0020
+send@device                         cstackBANK0  0022
+send@i                              cstackBANK0  0023
+send@j                              cstackBANK0  0024
+sendDataToAltera@i                  cstackBANK0  0024
+stackhi                             (abs)        0000
+stacklo                             (abs)        0000
+start                               init         000C
+start_initialization                cinit        000D
+updateKey@code                      cstackBANK0  002C
+updateKey@down                      cstackBANK0  0026
+updateKey@key                       cstackBANK0  002B
+updateKey@localCtrl                 cstackBANK0  002A
+updateKey@localShift                cstackBANK0  0028
+updatePort@a                        cstackBANK0  0024
+updatePort@bit_id                   cstackBANK0  0025
+updatePort@set                      cstackBANK0  0020
+wtemp0                              (abs)        007E
 
 
 FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 486 in file "main.c"
+		line 492 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -965,7 +960,7 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
-		___bmul        		CODE           	07EB	0000	20
+		___bmul        		CODE           	027F	0000	20
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c estimated size: 20
 
@@ -981,23 +976,23 @@ shared
 		_replaceOnShiftKeyDown		STRING         	0386	0000	43
 		_replaceOnDelayKeyDown		STRING         	03D5	0000	9
 		_deviceLogicMax		STRING         	03DD	0000	2
-		i1___bmul      		CODE           	025F	0000	18
+		i1___bmul      		CODE           	0292	0000	18
 
 shared estimated size: 301
 
 main.c
-		_updatePort    		CODE           	022E	0000	50
-		_deviceDataInit		CODE           	07D3	0000	25
-		_main          		CODE           	0034	0000	507
+		_updatePort    		CODE           	024E	0000	50
+		_deviceDataInit		CODE           	07DB	0000	25
+		_main          		CODE           	0034	0000	539
 		_processKeyCode		CODE           	03EB	0000	214
-		_calculateBitsFromTable		CODE           	078E	0000	70
-		_myIsr         		CODE           	04C0	0000	164
-		_deviceDataUpdateKeyboard		CODE           	0603	0000	134
-		_deviceDataUpdateMouse		CODE           	0563	0000	161
-		_myDelay       		CODE           	07FE	0000	2
-		_updateKey     		CODE           	06ED	0000	88
-		_sendDataToAltera		CODE           	0744	0000	75
-		_send          		CODE           	0688	0000	102
+		_calculateBitsFromTable		CODE           	0796	0000	70
+		_myIsr         		CODE           	0568	0000	164
+		_deviceDataUpdateKeyboard		CODE           	060B	0000	134
+		_deviceDataUpdateMouse		CODE           	04C0	0000	169
+		_myDelay       		CODE           	07FF	0000	2
+		_updateKey     		CODE           	06F5	0000	88
+		_sendDataToAltera		CODE           	074C	0000	75
+		_send          		CODE           	0690	0000	102
 
-main.c estimated size: 1592
+main.c estimated size: 1632
 

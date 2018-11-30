@@ -154,7 +154,7 @@ shared variable portF : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 shared variable portG : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 -- mouse ports data
-shared variable portI : STD_LOGIC_VECTOR (2 downto 0) := "111";
+shared variable portI : STD_LOGIC_VECTOR (3 downto 0) := "1111";
 shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 
@@ -195,7 +195,7 @@ begin
 			    "101" when A(15 downto 0) = X"FBDF" and read_port = '1' else 
 			    "110" when A(15 downto 0) = X"FFDF" and read_port = '1' else 			    
 				"000";
-	
+
 	--------------------------------------------------------------------------------
 	-- Клавиатура
 	--------------------------------------------------------------------------------
@@ -206,7 +206,7 @@ begin
 		if RESTRIG = '1' then
 			count := "0000"; 
 		else
-			if STROBE'event and STROBE = '0' then 
+			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
 			
 				case count is
 					when X"0" => portA := PB(4 downto 0); -- Keyboard
@@ -217,7 +217,7 @@ begin
 					when X"5" => portF := PB(4 downto 0);
 					when X"6" => portG := PB(4 downto 0);
 					when X"7" => portH := PB(4 downto 0);
-					when X"8" => portI := PB(2 downto 0); -- KempstonMouse
+					when X"8" => portI := PB(3 downto 0); -- KempstonMouse
 					when X"9" => portJ := PB(7 downto 0);
 					when X"A" => portK := PB(7 downto 0);
 					when others => null;
@@ -378,8 +378,8 @@ begin
 		end case;
 	end process;
 
-	RES <= 'Z' when portI(1) = '1' else '0';	
-	IO0 <= 'Z' when portI(2) = '1' else '0';
+	RES <= 'Z' when portI(2) = '1' else '0';	
+	IO0 <= 'Z' when portI(3) = '1' else '0';
 	
 	--------------------------------------------------------------------------------
 	--                                   The end.

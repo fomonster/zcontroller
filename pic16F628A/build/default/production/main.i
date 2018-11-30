@@ -1802,16 +1802,16 @@ void processKeyCode(uint8_t keyCode, uint8_t keyDown)
 
 
     if ( (shift_ctrl_alt & 12) > 0 && (shift_ctrl_alt & 48) > 0 && keyCode == 31 && keyDown ) {
-        outPorts[8] &= 253;
+        outPorts[8] &= 251;
     } else {
-        outPorts[8] |= 2;
+        outPorts[8] |= 4;
     }
 
 
     if ( (shift_ctrl_alt & 12) > 0 && keyCode == 126 && keyDown ) {
-        outPorts[8] &= 251;
+        outPorts[8] &= 247;
     } else {
-        outPorts[8] |= 4;
+        outPorts[8] |= 8;
     }
 
 
@@ -1924,6 +1924,12 @@ void deviceDataUpdateMouse(struct PS2DeviceData* device)
         outPorts[8] |= 1;
     }
 
+    if ( (code & 2) > 0 ) {
+        outPorts[8] &= 253;
+    } else {
+        outPorts[8] |= 2;
+    }
+
     outPorts[9] += device->inData[device->readDataPos];
     device->readDataPos = (device->readDataPos + 1) & 7;
 
@@ -1948,7 +1954,7 @@ void main(void)
     for(int8_t i=0;i<8;i++) {
         outPorts[i] = 0;
     }
-    outPorts[8] = 0x07;
+    outPorts[8] = 0xFF;
     outPorts[9] = 0xF5;
     outPorts[10] = 0xDA;
     sendDataToAltera();
@@ -2034,6 +2040,8 @@ void main(void)
     kempstonMouseCounterC = 0;
 
     uint8_t code;
+
+    sendDataToAltera();
 
     while(1)
     {
@@ -2145,8 +2153,15 @@ void main(void)
         }
 
         kempstonMouseEmulatorDelay++;
-        if ( kempstonMouseEmulatorDelay > 2000 ) {
-# 703 "main.c"
+        if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
+
+            if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=1;
+            if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=1;
+            if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=1;
+            if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=1;
+            if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
+            else outPorts[8] |= 1;
+
             kempstonMouseEmulatorDelay = 0;
             needSave = 1;
         }

@@ -347,16 +347,16 @@ void processKeyCode(uint8_t keyCode, uint8_t keyDown)
 
     // ctrl + alt + delete => RES
     if ( (shift_ctrl_alt & IK_CTRL) > 0 && (shift_ctrl_alt & IK_ALT) > 0 && keyCode == 31 && keyDown  ) {                
-        outPorts[8] &= 253;
+        outPorts[8] &= 251;
     } else {
-        outPorts[8] |= 2;
+        outPorts[8] |= 4;
     }
 
     // ctrl + scroll lock => NMI
     if ( (shift_ctrl_alt & IK_CTRL) > 0 && keyCode == 126 && keyDown ) {  
-        outPorts[8] &= 251;                    
+        outPorts[8] &= 247;                    
     } else {
-        outPorts[8] |= 4;  
+        outPorts[8] |= 8;  
     }
 
     //****************************************************
@@ -468,6 +468,12 @@ void deviceDataUpdateMouse(struct PS2DeviceData* device)
     } else {
         outPorts[8] |= 1;
     }
+    
+    if ( (code & 2) > 0 ) {
+        outPorts[8] &= 253;
+    } else {
+        outPorts[8] |= 2;
+    }
 
     outPorts[9] += device->inData[device->readDataPos];
     device->readDataPos = (device->readDataPos + 1) & 7;
@@ -493,7 +499,7 @@ void main(void)
     for(int8_t i=0;i<8;i++) {
         outPorts[i] = 0;
     }
-    outPorts[8] = 0x07; //
+    outPorts[8] = 0xFF; //
     outPorts[9] = 0xF5; // #FBDF - mouse X  245
     outPorts[10] = 0xDA;  // #FFDF - mouse Y  218
     sendDataToAltera();
@@ -579,6 +585,8 @@ void main(void)
     kempstonMouseCounterC = 0;
     
     uint8_t code;
+    
+    sendDataToAltera();
     
     while(1)
     {        
@@ -690,16 +698,15 @@ void main(void)
         }
         
         kempstonMouseEmulatorDelay++;
-        if ( kempstonMouseEmulatorDelay > 2000  ) { 
+        if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
 
-            /*if ( numLock ) {
-                if ( (kempstonMouseEmulatorKeys & IK_LEFT) > 0 ) outPorts[9]-=2;
-                if ( (kempstonMouseEmulatorKeys & IK_RIGHT) > 0 ) outPorts[9]+=2;
-                if ( (kempstonMouseEmulatorKeys & IK_UP) > 0 ) outPorts[10]+=2;
-                if ( (kempstonMouseEmulatorKeys & IK_DOWN) > 0 ) outPorts[10]-=2;
-                if ( (kempstonMouseEmulatorKeys & IK_FIRE) > 0 ) outPorts[8] &= 254;
-                else outPorts[8] |= 1;  
-            }*/
+            if ( (kempstonMouseEmulatorKeys & IK_LEFT) > 0 ) outPorts[9]-=1;
+            if ( (kempstonMouseEmulatorKeys & IK_RIGHT) > 0 ) outPorts[9]+=1;
+            if ( (kempstonMouseEmulatorKeys & IK_UP) > 0 ) outPorts[10]+=1;
+            if ( (kempstonMouseEmulatorKeys & IK_DOWN) > 0 ) outPorts[10]-=1;
+            if ( (kempstonMouseEmulatorKeys & IK_FIRE) > 0 ) outPorts[8] &= 254;
+            else outPorts[8] |= 1;  
+                
             kempstonMouseEmulatorDelay = 0;                
             needSave = true;
         }

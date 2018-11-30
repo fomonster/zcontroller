@@ -1316,8 +1316,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! && && && > & -> _shift_ctrl_alt `i -> 12 `i -> 0 `i > & -> _shift_ctrl_alt `i -> 48 `i -> 0 `i == -> _keyCode `i -> 31 `i != -> _keyDown `i -> 0 `i 109  ]
 {
 "350
-[; ;main.c: 350:         outPorts[8] &= 253;
-[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 253 `i `uc ]
+[; ;main.c: 350:         outPorts[8] &= 251;
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 251 `i `uc ]
 "351
 [; ;main.c: 351:     } else {
 }
@@ -1325,8 +1325,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 109 ]
 {
 "352
-[; ;main.c: 352:         outPorts[8] |= 2;
-[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
+[; ;main.c: 352:         outPorts[8] |= 4;
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 4 `i `uc ]
 "353
 [; ;main.c: 353:     }
 }
@@ -1336,8 +1336,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! && && > & -> _shift_ctrl_alt `i -> 12 `i -> 0 `i == -> _keyCode `i -> 126 `i != -> _keyDown `i -> 0 `i 111  ]
 {
 "357
-[; ;main.c: 357:         outPorts[8] &= 251;
-[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 251 `i `uc ]
+[; ;main.c: 357:         outPorts[8] &= 247;
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 247 `i `uc ]
 "358
 [; ;main.c: 358:     } else {
 }
@@ -1345,8 +1345,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 111 ]
 {
 "359
-[; ;main.c: 359:         outPorts[8] |= 4;
-[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 4 `i `uc ]
+[; ;main.c: 359:         outPorts[8] |= 8;
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 8 `i `uc ]
 "360
 [; ;main.c: 360:     }
 }
@@ -1715,642 +1715,695 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 148 ]
 "472
-[; ;main.c: 472:     outPorts[9] += device->inData[device->readDataPos];
-[e =+ *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux `uc ]
+[; ;main.c: 472:     if ( (code & 2) > 0 ) {
+[e $ ! > & -> _code `i -> 2 `i -> 0 `i 149  ]
+{
 "473
-[; ;main.c: 473:     device->readDataPos = (device->readDataPos + 1) & 7;
-[e = . *U _device 4 -> & + -> . *U _device 4 `i -> 1 `i -> 7 `i `uc ]
+[; ;main.c: 473:         outPorts[8] &= 253;
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 253 `i `uc ]
+"474
+[; ;main.c: 474:     } else {
+}
+[e $U 150  ]
+[e :U 149 ]
+{
 "475
-[; ;main.c: 475:     outPorts[10] += device->inData[device->readDataPos];
-[e =+ *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux `uc ]
+[; ;main.c: 475:         outPorts[8] |= 2;
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 2 `i `uc ]
 "476
-[; ;main.c: 476:     device->readDataPos = (device->readDataPos + 1) & 7;
-[e = . *U _device 4 -> & + -> . *U _device 4 `i -> 1 `i -> 7 `i `uc ]
+[; ;main.c: 476:     }
+}
+[e :U 150 ]
 "478
-[; ;main.c: 478:     kempstonMouseCounterC -= 3;
-[e =- _kempstonMouseCounterC -> -> 3 `i `uc ]
+[; ;main.c: 478:     outPorts[9] += device->inData[device->readDataPos];
+[e =+ *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux `uc ]
 "479
-[; ;main.c: 479:     for(uint8_t j = 0; j < 8; j++) outPorts[j] = 0;
+[; ;main.c: 479:     device->readDataPos = (device->readDataPos + 1) & 7;
+[e = . *U _device 4 -> & + -> . *U _device 4 `i -> 1 `i -> 7 `i `uc ]
+"481
+[; ;main.c: 481:     outPorts[10] += device->inData[device->readDataPos];
+[e =+ *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux `uc ]
+"482
+[; ;main.c: 482:     device->readDataPos = (device->readDataPos + 1) & 7;
+[e = . *U _device 4 -> & + -> . *U _device 4 `i -> 1 `i -> 7 `i `uc ]
+"484
+[; ;main.c: 484:     kempstonMouseCounterC -= 3;
+[e =- _kempstonMouseCounterC -> -> 3 `i `uc ]
+"485
+[; ;main.c: 485:     for(uint8_t j = 0; j < 8; j++) outPorts[j] = 0;
 {
 [v _j `uc ~T0 @X0 1 a ]
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _j `i -> 8 `i 149  ]
-[e $U 150  ]
-[e :U 149 ]
+[e $ < -> _j `i -> 8 `i 151  ]
+[e $U 152  ]
+[e :U 151 ]
 [e = *U + &U _outPorts * -> _j `ux -> -> # *U &U _outPorts `ui `ux -> -> 0 `i `uc ]
 [e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _j `i -> 8 `i 149  ]
-[e :U 150 ]
+[e $ < -> _j `i -> 8 `i 151  ]
+[e :U 152 ]
 }
-"480
-[; ;main.c: 480:     needSave = 1;
+"486
+[; ;main.c: 486:     needSave = 1;
 [e = _needSave -> -> 1 `i `uc ]
-"481
-[; ;main.c: 481: }
+"487
+[; ;main.c: 487: }
 [e :UE 143 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"486
-[; ;main.c: 486: void main(void)
+"492
+[; ;main.c: 492: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"487
-[; ;main.c: 487: {
+"493
+[; ;main.c: 493: {
 {
 [e :U _main ]
 [f ]
-"489
-[; ;main.c: 489:     deviceDataInit(&devices[0]);
+"495
+[; ;main.c: 495:     deviceDataInit(&devices[0]);
 [e ( _deviceDataInit (1 &U *U + &U _devices * -> -> -> 0 `i `ui `ux -> -> # *U &U _devices `ui `ux ]
-"490
-[; ;main.c: 490:     deviceDataInit(&devices[1]);
+"496
+[; ;main.c: 496:     deviceDataInit(&devices[1]);
 [e ( _deviceDataInit (1 &U *U + &U _devices * -> -> -> 1 `i `ui `ux -> -> # *U &U _devices `ui `ux ]
-"493
-[; ;main.c: 493:     for(int8_t i=0;i<8;i++) {
+"499
+[; ;main.c: 499:     for(int8_t i=0;i<8;i++) {
 {
 [v _i `c ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `c ]
-[e $ < -> _i `i -> 8 `i 153  ]
-[e $U 154  ]
-[e :U 153 ]
+[e $ < -> _i `i -> 8 `i 155  ]
+[e $U 156  ]
+[e :U 155 ]
 {
-"494
-[; ;main.c: 494:         outPorts[i] = 0;
+"500
+[; ;main.c: 500:         outPorts[i] = 0;
 [e = *U + &U _outPorts * -> -> _i `uc `ux -> -> # *U &U _outPorts `ui `ux -> -> 0 `i `uc ]
-"495
-[; ;main.c: 495:     }
+"501
+[; ;main.c: 501:     }
 }
 [e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 8 `i 153  ]
-[e :U 154 ]
+[e $ < -> _i `i -> 8 `i 155  ]
+[e :U 156 ]
 }
-"496
-[; ;main.c: 496:     outPorts[8] = 0x07;
-[e = *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 7 `i `uc ]
-"497
-[; ;main.c: 497:     outPorts[9] = 0xF5;
+"502
+[; ;main.c: 502:     outPorts[8] = 0xFF;
+[e = *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 255 `i `uc ]
+"503
+[; ;main.c: 503:     outPorts[9] = 0xF5;
 [e = *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 245 `i `uc ]
-"498
-[; ;main.c: 498:     outPorts[10] = 0xDA;
-[e = *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 218 `i `uc ]
-"499
-[; ;main.c: 499:     sendDataToAltera();
-[e ( _sendDataToAltera ..  ]
 "504
-[; ;main.c: 504:     GIE = 1;
-[e = _GIE -> -> 1 `i `b ]
+[; ;main.c: 504:     outPorts[10] = 0xDA;
+[e = *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 218 `i `uc ]
 "505
-[; ;main.c: 505:     PEIE = 0;
-[e = _PEIE -> -> 0 `i `b ]
-"506
-[; ;main.c: 506:     T0IE = 1;
-[e = _T0IE -> -> 1 `i `b ]
-"507
-[; ;main.c: 507:     INTE = 0;
-[e = _INTE -> -> 0 `i `b ]
-"508
-[; ;main.c: 508:     RBIE = 0;
-[e = _RBIE -> -> 0 `i `b ]
-"509
-[; ;main.c: 509:     T0IF = 0;
-[e = _T0IF -> -> 0 `i `b ]
+[; ;main.c: 505:     sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
 "510
-[; ;main.c: 510:     INTF = 0;
-[e = _INTF -> -> 0 `i `b ]
+[; ;main.c: 510:     GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
 "511
-[; ;main.c: 511:     RBIF = 0;
-[e = _RBIF -> -> 0 `i `b ]
+[; ;main.c: 511:     PEIE = 0;
+[e = _PEIE -> -> 0 `i `b ]
+"512
+[; ;main.c: 512:     T0IE = 1;
+[e = _T0IE -> -> 1 `i `b ]
+"513
+[; ;main.c: 513:     INTE = 0;
+[e = _INTE -> -> 0 `i `b ]
 "514
-[; ;main.c: 514:     EEIF = 0;
-[e = _EEIF -> -> 0 `i `b ]
+[; ;main.c: 514:     RBIE = 0;
+[e = _RBIE -> -> 0 `i `b ]
 "515
-[; ;main.c: 515:     CMIF = 0;
-[e = _CMIF -> -> 0 `i `b ]
+[; ;main.c: 515:     T0IF = 0;
+[e = _T0IF -> -> 0 `i `b ]
 "516
-[; ;main.c: 516:     RCIF = 0;
-[e = _RCIF -> -> 0 `i `b ]
+[; ;main.c: 516:     INTF = 0;
+[e = _INTF -> -> 0 `i `b ]
 "517
-[; ;main.c: 517:     TXIF = 0;
-[e = _TXIF -> -> 0 `i `b ]
-"518
-[; ;main.c: 518:     CCP1IF = 0;
-[e = _CCP1IF -> -> 0 `i `b ]
-"519
-[; ;main.c: 519:     TMR2IF = 0;
-[e = _TMR2IF -> -> 0 `i `b ]
+[; ;main.c: 517:     RBIF = 0;
+[e = _RBIF -> -> 0 `i `b ]
 "520
-[; ;main.c: 520:     TMR1IF = 0;
-[e = _TMR1IF -> -> 0 `i `b ]
+[; ;main.c: 520:     EEIF = 0;
+[e = _EEIF -> -> 0 `i `b ]
+"521
+[; ;main.c: 521:     CMIF = 0;
+[e = _CMIF -> -> 0 `i `b ]
+"522
+[; ;main.c: 522:     RCIF = 0;
+[e = _RCIF -> -> 0 `i `b ]
 "523
-[; ;main.c: 523:     EEIE = 0;
-[e = _EEIE -> -> 0 `i `b ]
+[; ;main.c: 523:     TXIF = 0;
+[e = _TXIF -> -> 0 `i `b ]
 "524
-[; ;main.c: 524:     CMIE = 0;
-[e = _CMIE -> -> 0 `i `b ]
+[; ;main.c: 524:     CCP1IF = 0;
+[e = _CCP1IF -> -> 0 `i `b ]
 "525
-[; ;main.c: 525:     RCIE = 0;
-[e = _RCIE -> -> 0 `i `b ]
+[; ;main.c: 525:     TMR2IF = 0;
+[e = _TMR2IF -> -> 0 `i `b ]
 "526
-[; ;main.c: 526:     TXIE = 0;
-[e = _TXIE -> -> 0 `i `b ]
-"527
-[; ;main.c: 527:     CCP1IE = 0;
-[e = _CCP1IE -> -> 0 `i `b ]
-"528
-[; ;main.c: 528:     TMR2IE = 0;
-[e = _TMR2IE -> -> 0 `i `b ]
+[; ;main.c: 526:     TMR1IF = 0;
+[e = _TMR1IF -> -> 0 `i `b ]
 "529
-[; ;main.c: 529:     TMR1IE = 0;
-[e = _TMR1IE -> -> 0 `i `b ]
+[; ;main.c: 529:     EEIE = 0;
+[e = _EEIE -> -> 0 `i `b ]
+"530
+[; ;main.c: 530:     CMIE = 0;
+[e = _CMIE -> -> 0 `i `b ]
+"531
+[; ;main.c: 531:     RCIE = 0;
+[e = _RCIE -> -> 0 `i `b ]
 "532
-[; ;main.c: 532:     nRBPU = 1;
-[e = _nRBPU -> -> 1 `i `b ]
+[; ;main.c: 532:     TXIE = 0;
+[e = _TXIE -> -> 0 `i `b ]
 "533
-[; ;main.c: 533:     INTEDG = 0;
-[e = _INTEDG -> -> 0 `i `b ]
+[; ;main.c: 533:     CCP1IE = 0;
+[e = _CCP1IE -> -> 0 `i `b ]
 "534
-[; ;main.c: 534:     T0CS = 1;
-[e = _T0CS -> -> 1 `i `b ]
+[; ;main.c: 534:     TMR2IE = 0;
+[e = _TMR2IE -> -> 0 `i `b ]
 "535
-[; ;main.c: 535:     T0SE = 1;
-[e = _T0SE -> -> 1 `i `b ]
-"536
-[; ;main.c: 536:     PSA = 1;
-[e = _PSA -> -> 1 `i `b ]
-"537
-[; ;main.c: 537:     PS2 = 0;
-[e = _PS2 -> -> 0 `i `b ]
+[; ;main.c: 535:     TMR1IE = 0;
+[e = _TMR1IE -> -> 0 `i `b ]
 "538
-[; ;main.c: 538:     PS1 = 0;
-[e = _PS1 -> -> 0 `i `b ]
+[; ;main.c: 538:     nRBPU = 1;
+[e = _nRBPU -> -> 1 `i `b ]
 "539
-[; ;main.c: 539:     PS0 = 0;
-[e = _PS0 -> -> 0 `i `b ]
+[; ;main.c: 539:     INTEDG = 0;
+[e = _INTEDG -> -> 0 `i `b ]
+"540
+[; ;main.c: 540:     T0CS = 1;
+[e = _T0CS -> -> 1 `i `b ]
+"541
+[; ;main.c: 541:     T0SE = 1;
+[e = _T0SE -> -> 1 `i `b ]
 "542
-[; ;main.c: 542:     TMR0 = 255;
-[e = _TMR0 -> -> 255 `i `uc ]
+[; ;main.c: 542:     PSA = 1;
+[e = _PSA -> -> 1 `i `b ]
 "543
-[; ;main.c: 543:     TMR1L = 0;
-[e = _TMR1L -> -> 0 `i `uc ]
+[; ;main.c: 543:     PS2 = 0;
+[e = _PS2 -> -> 0 `i `b ]
 "544
-[; ;main.c: 544:     TMR1H = 0;
-[e = _TMR1H -> -> 0 `i `uc ]
+[; ;main.c: 544:     PS1 = 0;
+[e = _PS1 -> -> 0 `i `b ]
 "545
-[; ;main.c: 545:     TMR2 = 0;
-[e = _TMR2 -> -> 0 `i `uc ]
-"546
-[; ;main.c: 546:     T1CON = 6;
-[e = _T1CON -> -> 6 `i `uc ]
-"547
-[; ;main.c: 547:     CCPR1L = 0;
-[e = _CCPR1L -> -> 0 `i `uc ]
+[; ;main.c: 545:     PS0 = 0;
+[e = _PS0 -> -> 0 `i `b ]
 "548
-[; ;main.c: 548:     CCPR1H = 0;
-[e = _CCPR1H -> -> 0 `i `uc ]
+[; ;main.c: 548:     TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
 "549
-[; ;main.c: 549:     CCP1CON = 0;
-[e = _CCP1CON -> -> 0 `i `uc ]
+[; ;main.c: 549:     TMR1L = 0;
+[e = _TMR1L -> -> 0 `i `uc ]
 "550
-[; ;main.c: 550:     CMCON = 7;
-[e = _CMCON -> -> 7 `i `uc ]
+[; ;main.c: 550:     TMR1H = 0;
+[e = _TMR1H -> -> 0 `i `uc ]
 "551
-[; ;main.c: 551:     VRCON = 0;
-[e = _VRCON -> -> 0 `i `uc ]
+[; ;main.c: 551:     TMR2 = 0;
+[e = _TMR2 -> -> 0 `i `uc ]
 "552
-[; ;main.c: 552:     RCSTA = 0;
-[e = _RCSTA -> -> 0 `i `uc ]
+[; ;main.c: 552:     T1CON = 6;
+[e = _T1CON -> -> 6 `i `uc ]
 "553
-[; ;main.c: 553:     TXSTA = 128;
-[e = _TXSTA -> -> 128 `i `uc ]
+[; ;main.c: 553:     CCPR1L = 0;
+[e = _CCPR1L -> -> 0 `i `uc ]
 "554
-[; ;main.c: 554:     SPEN = 0;
-[e = _SPEN -> -> 0 `i `b ]
+[; ;main.c: 554:     CCPR1H = 0;
+[e = _CCPR1H -> -> 0 `i `uc ]
+"555
+[; ;main.c: 555:     CCP1CON = 0;
+[e = _CCP1CON -> -> 0 `i `uc ]
+"556
+[; ;main.c: 556:     CMCON = 7;
+[e = _CMCON -> -> 7 `i `uc ]
+"557
+[; ;main.c: 557:     VRCON = 0;
+[e = _VRCON -> -> 0 `i `uc ]
+"558
+[; ;main.c: 558:     RCSTA = 0;
+[e = _RCSTA -> -> 0 `i `uc ]
 "559
-[; ;main.c: 559:     TRISA = 0b11111001;
-[e = _TRISA -> -> 249 `i `uc ]
+[; ;main.c: 559:     TXSTA = 128;
+[e = _TXSTA -> -> 128 `i `uc ]
 "560
-[; ;main.c: 560:     PORTA = 0;
+[; ;main.c: 560:     SPEN = 0;
+[e = _SPEN -> -> 0 `i `b ]
+"565
+[; ;main.c: 565:     TRISA = 0b11111001;
+[e = _TRISA -> -> 249 `i `uc ]
+"566
+[; ;main.c: 566:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"563
-[; ;main.c: 563:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
-"564
-[; ;main.c: 564:     PORTB = 0xFF;
-[e = _PORTB -> -> 255 `i `uc ]
-"567
-[; ;main.c: 567:     delay = 0;
-[e = _delay -> -> 0 `i `ui ]
-"568
-[; ;main.c: 568:     delayedKey = 0;
-[e = _delayedKey -> -> 0 `i `uc ]
 "569
-[; ;main.c: 569:     shift_ctrl_alt = 0;
-[e = _shift_ctrl_alt -> -> 0 `i `uc ]
+[; ;main.c: 569:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "570
-[; ;main.c: 570:     replaced = 0;
-[e = _replaced -> -> 0 `i `uc ]
-"572
-[; ;main.c: 572:     deviceLogicDelay = 0;
-[e = _deviceLogicDelay -> -> 0 `i `ui ]
+[; ;main.c: 570:     PORTB = 0xFF;
+[e = _PORTB -> -> 255 `i `uc ]
 "573
-[; ;main.c: 573:     deviceLogicIndex = 0;
-[e = _deviceLogicIndex -> -> 0 `i `uc ]
+[; ;main.c: 573:     delay = 0;
+[e = _delay -> -> 0 `i `ui ]
 "574
-[; ;main.c: 574:     deviceLogicState = 0;
-[e = _deviceLogicState -> -> 0 `i `uc ]
+[; ;main.c: 574:     delayedKey = 0;
+[e = _delayedKey -> -> 0 `i `uc ]
 "575
-[; ;main.c: 575:     deviceLogicDevice = 3;
-[e = _deviceLogicDevice -> -> 3 `i `uc ]
-"577
-[; ;main.c: 577:     kempstonMouseCounterA = 0;
-[e = _kempstonMouseCounterA -> -> 0 `i `ui ]
+[; ;main.c: 575:     shift_ctrl_alt = 0;
+[e = _shift_ctrl_alt -> -> 0 `i `uc ]
+"576
+[; ;main.c: 576:     replaced = 0;
+[e = _replaced -> -> 0 `i `uc ]
 "578
-[; ;main.c: 578:     kempstonMouseCounterB = 0;
-[e = _kempstonMouseCounterB -> -> 0 `i `uc ]
+[; ;main.c: 578:     deviceLogicDelay = 0;
+[e = _deviceLogicDelay -> -> 0 `i `ui ]
 "579
-[; ;main.c: 579:     kempstonMouseCounterC = 0;
-[e = _kempstonMouseCounterC -> -> 0 `i `uc ]
+[; ;main.c: 579:     deviceLogicIndex = 0;
+[e = _deviceLogicIndex -> -> 0 `i `uc ]
+"580
+[; ;main.c: 580:     deviceLogicState = 0;
+[e = _deviceLogicState -> -> 0 `i `uc ]
 "581
-[; ;main.c: 581:     uint8_t code;
-[v _code `uc ~T0 @X0 1 a ]
+[; ;main.c: 581:     deviceLogicDevice = 3;
+[e = _deviceLogicDevice -> -> 3 `i `uc ]
 "583
-[; ;main.c: 583:     while(1)
-[e :U 157 ]
+[; ;main.c: 583:     kempstonMouseCounterA = 0;
+[e = _kempstonMouseCounterA -> -> 0 `i `ui ]
 "584
-[; ;main.c: 584:     {
-{
+[; ;main.c: 584:     kempstonMouseCounterB = 0;
+[e = _kempstonMouseCounterB -> -> 0 `i `uc ]
 "585
-[; ;main.c: 585:         needSave = 0;
-[e = _needSave -> -> 0 `i `uc ]
+[; ;main.c: 585:     kempstonMouseCounterC = 0;
+[e = _kempstonMouseCounterC -> -> 0 `i `uc ]
 "587
-[; ;main.c: 587:         for(uint8_t i = 0; i < 2; i++) {
+[; ;main.c: 587:     uint8_t code;
+[v _code `uc ~T0 @X0 1 a ]
+"589
+[; ;main.c: 589:     sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"591
+[; ;main.c: 591:     while(1)
+[e :U 159 ]
+"592
+[; ;main.c: 592:     {
+{
+"593
+[; ;main.c: 593:         needSave = 0;
+[e = _needSave -> -> 0 `i `uc ]
+"595
+[; ;main.c: 595:         for(uint8_t i = 0; i < 2; i++) {
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 2 `i 159  ]
-[e $U 160  ]
-[e :U 159 ]
+[e $ < -> _i `i -> 2 `i 161  ]
+[e $U 162  ]
+[e :U 161 ]
 {
-"588
-[; ;main.c: 588:             struct PS2DeviceData* device = &devices[i];
+"596
+[; ;main.c: 596:             struct PS2DeviceData* device = &devices[i];
 [v _device `*S56 ~T0 @X0 1 a ]
 [e = _device &U *U + &U _devices * -> _i `ux -> -> # *U &U _devices `ui `ux ]
-"590
-[; ;main.c: 590:             if ( device->readDataPos != device->inDataPos && device->inData[device->readDataPos] == 0xaa ) {
-[e $ ! && != -> . *U _device 4 `i -> . *U _device 3 `i == -> *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux `i -> 170 `i 162  ]
-{
-"591
-[; ;main.c: 591:                 device->deviceMode = 3;
-[e = . *U _device 0 -> -> 3 `i `uc ]
-"592
-[; ;main.c: 592:             }
-}
-[e :U 162 ]
-"594
-[; ;main.c: 594:             if ( device->deviceMode == 1 ) {
-[e $ ! == -> . *U _device 0 `i -> 1 `i 163  ]
-{
-"595
-[; ;main.c: 595:                 deviceDataUpdateKeyboard(device);
-[e ( _deviceDataUpdateKeyboard (1 _device ]
-"596
-[; ;main.c: 596:             } else if ( device->deviceMode == 2 ) {
-}
-[e $U 164  ]
-[e :U 163 ]
-[e $ ! == -> . *U _device 0 `i -> 2 `i 165  ]
-{
-"597
-[; ;main.c: 597:                 deviceDataUpdateMouse(device);
-[e ( _deviceDataUpdateMouse (1 _device ]
 "598
-[; ;main.c: 598:             } else if ( device->deviceMode == 3 && (deviceLogicDevice == 3 || deviceLogicDevice == i) ) {
+[; ;main.c: 598:             if ( device->readDataPos != device->inDataPos && device->inData[device->readDataPos] == 0xaa ) {
+[e $ ! && != -> . *U _device 4 `i -> . *U _device 3 `i == -> *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux `i -> 170 `i 164  ]
+{
+"599
+[; ;main.c: 599:                 device->deviceMode = 3;
+[e = . *U _device 0 -> -> 3 `i `uc ]
+"600
+[; ;main.c: 600:             }
+}
+[e :U 164 ]
+"602
+[; ;main.c: 602:             if ( device->deviceMode == 1 ) {
+[e $ ! == -> . *U _device 0 `i -> 1 `i 165  ]
+{
+"603
+[; ;main.c: 603:                 deviceDataUpdateKeyboard(device);
+[e ( _deviceDataUpdateKeyboard (1 _device ]
+"604
+[; ;main.c: 604:             } else if ( device->deviceMode == 2 ) {
 }
 [e $U 166  ]
 [e :U 165 ]
-[e $ ! && == -> . *U _device 0 `i -> 3 `i || == -> _deviceLogicDevice `i -> 3 `i == -> _deviceLogicDevice `i -> _i `i 167  ]
-{
-"600
-[; ;main.c: 600:                 deviceLogicDelay++;
-[e ++ _deviceLogicDelay -> -> 1 `i `ui ]
-"601
-[; ;main.c: 601:                 if ( deviceLogicDelay > 333 ) {
-[e $ ! > _deviceLogicDelay -> -> 333 `i `ui 168  ]
-{
-"604
-[; ;main.c: 604:                     if ( device->readDataPos != device->inDataPos ) {
-[e $ ! != -> . *U _device 4 `i -> . *U _device 3 `i 169  ]
+[e $ ! == -> . *U _device 0 `i -> 2 `i 167  ]
 {
 "605
-[; ;main.c: 605:                         code = device->inData[device->readDataPos];
-[e = _code *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux ]
+[; ;main.c: 605:                 deviceDataUpdateMouse(device);
+[e ( _deviceDataUpdateMouse (1 _device ]
 "606
-[; ;main.c: 606:                         device->readDataPos = (device->readDataPos + 1) & 7;
-[e = . *U _device 4 -> & + -> . *U _device 4 `i -> 1 `i -> 7 `i `uc ]
-"607
-[; ;main.c: 607:                     } else code = 0xff;
+[; ;main.c: 606:             } else if ( device->deviceMode == 3 && (deviceLogicDevice == 3 || deviceLogicDevice == i) ) {
 }
-[e $U 170  ]
-[e :U 169 ]
-[e = _code -> -> 255 `i `uc ]
-[e :U 170 ]
-"610
-[; ;main.c: 610:                     if ( deviceLogicState == 0 ) {
-[e $ ! == -> _deviceLogicState `i -> 0 `i 171  ]
+[e $U 168  ]
+[e :U 167 ]
+[e $ ! && == -> . *U _device 0 `i -> 3 `i || == -> _deviceLogicDevice `i -> 3 `i == -> _deviceLogicDevice `i -> _i `i 169  ]
+{
+"608
+[; ;main.c: 608:                 deviceLogicDelay++;
+[e ++ _deviceLogicDelay -> -> 1 `i `ui ]
+"609
+[; ;main.c: 609:                 if ( deviceLogicDelay > 333 ) {
+[e $ ! > _deviceLogicDelay -> -> 333 `i `ui 170  ]
 {
 "612
-[; ;main.c: 612:                         if ( deviceLogicDevice == 3 ) {
-[e $ ! == -> _deviceLogicDevice `i -> 3 `i 172  ]
+[; ;main.c: 612:                     if ( device->readDataPos != device->inDataPos ) {
+[e $ ! != -> . *U _device 4 `i -> . *U _device 3 `i 171  ]
 {
 "613
-[; ;main.c: 613:                             deviceLogicDevice = i;
-[e = _deviceLogicDevice _i ]
+[; ;main.c: 613:                         code = device->inData[device->readDataPos];
+[e = _code *U + &U . *U _device 5 * -> . *U _device 4 `ux -> -> # *U &U . *U _device 5 `ui `ux ]
 "614
-[; ;main.c: 614:                             deviceLogicIndex = 0;
-[e = _deviceLogicIndex -> -> 0 `i `uc ]
+[; ;main.c: 614:                         device->readDataPos = (device->readDataPos + 1) & 7;
+[e = . *U _device 4 -> & + -> . *U _device 4 `i -> 1 `i -> 7 `i `uc ]
 "615
-[; ;main.c: 615:                             deviceLogicState = 1;
-[e = _deviceLogicState -> -> 1 `i `uc ]
-"616
-[; ;main.c: 616:                         }
+[; ;main.c: 615:                     } else code = 0xff;
 }
+[e $U 172  ]
+[e :U 171 ]
+[e = _code -> -> 255 `i `uc ]
 [e :U 172 ]
 "618
-[; ;main.c: 618:                     } else if ( deviceLogicState == 1 ) {
-}
-[e $U 173  ]
-[e :U 171 ]
-[e $ ! == -> _deviceLogicState `i -> 1 `i 174  ]
+[; ;main.c: 618:                     if ( deviceLogicState == 0 ) {
+[e $ ! == -> _deviceLogicState `i -> 0 `i 173  ]
 {
 "620
-[; ;main.c: 620:                         deviceLogicCommand = deviceLogic[deviceLogicIndex];
-[e = _deviceLogicCommand *U + &U _deviceLogic * -> _deviceLogicIndex `ux -> -> # *U &U _deviceLogic `ui `ux ]
+[; ;main.c: 620:                         if ( deviceLogicDevice == 3 ) {
+[e $ ! == -> _deviceLogicDevice `i -> 3 `i 174  ]
+{
 "621
-[; ;main.c: 621:                         if (deviceLogicCommand == 0xaa ) {
-[e $ ! == -> _deviceLogicCommand `i -> 170 `i 175  ]
-{
+[; ;main.c: 621:                             deviceLogicDevice = i;
+[e = _deviceLogicDevice _i ]
 "622
-[; ;main.c: 622:                             if ( deviceLogicIndex == deviceLogicMax - 1 ) {
-[e $ ! == -> _deviceLogicIndex `i - -> _deviceLogicMax `i -> 1 `i 176  ]
-{
+[; ;main.c: 622:                             deviceLogicIndex = 0;
+[e = _deviceLogicIndex -> -> 0 `i `uc ]
 "623
-[; ;main.c: 623:                                 device->deviceMode = 2;
-[e = . *U _device 0 -> -> 2 `i `uc ]
+[; ;main.c: 623:                             deviceLogicState = 1;
+[e = _deviceLogicState -> -> 1 `i `uc ]
 "624
-[; ;main.c: 624:                                 kempstonMouseCounterA = 255;
-[e = _kempstonMouseCounterA -> -> 255 `i `ui ]
-"625
-[; ;main.c: 625:                             } else {
+[; ;main.c: 624:                         }
 }
-[e $U 177  ]
-[e :U 176 ]
-{
+[e :U 174 ]
 "626
-[; ;main.c: 626:                                 ps2DeviceMain = i;
-[e = _ps2DeviceMain _i ]
-"627
-[; ;main.c: 627:                                 device->deviceMode = 1;
-[e = . *U _device 0 -> -> 1 `i `uc ]
+[; ;main.c: 626:                     } else if ( deviceLogicState == 1 ) {
+}
+[e $U 175  ]
+[e :U 173 ]
+[e $ ! == -> _deviceLogicState `i -> 1 `i 176  ]
+{
 "628
-[; ;main.c: 628:                                 for(uint8_t j = 0; j < 8; j++) outPorts[j] = 0;
+[; ;main.c: 628:                         deviceLogicCommand = deviceLogic[deviceLogicIndex];
+[e = _deviceLogicCommand *U + &U _deviceLogic * -> _deviceLogicIndex `ux -> -> # *U &U _deviceLogic `ui `ux ]
+"629
+[; ;main.c: 629:                         if (deviceLogicCommand == 0xaa ) {
+[e $ ! == -> _deviceLogicCommand `i -> 170 `i 177  ]
+{
+"630
+[; ;main.c: 630:                             if ( deviceLogicIndex == deviceLogicMax - 1 ) {
+[e $ ! == -> _deviceLogicIndex `i - -> _deviceLogicMax `i -> 1 `i 178  ]
+{
+"631
+[; ;main.c: 631:                                 device->deviceMode = 2;
+[e = . *U _device 0 -> -> 2 `i `uc ]
+"632
+[; ;main.c: 632:                                 kempstonMouseCounterA = 255;
+[e = _kempstonMouseCounterA -> -> 255 `i `ui ]
+"633
+[; ;main.c: 633:                             } else {
+}
+[e $U 179  ]
+[e :U 178 ]
+{
+"634
+[; ;main.c: 634:                                 ps2DeviceMain = i;
+[e = _ps2DeviceMain _i ]
+"635
+[; ;main.c: 635:                                 device->deviceMode = 1;
+[e = . *U _device 0 -> -> 1 `i `uc ]
+"636
+[; ;main.c: 636:                                 for(uint8_t j = 0; j < 8; j++) outPorts[j] = 0;
 {
 [v _j `uc ~T0 @X0 1 a ]
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _j `i -> 8 `i 178  ]
-[e $U 179  ]
-[e :U 178 ]
+[e $ < -> _j `i -> 8 `i 180  ]
+[e $U 181  ]
+[e :U 180 ]
 [e = *U + &U _outPorts * -> _j `ux -> -> # *U &U _outPorts `ui `ux -> -> 0 `i `uc ]
 [e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _j `i -> 8 `i 178  ]
-[e :U 179 ]
+[e $ < -> _j `i -> 8 `i 180  ]
+[e :U 181 ]
 }
-"629
-[; ;main.c: 629:                             }
+"637
+[; ;main.c: 637:                             }
+}
+[e :U 179 ]
+"638
+[; ;main.c: 638:                             deviceLogicState = 0;
+[e = _deviceLogicState -> -> 0 `i `uc ]
+"639
+[; ;main.c: 639:                             deviceLogicDevice = 3;
+[e = _deviceLogicDevice -> -> 3 `i `uc ]
+"640
+[; ;main.c: 640:                             break;
+[e $U 162  ]
+"641
+[; ;main.c: 641:                         }
 }
 [e :U 177 ]
-"630
-[; ;main.c: 630:                             deviceLogicState = 0;
-[e = _deviceLogicState -> -> 0 `i `uc ]
-"631
-[; ;main.c: 631:                             deviceLogicDevice = 3;
-[e = _deviceLogicDevice -> -> 3 `i `uc ]
-"632
-[; ;main.c: 632:                             break;
-[e $U 160  ]
-"633
-[; ;main.c: 633:                         }
-}
-[e :U 175 ]
-"634
-[; ;main.c: 634:                         send(deviceLogicDevice, deviceLogicCommand);
-[e ( _send (2 , _deviceLogicDevice _deviceLogicCommand ]
-"635
-[; ;main.c: 635:                         deviceLogicState = 2;
-[e = _deviceLogicState -> -> 2 `i `uc ]
-"637
-[; ;main.c: 637:                     } else if ( deviceLogicState == 2 ) {
-}
-[e $U 181  ]
-[e :U 174 ]
-[e $ ! == -> _deviceLogicState `i -> 2 `i 182  ]
-{
-"639
-[; ;main.c: 639:                         if ( code == 0xfe || code == 0xfc ) {
-[e $ ! || == -> _code `i -> 254 `i == -> _code `i -> 252 `i 183  ]
-{
-"640
-[; ;main.c: 640:                             deviceLogicState = 1;
-[e = _deviceLogicState -> -> 1 `i `uc ]
-"641
-[; ;main.c: 641:                         } else {
-}
-[e $U 184  ]
-[e :U 183 ]
-{
 "642
-[; ;main.c: 642:                             deviceLogicState = 3;
-[e = _deviceLogicState -> -> 3 `i `uc ]
+[; ;main.c: 642:                         send(deviceLogicDevice, deviceLogicCommand);
+[e ( _send (2 , _deviceLogicDevice _deviceLogicCommand ]
 "643
-[; ;main.c: 643:                         }
-}
-[e :U 184 ]
+[; ;main.c: 643:                         deviceLogicState = 2;
+[e = _deviceLogicState -> -> 2 `i `uc ]
 "645
-[; ;main.c: 645:                     } else if ( deviceLogicState == 3 ) {
+[; ;main.c: 645:                     } else if ( deviceLogicState == 2 ) {
 }
-[e $U 185  ]
-[e :U 182 ]
-[e $ ! == -> _deviceLogicState `i -> 3 `i 186  ]
+[e $U 183  ]
+[e :U 176 ]
+[e $ ! == -> _deviceLogicState `i -> 2 `i 184  ]
 {
+"647
+[; ;main.c: 647:                         if ( code == 0xfe || code == 0xfc ) {
+[e $ ! || == -> _code `i -> 254 `i == -> _code `i -> 252 `i 185  ]
+{
+"648
+[; ;main.c: 648:                             deviceLogicState = 1;
+[e = _deviceLogicState -> -> 1 `i `uc ]
 "649
-[; ;main.c: 649:                         if ( deviceLogicCommand == 0xf2 ) {
-[e $ ! == -> _deviceLogicCommand `i -> 242 `i 187  ]
+[; ;main.c: 649:                         } else {
+}
+[e $U 186  ]
+[e :U 185 ]
 {
 "650
-[; ;main.c: 650:                             if ( code == 0x83 ) {
-[e $ ! == -> _code `i -> 131 `i 188  ]
-{
-"652
-[; ;main.c: 652:                             } else if ( code == 0x00 || code == 0x03 ) {
+[; ;main.c: 650:                             deviceLogicState = 3;
+[e = _deviceLogicState -> -> 3 `i `uc ]
+"651
+[; ;main.c: 651:                         }
 }
-[e $U 189  ]
-[e :U 188 ]
-[e $ ! || == -> _code `i -> 0 `i == -> _code `i -> 3 `i 190  ]
-{
-"654
-[; ;main.c: 654:                                 deviceLogicIndex = deviceLogicMouseIndex - 1;
-[e = _deviceLogicIndex -> - -> _deviceLogicMouseIndex `i -> 1 `i `uc ]
-"655
-[; ;main.c: 655:                             }
+[e :U 186 ]
+"653
+[; ;main.c: 653:                     } else if ( deviceLogicState == 3 ) {
 }
-[e :U 190 ]
-[e :U 189 ]
-"656
-[; ;main.c: 656:                         } else if ( deviceLogicCommand == 0xff ) {
-}
-[e $U 191  ]
-[e :U 187 ]
-[e $ ! == -> _deviceLogicCommand `i -> 255 `i 192  ]
+[e $U 187  ]
+[e :U 184 ]
+[e $ ! == -> _deviceLogicState `i -> 3 `i 188  ]
 {
 "657
-[; ;main.c: 657:                             if ( code != 0xaa ) {
-[e $ ! != -> _code `i -> 170 `i 193  ]
+[; ;main.c: 657:                         if ( deviceLogicCommand == 0xf2 ) {
+[e $ ! == -> _deviceLogicCommand `i -> 242 `i 189  ]
 {
 "658
-[; ;main.c: 658:                                 break;
-[e $U 160  ]
-"659
-[; ;main.c: 659:                             }
-}
-[e :U 193 ]
+[; ;main.c: 658:                             if ( code == 0x83 ) {
+[e $ ! == -> _code `i -> 131 `i 190  ]
+{
 "660
-[; ;main.c: 660:                         }
+[; ;main.c: 660:                             } else if ( code == 0x00 || code == 0x03 ) {
+}
+[e $U 191  ]
+[e :U 190 ]
+[e $ ! || == -> _code `i -> 0 `i == -> _code `i -> 3 `i 192  ]
+{
+"662
+[; ;main.c: 662:                                 deviceLogicIndex = deviceLogicMouseIndex - 1;
+[e = _deviceLogicIndex -> - -> _deviceLogicMouseIndex `i -> 1 `i `uc ]
+"663
+[; ;main.c: 663:                             }
 }
 [e :U 192 ]
 [e :U 191 ]
-"662
-[; ;main.c: 662:                         deviceLogicIndex++;
-[e ++ _deviceLogicIndex -> -> 1 `i `uc ]
-"663
-[; ;main.c: 663:                         deviceLogicState = 1;
-[e = _deviceLogicState -> -> 1 `i `uc ]
 "664
-[; ;main.c: 664:                     }
+[; ;main.c: 664:                         } else if ( deviceLogicCommand == 0xff ) {
 }
-[e :U 186 ]
-[e :U 185 ]
-[e :U 181 ]
-[e :U 173 ]
+[e $U 193  ]
+[e :U 189 ]
+[e $ ! == -> _deviceLogicCommand `i -> 255 `i 194  ]
+{
+"665
+[; ;main.c: 665:                             if ( code != 0xaa ) {
+[e $ ! != -> _code `i -> 170 `i 195  ]
+{
 "666
-[; ;main.c: 666:                     deviceLogicDelay = 0;
-[e = _deviceLogicDelay -> -> 0 `i `ui ]
+[; ;main.c: 666:                                 break;
+[e $U 162  ]
 "667
-[; ;main.c: 667:                 }
-}
-[e :U 168 ]
-"669
-[; ;main.c: 669:                 break;
-[e $U 160  ]
-"670
-[; ;main.c: 670:             } else {
-}
-[e $U 194  ]
-[e :U 167 ]
-{
-"671
-[; ;main.c: 671:                 device->readDataPos = device->inDataPos;
-[e = . *U _device 4 . *U _device 3 ]
-"672
-[; ;main.c: 672:             }
-}
-[e :U 194 ]
-[e :U 166 ]
-[e :U 164 ]
-"673
-[; ;main.c: 673:         }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 2 `i 159  ]
-[e :U 160 ]
-}
-"675
-[; ;main.c: 675:         if ( delay != 0 ) {
-[e $ ! != _delay -> -> 0 `i `ui 195  ]
-{
-"677
-[; ;main.c: 677:             delay--;
-[e -- _delay -> -> 1 `i `ui ]
-"678
-[; ;main.c: 678:             if ( delay == 0 ) {
-[e $ ! == _delay -> -> 0 `i `ui 196  ]
-{
-"680
-[; ;main.c: 680:                 updatePort(0x00, 0);
-[e ( _updatePort (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"682
-[; ;main.c: 682:                 needSave = 1;
-[e = _needSave -> -> 1 `i `uc ]
-"683
-[; ;main.c: 683:             } else if ( delay == 200 ) {
-}
-[e $U 197  ]
-[e :U 196 ]
-[e $ ! == _delay -> -> 200 `i `ui 198  ]
-{
-"685
-[; ;main.c: 685:                 updateKey(delayedKey, 1 );
-[e ( _updateKey (2 , _delayedKey -> -> 1 `i `uc ]
-"686
-[; ;main.c: 686:                 delayedKey = 0;
-[e = _delayedKey -> -> 0 `i `uc ]
-"687
-[; ;main.c: 687:                 needSave = 1;
-[e = _needSave -> -> 1 `i `uc ]
-"688
-[; ;main.c: 688:             }
-}
-[e :U 198 ]
-[e :U 197 ]
-"690
-[; ;main.c: 690:         }
+[; ;main.c: 667:                             }
 }
 [e :U 195 ]
-"692
-[; ;main.c: 692:         kempstonMouseEmulatorDelay++;
-[e ++ _kempstonMouseEmulatorDelay -> -> 1 `i `ui ]
-"693
-[; ;main.c: 693:         if ( kempstonMouseEmulatorDelay > 2000 ) {
-[e $ ! > _kempstonMouseEmulatorDelay -> -> 2000 `i `ui 199  ]
-{
-"703
-[; ;main.c: 703:             kempstonMouseEmulatorDelay = 0;
-[e = _kempstonMouseEmulatorDelay -> -> 0 `i `ui ]
-"704
-[; ;main.c: 704:             needSave = 1;
-[e = _needSave -> -> 1 `i `uc ]
-"705
-[; ;main.c: 705:         }
+"668
+[; ;main.c: 668:                         }
 }
-[e :U 199 ]
-"707
-[; ;main.c: 707:         if ( needSave) {
-[e $ ! != -> _needSave `i -> 0 `i 200  ]
+[e :U 194 ]
+[e :U 193 ]
+"670
+[; ;main.c: 670:                         deviceLogicIndex++;
+[e ++ _deviceLogicIndex -> -> 1 `i `uc ]
+"671
+[; ;main.c: 671:                         deviceLogicState = 1;
+[e = _deviceLogicState -> -> 1 `i `uc ]
+"672
+[; ;main.c: 672:                     }
+}
+[e :U 188 ]
+[e :U 187 ]
+[e :U 183 ]
+[e :U 175 ]
+"674
+[; ;main.c: 674:                     deviceLogicDelay = 0;
+[e = _deviceLogicDelay -> -> 0 `i `ui ]
+"675
+[; ;main.c: 675:                 }
+}
+[e :U 170 ]
+"677
+[; ;main.c: 677:                 break;
+[e $U 162  ]
+"678
+[; ;main.c: 678:             } else {
+}
+[e $U 196  ]
+[e :U 169 ]
 {
-"708
-[; ;main.c: 708:             sendDataToAltera();
-[e ( _sendDataToAltera ..  ]
-"709
-[; ;main.c: 709:         }
+"679
+[; ;main.c: 679:                 device->readDataPos = device->inDataPos;
+[e = . *U _device 4 . *U _device 3 ]
+"680
+[; ;main.c: 680:             }
+}
+[e :U 196 ]
+[e :U 168 ]
+[e :U 166 ]
+"681
+[; ;main.c: 681:         }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 2 `i 161  ]
+[e :U 162 ]
+}
+"683
+[; ;main.c: 683:         if ( delay != 0 ) {
+[e $ ! != _delay -> -> 0 `i `ui 197  ]
+{
+"685
+[; ;main.c: 685:             delay--;
+[e -- _delay -> -> 1 `i `ui ]
+"686
+[; ;main.c: 686:             if ( delay == 0 ) {
+[e $ ! == _delay -> -> 0 `i `ui 198  ]
+{
+"688
+[; ;main.c: 688:                 updatePort(0x00, 0);
+[e ( _updatePort (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+"690
+[; ;main.c: 690:                 needSave = 1;
+[e = _needSave -> -> 1 `i `uc ]
+"691
+[; ;main.c: 691:             } else if ( delay == 200 ) {
+}
+[e $U 199  ]
+[e :U 198 ]
+[e $ ! == _delay -> -> 200 `i `ui 200  ]
+{
+"693
+[; ;main.c: 693:                 updateKey(delayedKey, 1 );
+[e ( _updateKey (2 , _delayedKey -> -> 1 `i `uc ]
+"694
+[; ;main.c: 694:                 delayedKey = 0;
+[e = _delayedKey -> -> 0 `i `uc ]
+"695
+[; ;main.c: 695:                 needSave = 1;
+[e = _needSave -> -> 1 `i `uc ]
+"696
+[; ;main.c: 696:             }
 }
 [e :U 200 ]
-"711
-[; ;main.c: 711:         __asm("clrwdt");
-[; <" clrwdt ;# ">
-"712
-[; ;main.c: 712:     }
+[e :U 199 ]
+"698
+[; ;main.c: 698:         }
 }
-[e :U 156 ]
-[e $U 157  ]
-[e :U 158 ]
+[e :U 197 ]
+"700
+[; ;main.c: 700:         kempstonMouseEmulatorDelay++;
+[e ++ _kempstonMouseEmulatorDelay -> -> 1 `i `ui ]
+"701
+[; ;main.c: 701:         if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
+[e $ ! && > _kempstonMouseEmulatorDelay -> -> 333 `i `ui != -> _numLock `i -> 0 `i 201  ]
+{
+"703
+[; ;main.c: 703:             if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=1;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 1 `i -> 0 `i 202  ]
+[e =- *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
+[e :U 202 ]
+"704
+[; ;main.c: 704:             if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=1;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 2 `i -> 0 `i 203  ]
+[e =+ *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
+[e :U 203 ]
+"705
+[; ;main.c: 705:             if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=1;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 4 `i -> 0 `i 204  ]
+[e =+ *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
+[e :U 204 ]
+"706
+[; ;main.c: 706:             if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=1;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 8 `i -> 0 `i 205  ]
+[e =- *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
+[e :U 205 ]
+"707
+[; ;main.c: 707:             if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
+[e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 16 `i -> 0 `i 206  ]
+[e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 254 `i `uc ]
+[e $U 207  ]
+"708
+[; ;main.c: 708:             else outPorts[8] |= 1;
+[e :U 206 ]
+[e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
+[e :U 207 ]
+"710
+[; ;main.c: 710:             kempstonMouseEmulatorDelay = 0;
+[e = _kempstonMouseEmulatorDelay -> -> 0 `i `ui ]
+"711
+[; ;main.c: 711:             needSave = 1;
+[e = _needSave -> -> 1 `i `uc ]
+"712
+[; ;main.c: 712:         }
+}
+[e :U 201 ]
 "714
-[; ;main.c: 714: }
-[e :UE 152 ]
+[; ;main.c: 714:         if ( needSave) {
+[e $ ! != -> _needSave `i -> 0 `i 208  ]
+{
+"715
+[; ;main.c: 715:             sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"716
+[; ;main.c: 716:         }
+}
+[e :U 208 ]
+"718
+[; ;main.c: 718:         __asm("clrwdt");
+[; <" clrwdt ;# ">
+"719
+[; ;main.c: 719:     }
+}
+[e :U 158 ]
+[e $U 159  ]
+[e :U 160 ]
+"721
+[; ;main.c: 721: }
+[e :UE 154 ]
 }
