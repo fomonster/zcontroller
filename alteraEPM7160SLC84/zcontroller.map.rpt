@@ -1,5 +1,5 @@
 Analysis & Synthesis report for zcontroller
-Fri Sep 28 17:05:29 2018
+Tue Sep 10 15:12:18 2019
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -45,13 +45,13 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                               ;
 +-----------------------------+----------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Sep 28 17:05:29 2018        ;
+; Analysis & Synthesis Status ; Successful - Tue Sep 10 15:12:18 2019        ;
 ; Quartus II Version          ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name               ; zcontroller                                  ;
 ; Top-level Entity Name       ; zcontroller                                  ;
 ; Family                      ; MAX7000S                                     ;
-; Total macrocells            ; 118                                          ;
-; Total pins                  ; 55                                           ;
+; Total macrocells            ; 124                                          ;
+; Total pins                  ; 60                                           ;
 +-----------------------------+----------------------------------------------+
 
 
@@ -144,15 +144,15 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------+----------------------+
 ; Resource             ; Usage                ;
 +----------------------+----------------------+
-; Logic cells          ; 118                  ;
-; Total registers      ; 82                   ;
-; I/O pins             ; 55                   ;
-; Shareable expanders  ; 43                   ;
-; Parallel expanders   ; 1                    ;
+; Logic cells          ; 124                  ;
+; Total registers      ; 84                   ;
+; I/O pins             ; 60                   ;
+; Shareable expanders  ; 42                   ;
+; Parallel expanders   ; 2                    ;
 ; Maximum fan-out node ; STROBE               ;
-; Maximum fan-out      ; 62                   ;
-; Total fan-out        ; 1051                 ;
-; Average fan-out      ; 4.87                 ;
+; Maximum fan-out      ; 64                   ;
+; Total fan-out        ; 1072                 ;
+; Average fan-out      ; 4.74                 ;
 +----------------------+----------------------+
 
 
@@ -161,7 +161,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------+------------+------+--------------------------------------+--------------+
 ; Compilation Hierarchy Node   ; Macrocells ; Pins ; Full Hierarchy Name                  ; Library Name ;
 +------------------------------+------------+------+--------------------------------------+--------------+
-; |zcontroller                 ; 118        ; 55   ; |zcontroller                         ; work         ;
+; |zcontroller                 ; 124        ; 60   ; |zcontroller                         ; work         ;
 ;    |lpm_counter:count_rtl_0| ; 4          ; 0    ; |zcontroller|lpm_counter:count_rtl_0 ; work         ;
 +------------------------------+------------+------+--------------------------------------+--------------+
 
@@ -268,19 +268,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Fri Sep 28 17:05:28 2018
+    Info: Processing started: Tue Sep 10 15:12:17 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off zcontroller -c zcontroller
 Info: Found 2 design units, including 1 entities, in source file zcont.vhdl
     Info: Found design unit 1: zcontroller-RTL
     Info: Found entity 1: zcontroller
 Info: Elaborating entity "zcontroller" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(280): signal "D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(282): signal "D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at zcont.vhdl(283): signal "D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at zcont.vhdl(271): inferring latch(es) for signal or variable "SDCS", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at zcont.vhdl(271): inferring latch(es) for signal or variable "SDEN", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "SDEN" at zcont.vhdl(271)
-Info (10041): Inferred latch for "SDCS" at zcont.vhdl(271)
+Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(122): used explicit default value for signal "IO1" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(123): used explicit default value for signal "IO2" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at zcont.vhdl(124): used explicit default value for signal "IO3" because signal was never assigned a value
+Warning (10492): VHDL Process Statement warning at zcont.vhdl(273): signal "D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at zcont.vhdl(275): signal "D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at zcont.vhdl(276): signal "D" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at zcont.vhdl(264): inferring latch(es) for signal or variable "SDCS", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at zcont.vhdl(264): inferring latch(es) for signal or variable "SDEN", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "SDEN" at zcont.vhdl(264)
+Info (10041): Inferred latch for "SDCS" at zcont.vhdl(264)
 Info: Inferred 1 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: "count[0]~0"
 Info: Inferred 1 megafunctions from design logic
@@ -309,18 +312,24 @@ Info: Ignored 3 buffer(s)
 Warning: The following bidir pins have no drivers
     Warning: Bidir "NMI" has no driver
 Info: Registers with preset signals will power-up high
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "IO1" is stuck at GND
+    Warning (13410): Pin "IO2" is stuck at GND
+    Warning (13410): Pin "IO3" is stuck at GND
 Info: Promoted pin-driven signal(s) to global signal
     Info: Promoted clock signal driven by pin "STROBE" to global clock signal
     Info: Promoted clock signal driven by pin "SDTAKT" to global clock signal
-Info: Implemented 216 device resources after synthesis - the final resource count might be different
-    Info: Implemented 35 input pins
-    Info: Implemented 9 output pins
+Warning: Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "IO3D"
+Info: Implemented 226 device resources after synthesis - the final resource count might be different
+    Info: Implemented 36 input pins
+    Info: Implemented 13 output pins
     Info: Implemented 11 bidirectional pins
-    Info: Implemented 118 macrocells
-    Info: Implemented 43 shareable expanders
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 263 megabytes
-    Info: Processing ended: Fri Sep 28 17:05:29 2018
+    Info: Implemented 124 macrocells
+    Info: Implemented 42 shareable expanders
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 245 megabytes
+    Info: Processing ended: Tue Sep 10 15:12:18 2019
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:02
 

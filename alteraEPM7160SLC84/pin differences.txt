@@ -1,0 +1,4 @@
+11 up bus - 6 epm - D3  => to 81 epm7160 io7
+6 up bus - 79 epm - D0  => to 75 epm7160 io6
+19 ÀÏ5 - 39 epm - EBL  => to 51 epm7160 io0
+11 pic - 46 epm - PB5  => to 52 epm7160 io1

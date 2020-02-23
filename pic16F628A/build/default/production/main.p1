@@ -2327,83 +2327,83 @@ Version 4.0 HI-TECH Software Intermediate Code
 "695
 [; ;main.c: 695:                 needSave = 1;
 [e = _needSave -> -> 1 `i `uc ]
-"696
-[; ;main.c: 696:             }
+"697
+[; ;main.c: 697:             }
 }
 [e :U 200 ]
 [e :U 199 ]
-"698
-[; ;main.c: 698:         }
+"699
+[; ;main.c: 699:         }
 }
 [e :U 197 ]
-"700
-[; ;main.c: 700:         kempstonMouseEmulatorDelay++;
-[e ++ _kempstonMouseEmulatorDelay -> -> 1 `i `ui ]
 "701
-[; ;main.c: 701:         if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
+[; ;main.c: 701:         kempstonMouseEmulatorDelay++;
+[e ++ _kempstonMouseEmulatorDelay -> -> 1 `i `ui ]
+"702
+[; ;main.c: 702:         if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
 [e $ ! && > _kempstonMouseEmulatorDelay -> -> 333 `i `ui != -> _numLock `i -> 0 `i 201  ]
 {
-"703
-[; ;main.c: 703:             if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=1;
+"704
+[; ;main.c: 704:             if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=1;
 [e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 1 `i -> 0 `i 202  ]
 [e =- *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
 [e :U 202 ]
-"704
-[; ;main.c: 704:             if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=1;
+"705
+[; ;main.c: 705:             if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=1;
 [e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 2 `i -> 0 `i 203  ]
 [e =+ *U + &U _outPorts * -> -> -> 9 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
 [e :U 203 ]
-"705
-[; ;main.c: 705:             if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=1;
+"706
+[; ;main.c: 706:             if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=1;
 [e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 4 `i -> 0 `i 204  ]
 [e =+ *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
 [e :U 204 ]
-"706
-[; ;main.c: 706:             if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=1;
+"707
+[; ;main.c: 707:             if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=1;
 [e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 8 `i -> 0 `i 205  ]
 [e =- *U + &U _outPorts * -> -> -> 10 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
 [e :U 205 ]
-"707
-[; ;main.c: 707:             if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
+"708
+[; ;main.c: 708:             if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254;
 [e $ ! > & -> _kempstonMouseEmulatorKeys `i -> 16 `i -> 0 `i 206  ]
 [e =& *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 254 `i `uc ]
 [e $U 207  ]
-"708
-[; ;main.c: 708:             else outPorts[8] |= 1;
+"709
+[; ;main.c: 709:             else outPorts[8] |= 1;
 [e :U 206 ]
 [e =| *U + &U _outPorts * -> -> -> 8 `i `ui `ux -> -> # *U &U _outPorts `ui `ux -> -> 1 `i `uc ]
 [e :U 207 ]
-"710
-[; ;main.c: 710:             kempstonMouseEmulatorDelay = 0;
-[e = _kempstonMouseEmulatorDelay -> -> 0 `i `ui ]
 "711
-[; ;main.c: 711:             needSave = 1;
-[e = _needSave -> -> 1 `i `uc ]
+[; ;main.c: 711:             kempstonMouseEmulatorDelay = 0;
+[e = _kempstonMouseEmulatorDelay -> -> 0 `i `ui ]
 "712
-[; ;main.c: 712:         }
+[; ;main.c: 712:             needSave = 1;
+[e = _needSave -> -> 1 `i `uc ]
+"713
+[; ;main.c: 713:         }
 }
 [e :U 201 ]
-"714
-[; ;main.c: 714:         if ( needSave) {
+"715
+[; ;main.c: 715:         if ( needSave) {
 [e $ ! != -> _needSave `i -> 0 `i 208  ]
 {
-"715
-[; ;main.c: 715:             sendDataToAltera();
-[e ( _sendDataToAltera ..  ]
 "716
-[; ;main.c: 716:         }
+[; ;main.c: 716:             sendDataToAltera();
+[e ( _sendDataToAltera ..  ]
+"717
+[; ;main.c: 717:         }
 }
 [e :U 208 ]
-"718
-[; ;main.c: 718:         __asm("clrwdt");
-[; <" clrwdt ;# ">
 "719
-[; ;main.c: 719:     }
+[; ;main.c: 719:         __asm("clrwdt");
+[; <" clrwdt ;# ">
+"720
+[; ;main.c: 720:     }
 }
 [e :U 158 ]
 [e $U 159  ]
 [e :U 160 ]
-"721
-[; ;main.c: 721: }
+"722
+[; ;main.c: 722: }
 [e :UE 154 ]
 }

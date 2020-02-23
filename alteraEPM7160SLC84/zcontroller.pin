@@ -114,21 +114,21 @@ GND                          : 47        : gnd    :                   :         
 PB[2]                        : 48        : input  : TTL               :         :           : Y              
 PB[1]                        : 49        : input  : TTL               :         :           : Y              
 PB[4]                        : 50        : input  : TTL               :         :           : Y              
-EBL                          : 51        : output : TTL               :         :           : Y              
-PB[5]                        : 52        : input  : TTL               :         :           : Y              
+IO0                          : 51        : output : TTL               :         :           : Y              
+IO1                          : 52        : output : TTL               :         :           : Y              
 VCCIO                        : 53        : power  :                   : 5.0V    :           :                
 WRH                          : 54        : output : TTL               :         :           : Y              
 RES                          : 55        : bidir  : TTL               :         :           : Y              
 PB[0]                        : 56        : input  : TTL               :         :           : Y              
-RESERVED                     : 57        :        :                   :         :           :                
+IO2                          : 57        : output : TTL               :         :           : Y              
 A[7]                         : 58        : input  : TTL               :         :           : Y              
 GND                          : 59        : gnd    :                   :         :           :                
-RESERVED                     : 60        :        :                   :         :           :                
-RESERVED                     : 61        :        :                   :         :           :                
+IO3D                         : 60        : input  : TTL               :         :           : Y              
+PB[5]                        : 61        : input  : TTL               :         :           : Y              
 TCK                          : 62        : input  : TTL               :         :           : Y              
-RESERVED                     : 63        :        :                   :         :           :                
+IO3                          : 63        : output : TTL               :         :           : Y              
 SC                           : 64        : output : TTL               :         :           : Y              
-RESERVED                     : 65        :        :                   :         :           :                
+EBL                          : 65        : output : TTL               :         :           : Y              
 VCCIO                        : 66        : power  :                   : 5.0V    :           :                
 D[7]                         : 67        : bidir  : TTL               :         :           : Y              
 D[1]                         : 68        : bidir  : TTL               :         :           : Y              
@@ -138,13 +138,13 @@ TDO                          : 71        : output : TTL               :         
 GND                          : 72        : gnd    :                   :         :           :                
 A[14]                        : 73        : input  : TTL               :         :           : Y              
 A[12]                        : 74        : input  : TTL               :         :           : Y              
-D[0]                         : 75        : bidir  : TTL               :         :           : Y              
+D[3]                         : 75        : bidir  : TTL               :         :           : Y              
 A[13]                        : 76        : input  : TTL               :         :           : Y              
 DOS                          : 77        : input  : TTL               :         :           : Y              
 VCCIO                        : 78        : power  :                   : 5.0V    :           :                
 NC                           : 79        :        :                   :         :           :                
 D[2]                         : 80        : bidir  : TTL               :         :           : Y              
-D[3]                         : 81        : bidir  : TTL               :         :           : Y              
+D[0]                         : 81        : bidir  : TTL               :         :           : Y              
 GND                          : 82        : gnd    :                   :         :           :                
 STROBE                       : 83        : input  : TTL               :         :           : Y              
 A[0]                         : 84        : input  : TTL               :         :           : Y              

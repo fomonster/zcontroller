@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Fri Nov 30 11:25:40 2018
+                                                                                               Fri Nov 30 14:11:59 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1                           	processor	16F628A
@@ -1743,12 +1743,12 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1722  0216  01CF               	clrf	_needSave
   1723  0217  0ACF               	incf	_needSave,f
   1724  0218                     l2384:	
-  1725                           ;main.c: 698:         }
+  1725                           ;main.c: 699:         }
   1726                           
-  1727                           ;main.c: 696:             }
+  1727                           ;main.c: 697:             }
   1728                           
   1729                           
-  1730                           ;main.c: 700:         kempstonMouseEmulatorDelay++;
+  1730                           ;main.c: 701:         kempstonMouseEmulatorDelay++;
   1731  0218  3001               	movlw	1
   1732  0219  07C6               	addwf	_kempstonMouseEmulatorDelay,f
   1733  021A  1803               	skipnc
@@ -1756,7 +1756,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1735  021C  3000               	movlw	0
   1736  021D  07C7               	addwf	_kempstonMouseEmulatorDelay+1,f
   1737                           
-  1738                           ;main.c: 701:         if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
+  1738                           ;main.c: 702:         if ( kempstonMouseEmulatorDelay > 333 && numLock ) {
   1739  021E  3001               	movlw	1
   1740  021F  0247               	subwf	_kempstonMouseEmulatorDelay+1,w
   1741  0220  304E               	movlw	78
@@ -1768,14 +1768,14 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1747  0226  1903               	btfsc	3,2
   1748  0227  2A48               	goto	l2414
   1749                           
-  1750                           ;main.c: 703:             if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=1;
+  1750                           ;main.c: 704:             if ( (kempstonMouseEmulatorKeys & 1) > 0 ) outPorts[9]-=1;
   1751  0228  1C58               	btfss	_kempstonMouseEmulatorKeys,0
   1752  0229  2A2C               	goto	l2394
   1753  022A  3001               	movlw	1
   1754  022B  02E2               	subwf	_outPorts+9,f
   1755  022C                     l2394:	
   1756                           
-  1757                           ;main.c: 704:             if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=1;
+  1757                           ;main.c: 705:             if ( (kempstonMouseEmulatorKeys & 2) > 0 ) outPorts[9]+=1;
   1758  022C  1CD8               	btfss	_kempstonMouseEmulatorKeys,1
   1759  022D  2A32               	goto	l2398
   1760  022E  3001               	movlw	1
@@ -1784,7 +1784,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1763  0231  07E2               	addwf	_outPorts+9,f
   1764  0232                     l2398:	
   1765                           
-  1766                           ;main.c: 705:             if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=1;
+  1766                           ;main.c: 706:             if ( (kempstonMouseEmulatorKeys & 4) > 0 ) outPorts[10]+=1;
   1767  0232  1D58               	btfss	_kempstonMouseEmulatorKeys,2
   1768  0233  2A38               	goto	l2402
   1769  0234  3001               	movlw	1
@@ -1793,14 +1793,14 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1772  0237  07E3               	addwf	_outPorts+10,f
   1773  0238                     l2402:	
   1774                           
-  1775                           ;main.c: 706:             if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=1;
+  1775                           ;main.c: 707:             if ( (kempstonMouseEmulatorKeys & 8) > 0 ) outPorts[10]-=1;
   1776  0238  1DD8               	btfss	_kempstonMouseEmulatorKeys,3
   1777  0239  2A3C               	goto	l2406
   1778  023A  3001               	movlw	1
   1779  023B  02E3               	subwf	_outPorts+10,f
   1780  023C                     l2406:	
   1781                           
-  1782                           ;main.c: 707:             if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254
+  1782                           ;main.c: 708:             if ( (kempstonMouseEmulatorKeys & 16) > 0 ) outPorts[8] &= 254
       +                          ;
   1783  023C  1E58               	btfss	_kempstonMouseEmulatorKeys,4
   1784  023D  2A43               	goto	l356
@@ -1810,35 +1810,35 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1788  0241  05E1               	andwf	_outPorts+8,f
   1789  0242  2A44               	goto	l2410
   1790  0243                     l356:	
-  1791                           ;main.c: 708:             else outPorts[8] |= 1;
+  1791                           ;main.c: 709:             else outPorts[8] |= 1;
   1792                           
   1793  0243  1461               	bsf	_outPorts+8,0
   1794  0244                     l2410:	
   1795                           
-  1796                           ;main.c: 710:             kempstonMouseEmulatorDelay = 0;
+  1796                           ;main.c: 711:             kempstonMouseEmulatorDelay = 0;
   1797  0244  01C6               	clrf	_kempstonMouseEmulatorDelay
   1798  0245  01C7               	clrf	_kempstonMouseEmulatorDelay+1
   1799                           
-  1800                           ;main.c: 711:             needSave = 1;
+  1800                           ;main.c: 712:             needSave = 1;
   1801  0246  01CF               	clrf	_needSave
   1802  0247  0ACF               	incf	_needSave,f
   1803  0248                     l2414:	
-  1804                           ;main.c: 712:         }
+  1804                           ;main.c: 713:         }
   1805                           
   1806                           
-  1807                           ;main.c: 714:         if ( needSave) {
+  1807                           ;main.c: 715:         if ( needSave) {
   1808  0248  084F               	movf	_needSave,w
   1809  0249  1903               	btfsc	3,2
   1810  024A  2A4C               	goto	l358
   1811                           
-  1812                           ;main.c: 715:             sendDataToAltera();
+  1812                           ;main.c: 716:             sendDataToAltera();
   1813  024B  274C               	fcall	_sendDataToAltera
   1814  024C                     l358:	
-  1815                           ;main.c: 716:         }
+  1815                           ;main.c: 717:         }
   1816                           
   1817  024C  0064               	clrwdt	;# 
   1818                           
-  1819                           ;main.c: 719:     }
+  1819                           ;main.c: 720:     }
   1820  024D  28B8               	goto	l2240
   1821  024E                     __end_of_main:	
   1822                           
@@ -4270,7 +4270,7 @@ EEDATA              80      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Fri Nov 30 11:25:40 2018
+Symbol Table                                                                                   Fri Nov 30 14:11:59 2018
 
                                  pc 0002                      ___bmul@product 0022  
                                 fsr 0004            ??_calculateBitsFromTable 0025  

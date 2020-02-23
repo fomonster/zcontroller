@@ -108,7 +108,7 @@ RES 	: inout std_logic := 'Z'; -- Сброс. Вход. Активный уровень - низкий. Сигнал
 								-- тактовой частоты. В это время адресная шина и шина данных находятся в высокоомном
 								-- состоянии, а все выходы сигналов управления неактивны.
 
-NMI 	: inout std_logic := 'Z'  -- Немаскируемый запрос прерывания
+NMI 	: inout std_logic := 'Z';  -- Немаскируемый запрос прерывания
 								-- Вход, запускаемый отрицательным фронтом. Фронт запуска активизирует
 								-- внутренний триггер NMI. Линия /NMI имеет более высокий приоритет, чем /INT и всегда
 								-- распознается в конце выполнения текущей команды, независимо от состояния триггера
@@ -118,16 +118,16 @@ NMI 	: inout std_logic := 'Z'  -- Немаскируемый запрос прерывания
 
 -- другое
 
---IO0 : out std_logic := '0';
---IO1 : out std_logic := '0';
---IO2 : out std_logic := '0';
---IO3 : out std_logic := '0';
+IO0 : out std_logic := '0';
+IO1 : out std_logic := '0';
+IO2 : out std_logic := '0';
+IO3 : out std_logic := '0';
 --IO4 : out std_logic := '0';
 
 --IO5 : out std_logic := '0';
 --IO6 : out std_logic := '0';
 --IO7 : out std_logic := '0';
---IO3D : in std_logic := '0' -- дубликат
+IO3D : in std_logic := '0' -- дубликат
 
 );
 end zcontroller;
@@ -154,7 +154,7 @@ shared variable portF : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 shared variable portG : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 shared variable portH : STD_LOGIC_VECTOR (4 downto 0) := "11111";
 -- mouse ports data
-shared variable portI : STD_LOGIC_VECTOR (2 downto 0) := "111";
+shared variable portI : STD_LOGIC_VECTOR (3 downto 0) := "1111";
 shared variable portJ : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 shared variable portK : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
 
@@ -194,12 +194,7 @@ begin
 			    "100" when A(15 downto 0) = X"FADF" and read_port = '1' else -- чтение портов мышки
 			    "101" when A(15 downto 0) = X"FBDF" and read_port = '1' else 
 			    "110" when A(15 downto 0) = X"FFDF" and read_port = '1' else 
-			    --"001" when A(7 downto 0) = X"FE" and IORQ = '0' and RD = '0' and DOS = '1' else
 				"000";
-	
-	-- селектор чтения записи в порты 77h, 57h
-	--zc_wr <= '1' when selector = "010" else '0';
-	--zc_rd <= '1' when selector = "011" else '0';
 	
 	--------------------------------------------------------------------------------
 	-- Клавиатура
@@ -211,8 +206,8 @@ begin
 		if RESTRIG = '1' then
 			count := "0000"; 
 		else
-			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'	
-			
+			if STROBE'event and STROBE = '0' then --falling_edge STROBE'event and STROBE = '0'				
+
 				case count is
 					when X"0" => portA := PB(4 downto 0); -- Keyboard
 					when X"1" => portB := PB(4 downto 0);
@@ -222,12 +217,11 @@ begin
 					when X"5" => portF := PB(4 downto 0);
 					when X"6" => portG := PB(4 downto 0);
 					when X"7" => portH := PB(4 downto 0);
-					when X"8" => portI := PB(2 downto 0); -- KempstonMouse
+					when X"8" => portI := PB(3 downto 0); -- KempstonMouse
 					when X"9" => portJ := PB(7 downto 0);
 					when X"A" => portK := PB(7 downto 0);
 					when others => null;
-				end case;
-                
+				end case;                
                 count := count + 1;
             end if;
         end if;
@@ -376,15 +370,15 @@ begin
 		case selector is			
 			when "001" => D <= "111" & kb_do_bus;	-- Read port #xxFE Keyboard
 			when "011" => D <= zc_do_bus;			-- Z-Controller
-			when "100" => D <= "1111111" & portI(0); -- Kempston Mouse Button
+			when "100" => D <= "111111" & portI(1 downto 0); -- Kempston Mouse Button
 			when "101" => D <= portJ; -- Kempston Mouse X
 			when "110" => D <= portK; -- Kempston Mouse Y
 			when others => D <= "ZZZZZZZZ";
 		end case;
 	end process;
 
-	RES <= 'Z' when portI(1) = '1' else '0';
-	IO0 <= 'Z'when portI(2) = '1' else '0';
+	RES <= 'Z' when portI(2) = '1' else '0';	
+	IO0 <= 'Z' when portI(3) = '1' else '0';
 	
 	--------------------------------------------------------------------------------
 	--                                   The end.

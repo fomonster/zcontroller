@@ -11,6 +11,9 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
+$C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+reset_vec CODE 0 0 0 1 2
+end_init CODE 0 C C 1 2
 $dist/default/production\pic16F628A.production.o
 cinit CODE 0 D D 27 2
 text1 CODE 0 74C 74C 4A 2
@@ -37,9 +40,6 @@ strings STRING 0 300 300 EB 2
 dataBANK0 BANK0 1 59 59 C 1
 clrtext CODE 0 2A3 2A3 8 2
 bssCOMMON COMMON 1 7A 7A 4 1
-$C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-reset_vec CODE 0 0 0 1 2
-end_init CODE 0 C C 1 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -84,48 +84,48 @@ STRING 2AB-2FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\pic16F628A.production.o
-D cinit CODE >728:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-D cinit CODE >731:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-D cinit CODE >826:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-E cinit CODE >827:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-F cinit CODE >828:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-10 cinit CODE >829:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-11 cinit CODE >830:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-12 cinit CODE >831:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-13 cinit CODE >832:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-14 cinit CODE >833:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-15 cinit CODE >834:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-16 cinit CODE >835:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-17 cinit CODE >836:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-18 cinit CODE >837:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-19 cinit CODE >838:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-1A cinit CODE >839:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-1B cinit CODE >840:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-1C cinit CODE >841:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-1D cinit CODE >842:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-1E cinit CODE >843:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-1F cinit CODE >844:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-20 cinit CODE >845:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-21 cinit CODE >846:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-22 cinit CODE >847:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-23 cinit CODE >848:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-24 cinit CODE >849:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-25 cinit CODE >868:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-26 cinit CODE >869:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-27 cinit CODE >870:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-28 cinit CODE >871:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-29 cinit CODE >872:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A cinit CODE >875:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2B cinit CODE >876:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2C cinit CODE >877:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2D cinit CODE >878:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2E cinit CODE >881:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2F cinit CODE >882:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-30 cinit CODE >883:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-31 cinit CODE >884:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-32 cinit CODE >890:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-32 cinit CODE >892:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-33 cinit CODE >893:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
+D cinit CODE >728:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+D cinit CODE >731:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+D cinit CODE >826:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+E cinit CODE >827:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+F cinit CODE >828:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+10 cinit CODE >829:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+11 cinit CODE >830:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+12 cinit CODE >831:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+13 cinit CODE >832:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+14 cinit CODE >833:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+15 cinit CODE >834:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+16 cinit CODE >835:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+17 cinit CODE >836:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+18 cinit CODE >837:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+19 cinit CODE >838:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+1A cinit CODE >839:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+1B cinit CODE >840:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+1C cinit CODE >841:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+1D cinit CODE >842:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+1E cinit CODE >843:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+1F cinit CODE >844:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+20 cinit CODE >845:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+21 cinit CODE >846:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+22 cinit CODE >847:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+23 cinit CODE >848:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+24 cinit CODE >849:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+25 cinit CODE >868:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+26 cinit CODE >869:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+27 cinit CODE >870:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+28 cinit CODE >871:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+29 cinit CODE >872:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A cinit CODE >875:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2B cinit CODE >876:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2C cinit CODE >877:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2D cinit CODE >878:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2E cinit CODE >881:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2F cinit CODE >882:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+30 cinit CODE >883:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+31 cinit CODE >884:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+32 cinit CODE >890:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+32 cinit CODE >892:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+33 cinit CODE >893:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
 4 intentry CODE >154:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 292 text13 CODE >4:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
 293 text13 CODE >6:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
@@ -478,31 +478,31 @@ FF maintext CODE >606:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic
 20F maintext CODE >693:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 213 maintext CODE >694:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
 216 maintext CODE >695:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-218 maintext CODE >700:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-21E maintext CODE >701:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-228 maintext CODE >703:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-22C maintext CODE >704:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-232 maintext CODE >705:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-238 maintext CODE >706:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-23C maintext CODE >707:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-243 maintext CODE >708:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-244 maintext CODE >710:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-246 maintext CODE >711:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-248 maintext CODE >714:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-24B maintext CODE >715:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-24C maintext CODE >716:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-24C maintext CODE >718:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-24D maintext CODE >719:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
-2A3 clrtext CODE >855:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A3 clrtext CODE >856:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A4 clrtext CODE >857:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A4 clrtext CODE >858:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A5 clrtext CODE >859:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A6 clrtext CODE >860:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A7 clrtext CODE >861:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A8 clrtext CODE >862:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2A9 clrtext CODE >863:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
-2AA clrtext CODE >864:C:\Users\FOMONS~1\AppData\Local\Temp\sc0.
+218 maintext CODE >701:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+21E maintext CODE >702:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+228 maintext CODE >704:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+22C maintext CODE >705:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+232 maintext CODE >706:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+238 maintext CODE >707:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+23C maintext CODE >708:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+243 maintext CODE >709:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+244 maintext CODE >711:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+246 maintext CODE >712:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+248 maintext CODE >715:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+24B maintext CODE >716:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+24C maintext CODE >717:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+24C maintext CODE >719:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+24D maintext CODE >720:C:\Users\fomonster\Dropbox\ZX\z-controller\zcontroller\pic16F628A\main.c
+2A3 clrtext CODE >855:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A3 clrtext CODE >856:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A4 clrtext CODE >857:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A4 clrtext CODE >858:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A5 clrtext CODE >859:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A6 clrtext CODE >860:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A7 clrtext CODE >861:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A8 clrtext CODE >862:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2A9 clrtext CODE >863:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
+2AA clrtext CODE >864:C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -554,13 +554,13 @@ _TMR0 1 0 ABS 0 - dist/default/production\pic16F628A.production.o
 _TMR2 11 0 ABS 0 - dist/default/production\pic16F628A.production.o
 _TXIE 464 0 ABS 0 - dist/default/production\pic16F628A.production.o
 _TXIF 64 0 ABS 0 - dist/default/production\pic16F628A.production.o
-___sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
+___sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
 _main 68 0 CODE 0 maintext dist/default/production\pic16F628A.production.o
 _calculateBitsFromTable F2C 0 CODE 0 text9 dist/default/production\pic16F628A.production.o
 _send D20 0 CODE 0 text3 dist/default/production\pic16F628A.production.o
 btemp 7E 0 ABS 0 - dist/default/production\pic16F628A.production.o
 deviceDataUpdateKeyboard@device 3C 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
-start 18 0 CODE 0 init C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
+start 18 0 CODE 0 init C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
 __size_of_main 0 0 ABS 0 - dist/default/production\pic16F628A.production.o
 __size_of_send 0 0 ABS 0 - dist/default/production\pic16F628A.production.o
 __end_of_replaceOnDelayKeyDown 7BA 0 STRING 0 strings dist/default/production\pic16F628A.production.o
@@ -576,12 +576,12 @@ i1___bmul@multiplier 72 0 COMMON 1 cstackCOMMON dist/default/production\pic16F62
 _kempstonMouseEmulatorKeys 58 0 BANK0 1 bssBANK0 dist/default/production\pic16F628A.production.o
 __end_of_replaceOnShiftKeyDown 760 0 STRING 0 strings dist/default/production\pic16F628A.production.o
 _replaceOnDelayKeyDown 7AA 0 STRING 0 strings dist/default/production\pic16F628A.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 ___bmul@multiplicand 20 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\pic16F628A.production.o
@@ -627,7 +627,7 @@ _TMR2IE 461 0 ABS 0 - dist/default/production\pic16F628A.production.o
 _TMR2IF 61 0 ABS 0 - dist/default/production\pic16F628A.production.o
 i1___bmul@product 73 0 COMMON 1 cstackCOMMON dist/default/production\pic16F628A.production.o
 deviceDataUpdateMouse@device 24 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
+___int_sp 0 0 STACK 2 stack C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
 i1___bmul 524 0 CODE 0 text13 dist/default/production\pic16F628A.production.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
@@ -697,7 +697,7 @@ __size_of_sendDataToAltera 0 0 ABS 0 - dist/default/production\pic16F628A.produc
 __Lintentry 8 0 CODE 0 intentry -
 __end_of_deviceDataInit FE6 0 CODE 0 text10 dist/default/production\pic16F628A.production.o
 __stringtab 600 0 STRING 0 strings dist/default/production\pic16F628A.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
 deviceDataUpdateKeyboard@code 3B 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
 updatePort@set 20 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
 __pdataBANK0 59 0 BANK0 1 dataBANK0 dist/default/production\pic16F628A.production.o
@@ -726,8 +726,8 @@ calculateBitsFromTable@table 22 0 BANK0 1 cstackBANK0 dist/default/production\pi
 main@code 41 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
 main@i_208 42 0 BANK0 1 cstackBANK0 dist/default/production\pic16F628A.production.o
 _importantKeys 7BE 0 STRING 0 strings dist/default/production\pic16F628A.production.o
-stackhi 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
-stacklo 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\sc0.o
+stackhi 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
+stacklo 0 0 ABS 0 - C:\Users\FOMONS~1\AppData\Local\Temp\sk6g.o
 __size_of_calculateBitsFromTable 0 0 ABS 0 - dist/default/production\pic16F628A.production.o
 __end_of__stringtab 60C 0 STRING 0 strings dist/default/production\pic16F628A.production.o
 __end_of_myDelay 1000 0 CODE 0 text2 dist/default/production\pic16F628A.production.o
